@@ -32,6 +32,7 @@ public:
 		const std::vector<TKVMCode_base *> &l);
 	// デストラクタ
 	virtual ~TKVMKISCodeIF();
+    DEFINE_RTTI_FUNCTION
 };
 #if 0
 //---------------------------------------------------------------------------

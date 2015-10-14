@@ -39,6 +39,7 @@
 //---------------------------------------------------------------------------
 #ifdef _MSC_VER
 
+#if _MSC_VER < 1300
 	// STLを使うと必ず出る識別名255文字超Warningを抑制
 	#pragma warning(disable:4786)
 
@@ -50,9 +51,26 @@
 
 	// cstdlib等がstd名前空間を使っていないために起こるエラーを抑制
 	namespace std{}
+#endif
 
 	// POSIX opendir/readdir/closedirが無いため、代替品の指定
 	#define NOHAVE_READDIR
+
+    // stringstream は持ってる
+    #define HAVE_SSTREAM_H
+
+    // ネイティブさおりんを有効にする
+    #define ENABLE_SAORI_NATIVE
+
+#if !defined(DISABLE_ALL_HACK) && !defined(DISABLE_DEBUGGER)
+    // デバッガを有効にする
+    #define ENABLE_DEBUGGER
+#endif
+
+#if !defined(DISABLE_ALL_HACK) && !defined(DISABLE_FAST_OPTIMIZE)
+    // 高速化を有効にする
+    #define ENABLE_FAST_OPTIMIZE
+#endif
 
 #endif
 //---------------------------------------------------------------------------
@@ -79,6 +97,36 @@
 #	if (__GNUC__ >= 3)
 #		define HAVE_SSTREAM_H
 #	endif
+#endif
+//---------------------------------------------------------------------------
+#include <string>
+#include <vector>
+#include <map>
+#include <set>
+#include <iostream>
+#include <fstream>
+#ifdef HAVE_SSTREAM_H
+#include <sstream>
+#else
+#include <strstream>
+#endif
+//---------------------------------------------------------------------------
+#if _MSC_VER >= 1300 && defined(ENABLE_FAST_OPTIMIZE)
+
+//// 関数定義
+//#define DEFINE_RTTI_FUNCTION virtual int Typeid() const; static const int _typeid;
+//// 高速な RTTI 実装もどきを自動実装する
+//#define FAST_RTTI_FUNCTION(name) const int name::_typeid = __COUNTER__; int name::Typeid() const { return name::_typeid; }
+
+// 関数定義
+#define DEFINE_RTTI_FUNCTION virtual int Typeid() const;
+// 高速な RTTI 実装もどきを自動実装する
+#define FAST_RTTI_FUNCTION(name) int name::Typeid() const { return __COUNTER__; }
+
+#else
+
+#define DEFINE_RTTI_FUNCTION
+
 #endif
 //---------------------------------------------------------------------------
 #endif

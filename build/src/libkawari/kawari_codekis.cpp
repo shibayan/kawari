@@ -79,7 +79,7 @@ ostream &TKVMKISCodeIF::Debug(ostream& os, unsigned int level) const{
 }
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMKISCodeIF::Less(const TKVMCode_base& r_) const{
-	const TKVMKISCodeIF &r=dynamic_cast<const TKVMKISCodeIF &>(r_);
+	const TKVMKISCodeIF &r=static_cast<const TKVMKISCodeIF &>(r_);
 	unsigned int cmax=condlist.size();
 	unsigned int lmax=list.size();
 	if (cmax!=r.condlist.size()) return(cmax<r.condlist.size());

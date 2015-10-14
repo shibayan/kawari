@@ -71,3 +71,15 @@ SHIORI_EXPORT MEMORY_HANDLE SHIORI_CALL request(const MEMORY_HANDLE h,long *len)
 	return string2memory(resstr, len);
 }
 //---------------------------------------------------------------------------
+// デバッグリクエスト
+#ifdef ENABLE_DEBUGGER
+SHIORI_EXPORT MEMORY_HANDLE SHIORI_CALL debug(const MEMORY_HANDLE h, long *len)
+{
+	string resstr=TKawariShioriFactory::GetFactory().DebugInstance(
+		handle, string((const char*)h, *len));
+
+	SHIORI_FREE(h);
+	return string2memory(resstr, len);
+}
+#endif
+//---------------------------------------------------------------------------

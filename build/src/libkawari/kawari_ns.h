@@ -17,7 +17,6 @@
 #include <vector>
 #include <map>
 #include <set>
-#include <climits>
 using namespace std;
 //---------------------------------------------------------------------------
 #include "libkawari/wordcollection.h"
@@ -325,6 +324,9 @@ inline string TEntry::GetName(void) const
 // 戻り値 : 書込み保護対象ならばtrue
 inline bool TEntry::AssertIfProtected(void)
 {
+#ifdef ENABLE_DEBUGGER
+    return false;
+#else
 	if(IsValid()&&ns->ProtectedEntry.count(entry)){
 		ns->gc->GetLogger().GetStream(kawari_log::LOG_ERROR)
 			<< RC.S(kawari::resource::ERR_NS_ASSERT_PROTECTED_ENTRY1) << GetName()
@@ -333,6 +335,7 @@ inline bool TEntry::AssertIfProtected(void)
 	}else{
 		return false;
 	}
+#endif
 }
 //---------------------------------------------------------------------------
 // 指定されたエントリを空にしてから単語を追加

@@ -8,7 +8,7 @@
 //  2001.02.03  Phase 0.3     ノーコメント
 //  2001.02.11  Phase 0.31    再帰定義実装
 //  2001.02.23  Phase 0.4     卒論戦争終戦祈念
-//                            召薫造蕕�にお眠り下さい、過ちは繰り返しませあ�
+//                            召薫造蕕・砲・欧蟆爾気ぁ・瓩舛老・衒屬靴泙擦・
 //                                                                バージョン
 //                            kawari.ini導入
 //                            複数辞書ファイル
@@ -75,6 +75,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cctype>
+#include <locale>
 using namespace std;
 //---------------------------------------------------------------------------
 #include "shiori/kawari_shiori.h"
@@ -87,6 +88,8 @@ using namespace kawari_log;
 // DLLロード時に呼ばれる
 bool TKawariShioriAdapter::Load(const string& datapath)
 {
+    setlocale(LC_ALL, "Japanese");
+
 	// このタイミングで乱数初期化
 	SRandom((unsigned int)time(NULL));
 
@@ -94,6 +97,14 @@ bool TKawariShioriAdapter::Load(const string& datapath)
 
 	Engine.CreateEntry("System.DataPath").Push(Engine.CreateStrWord(datapath));
 	Engine.WriteProtect("System.DataPath");
+
+#ifdef ENABLE_DEBUGGER
+    // 常に Debugger on を有効に
+    Engine.CreateEntry("System.Debugger").Push(Engine.CreateStrWord("on"));
+
+    // 非同期通信用のウィンドウを作成する
+    DebugWindow = new TShioriDebugWindow(*this);
+#endif
 
 	// 初期実行スクリプト
 	Engine.LoadKawariDict(datapath+"kawarirc.kis");
@@ -121,6 +132,10 @@ bool TKawariShioriAdapter::Unload(void)
 	string aistr=EnumExec("System.Callback.OnUnload");
 
 	Engine.GetLogger().GetStream(LOG_INFO) << "[SHIORI/SAORI Adapter] Unload." << endl;
+
+#ifdef ENABLE_DEBUGGER
+    delete DebugWindow;
+#endif
 
 	return(true);
 }
@@ -419,6 +434,121 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 	}
 }
 //---------------------------------------------------------------------------
+// デバッグリクエスト
+#ifdef ENABLE_DEBUGGER
+void TKawariShioriAdapter::Debug(TPHMessage &request, TPHMessage &response)
+{
+    int statuscode = 400;
+
+    const string &reqline = request.GetStartline();
+
+    // リクエストコマンドの抽出
+    string::size_type pos = reqline.find(" DEBUG/");
+    if(pos == string::npos)
+    {
+	    return;
+    }
+    string verb = reqline.substr(0, pos);
+
+    string &reqid = request["ID"];
+
+    if (verb == "GET")
+    {
+        if (reqid == "Evaluate")
+        {
+            statuscode = 200;
+            response["Value0"] = Engine.Parse(request["Reference0"]);
+        }
+        else if (reqid == "Variable")
+        {
+            statuscode = 200;
+            TEntry entry = Engine.GetEntry(request["Reference0"]);
+            response["Value0"] = entry.GetName();
+            for (unsigned int i = 0; i < entry.Size(); ++i)
+            {
+                response["Value" + IntToString(i + 1)] = Engine.IndexWord(entry, i);
+            }
+        }
+        else if (reqid == "Variables")
+        {
+            statuscode = 200;
+            vector<TEntry> entries;
+            int count = Engine.FindAllEntry(entries);
+            for (int i = 0; i < count; ++i)
+            {
+                string retstr;
+                for (unsigned int j = 0; j < entries[i].Size(); ++j)
+                {
+                    if (j != 0)
+                    {
+                        retstr += "\x2";
+                    }
+                    retstr += Engine.IndexWord(entries[i], j);
+                }
+                response["Value" + IntToString(i)] = entries[i].GetName() + "\x1" + retstr;
+            }
+        }
+    }
+    else if (verb == "POST")
+    {
+        if (reqid == "Variable")
+        {
+            statuscode = 200;
+            TEntry entry = Engine.CreateEntry(request["Reference0"]);
+            entry.Clear();
+            for (int i = 1;; ++i)
+            {
+                if (!request.count("Reference" + IntToString(i)))
+                {
+                    break;
+                }
+                entry.Push(Engine.CreateWord(request["Reference" + IntToString(i)]));
+            }
+        }
+    }
+    else if (verb == "PUT")
+    {
+        if (reqid == "Variable")
+        {
+            statuscode = 200;
+            TEntry entry = Engine.GetEntry(request["Reference0"]);
+            entry.Clear();
+            for (int i = 1;; ++i)
+            {
+                if (!request.count("Reference" + IntToString(i)))
+                {
+                    break;
+                }
+                entry.Push(Engine.CreateWord(request["Reference" + IntToString(i)]));
+            }
+        }
+    }
+    else if (verb == "DELETE")
+    {
+        if (reqid == "Variable")
+        {
+            statuscode = 200;
+            Engine.ClearTree(request["Reference0"]);
+            Engine.ClearEntry(request["Reference0"]);
+        }
+    }
+	string statusheader;
+	switch (statuscode)
+    {
+	case 200:
+		statusheader = "200 OK";
+		break;
+	case 400:
+		statusheader = "400 Bad Request";
+		break;
+	default:
+		statusheader = "500 Internal Server Error";
+		break;
+	}
+	response.SetStartline("DEBUG/1.0 " + statusheader);
+}
+#endif
+//---------------------------------------------------------------------------
 // 以下はAPI以外
 //---------------------------------------------------------------------------
 // Senderを伝達経路情報と分離
@@ -537,6 +667,20 @@ string TKawariShioriFactory::RequestInstance(unsigned int h, const string &reqst
 	instance->Request(mreq, mres);
 	return mres.Serialize();
 }
+//---------------------------------------------------------------------------
+// デバッグリクエスト
+#ifdef ENABLE_DEBUGGER
+string TKawariShioriFactory::DebugInstance(unsigned int h, const string &reqstr){
+	if ((h==0)||(h>list.size())) return ("");
+	TKawariShioriAdapter *instance=list[(int)h-1];
+	if (!instance) return ("");
+
+	TPHMessage mreq, mres;
+	mreq.Deserialize(reqstr);
+	instance->Debug(mreq, mres);
+	return mres.Serialize();
+}
+#endif
 //---------------------------------------------------------------------------
 // 以下のエントリは特別扱いされる(Phase7.9.0にて全面的に変更)
 //

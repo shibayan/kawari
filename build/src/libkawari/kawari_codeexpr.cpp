@@ -62,7 +62,7 @@ string TKVMCodeExpression::Run(TKawariVM &vm){
 }
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMCodeExpression::Less(const TKVMCode_base& r_) const{
-	const TKVMCodeExpression &r=dynamic_cast<const TKVMCodeExpression &>(r_);
+	const TKVMCodeExpression &r=static_cast<const TKVMCodeExpression &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
 	if(TKVMCode_baseP_Less()(r.code, code)) return (false);
 	return (false);
@@ -86,7 +86,7 @@ string TKVMExprCode_base::Run(TKawariVM &vm){
 // 二項演算子の基底クラス
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMExprBinaryCode_base::Less(const TKVMCode_base& r_) const{
-	const TKVMExprBinaryCode_base &r=dynamic_cast<const TKVMExprBinaryCode_base &>(r_);
+	const TKVMExprBinaryCode_base &r=static_cast<const TKVMExprBinaryCode_base &>(r_);
 	if(TKVMCode_baseP_Less()(lhs, r.lhs)) return (true);
 	if(TKVMCode_baseP_Less()(r.lhs, lhs)) return (false);
 	if(TKVMCode_baseP_Less()(rhs, r.rhs)) return (true);
@@ -111,7 +111,7 @@ ostream &TKVMExprBinaryCode_base::Debug(ostream& os, unsigned int level) const{
 // 単項演算子の基底クラス
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMExprUnaryCode_base::Less(const TKVMCode_base& r_) const{
-	const TKVMExprUnaryCode_base &r=dynamic_cast<const TKVMExprUnaryCode_base &>(r_);
+	const TKVMExprUnaryCode_base &r=static_cast<const TKVMExprUnaryCode_base &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
 	if(TKVMCode_baseP_Less()(r.code, code)) return (false);
 	return (false);
@@ -345,7 +345,7 @@ TValue TKVMExprCodeWord::Evaluate(TKawariVM &vm){
 		return TValue(retstr);
 }
 bool TKVMExprCodeWord::Less(const TKVMCode_base& r_) const{
-	const TKVMExprCodeWord &r=dynamic_cast<const TKVMExprCodeWord &>(r_);
+	const TKVMExprCodeWord &r=static_cast<const TKVMExprCodeWord &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
 	if(TKVMCode_baseP_Less()(r.code, code)) return (false);
 	return false;

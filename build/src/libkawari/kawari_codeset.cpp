@@ -41,7 +41,7 @@ string TKVMSetCode_base::Run(TKawariVM &vm){
 
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMSetBinaryCode_base::Less(const TKVMCode_base& r_) const{
-	const TKVMSetBinaryCode_base &r=dynamic_cast<const TKVMSetBinaryCode_base &>(r_);
+	const TKVMSetBinaryCode_base &r=static_cast<const TKVMSetBinaryCode_base &>(r_);
 	if(TKVMCode_baseP_Less()(lhs, r.lhs)) return (true);
 	if(TKVMCode_baseP_Less()(r.lhs, lhs)) return (false);
 	if(TKVMCode_baseP_Less()(rhs, r.rhs)) return (true);
@@ -163,7 +163,7 @@ void TKVMSetCodeWord::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMSetCodeWord::Less(const TKVMCode_base& r_) const{
-	const TKVMSetCodeWord &r=dynamic_cast<const TKVMSetCodeWord &>(r_);
+	const TKVMSetCodeWord &r=static_cast<const TKVMSetCodeWord &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
 	if(TKVMCode_baseP_Less()(r.code, code)) return (false);
 	return false;
@@ -189,7 +189,7 @@ string TKVMCodeEntryCall::DisCompile(void) const{
 }
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMCodeEntryCall::Less(const TKVMCode_base& r_) const{
-	const TKVMCodeEntryCall &r=dynamic_cast<const TKVMCodeEntryCall &>(r_);
+	const TKVMCodeEntryCall &r=static_cast<const TKVMCodeEntryCall &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
 	if(TKVMCode_baseP_Less()(r.code, code)) return (false);
 	return false;
@@ -227,7 +227,7 @@ string TKVMCodePVW::Run(class TKawariVM &vm){
 }
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMCodePVW::Less(const TKVMCode_base& r_) const{
-	const TKVMCodePVW &r=dynamic_cast<const TKVMCodePVW &>(r_);
+	const TKVMCodePVW &r=static_cast<const TKVMCodePVW &>(r_);
 	return (entry < r.entry);
 }
 // 逆コンパイル
@@ -254,7 +254,7 @@ string TKVMCodeHistoryCall::Run(class TKawariVM &vm){
 }
 // 序列 同じクラスの場合のみ呼ばれる。
 bool TKVMCodeHistoryCall::Less(const TKVMCode_base& r_) const{
-	const TKVMCodeHistoryCall &r=dynamic_cast<const TKVMCodeHistoryCall &>(r_);
+	const TKVMCodeHistoryCall &r=static_cast<const TKVMCodeHistoryCall &>(r_);
 	return (index<r.index);
 }
 // 逆コンパイル

@@ -13,8 +13,8 @@ DIR *opendir(const char *dirname)
 	d = new DIR;
 	if(!d) return NULL;
 	memset(d, 0, sizeof(DIR));
-	strcpy(d->spath, dirname);
-	strcat(d->spath, "\\*");
+	strcpy_s(d->spath, dirname);
+	strcat_s(d->spath, "\\*");
 	d->hdir = FindFirstFileA(d->spath, &(d->fd));
 	
 	if(d->hdir == INVALID_HANDLE_VALUE) {
@@ -31,7 +31,7 @@ struct dirent *readdir(DIR *d)
 	if(!d) return NULL;
 	
 	d->cnt++;
-	strcpy(d->ent.d_name, d->fd.cFileName);
+	strcpy_s(d->ent.d_name, d->fd.cFileName);
 	if(!FindNextFileA(d->hdir, &(d->fd))) d->fd.cFileName[0] = '\0';
 	
 	return (d->ent.d_name[0] != '\0') ? &(d->ent) : NULL;

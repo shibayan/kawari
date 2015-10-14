@@ -58,7 +58,7 @@ TWordID TNS_KawariDictionary::CreateWord(TKVMCode_base* word)
 	if(!WordCollection.Insert(word,&id)) {
 		// 既に登録済みの単語だった
 		delete word;
-		word=GetWordFromID(id);
+		//word=GetWordFromID(id);
 	}else{
 		// 純粋仮想単語
 		TKVMCodePVW *pvw=dynamic_cast<TKVMCodePVW *>(word);
@@ -96,8 +96,9 @@ unsigned int TNS_KawariDictionary::GetWordCollection(TEntry start_entry,set<TWor
 				// 純粋仮想単語
 				TKVMCode_base *code=GetWordFromID(id);
 				if(!code) continue;
-				TKVMCodePVW *pvw=dynamic_cast<TKVMCodePVW *>(code);
-				if(!pvw) continue;
+                // 純粋仮想単語であることが保証されているので static_cast で問題ない 
+				TKVMCodePVW *pvw=static_cast<TKVMCodePVW *>(code);
+				//if(!pvw) continue;
 				TEntry child=GetEntry(pvw->Get());
 				if(child.IsValid()&&(donelist.count(child)==0))
 					parselist.push_back(child);

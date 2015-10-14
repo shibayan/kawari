@@ -124,6 +124,7 @@ public:
 	virtual ~TKVMCodeExpression(void){
 		if (code) delete code;
 	}
+    DEFINE_RTTI_FUNCTION
 };
 
 // 演算子の優先度
@@ -150,6 +151,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeLOR(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -162,6 +164,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeLAND(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -174,6 +177,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeEQ(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -186,6 +190,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeNEQ(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -198,6 +203,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeMATCH(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -210,6 +216,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeNMATCH(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -222,6 +229,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeGT(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -234,6 +242,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeGTE(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -246,6 +255,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeLT(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -258,6 +268,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeLTE(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -270,6 +281,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeBOR(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -282,6 +294,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeBXOR(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -294,6 +307,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeBAND(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -306,6 +320,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodePLUS(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -318,6 +333,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeMINUS(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -330,6 +346,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeMUL(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -342,6 +359,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeDIV(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -354,6 +372,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeMOD(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -366,6 +385,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeUPLUS(TKVMExprCode_base *c):TKVMExprUnaryCode_base(c) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -378,6 +398,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeUMINUS(TKVMExprCode_base *c):TKVMExprUnaryCode_base(c) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -390,6 +411,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeNOT(TKVMExprCode_base *c):TKVMExprUnaryCode_base(c) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -402,6 +424,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodeCOMP(TKVMExprCode_base *c):TKVMExprUnaryCode_base(c) {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //--------------------------------------------------------------------------
@@ -414,6 +437,7 @@ public:
 	virtual TValue Evaluate(class TKawariVM &vm);
 	// コンストラクタ
 	TKVMExprCodePOW(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 //--------------------------------------------------------------------------
 // ExprWord
@@ -439,6 +463,7 @@ public:
 	virtual ~TKVMExprCodeWord(void){
 		if (code) delete code;
 	}
+    DEFINE_RTTI_FUNCTION
 };
 //--------------------------------------------------------------------------
 // '( 〜 )'
@@ -452,6 +477,7 @@ public:
 	TKVMExprCodeGroup(TKVMCode_base *c) : TKVMExprCodeWord(c) {}
 	// デストラクタ
 	~TKVMExprCodeGroup(void){ }
+    DEFINE_RTTI_FUNCTION
 };
 //---------------------------------------------------------------------------
 #endif// CODE_EXPR_H__

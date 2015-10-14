@@ -62,6 +62,7 @@ public:
 	virtual void Evaluate(class TKawariVM &vm, std::set<TWordID> &wordcol);
 	// コンストラクタ
 	TKVMSetCodePLUS(TKVMSetCode_base *l, TKVMSetCode_base *r):TKVMSetBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 //---------------------------------------------------------------------------
 // 差
@@ -73,6 +74,7 @@ public:
 	virtual void Evaluate(class TKawariVM &vm, std::set<TWordID> &wordcol);
 	// コンストラクタ
 	TKVMSetCodeMINUS(TKVMSetCode_base *l, TKVMSetCode_base *r):TKVMSetBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 //---------------------------------------------------------------------------
 // 積
@@ -84,6 +86,7 @@ public:
 	virtual void Evaluate(class TKawariVM &vm, std::set<TWordID> &wordcol);
 	// コンストラクタ
 	TKVMSetCodeAND(TKVMSetCode_base *l, TKVMSetCode_base *r):TKVMSetBinaryCode_base(l, r) {}
+    DEFINE_RTTI_FUNCTION
 };
 //---------------------------------------------------------------------------
 // Set Expression Word
@@ -110,6 +113,7 @@ public:
 	~TKVMSetCodeWord(void){
 		if (code) delete code;
 	}
+    DEFINE_RTTI_FUNCTION
 };
 //---------------------------------------------------------------------------
 // エントリ呼び出し簡易版 ( '${' EntryExpr '}' )
@@ -129,6 +133,7 @@ public:
 	TKVMCodeEntryCall(TKVMSetCode_base *c) : code(c) {}
 	// デストラクタ
 	virtual ~TKVMCodeEntryCall();
+    DEFINE_RTTI_FUNCTION
 };
 
 //---------------------------------------------------------------------------
@@ -150,6 +155,7 @@ public:
 	TKVMCodePVW(const std::string &c) : entry(c) {}
 	// デストラクタ
 	virtual ~TKVMCodePVW() {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //---------------------------------------------------------------------------
@@ -169,6 +175,7 @@ public:
 	TKVMCodeHistoryCall(int i) : index(i) {}
 	// デストラクタ
 	virtual ~TKVMCodeHistoryCall() {}
+    DEFINE_RTTI_FUNCTION
 };
 
 //---------------------------------------------------------------------------

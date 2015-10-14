@@ -78,5 +78,12 @@ SHIORI_EXPORT BOOL SHIORI_CALL unload(void);
   */
 SHIORI_EXPORT MEMORY_HANDLE SHIORI_CALL request(const MEMORY_HANDLE h,long *len);
 //---------------------------------------------------------------------------
+/**
+  * @brief		デバッグリクエスト
+  */
+#ifdef ENABLE_DEBUGGER
+SHIORI_EXPORT MEMORY_HANDLE SHIORI_CALL debug(const MEMORY_HANDLE h,long *len);
+#endif
+//---------------------------------------------------------------------------
 #endif // SHIORI_H__
 //---------------------------------------------------------------------------

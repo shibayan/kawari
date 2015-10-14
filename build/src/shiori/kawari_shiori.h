@@ -8,7 +8,7 @@
 //  2001.02.03  Phase 0.3     ノーコメント
 //  2001.02.11  Phase 0.31    再帰定義実装
 //  2001.02.23  Phase 0.4     卒論戦争終戦祈念
-//                            召薫造蕕�にお眠り下さい、過ちは繰り返しませあ�
+//                            召薫造蕕・砲・欧蟆爾気ぁ・瓩舛老・衒屬靴泙擦・
 //                                                                バージョン
 //                            kawari.ini導入
 //                            複数辞書ファイル
@@ -65,6 +65,7 @@
 #include "libkawari/kawari_engine.h"
 #include "misc/phttp.h"
 #include "libkawari/kawari_version.h"
+#include "shiori_debug.h"
 //---------------------------------------------------------------------------
 #define SHIORIVER	"3.0"
 #define SAORIVER	"1.0"
@@ -80,6 +81,10 @@ private:
 	// 識別用のゴースト名
 	// NOTIFYで送られてくる名前
 	std::string GhostName;
+
+#ifdef ENABLE_DEBUGGER
+    TShioriDebugWindow *DebugWindow;
+#endif
 
 	// セキュリティレベル
 	class TSecurityLevel {
@@ -164,6 +169,18 @@ public:
 	// TPHMessage &response : レスポンスメッセージ
 	void Request(TPHMessage &request, TPHMessage &response);
 
+	// デバッグリクエスト
+	// TPHMessage &request : リクエストメッセージ
+	// TPHMessage &response : レスポンスメッセージ
+#ifdef ENABLE_DEBUGGER
+	void Debug(TPHMessage &request, TPHMessage &response);
+
+    inline const std::string &GetGhostName() const
+    {
+        return GhostName;
+    }
+#endif
+
 	// SHIORI for POSIX 2.4
 
 	// 偽AIモジュールのバージョン番号を返す
@@ -213,6 +230,10 @@ public:
 	bool DisposeInstance(unsigned int handle);
 	// インスタンスへのリクエスト
 	std::string RequestInstance(unsigned int handle, const std::string &reqstr);
+    // インスタンスへのデバッグリクエスト
+#ifdef ENABLE_DEBUGGER
+    std::string DebugInstance(unsigned int handle, const std::string &reqstr);
+#endif
 };
 //---------------------------------------------------------------------------
 #endif // KAWARI_SHIORI_H
