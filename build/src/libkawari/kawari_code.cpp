@@ -49,7 +49,7 @@ ostream& TKVMCode_base::DebugIndent(ostream& os,unsigned int level) const
 //---------------------------------------------------------------------------
 // 中間コードの基底クラス(リストを持つもの)
 bool TKVMCodeList_base::Less(const TKVMCode_base &r_) const{
-	const TKVMCodeList_base& r=dynamic_cast<const TKVMCodeList_base&>(r_);
+	const TKVMCodeList_base& r=static_cast<const TKVMCodeList_base&>(r_);
 	unsigned int lsize=list.size();
 	if(lsize!=r.list.size()) return(lsize<r.list.size());
 
@@ -406,7 +406,7 @@ string TKVMCodeEntryIndex::DisCompile(void) const{
 	}
 }
 bool TKVMCodeEntryIndex::Less(const TKVMCode_base &r_) const{
-	const TKVMCodeEntryIndex& r=dynamic_cast<const TKVMCodeEntryIndex&>(r_);
+	const TKVMCodeEntryIndex& r=static_cast<const TKVMCodeEntryIndex&>(r_);
 	if (TKVMCode_baseP_Less()(entry_id, r.entry_id)) return true;
 	if (TKVMCode_baseP_Less()(r.entry_id, entry_id)) return false;
 

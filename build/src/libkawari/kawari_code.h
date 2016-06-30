@@ -105,7 +105,7 @@ public:
 	virtual std::string Run(class TKawariVM &vm) { return s; }
 	virtual std::string DisCompile(void) const;
 	virtual bool Less(const TKVMCode_base &r_) const{
-		const TKVMCodeString& r=dynamic_cast<const TKVMCodeString&>(r_);
+		const TKVMCodeString& r=static_cast<const TKVMCodeString&>(r_);
 		return(s<r.s);
 	}
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const {
