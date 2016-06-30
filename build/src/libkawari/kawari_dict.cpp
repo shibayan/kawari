@@ -58,7 +58,6 @@ TWordID TNS_KawariDictionary::CreateWord(TKVMCode_base* word)
 	if(!WordCollection.Insert(word,&id)) {
 		// 既に登録済みの単語だった
 		delete word;
-		word=GetWordFromID(id);
 	}else{
 		// 純粋仮想単語
 		TKVMCodePVW *pvw=dynamic_cast<TKVMCodePVW *>(word);
