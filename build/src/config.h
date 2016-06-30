@@ -38,22 +38,10 @@
 
 //---------------------------------------------------------------------------
 #ifdef _MSC_VER
-
-	// STLを使うと必ず出る識別名255文字超Warningを抑制
-	#pragma warning(disable:4786)
-
-	// forのスコープがANSIに準拠していない問題対策(篠原君考案の手法)
-	// 参考文献 http://www.ksky.ne.jp/~seahorse/cpp/loopvar.html
-	#ifndef for
-	#define for if(0);else for
-	#endif
-
-	// cstdlib等がstd名前空間を使っていないために起こるエラーを抑制
-	namespace std{}
-
 	// POSIX opendir/readdir/closedirが無いため、代替品の指定
 	#define NOHAVE_READDIR
 
+	#define HAVE_SSTREAM_H
 #endif
 //---------------------------------------------------------------------------
 #ifdef __BORLANDC__
