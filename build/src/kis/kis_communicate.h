@@ -1,14 +1,14 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// KawariInlineScript -- ¥³¥ß¥å¥Ë¥±¡¼¥È --
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// KawariInlineScript -- ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆ --
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2002.03.18  Phase 7.9.0   ¿·¥³¥ß¥å¥Ë¥±¡¼¥Èµ¡¹½
+//  2002.03.18  Phase 7.9.0   æ–°ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆæ©Ÿæ§‹
 //
 //---------------------------------------------------------------------------
-// ´Ø¿ô¥Æ¡¼¥Ö¥ë¤Ø¤ÎÅĞÏ¿
+// é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ç™»éŒ²
 #ifdef INLINE_SCRIPT_REGIST
 INLINE_SCRIPT_REGIST(KIS_matchall);
 INLINE_SCRIPT_REGIST(KIS_communicate);
@@ -24,7 +24,7 @@ INLINE_SCRIPT_REGIST(KIS_communicate);
 class KIS_matchall : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="matchall";
@@ -35,14 +35,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_communicate : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="communicate";
@@ -53,7 +53,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------

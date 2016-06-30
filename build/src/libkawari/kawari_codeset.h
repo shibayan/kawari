@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// Ãæ´Ö¥³¡¼¥É(½¸¹ç±é»»¼°)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰(é›†åˆæ¼”ç®—å¼)
 //
 //      Programed by Suikyo.
 //
-//  2002.04.18  Phase 8.0.0   ½¸¹ç±é»»¼°Ãæ´Ö¥³¡¼¥ÉºîÀ®
+//  2002.04.18  Phase 8.0.0   é›†åˆæ¼”ç®—å¼ä¸­é–“ã‚³ãƒ¼ãƒ‰ä½œæˆ
 //
 //---------------------------------------------------------------------------
 #ifndef KAWARI_CODESET_H__
@@ -17,35 +17,35 @@
 #include <string>
 #include <set>
 //---------------------------------------------------------------------------
-// ½¸¹ç±é»»¼°Ãæ´Ö¥³¡¼¥É¤Î´ğÄì¥¯¥é¥¹
+// é›†åˆæ¼”ç®—å¼ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 class TKVMSetCode_base : public TKVMCode_base {
 public:
-	// ¼Â¹Ô
+	// å®Ÿè¡Œ
 	virtual std::string Run(class TKawariVM &vm);
-	// ¼°É¾²Á
+	// å¼è©•ä¾¡
 	virtual void Evaluate(class TKawariVM &vm, std::set<TWordID> &wordcol)=0;
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TKVMSetCode_base () {}
 };
 
 //---------------------------------------------------------------------------
-// ½¸¹ç±é»»¼°Æó¹à±é»»»Ò¥³¡¼¥É¤Î´ğÄì¥¯¥é¥¹
+// é›†åˆæ¼”ç®—å¼äºŒé …æ¼”ç®—å­ã‚³ãƒ¼ãƒ‰ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 class TKVMSetBinaryCode_base : public TKVMSetCode_base {
 protected:
 	TKVMSetCode_base *lhs;
 	TKVMSetCode_base *rhs;
-	// ±é»»»ÒÊ¸»úÎó¤òÊÖ¤¹
+	// æ¼”ç®—å­æ–‡å­—åˆ—ã‚’è¿”ã™
 	virtual std::string GetOperator(void)const=0;
 public:
-	// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+	// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µÕ¥³¥ó¥Ñ¥¤¥ë
+	// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	virtual std::string DisCompile(void) const;
-	// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+	// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const;
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMSetBinaryCode_base(TKVMSetCode_base *l, TKVMSetCode_base *r) : lhs(l), rhs(r) {}
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TKVMSetBinaryCode_base(void){
 		if (lhs) delete lhs;
 		if (rhs) delete rhs;
@@ -53,36 +53,36 @@ public:
 };
 
 //---------------------------------------------------------------------------
-// ÏÂ
+// å’Œ
 class TKVMSetCodePLUS : public TKVMSetBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "+"; }
 public:
-	// ¼°É¾²Á
+	// å¼è©•ä¾¡
 	virtual void Evaluate(class TKawariVM &vm, std::set<TWordID> &wordcol);
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMSetCodePLUS(TKVMSetCode_base *l, TKVMSetCode_base *r):TKVMSetBinaryCode_base(l, r) {}
 };
 //---------------------------------------------------------------------------
-// º¹
+// å·®
 class TKVMSetCodeMINUS : public TKVMSetBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "-"; }
 public:
-	// ¼°É¾²Á
+	// å¼è©•ä¾¡
 	virtual void Evaluate(class TKawariVM &vm, std::set<TWordID> &wordcol);
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMSetCodeMINUS(TKVMSetCode_base *l, TKVMSetCode_base *r):TKVMSetBinaryCode_base(l, r) {}
 };
 //---------------------------------------------------------------------------
-// ÀÑ
+// ç©
 class TKVMSetCodeAND : public TKVMSetBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "&"; }
 public:
-	// ¼°É¾²Á
+	// å¼è©•ä¾¡
 	virtual void Evaluate(class TKawariVM &vm, std::set<TWordID> &wordcol);
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMSetCodeAND(TKVMSetCode_base *l, TKVMSetCode_base *r):TKVMSetBinaryCode_base(l, r) {}
 };
 //---------------------------------------------------------------------------
@@ -90,84 +90,84 @@ public:
 class TKVMSetCodeWord : public TKVMSetCode_base {
 	TKVMCode_base *code;
 public:
-	// ¼°É¾²Á
+	// å¼è©•ä¾¡
 	virtual void Evaluate(class TKawariVM &vm, std::set<TWordID> &wordcol);
-	// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+	// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µÕ¥³¥ó¥Ñ¥¤¥ë
+	// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	virtual std::string DisCompile(void) const{
 		return code->DisCompile();
 	}
-	// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+	// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const{
 		return code->Debug(os, level);
 	}
-	// ¤â¤·code¤¬TKVMCodeIDString¤Ê¤é¤Ğ¡¢¤½¤ì¤òÊÖ¤¹¡£
+	// ã‚‚ã—codeãŒTKVMCodeIDStringãªã‚‰ã°ã€ãã‚Œã‚’è¿”ã™ã€‚
 	const TKVMCodeIDString *GetIfPVW(void) const;
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMSetCodeWord(TKVMCode_base *c) : code(c) {}
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~TKVMSetCodeWord(void){
 		if (code) delete code;
 	}
 };
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤·´Ê°×ÈÇ ( '${' EntryExpr '}' )
-// ´Ê°×ÈÇdone.
+// ã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã—ç°¡æ˜“ç‰ˆ ( '${' EntryExpr '}' )
+// ç°¡æ˜“ç‰ˆdone.
 class TKVMCodeEntryCall : public TKVMCode_base {
 	TKVMSetCode_base *code;
 public:
-	// ¼Â¹Ô
+	// å®Ÿè¡Œ
 	virtual std::string Run(class TKawariVM &vm);
-	// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+	// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µÕ¥³¥ó¥Ñ¥¤¥ë
+	// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	virtual std::string DisCompile(void) const;
-	// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+	// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const;
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMCodeEntryCall(TKVMSetCode_base *c) : code(c) {}
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TKVMCodeEntryCall();
 };
 
 //---------------------------------------------------------------------------
-// ½ã¿è²¾ÁÛÃ±¸ì(ÆÃ¼ì¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤·) ( '${' Literal '}' )
+// ç´”ç²‹ä»®æƒ³å˜èª(ç‰¹æ®Šã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã—) ( '${' Literal '}' )
 class TKVMCodePVW : public TKVMCode_base {
 	std::string entry;
 public:
-	// »²¾È¥¨¥ó¥È¥êÌ¾¤òÊÖ¤¹
+	// å‚ç…§ã‚¨ãƒ³ãƒˆãƒªåã‚’è¿”ã™
 	virtual std::string Get(void) { return entry; }
-	// ¼Â¹Ô
+	// å®Ÿè¡Œ
 	virtual std::string Run(class TKawariVM &vm);
-	// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+	// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µÕ¥³¥ó¥Ñ¥¤¥ë
+	// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	virtual std::string DisCompile(void) const;
-	// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+	// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const;
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMCodePVW(const std::string &c) : entry(c) {}
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TKVMCodePVW() {}
 };
 
 //---------------------------------------------------------------------------
-// ÍúÎò»²¾È ( '${' Integer '}' )
+// å±¥æ­´å‚ç…§ ( '${' Integer '}' )
 class TKVMCodeHistoryCall : public TKVMCode_base {
 	int index;
 public:
-	// ¼Â¹Ô
+	// å®Ÿè¡Œ
 	virtual std::string Run(class TKawariVM &vm);
-	// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+	// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µÕ¥³¥ó¥Ñ¥¤¥ë
+	// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	virtual std::string DisCompile(void) const;
-	// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+	// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const;
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMCodeHistoryCall(int i) : index(i) {}
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TKVMCodeHistoryCall() {}
 };
 

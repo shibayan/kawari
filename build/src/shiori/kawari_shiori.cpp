@@ -1,70 +1,70 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// »ÃÄêshiori.dll
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// æš«å®šshiori.dll
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.02.03  Phase 0.3     ¥Î¡¼¥³¥á¥ó¥È
-//  2001.02.11  Phase 0.31    ºÆµ¢ÄêµÁ¼ÂÁõ
-//  2001.02.23  Phase 0.4     Â´ÏÀÀïÁè½ªÀïµ§Ç°
-//                            ¾¤·°Â¤é¤«¤Ë¤ªÌ²¤ê²¼¤µ¤¤¡¢²á¤Á¤Ï·«¤êÊÖ¤·¤Ş¤»¤¢·
-//                                                                ¥Ğ¡¼¥¸¥ç¥ó
-//                            kawari.iniÆ³Æş
-//                            Ê£¿ô¼­½ñ¥Õ¥¡¥¤¥ë
-//                            sentence.txtÇÑ»ß
-//  2001.02.27  Phase 0.41    ½µËöÁ´¤¯¤ä¤ì¤Ê¤«¤Ã¤¿¥Ğ¥°¼è¤ê(getword´ØÏ¢)
-//  2001.03.15  Phase 0.42    unloadÍ½Ìó
-//                            ¥í¥®¥ó¥°µ¡Ç½
-//                            °Å¹æ²½¥Õ¥¡¥¤¥ëÂĞ±ş
-//                            ´Á»ú¥¨¥ó¥È¥êÂĞ±ş
-//                            ¥í¡¼¥«¥ëÊÑ¿ôÂĞ±ş
-//  2001.04.25  Phase 0.50a1  ¥ì¥¹¥İ¥ó¥¹ÂĞ±ş
-//  2001.04.27  Phase 0.50a2  SHIORI/2.1ÂĞ±ş
-//  2001.04.28  Phase 0.50a3  COMMUNICATEÀïÁè
+//  2001.02.03  Phase 0.3     ãƒãƒ¼ã‚³ãƒ¡ãƒ³ãƒˆ
+//  2001.02.11  Phase 0.31    å†å¸°å®šç¾©å®Ÿè£…
+//  2001.02.23  Phase 0.4     å’è«–æˆ¦äº‰çµ‚æˆ¦ç¥ˆå¿µ
+//                            ï½å®‰ã‚‰ã‹ã«ãŠçœ ã‚Šä¸‹ã•ã„ã€éã¡ã¯ç¹°ã‚Šè¿”ã—ã¾ã›ã‚“ï½
+//                                                                ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+//                            kawari.iniå°å…¥
+//                            è¤‡æ•°è¾æ›¸ãƒ•ã‚¡ã‚¤ãƒ«
+//                            sentence.txtå»ƒæ­¢
+//  2001.02.27  Phase 0.41    é€±æœ«å…¨ãã‚„ã‚Œãªã‹ã£ãŸãƒã‚°å–ã‚Š(getwordé–¢é€£)
+//  2001.03.15  Phase 0.42    unloadäºˆç´„
+//                            ãƒ­ã‚®ãƒ³ã‚°æ©Ÿèƒ½
+//                            æš—å·åŒ–ãƒ•ã‚¡ã‚¤ãƒ«å¯¾å¿œ
+//                            æ¼¢å­—ã‚¨ãƒ³ãƒˆãƒªå¯¾å¿œ
+//                            ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°å¯¾å¿œ
+//  2001.04.25  Phase 0.50a1  ãƒ¬ã‚¹ãƒãƒ³ã‚¹å¯¾å¿œ
+//  2001.04.27  Phase 0.50a2  SHIORI/2.1å¯¾å¿œ
+//  2001.04.28  Phase 0.50a3  COMMUNICATEæˆ¦äº‰
 //       |
 //  2001.05.02
-//  2001.05.03  Phase 0.50a4  ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È
-//  2001.05.12  Phase 0.50b2  Piroject-X ´°·ëÊÔ
-//                            SHIORI/2.2ÂĞ±ş
-//                            ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È¤ò$()¤ËÊÑ¹¹
-//  2001.05.30  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é²½
-//                            Phase0.50b2¤Ş¤Ç¤Î¥Ğ¥°¥Õ¥£¥Ã¥¯¥¹
-//  2001.05.31  Phase 5.2     Êİ¼éÅªpiro
-//  2001.06.10  Phase 5.3.1   GET VersionÂĞºö
-//                            µ¶SHIORI/2.4¼ÂÁõ (^_^;
-//  2001.06.18  Phase 5.4     ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥ÈÂçÉı¶¯²½
-//  2001.07.10  Phase 6.0     getmoduleversionÄÉ²Ã
-//                            ¥Ğ¥°¥Õ¥£¥Ã¥¯¥¹
-//  2001.07.21  Phase 6.2     SHIORI/2.5¼ÂÁõ
-//                            ÆâÉô¥¤¥Ù¥ó¥ÈÄÉ²Ã(OnLoad,OnUnload,SHIORI/2.4)
-//                            ¥Ï¡¼¥É¥³¡¼¥Ç¥£¥ó¥°¤Î¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸ÇÑ»ß
-//                            kawari.ini¤Ëadddict¡¢includeÄÉ²Ã
-//  2001.08.06  Phase 6.2     AgeÆó½Å¥«¥¦¥ó¥È¥¢¥Ã¥×¤Î¥Ğ¥°½¤Àµ
-//  2001.08.07  Phase 6.2     ÆâÉô¥¤¥Ù¥ó¥È¤Î¥×¥ì¥Õ¥£¥Ã¥¯¥¹¤òsystem.¤ËÅı°ì
-//                            ÆâÉô¥¤¥Ù¥ó¥ÈÄÉ²Ã(OnNotifyGhost,OnNotifyOther,OnGetStatus)
-//  2001.08.08  Phase 6.2     ¹¬¿åÍÑ¤ËLoadSub¤ò¿·Àß
-//  2001.08.25  Phase 6.3     ¥»¥­¥å¥ê¥Æ¥£¡¼¥Û¡¼¥ëÂĞºö
-//  2001.08.25  Phase 7.0     ¥»¥­¥å¥ê¥Æ¥£ÂĞºö(WriteProtect)
-//  2001.09.23  Phase 7.0.1   ¥»¥­¥å¥ê¥Æ¥£ÂĞºö¤òredo34°Ê¹ß¤ÎÊı¼°¤ËÂĞ±ş
-//                            Sender·ĞÏ©¾ğÊóÄÉ²Ã(System.Sender.Path)
-//                            3¥¨¥ó¥È¥ê°Ê¾å¤Ç¤ÎAND¸¡º÷¥Ğ¥°¤ò½¤Àµ
-//                            SHIORI/2.3bÂĞ±ş
-//                            ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È¶¯²½
-//                            µ¯Æ°Â®ÅÙ¤Î¹âÂ®²½
-//                            ¥Ï¥¤¥Õ¥ó¤ò»ÈÍÑ¤¹¤ëµì¥¨¥ó¥È¥ê¤ÎÂĞ±şÄä»ß
-//  2002.01.12  Phase 8.0     ¤Ê¤«¤Ê¤«½ĞÍè¤Ê¤¤Phase8
-//                            NID¤«¤é¥Õ¥£¡¼¥É¥Ğ¥Ã¥¯
-//                            kpcg Phase7.3.1¤«¤é¥Õ¥£¡¼¥É¥Ğ¥Ã¥¯
-//  2002.03                   Phase 8.0 (Rhapsody in the Blue)¤ÏÇË´ş
-//  2002.03.10  Phase 7.9.0   Philedelphia¼Â¸³
-//  2002.03.15                ¤Ê¤ó¤«¡¢¤â¤¦¡¢¤¢¤é¤æ¤ë¤â¤Î¤¬¾Ã¤¨¤Æ¤¤¤¯¡¦¡¦¡¦
-//                            kawari.iniÇÑ»ß,Âå¤ï¤ê¤Ëkawarirc.kisÆ³Æş
-//  2002.03.20                SAORIÅı¹ç
-//  2002.04.12  Phase 8.0.0   ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹ÀÚ¤êÄ¾¤·
-//  2002.04.19                SHIORI/3.0ÂĞ±ş
+//  2001.05.03  Phase 0.50a4  ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+//  2001.05.12  Phase 0.50b2  Piroject-X å®Œçµç·¨
+//                            SHIORI/2.2å¯¾å¿œ
+//                            ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’$()ã«å¤‰æ›´
+//  2001.05.30  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©åŒ–
+//                            Phase0.50b2ã¾ã§ã®ãƒã‚°ãƒ•ã‚£ãƒƒã‚¯ã‚¹
+//  2001.05.31  Phase 5.2     ä¿å®ˆçš„piro
+//  2001.06.10  Phase 5.3.1   GET Versionå¯¾ç­–
+//                            å½SHIORI/2.4å®Ÿè£… (^_^;
+//  2001.06.18  Phase 5.4     ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå¤§å¹…å¼·åŒ–
+//  2001.07.10  Phase 6.0     getmoduleversionè¿½åŠ 
+//                            ãƒã‚°ãƒ•ã‚£ãƒƒã‚¯ã‚¹
+//  2001.07.21  Phase 6.2     SHIORI/2.5å®Ÿè£…
+//                            å†…éƒ¨ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ (OnLoad,OnUnload,SHIORI/2.4)
+//                            ãƒãƒ¼ãƒ‰ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å»ƒæ­¢
+//                            kawari.iniã«adddictã€includeè¿½åŠ 
+//  2001.08.06  Phase 6.2     AgeäºŒé‡ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã®ãƒã‚°ä¿®æ­£
+//  2001.08.07  Phase 6.2     å†…éƒ¨ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚’system.ã«çµ±ä¸€
+//                            å†…éƒ¨ã‚¤ãƒ™ãƒ³ãƒˆè¿½åŠ (OnNotifyGhost,OnNotifyOther,OnGetStatus)
+//  2001.08.08  Phase 6.2     å¹¸æ°´ç”¨ã«LoadSubã‚’æ–°è¨­
+//  2001.08.25  Phase 6.3     ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ãƒ¼ãƒ›ãƒ¼ãƒ«å¯¾ç­–
+//  2001.08.25  Phase 7.0     ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£å¯¾ç­–(WriteProtect)
+//  2001.09.23  Phase 7.0.1   ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£å¯¾ç­–ã‚’redo34ä»¥é™ã®æ–¹å¼ã«å¯¾å¿œ
+//                            SenderçµŒè·¯æƒ…å ±è¿½åŠ (System.Sender.Path)
+//                            3ã‚¨ãƒ³ãƒˆãƒªä»¥ä¸Šã§ã®ANDæ¤œç´¢ãƒã‚°ã‚’ä¿®æ­£
+//                            SHIORI/2.3bå¯¾å¿œ
+//                            ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå¼·åŒ–
+//                            èµ·å‹•é€Ÿåº¦ã®é«˜é€ŸåŒ–
+//                            ãƒã‚¤ãƒ•ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹æ—§ã‚¨ãƒ³ãƒˆãƒªã®å¯¾å¿œåœæ­¢
+//  2002.01.12  Phase 8.0     ãªã‹ãªã‹å‡ºæ¥ãªã„Phase8
+//                            NIDã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯
+//                            kpcg Phase7.3.1ã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯
+//  2002.03                   Phase 8.0 (Rhapsody in the Blue)ã¯ç ´æ£„
+//  2002.03.10  Phase 7.9.0   Philedelphiaå®Ÿé¨“
+//  2002.03.15                ãªã‚“ã‹ã€ã‚‚ã†ã€ã‚ã‚‰ã‚†ã‚‹ã‚‚ã®ãŒæ¶ˆãˆã¦ã„ããƒ»ãƒ»ãƒ»
+//                            kawari.iniå»ƒæ­¢,ä»£ã‚ã‚Šã«kawarirc.kiså°å…¥
+//  2002.03.20                SAORIçµ±åˆ
+//  2002.04.12  Phase 8.0.0   ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹åˆ‡ã‚Šç›´ã—
+//  2002.04.19                SHIORI/3.0å¯¾å¿œ
 //  2002.12.30  Phase 8.1.0   Winter Comicket Version
-//                            Ê£¿ô¥¤¥ó¥¹¥¿¥ó¥¹¤òµö²Ä(ÆâÉôÅª¤Ë)
+//                            è¤‡æ•°ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨±å¯(å†…éƒ¨çš„ã«)
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -84,10 +84,10 @@ using namespace kawari_log;
 //---------------------------------------------------------------------------
 // SHIORI/2.x API
 //---------------------------------------------------------------------------
-// DLL¥í¡¼¥É»ş¤Ë¸Æ¤Ğ¤ì¤ë
+// DLLãƒ­ãƒ¼ãƒ‰æ™‚ã«å‘¼ã°ã‚Œã‚‹
 bool TKawariShioriAdapter::Load(const string& datapath)
 {
-	// ¤³¤Î¥¿¥¤¥ß¥ó¥°¤ÇÍğ¿ô½é´ü²½
+	// ã“ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ä¹±æ•°åˆæœŸåŒ–
 	SRandom((unsigned int)time(NULL));
 
 	Engine.SetDataPath(datapath);
@@ -95,10 +95,10 @@ bool TKawariShioriAdapter::Load(const string& datapath)
 	Engine.CreateEntry("System.DataPath").Push(Engine.CreateStrWord(datapath));
 	Engine.WriteProtect("System.DataPath");
 
-	// ½é´ü¼Â¹Ô¥¹¥¯¥ê¥×¥È
+	// åˆæœŸå®Ÿè¡Œã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 	Engine.LoadKawariDict(datapath+"kawarirc.kis");
 
-	// ¥»¥­¥å¥ê¥Æ¥£¥ì¥Ù¥ëÀßÄê
+	// ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ãƒ¬ãƒ™ãƒ«è¨­å®š
 	string slv=Engine.IndexParse("System.SecurityLevel");
 	if (slv.size()&&IsInteger(slv)){
 		unsigned int lv=atoi(slv.c_str());
@@ -108,14 +108,14 @@ bool TKawariShioriAdapter::Load(const string& datapath)
 	}
 	Engine.WriteProtect("System.SecurityLevel");
 
-	// ½é´ü²½½ªÎ»
+	// åˆæœŸåŒ–çµ‚äº†
 	initialized=true;
 
 	Engine.GetLogger().GetStream(LOG_INFO) << "[SHIORI/SAORI Adapter] Load finished." << endl;
 	return(true);
 }
 //---------------------------------------------------------------------------
-// DLL¥¢¥ó¥í¡¼¥É»ş¤Ë¸Æ¤Ğ¤ì¤ë
+// DLLã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚ã«å‘¼ã°ã‚Œã‚‹
 bool TKawariShioriAdapter::Unload(void)
 {
 	string aistr=EnumExec("System.Callback.OnUnload");
@@ -125,13 +125,13 @@ bool TKawariShioriAdapter::Unload(void)
 	return(true);
 }
 //---------------------------------------------------------------------------
-// µ¶AI¥ê¥¯¥¨¥¹¥È
+// å½AIãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 {
 	const string &reqline=request.GetStartline();
 	TKawariLogger &Logger=Engine.GetLogger();
 
-	// ¥ê¥¯¥¨¥¹¥È¥³¥Ş¥ó¥É¤ÎÃê½Ğ
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚³ãƒãƒ³ãƒ‰ã®æŠ½å‡º
 	bool saori=false;
 	string::size_type pos=reqline.find(" SHIORI/");
 	if(pos==string::npos) {
@@ -141,33 +141,33 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 	string type=reqline.substr(0,pos);
 
 	if (!initialized){
-		// Ì¤½é´ü²½¥¨¥é¡¼
+		// æœªåˆæœŸåŒ–ã‚¨ãƒ©ãƒ¼
 		if(!saori) {
 			response.SetStartline("SHIORI/"SHIORIVER" 500 Internal Server Error");
 		} else {
 			response.SetStartline("SAORI/"SAORIVER" 500 Internal Server Error");
 		}
 		return;
-		// KIU_TODO: ¥¨¥é¡¼¥í¥°¤òÅÇ¤­¤Ş¤·¤ç¤¦
+		// KIU_TODO: ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã‚’åãã¾ã—ã‚‡ã†
 	}
 
-	// ¥í¥°¼è¤ê¤Î¥Á¥§¥Ã¥¯
+	// ãƒ­ã‚°å–ã‚Šã®ãƒã‚§ãƒƒã‚¯
 	unsigned int evtchk;
 	if(type=="GET"){
 		// GET SHIORI/3.0
 		if(request["ID"].find("On")==0){
-			// ¥¤¥Ù¥ó¥È
+			// ã‚¤ãƒ™ãƒ³ãƒˆ
 			if((request["ID"]=="OnSecondChange")||(request["ID"]=="OnMinuteChange"))
-				// »ş¹ï¥¤¥Ù¥ó¥È
+				// æ™‚åˆ»ã‚¤ãƒ™ãƒ³ãƒˆ
 				evtchk=LOG_TIMEEVENTS;
 			else if(request["ID"].find("OnMouse")==0)
-				// ¥Ş¥¦¥¹¥¤¥Ù¥ó¥È
+				// ãƒã‚¦ã‚¹ã‚¤ãƒ™ãƒ³ãƒˆ
 				evtchk=LOG_MOUSEEVENTS;
 			else
-				// ¤½¤ÎÂ¾
+				// ãã®ä»–
 				evtchk=LOG_BASEEVENTS;
 		}else{
-			// ¥ê¥½¡¼¥¹
+			// ãƒªã‚½ãƒ¼ã‚¹
 			evtchk=LOG_RSCEVENTS;
 		}
 	}else if(type=="NOTIFY"){
@@ -175,15 +175,15 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 		evtchk=LOG_BASEEVENTS;
 	}else if((type=="GET String")&&(request.count("ID"))){
 		// GET String SHIORI/2.0
-		// ¥ê¥½¡¼¥¹
+		// ãƒªã‚½ãƒ¼ã‚¹
 		evtchk=LOG_RSCEVENTS;
 	}else if(request.count("Event")) {
-		// ¥¤¥Ù¥ó¥È
+		// ã‚¤ãƒ™ãƒ³ãƒˆ
 		if((request["Event"]=="OnSecondChange")||(request["Event"]=="OnMinuteChange")){
-			// »ş¹ï¥¤¥Ù¥ó¥È
+			// æ™‚åˆ»ã‚¤ãƒ™ãƒ³ãƒˆ
 			evtchk=LOG_TIMEEVENTS;
 		}else if (request["Event"]=="OnMouseMove"){
-			// ¥Ş¥¦¥¹¥¤¥Ù¥ó¥È
+			// ãƒã‚¦ã‚¹ã‚¤ãƒ™ãƒ³ãƒˆ
 			evtchk=LOG_MOUSEEVENTS;
 		}else{
 			evtchk=LOG_BASEEVENTS;
@@ -201,21 +201,21 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 
 	unsigned int statuscode=400;
 
-	// ÅÁÃ£·ĞÏ©¤ò³ÎÇ§
+	// ä¼é”çµŒè·¯ã‚’ç¢ºèª
 	string sender_path_name;
 	TSecurityLevel::TSenderPath sender_path;
 	GetSenderPath(request["SecurityLevel"],sender_path,sender_path_name);
 
 	if(SecurityLevel.Check(sender_path)) {
 
-		// ¥ê¥¯¥¨¥¹¥È¥Ø¥Ã¥À¤ò¼­½ñ¤Ë³ÊÇ¼
+		// ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ã‚’è¾æ›¸ã«æ ¼ç´
 		Engine.ClearTree("System.Request");
 		Engine.CreateEntry("System.Request").Push(Engine.CreateStrWord(type));
 		for(TMMap<string,string>::const_iterator it=request.begin();it!=request.end();it++) {
 			Engine.CreateEntry("System.Request."+Engine.EncodeEntryName(it->first)).Push(Engine.CreateStrWord(it->second));
 		}
 
-		// ¼­½ñÆâ¤Î¥ì¥¹¥İ¥ó¥¹¥¨¥ó¥È¥ê¤ò¾Ãµî
+		// è¾æ›¸å†…ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚¨ãƒ³ãƒˆãƒªã‚’æ¶ˆå»
 		Engine.ClearTree("System.Response");
 
 		// SHIORI/3.0
@@ -223,7 +223,7 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 			const string &reqid=request["ID"];
 			string aistr;
 
-			// ¥Ç¥Õ¥©¥ë¥ÈKOSUI¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹¤Ï¥ª¡¼¥Ğ¡¼¥é¥¤¥ÉÉÔ²ÄÇ½
+			// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆKOSUIã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ä¸å¯èƒ½
 			if (reqid=="ShioriEcho"){
 				if (Engine.IndexParse("System.Debugger")=="on"){
 					Engine.ClearEntry("System.Request.Reference0");
@@ -236,8 +236,8 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 				GetResponse(response);
 				response.erase("Value");
 
-				// version/craftman/craftmanw/shioriid/name¤Ï¡¢
-				// ¥æ¡¼¥¶¤¬¥ª¡¼¥Ğ¡¼¥é¥¤¥É²ÄÇ½
+				// version/craftman/craftmanw/shioriid/nameã¯ã€
+				// ãƒ¦ãƒ¼ã‚¶ãŒã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰å¯èƒ½
 				if (!aistr.size()){
 					if (reqid=="version")
 						aistr=KAWARI_MAJOR"."KAWARI_MINOR"."KAWARI_SUBMINOR;
@@ -271,23 +271,23 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 
 			statuscode=204;
 		}else
-			// °Ê¹ß SHIORI/2.6
+			// ä»¥é™ SHIORI/2.6
 			if(type=="GET Sentence") {
-			// Ã±½ãÈ¯ÏÃ¤È¤«¥¤¥Ù¥ó¥È¤È¤«¿§¡¹
+			// å˜ç´”ç™ºè©±ã¨ã‹ã‚¤ãƒ™ãƒ³ãƒˆã¨ã‹è‰²ã€…
 
 			string aistr;
 			if(request.count("Sentence")) {
-				// ¥³¥ß¥å¥Ë¥±¡¼¥È¤Î±şÅú
+				// ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆã®å¿œç­”
 				aistr=EnumExec("System.Callback.OnGetSentence");
 			} else {
-				// KOSUI¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹
+				// KOSUIã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 				if (request["Event"]=="ShioriEcho"){
 					if (Engine.IndexParse("System.Debugger")=="on"){
 						Engine.ClearEntry("System.Request.Reference0");
 						aistr=Engine.Parse(request["Reference0"])+"\\e";
 					}
 				}else{
-					// ¥¤¥Ù¥ó¥È½èÍı/Ã±½ãÈ¯ÏÃ
+					// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†/å˜ç´”ç™ºè©±
 					aistr=EnumExec("System.Callback.OnEvent");
 				}
 			}
@@ -306,23 +306,23 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 				statuscode=204;
 			}
 
-			// ¥´¡¼¥¹¥È´Ö¥³¥ß¥å¥Ë¥±¡¼¥È¤Î½èÍı
-			// Ìµ¸ÀÅÅÏÃ¤â¤Ç¤­¤Ş¤¹
+			// ã‚´ãƒ¼ã‚¹ãƒˆé–“ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆã®å‡¦ç†
+			// ç„¡è¨€é›»è©±ã‚‚ã§ãã¾ã™
 			string targetghost=response["To"];
 			response.erase("To");
 			string reqsender=request["Sender"];
 			if((!targetghost.size())&&
 			   ((!request.count("Age"))||(!reqsender.size())||
 				(reqsender=="User")||(reqsender=="Nobody"))){
-				// ¥³¥ß¥å¥Ë¥±¡¼¥È½ªÎ»
+				// ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆçµ‚äº†
 			}else if(targetghost=="stop"){
-				// ¥³¥ß¥å¥Ë¥±¡¼¥È½ªÎ»
+				// ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆçµ‚äº†
 			}else {
 				int age=0;
 				if(targetghost.size()&&(targetghost!=reqsender)){
-					// ¿·¤·¤¤Áê¼ê¤Ë¥³¥ß¥å¥Ë¥±¡¼¥È
+					// æ–°ã—ã„ç›¸æ‰‹ã«ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆ
 				}else{
-					// Age¤Î¥¤¥ó¥¯¥ê¥á¥ó¥È
+					// Ageã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 					targetghost=reqsender;
 					if(request.count("Age"))
 						age=atoi(request["Age"].c_str())+1;
@@ -339,7 +339,7 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 				 IntToString(Engine.WordCollectionSize())+","
 				 +IntToString(Engine.EntryCollectionSize())+","
 				 +"100,"
-				 +KAWARI_MAJOR KAWARI_MINOR KAWARI_SUBMINOR ","	// ²ÚÏÂÍü¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æ
+				 +KAWARI_MAJOR KAWARI_MINOR KAWARI_SUBMINOR ","	// è¯å’Œæ¢¨ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·
 				 +"100,"
 				 +"100";
 			}
@@ -355,34 +355,34 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 				statuscode=204;
 			}
 		} else if(type=="NOTIFY OwnerGhostName") {
-			// ¥´¡¼¥¹¥ÈÌ¾¤ÎÄÌÃÎ
+			// ã‚´ãƒ¼ã‚¹ãƒˆåã®é€šçŸ¥
 			GhostName=request["Ghost"];
 			statuscode=200;
 			EnumExec("System.Callback.OnRequest");
 		} else if(type=="GET Version") {
-			// ½é´ü²½Á°¤ÎGET Version¤À¤±¤Ïshiori_interface.cpp¤Ç´û¤Ë½èÍı¤·¤Æ¤¤¤ë
+			// åˆæœŸåŒ–å‰ã®GET Versionã ã‘ã¯shiori_interface.cppã§æ—¢ã«å‡¦ç†ã—ã¦ã„ã‚‹
 			if(!saori) {
 				response["ID"]=KAWARI_NAME;
 				response["Craftman"]=KAWARI_AUTHOR;
 				response["Version"]=KAWARI_MAJOR"."KAWARI_MINOR"."KAWARI_SUBMINOR;
 			} else {
-				// »ÅÍÍ½ñÄÌ¤ê¤À¤È"200 OK"¤âÉÕ¤±¤é¤ì¤Ê¤¤»ö¤Ë¤Ê¤ë¤¬¡¢¤Ï¤Æ¡©
+				// ä»•æ§˜æ›¸é€šã‚Šã ã¨"200 OK"ã‚‚ä»˜ã‘ã‚‰ã‚Œãªã„äº‹ã«ãªã‚‹ãŒã€ã¯ã¦ï¼Ÿ
 //				return("SAORI/1.0");
 			}
 			statuscode=200;
 		} else if(saori&&(type=="EXECUTE")) {
-			// SAORI¼Â¹Ô
+			// SAORIå®Ÿè¡Œ
 			EnumExec("System.Callback.OnSaoriExecute");
 			statuscode=GetResponse(response);
 			if(statuscode==0) statuscode=400;
 		} else {
-			// ¤½¤ÎÂ¾Á´¤Æ¤Î¥ê¥¯¥¨¥¹¥È
+			// ãã®ä»–å…¨ã¦ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 			EnumExec("System.Callback.OnRequest");
 			statuscode=GetResponse(response);
 			if(statuscode==0) statuscode=400;
 		}
 	} else {
-		// ¼Â¹Ôµö²Ä¤Ê¤·
+		// å®Ÿè¡Œè¨±å¯ãªã—
 	}
 
 	string statusheader;
@@ -419,9 +419,9 @@ void TKawariShioriAdapter::Request(TPHMessage &request, TPHMessage &response)
 	}
 }
 //---------------------------------------------------------------------------
-// °Ê²¼¤ÏAPI°Ê³°
+// ä»¥ä¸‹ã¯APIä»¥å¤–
 //---------------------------------------------------------------------------
-// Sender¤òÅÁÃ£·ĞÏ©¾ğÊó¤ÈÊ¬Î¥
+// Senderã‚’ä¼é”çµŒè·¯æƒ…å ±ã¨åˆ†é›¢
 void TKawariShioriAdapter::GetSenderPath(const string &senderstr,
  TKawariShioriAdapter::TSecurityLevel::TSenderPath &sender_path,string &sender_path_name)
 {
@@ -434,7 +434,7 @@ void TKawariShioriAdapter::GetSenderPath(const string &senderstr,
 		sender_path=TSecurityLevel::tsidExternal;
 		sender_path_name="external";
 	} else if(sender=="") {
-		// ±ı¡¹¤Ë¤·¤ÆSecurityLevel¤ÏÅÏ¤Ã¤Æ¤³¤Ê¤¤
+		// å¾€ã€…ã«ã—ã¦SecurityLevelã¯æ¸¡ã£ã¦ã“ãªã„
 		sender_path=TSecurityLevel::tsidLocal;
 		sender_path_name="local";
 	}else{
@@ -445,7 +445,7 @@ void TKawariShioriAdapter::GetSenderPath(const string &senderstr,
 	return;
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤·¤¿¥¨¥ó¥È¥ê¤ÎÃ±¸ì¤òÁ´¤Æ¸Æ¤Ó½Ğ¤¹
+// æŒ‡å®šã—ãŸã‚¨ãƒ³ãƒˆãƒªã®å˜èªã‚’å…¨ã¦å‘¼ã³å‡ºã™
 string TKawariShioriAdapter::EnumExec(const string& key)
 {
 	TEntry entry=Engine.GetEntry(key);
@@ -457,7 +457,7 @@ string TKawariShioriAdapter::EnumExec(const string& key)
 	return(aistr);
 }
 //---------------------------------------------------------------------------
-// ¼­½ñÆâ¤Î¥ì¥¹¥İ¥ó¥¹¤òÁ´¤ÆÆÉ¤ß½Ğ¤¹
+// è¾æ›¸å†…ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å…¨ã¦èª­ã¿å‡ºã™
 int TKawariShioriAdapter::GetResponse(TPHMessage &response)
 {
 	const char *resentryname="System.Response";
@@ -482,17 +482,17 @@ int TKawariShioriAdapter::GetResponse(TPHMessage &response)
 //---------------------------------------------------------------------------
 TKawariShioriFactory *TKawariShioriFactory::instance=NULL;
 //---------------------------------------------------------------------------
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKawariShioriFactory::~TKawariShioriFactory(){
 	typedef vector<TKawariShioriAdapter *> TKawariList;
-	// Á´¤Æ¤Î¥¤¥ó¥¹¥¿¥ó¥¹¤òÇË´ş
+	// å…¨ã¦ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç ´æ£„
 	for(TKawariList::iterator it=list.begin(); it!=list.end(); it++)
 		if (*it)
 			delete (*it);
 	list.clear();
 }
 //---------------------------------------------------------------------------
-// ¿·µ¬¥¤¥ó¥¹¥¿¥ó¥¹¤ÎºîÀ®
+// æ–°è¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆ
 unsigned int TKawariShioriFactory::CreateInstance(const string &datapath){
 	TKawariShioriAdapter *instance=new TKawariShioriAdapter();
 	if (!instance->Load(datapath)){
@@ -515,7 +515,7 @@ unsigned int TKawariShioriFactory::CreateInstance(const string &datapath){
 	}
 }
 //---------------------------------------------------------------------------
-// ¥¤¥ó¥¹¥¿¥ó¥¹¤Îºï½ü
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å‰Šé™¤
 bool TKawariShioriFactory::DisposeInstance(unsigned int h){
 	if ((h==0)||(h>list.size())) return false;
 	TKawariShioriAdapter *instance=list[(int)h-1];
@@ -526,7 +526,7 @@ bool TKawariShioriFactory::DisposeInstance(unsigned int h){
 	return true;
 }
 //---------------------------------------------------------------------------
-// ¥ê¥¯¥¨¥¹¥È
+// ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 string TKawariShioriFactory::RequestInstance(unsigned int h, const string &reqstr){
 	if ((h==0)||(h>list.size())) return ("");
 	TKawariShioriAdapter *instance=list[(int)h-1];
@@ -538,27 +538,27 @@ string TKawariShioriFactory::RequestInstance(unsigned int h, const string &reqst
 	return mres.Serialize();
 }
 //---------------------------------------------------------------------------
-// °Ê²¼¤Î¥¨¥ó¥È¥ê¤ÏÆÃÊÌ°·¤¤¤µ¤ì¤ë(Phase7.9.0¤Ë¤ÆÁ´ÌÌÅª¤ËÊÑ¹¹)
+// ä»¥ä¸‹ã®ã‚¨ãƒ³ãƒˆãƒªã¯ç‰¹åˆ¥æ‰±ã„ã•ã‚Œã‚‹(Phase7.9.0ã«ã¦å…¨é¢çš„ã«å¤‰æ›´)
 //
-// ËÜÂÎ¤«¤é¤ÎÄÌÃÎ¾ğÊó
-// System.Request.*               : SHIORI/2.0 ¥ê¥¯¥¨¥¹¥È¥Ø¥Ã¥À
+// æœ¬ä½“ã‹ã‚‰ã®é€šçŸ¥æƒ…å ±
+// System.Request.*               : SHIORI/2.0 ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€
 //
-// ËÜÂÎ¤Ø¤Î±şÅú
-// System.Response.*              : SHIORI/2.0 ¥ì¥¹¥İ¥ó¥¹
-// System.Response.To             : ÏÃ¤·³İ¤±¤¿¤¤¥´¡¼¥¹¥ÈÌ¾
-//                                  "stop"¤ÇCOMMUNICATEÂÇ¤ÁÀÚ¤ê
-// System.Response                : SHIORI/2.0 ¥¹¥Æ¡¼¥¿¥¹¥³¡¼¥É
+// æœ¬ä½“ã¸ã®å¿œç­”
+// System.Response.*              : SHIORI/2.0 ãƒ¬ã‚¹ãƒãƒ³ã‚¹
+// System.Response.To             : è©±ã—æ›ã‘ãŸã„ã‚´ãƒ¼ã‚¹ãƒˆå
+//                                  "stop"ã§COMMUNICATEæ‰“ã¡åˆ‡ã‚Š
+// System.Response                : SHIORI/2.0 ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚³ãƒ¼ãƒ‰
 //
-// ¥¤¥Ù¥ó¥È½èÍı
-// System.Callback.OnUnload       : ÀÚ¤êÎ¥¤·¥¤¥Ù¥ó¥È
-// System.Callback.OnEvent        : ³°Éô¥¤¥Ù¥ó¥È½èÍı
-// System.Callback.OnResource     : ¥ê¥½¡¼¥¹¼èÆÀ¥¤¥Ù¥ó¥È
-// System.Callback.OnGetSentence  : ±şÅú¥¤¥Ù¥ó¥È
-// System.Callback.OnGetStatus    : ¥¹¥Æ¡¼¥¿¥¹¼èÆÀ¥¤¥Ù¥ó¥È
-// System.Callback.OnSaoriExecute : SAORI¼Â¹Ô
-// System.Callback.OnRequest      : ¤½¤ÎÂ¾Á´¤Æ¤Î¥ê¥¯¥¨¥¹¥È
+// ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
+// System.Callback.OnUnload       : åˆ‡ã‚Šé›¢ã—ã‚¤ãƒ™ãƒ³ãƒˆ
+// System.Callback.OnEvent        : å¤–éƒ¨ã‚¤ãƒ™ãƒ³ãƒˆå‡¦ç†
+// System.Callback.OnResource     : ãƒªã‚½ãƒ¼ã‚¹å–å¾—ã‚¤ãƒ™ãƒ³ãƒˆ
+// System.Callback.OnGetSentence  : å¿œç­”ã‚¤ãƒ™ãƒ³ãƒˆ
+// System.Callback.OnGetStatus    : ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—ã‚¤ãƒ™ãƒ³ãƒˆ
+// System.Callback.OnSaoriExecute : SAORIå®Ÿè¡Œ
+// System.Callback.OnRequest      : ãã®ä»–å…¨ã¦ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 //
-// ¤½¤ÎÂ¾
-// System.DataPath                : shiori.dll¤ÎÂ¸ºß¤¹¤ë¥Ç¥£¥ì¥¯¥È¥ê
+// ãã®ä»–
+// System.DataPath                : shiori.dllã®å­˜åœ¨ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 //
 //---------------------------------------------------------------------------

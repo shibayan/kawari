@@ -1,12 +1,12 @@
-//--------------------------------------------------------------------------
+ï»¿//--------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// ±é»»¼°
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// æ¼”ç®—å¼
 //
 //      Programed by Suikyo.
 //
-//  2002.06.22  Phase 8.0.0   ºîÀ®
-//  2005.06.21  Phase 8.2.3   gcc3.x¤ÎwarningÂĞ±ş (suikyo)
+//  2002.06.22  Phase 8.0.0   ä½œæˆ
+//  2005.06.21  Phase 8.2.3   gcc3.xã®warningå¯¾å¿œ (suikyo)
 //
 //--------------------------------------------------------------------------
 #include "config.h"
@@ -26,7 +26,7 @@ using namespace kawari::resource;
 #include <iostream>
 using namespace std;
 //-------------------------------------------------------------------------
-// Îã³°½èÍı¤Ï½Å¤¤¤é¤·¤¤¤Î¤Ç°ìÀ¸·üÌ¿¥Õ¥é¥°ÆÉ¤à¤Ç¤¹¤è¡£
+// ä¾‹å¤–å‡¦ç†ã¯é‡ã„ã‚‰ã—ã„ã®ã§ä¸€ç”Ÿæ‡¸å‘½ãƒ•ãƒ©ã‚°èª­ã‚€ã§ã™ã‚ˆã€‚
 TValue TValue::Error(void){
 	return TValue();
 }
@@ -55,19 +55,19 @@ TValue::TValue(const int orgi):i(orgi), state(vINTEGER){
 	str=IntToString(orgi);
 }
 //=========================================================================
-// ¼°
-// ¼Â¹Ô
+// å¼
+// å®Ÿè¡Œ
 string TKVMCodeExpression::Run(TKawariVM &vm){
 	return vm.RunWithCurrentContext(code);
 }
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMCodeExpression::Less(const TKVMCode_base& r_) const{
 	const TKVMCodeExpression &r=dynamic_cast<const TKVMCodeExpression &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
 	if(TKVMCode_baseP_Less()(r.code, code)) return (false);
 	return (false);
 }
-// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 ostream &TKVMCodeExpression::Debug(ostream& os, unsigned int level) const{
 	DebugIndent(os, level) << "Expression(" << endl;
 	code->Debug(os, level+1);
@@ -76,15 +76,15 @@ ostream &TKVMCodeExpression::Debug(ostream& os, unsigned int level) const{
 
 //=========================================================================
 // class TKVMExprCode_base;
-// ±é»»¼°Ãæ´Ö¥³¡¼¥É¤Î´ğÄì¥¯¥é¥¹
+// æ¼”ç®—å¼ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 string TKVMExprCode_base::Run(TKawariVM &vm){
 	return Evaluate(vm).AsString();
 }
 
 //=========================================================================
 // class TKVMExprBinaryCode_base;
-// Æó¹à±é»»»Ò¤Î´ğÄì¥¯¥é¥¹
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// äºŒé …æ¼”ç®—å­ã®åŸºåº•ã‚¯ãƒ©ã‚¹
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMExprBinaryCode_base::Less(const TKVMCode_base& r_) const{
 	const TKVMExprBinaryCode_base &r=dynamic_cast<const TKVMExprBinaryCode_base &>(r_);
 	if(TKVMCode_baseP_Less()(lhs, r.lhs)) return (true);
@@ -93,12 +93,12 @@ bool TKVMExprBinaryCode_base::Less(const TKVMCode_base& r_) const{
 	if(TKVMCode_baseP_Less()(r.rhs, rhs)) return (false);
 	return (false);
 }
-// µÕ¥³¥ó¥Ñ¥¤¥ë
+// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 string TKVMExprBinaryCode_base::DisCompile(void) const{
 	if (!(lhs&&rhs)) return "";
 	return lhs->DisCompile()+GetOperator()+rhs->DisCompile();
 }
-// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 ostream &TKVMExprBinaryCode_base::Debug(ostream& os, unsigned int level) const{
 	if (lhs) lhs->Debug(os, level+1);
 	DebugIndent(os, level) << GetOperator() << endl;
@@ -108,20 +108,20 @@ ostream &TKVMExprBinaryCode_base::Debug(ostream& os, unsigned int level) const{
 
 //=========================================================================
 // class TKVMExprUnaryCode_base;
-// Ã±¹à±é»»»Ò¤Î´ğÄì¥¯¥é¥¹
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// å˜é …æ¼”ç®—å­ã®åŸºåº•ã‚¯ãƒ©ã‚¹
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMExprUnaryCode_base::Less(const TKVMCode_base& r_) const{
 	const TKVMExprUnaryCode_base &r=dynamic_cast<const TKVMExprUnaryCode_base &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
 	if(TKVMCode_baseP_Less()(r.code, code)) return (false);
 	return (false);
 }
-// µÕ¥³¥ó¥Ñ¥¤¥ë
+// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 string TKVMExprUnaryCode_base::DisCompile(void) const{
 	if (!code) return "";
 	return GetOperator()+code->DisCompile();
 }
-// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 ostream &TKVMExprUnaryCode_base::Debug(ostream& os, unsigned int level) const{
 	if (!code) return os;
 	DebugIndent(os, level) << GetOperator() << endl;
@@ -143,7 +143,7 @@ ostream &TKVMExprUnaryCode_base::Debug(ostream& os, unsigned int level) const{
 	}\
 
 
-// KIU_TODO:¥é¥ó¥¿¥¤¥à¥¨¥é¡¼É½¼¨
+// KIU_TODO:ãƒ©ãƒ³ã‚¿ã‚¤ãƒ ã‚¨ãƒ©ãƒ¼è¡¨ç¤º
 #define ARITH_FUNC(name, rel)\
 	TValue name(TKawariVM &vm){\
 		if (!lhs||!rhs) return TValue::Error();\
@@ -313,7 +313,7 @@ TValue TKVMExprCodeCOMP::Evaluate(TKawariVM &vm){
 // POWER
 
 namespace {
-	// n>0, n¤Ï¶ö¿ô
+	// n>0, nã¯å¶æ•°
 	int pow_local(int x, unsigned int n){
 		if (n==1) return x;
 		int tmp=pow_local(x, n>>1);

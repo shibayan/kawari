@@ -1,12 +1,12 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 //
-// "������" for ����ʳ��β����ʳ��β���
-// SAORI ���󥿡��ե�����
+// "華和梨" for あれ以外の何か以外の何か
+// SAORI インターフェース
 //
 //      Programed by Suikyo.
 //
-//  2002.09.05  Phase 8.1.0   Ƴ��
-//  2005.06.05  Phase 8.2.3   ninix-aya�б�
+//  2002.09.05  Phase 8.1.0   導入
+//  2005.06.05  Phase 8.2.3   ninix-aya対応
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -42,8 +42,8 @@ TModuleFactoryMaster::TModuleFactoryMaster(TKawariLogger &lgr)
 #endif
 }
 //---------------------------------------------------------------------------
-// �⥸�塼��θ���������
-// �����: ����������������硢�⥸�塼�롣���Ԥ�����硢NULL��
+// モジュールの検索と生成
+// 戻り値: 生成に成功した場合、モジュール。失敗した場合、NULL。
 TModule *TModuleFactoryMaster::CreateModule(const string &path){
 	vector<IModuleFactory *>::iterator it=factory_list.begin();
 	for (; it!=factory_list.end(); it++){
@@ -53,8 +53,8 @@ TModule *TModuleFactoryMaster::CreateModule(const string &path){
 	return NULL;
 }
 //---------------------------------------------------------------------------
-// �⥸�塼��δ����˴�
-// �饤�֥��ξ���FreeLibrary���뤳�ȡ�
+// モジュールの完全破棄
+// ライブラリの場合はFreeLibraryすること。
 void TModuleFactoryMaster::DeleteModule(TModule *module){
 	IModuleFactory &factory=module->GetFactory();
 	factory.DeleteModule(module);

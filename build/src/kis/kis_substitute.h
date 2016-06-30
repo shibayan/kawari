@@ -1,14 +1,14 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
 // KawariInlineScript -- toupper, tolower --
 //
 //      Programed by Chikara.H (MDR)
 //
-//  2001.09.04  created(£¹³ä¤Ïkis_escape.h¤«¤éÇÒ¼Ú)
+//  2001.09.04  created(ï¼™å‰²ã¯kis_escape.hã‹ã‚‰æ‹å€Ÿ)
 //
 //---------------------------------------------------------------------------
-// ´Ø¿ô¥Æ¡¼¥Ö¥ë¤Ø¤ÎÅĞÏ¿
+// é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ç™»éŒ²
 #ifdef INLINE_SCRIPT_REGIST
 INLINE_SCRIPT_REGIST(KIS_toupper);
 INLINE_SCRIPT_REGIST(KIS_tolower);
@@ -24,7 +24,7 @@ INLINE_SCRIPT_REGIST(KIS_tolower);
 class KIS_toupper : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="toupper";
@@ -35,14 +35,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_tolower : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="tolower";
@@ -53,7 +53,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------

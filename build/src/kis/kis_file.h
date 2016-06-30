@@ -1,21 +1,21 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
 // KawariInlineScript -- file attribute --
 //
 //      Programed by NAKAUE.T (Meister)
 //
 //  2001.05.14   Phase 0.50    First version
-//  2001.06.17   Phase6.0¤Ë¤¢¤ï¤»¤Æ½¤Àµ (NAKAUE.T)
+//  2001.06.17   Phase6.0ã«ã‚ã‚ã›ã¦ä¿®æ­£ (NAKAUE.T)
 //               load
-//  2001.12.09  Phase 7.1.2   kis_textfile¤ÈÅı¹ç
-//  2002.03.17  Phase 7.9.0   Phase7.9¤Ë¹ç¤ï¤»¤ÆÊÑ¹¹ (NAKAUE.T)
-//                            textload»ÅÍÍÊÑ¹¹/textsaveÄÉ²Ã
-//                            readdir¤Ç.¤È..¤ò½ü³°
-//  2002.07.10  Phase 8.1.0   isdir/isexist/isfileÄÉ²Ã
+//  2001.12.09  Phase 7.1.2   kis_textfileã¨çµ±åˆ
+//  2002.03.17  Phase 7.9.0   Phase7.9ã«åˆã‚ã›ã¦å¤‰æ›´ (NAKAUE.T)
+//                            textloadä»•æ§˜å¤‰æ›´/textsaveè¿½åŠ 
+//                            readdirã§.ã¨..ã‚’é™¤å¤–
+//  2002.07.10  Phase 8.1.0   isdir/isexist/isfileè¿½åŠ 
 //
 //---------------------------------------------------------------------------
-// ´Ø¿ô¥Æ¡¼¥Ö¥ë¤Ø¤ÎÅĞÏ¿
+// é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ç™»éŒ²
 #ifdef INLINE_SCRIPT_REGIST
 INLINE_SCRIPT_REGIST(KIS_save);
 INLINE_SCRIPT_REGIST(KIS_savecrypt);
@@ -40,7 +40,7 @@ INLINE_SCRIPT_REGIST(KIS_isexist);
 class KIS_save : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="save";
@@ -51,7 +51,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
     virtual string Function(const vector<string>& args){
         Run(args, false);
         return "";
@@ -63,7 +63,7 @@ protected:
 class KIS_savecrypt : public KIS_save {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="savecrypt";
@@ -74,7 +74,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args)
 	{
 		Run(args, true);
@@ -85,7 +85,7 @@ public:
 class KIS_load : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="load";
@@ -96,7 +96,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 
 };
@@ -104,7 +104,7 @@ public:
 class KIS_textload : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="textload";
@@ -115,17 +115,17 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_textsave : public TKisFunction_base {
 public:
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿¤Î¼ÂÂÎ
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ã®å®Ÿä½“
 	string Function_(const vector<string>& args,bool flag);
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="textsave";
@@ -136,7 +136,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args)
 	{
 		return(Function_(args,true));
@@ -146,7 +146,7 @@ public:
 class KIS_textappend : public KIS_textsave {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="textappend";
@@ -157,7 +157,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args)
 	{
 		return(Function_(args,false));
@@ -167,7 +167,7 @@ public:
 class KIS_readdir : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="readdir";
@@ -178,14 +178,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_cncpath : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="cncpath";
@@ -196,14 +196,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_dirname : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="dirname";
@@ -214,14 +214,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_filename : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="filename";
@@ -232,14 +232,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_isdir : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="isdir";
@@ -250,14 +250,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_isfile : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="isfile";
@@ -268,14 +268,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_isexist : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="isexist";
@@ -286,7 +286,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------

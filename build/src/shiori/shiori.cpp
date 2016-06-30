@@ -1,21 +1,21 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// ¶¦Í­¥é¥¤¥Ö¥é¥ê¥¨¥ó¥È¥ê
+// ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// å…±æœ‰ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚¨ãƒ³ãƒˆãƒª
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.02.03  Phase 0.3     ¥Î¡¼¥³¥á¥ó¥È
-//  2001.03.15  Phase 0.42    construct/destruct¤Î»ÈÍÑ¤ò»ß¤á¤ë
+//  2001.02.03  Phase 0.3     ãƒãƒ¼ã‚³ãƒ¡ãƒ³ãƒˆ
+//  2001.03.15  Phase 0.42    construct/destructã®ä½¿ç”¨ã‚’æ­¢ã‚ã‚‹
 //  2001.04.25  Phase 0.50a1  inverse
-//  2001.04.27  Phase 0.50a2  SHIORI/2.1ÂĞ±ş
-//  2001.05.09  Phase 0.50    SHIORI/2.2ÂĞ±ş
-//  2001.05.22  Phase 5.10    SHIORI/2.3ÂĞ±ş
-//  2001.07.10  Phase 6.0     CygwinÂĞ±ş
-//  2001.07.10  Phase 6.1     getmoduleversionÄÉ²Ã
-//  2001.07.19  Phase 6.2     MingwÂĞ±ş
-//  2002.01.07  Phase 7.3     getversionºï½ü(Ãøºî¼ÔÉ½¼¨ÂĞºö)
-//  2003.02.25  Phase 8.1.0   ¥×¥é¥Ã¥È¥Õ¥©¡¼¥à¶¦ÄÌ²½
+//  2001.04.27  Phase 0.50a2  SHIORI/2.1å¯¾å¿œ
+//  2001.05.09  Phase 0.50    SHIORI/2.2å¯¾å¿œ
+//  2001.05.22  Phase 5.10    SHIORI/2.3å¯¾å¿œ
+//  2001.07.10  Phase 6.0     Cygwinå¯¾å¿œ
+//  2001.07.10  Phase 6.1     getmoduleversionè¿½åŠ 
+//  2001.07.19  Phase 6.2     Mingwå¯¾å¿œ
+//  2002.01.07  Phase 7.3     getversionå‰Šé™¤(è‘—ä½œè€…è¡¨ç¤ºå¯¾ç­–)
+//  2003.02.25  Phase 8.1.0   ãƒ—ãƒ©ãƒƒãƒˆãƒ•ã‚©ãƒ¼ãƒ å…±é€šåŒ–
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -36,14 +36,14 @@ namespace {
 	}
 }
 //---------------------------------------------------------------------------
-// µ¶AI¥â¥¸¥å¡¼¥ë¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æ¤òÊÖ¤¹ (²ÚÏÂÍü³ÈÄ¥)
+// å½AIãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·ã‚’è¿”ã™ (è¯å’Œæ¢¨æ‹¡å¼µ)
 SHIORI_EXPORT MEMORY_HANDLE SHIORI_CALL getmoduleversion(long *len)
 {
 	string modver=TKawariShioriFactory::GetModuleVersion();
 	return string2memory(modver, len);
 }
 //---------------------------------------------------------------------------
-// ¥â¥¸¥å¡¼¥ëÆÉ¤ß¹ş¤ßÄ¾¸å¤Ë¸Æ¤Ğ¤ì¤ë
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«èª­ã¿è¾¼ã¿ç›´å¾Œã«å‘¼ã°ã‚Œã‚‹
 SHIORI_EXPORT BOOL SHIORI_CALL load(const MEMORY_HANDLE h,long len)
 {
 	handle=TKawariShioriFactory::GetFactory().CreateInstance(
@@ -52,7 +52,7 @@ SHIORI_EXPORT BOOL SHIORI_CALL load(const MEMORY_HANDLE h,long len)
 	return (handle!=0);
 }
 //---------------------------------------------------------------------------
-// ¥â¥¸¥å¡¼¥ëÀÚ¤êÎ¥¤·Ä¾Á°¤Ë¸Æ¤Ğ¤ì¤ë
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åˆ‡ã‚Šé›¢ã—ç›´å‰ã«å‘¼ã°ã‚Œã‚‹
 SHIORI_EXPORT BOOL SHIORI_CALL unload(void)
 {
 	TKawariShioriFactory::GetFactory().DisposeInstance(handle);
@@ -61,7 +61,7 @@ SHIORI_EXPORT BOOL SHIORI_CALL unload(void)
 	return TRUE;
 }
 //---------------------------------------------------------------------------
-// µ¶AI¥ê¥¯¥¨¥¹¥È
+// å½AIãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 SHIORI_EXPORT MEMORY_HANDLE SHIORI_CALL request(const MEMORY_HANDLE h,long *len)
 {
 	string resstr=TKawariShioriFactory::GetFactory().RequestInstance(

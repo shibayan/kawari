@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// ²ÚÏÂÍü¥Ç¥Ğ¥Ã¥¬
+// è¯å’Œæ¢¨ãƒ‡ãƒãƒƒã‚¬
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.05.24  Phase 0.10    ¥³¥ó¥½¡¼¥ëÈÇ
-//  2001.08.12  Phase 6.2.1   ¹¬¿å¤ÈÅı¹ç
+//  2001.05.24  Phase 0.10    ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ç‰ˆ
+//  2001.08.12  Phase 6.2.1   å¹¸æ°´ã¨çµ±åˆ
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -20,7 +20,7 @@ using namespace std;
 //---------------------------------------------------------------------------
 #include "tool/kdb.h"
 //---------------------------------------------------------------------------
-// SakuraAPI/1.3 ¥¤¥Ù¥ó¥ÈÁ÷¿®
+// SakuraAPI/1.3 ã‚¤ãƒ™ãƒ³ãƒˆé€ä¿¡
 void TKawariInterfaceSakuraAPI::SakuraEvent(const string& event,const string& param)
 {
 	const WPARAM SA_GETPROCESSID=138;
@@ -53,18 +53,18 @@ void TKawariInterfaceSakuraAPI::SakuraEvent(const string& event,const string& pa
 	return;
 }
 //---------------------------------------------------------------------------
-// Ç§¼±²ÄÇ½¤ÊÂ¾¥´¡¼¥¹¥È¤ÎHWnd°ìÍ÷¤òÊÖ¤¹
+// èªè­˜å¯èƒ½ãªä»–ã‚´ãƒ¼ã‚¹ãƒˆã®HWndä¸€è¦§ã‚’è¿”ã™
 void GetGhostList(map<HWND,string> &ghostlist)
 {
-	// Win32API¤¬»ÈÍÑ²ÄÇ½¤Ç¡¢File Mapping Object ¤«¤é¾ğÊó¤ò¼èÆÀ¤¹¤ë¾ì¹ç
+	// Win32APIãŒä½¿ç”¨å¯èƒ½ã§ã€File Mapping Object ã‹ã‚‰æƒ…å ±ã‚’å–å¾—ã™ã‚‹å ´åˆ
 
 	HANDLE hFmo=OpenFileMapping(FILE_MAP_READ,FALSE,(LPCTSTR)"Sakura");
-	if(!hFmo) return;	// »ş¡¹FileMappingObject¤¬²õ¤ì¤Æ¤¤¤ë
+	if(!hFmo) return;	// æ™‚ã€…FileMappingObjectãŒå£Šã‚Œã¦ã„ã‚‹
 
 	char *fmobuff=(char*)MapViewOfFile(hFmo,FILE_MAP_READ,0,0,0);
 
-	// File Mapping Object ¤Î¥µ¥¤¥º
-	// ¥¨¥ó¥Ç¥£¥¢¥ó±³¤Ä¤«¤Ê¤¤
+	// File Mapping Object ã®ã‚µã‚¤ã‚º
+	// ã‚¨ãƒ³ãƒ‡ã‚£ã‚¢ãƒ³å˜˜ã¤ã‹ãªã„
 	unsigned int fmosize=
 	 (((unsigned int)fmobuff[3])<<24)
 	 +(((unsigned int)fmobuff[2])<<16)
@@ -83,13 +83,13 @@ void GetGhostList(map<HWND,string> &ghostlist)
 	string buff;
 	while(ifs->peek()!=0) {
 		getline(*ifs,buff,'\x0a');
-		if(buff.size()==0) break;	// ½ªÎ»¾ò·ï¤¬¤ï¤«¤é¤Ê¤¤¤Î¤Ç
+		if(buff.size()==0) break;	// çµ‚äº†æ¡ä»¶ãŒã‚ã‹ã‚‰ãªã„ã®ã§
 
 		string::size_type pos1=buff.find('.');
 		string::size_type pos2=buff.find('\x1');
 		string::size_type pos3=buff.find('\x0d');
 
-		if((pos1==string::npos)||(pos2==string::npos)) break;	// ½ªÎ»¾ò·ï¤¬¤ï¤«¤é¤Ê¤¤¤Î¤Ç
+		if((pos1==string::npos)||(pos2==string::npos)) break;	// çµ‚äº†æ¡ä»¶ãŒã‚ã‹ã‚‰ãªã„ã®ã§
 
 		string processid=buff.substr(0,pos1);
 		string key=buff.substr(pos1+1,pos2-pos1-1);

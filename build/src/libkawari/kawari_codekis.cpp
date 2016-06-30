@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// Ãæ´Ö¥³¡¼¥É(KIS¹½Ê¸)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰(KISæ§‹æ–‡)
 //
 //      Programed by Suikyo.
 //
-//  2002.04.18  Phase 8.0.0   KIS¹½Ê¸Ãæ´Ö¥³¡¼¥ÉºîÀ®
+//  2002.04.18  Phase 8.0.0   KISæ§‹æ–‡ä¸­é–“ã‚³ãƒ¼ãƒ‰ä½œæˆ
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -16,9 +16,9 @@
 //---------------------------------------------------------------------------
 using namespace std;
 //---------------------------------------------------------------------------
-// KIS IFÊ¸
+// KIS IFæ–‡
 
-// ¼Â¹Ô
+// å®Ÿè¡Œ
 string TKVMKISCodeIF::Run(TKawariVM &vm){
 	const unsigned int cmax=condlist.size();
 	bool finished=false;
@@ -43,7 +43,7 @@ string TKVMKISCodeIF::Run(TKawariVM &vm){
 	vm.Dictionary().PushToHistory(retstr);
 	return retstr;
 }
-// µÕ¥³¥ó¥Ñ¥¤¥ë
+// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 string TKVMKISCodeIF::DisCompile(void) const{
 	const unsigned int cmax=condlist.size();
 	const unsigned int max=list.size();
@@ -57,7 +57,7 @@ string TKVMKISCodeIF::DisCompile(void) const{
 		retstr+=list[i]->DisCompile();
 	return retstr;
 }
-// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 ostream &TKVMKISCodeIF::Debug(ostream& os, unsigned int level) const{
 	const unsigned int cmax=condlist.size();
 	const unsigned int max=list.size();
@@ -77,7 +77,7 @@ ostream &TKVMKISCodeIF::Debug(ostream& os, unsigned int level) const{
 	}
 	return os;
 }
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMKISCodeIF::Less(const TKVMCode_base& r_) const{
 	const TKVMKISCodeIF &r=dynamic_cast<const TKVMKISCodeIF &>(r_);
 	unsigned int cmax=condlist.size();
@@ -95,7 +95,7 @@ bool TKVMKISCodeIF::Less(const TKVMCode_base& r_) const{
 	}
 	return false;
 }
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKVMKISCodeIF::TKVMKISCodeIF(const vector<TKVMCode_base *> &clist,
 		   const vector<TKVMCode_base *> &l){
 	if ((clist.size()==l.size())||((clist.size()+1)==l.size())){
@@ -103,7 +103,7 @@ TKVMKISCodeIF::TKVMKISCodeIF(const vector<TKVMCode_base *> &clist,
 		list.insert(list.end(), l.begin(), l.end());
 	}
 }
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKVMKISCodeIF::~TKVMKISCodeIF(){
 	for (TCodePVector::iterator it=condlist.begin(); it!=condlist.end(); it++)
 		if (*it) delete (*it);

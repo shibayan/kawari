@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 //
-// "������" for ����ʳ��β����ʳ��β���
-// ̾������
+// "華和梨" for あれ以外の何か以外の何か
+// 名前空間
 //
 //      Programed by Suikyo
 //
-//  2002.05.12  Phase 8.0.0   ʬΥ
+//  2002.05.12  Phase 8.0.0   分離
 //
 //---------------------------------------------------------------------------
 #ifndef KAWARI_NS_H
@@ -24,111 +24,111 @@ using namespace std;
 #include "libkawari/kawari_log.h"
 #include "libkawari/kawari_rc.h"
 //---------------------------------------------------------------------------
-// ñ��ID
+// 単語ID
 typedef unsigned int TWordID;
 //---------------------------------------------------------------------------
-// ����ȥ�ID
+// エントリID
 typedef unsigned int TEntryID;
 //---------------------------------------------------------------------------
-// ����
+// 辞書
 typedef map<TEntryID,vector<TWordID> > TDictionary;
-// �հ�������
+// 逆引き辞書
 typedef map<TWordID,multiset<TEntryID> > TRDictionary;
-// �ƥ���ȥ�ǥ��쥯�ȥ�
+// 親エントリディレクトリ
 typedef map<TEntryID,TEntryID> TParentEntryMap;
-// ���֥���ȥ�ǥ��쥯�ȥ�
+// サブエントリディレクトリ
 typedef multimap<TEntryID,TEntryID> TSubEntryMap;
 //---------------------------------------------------------------------------
-// ���٥å����쥯���Υ��󥿡��ե�����
+// ガベッジコレクタのインターフェース
 class TGarbageCollector {
 public:
-	// ñ��˺���ޡ������դ���
+	// 単語に削除マークを付ける
 	virtual void MarkWordForGC(TWordID id)=0;
 
-	// ���������֤�
+	// ロガーを返す
 	virtual TKawariLogger &GetLogger(void)=0;
 };
 //---------------------------------------------------------------------------
-// ̾������
-// ����ȥ�̾�Ϲ��˥ԥꥪ��('.')�ˤ�äƳ���Ū�˴�������롣
+// 名前空間
+// エントリ名は更にピリオド('.')によって階層的に管理される。
 class TNameSpace {
 protected:
-	// ����ȥꥳ�쥯�����
+	// エントリコレクション
 	TWordCollection<string,less<string> > EntryCollection;
-	// ����
+	// 辞書
 	TDictionary Dictionary;
-	// �հ�������
+	// 逆引き辞書
 	TRDictionary ReverseDictionary;
-	// �ƥ���ȥ�ǥ��쥯�ȥ�
+	// 親エントリディレクトリ
 	TParentEntryMap ParentEntry;
-	// ���֥���ȥ�ǥ��쥯�ȥ�
+	// サブエントリディレクトリ
 	TSubEntryMap SubEntry;
-	// ����߶ػߤΥ���ȥ�
+	// 書込み禁止のエントリ
 	set<TEntryID> ProtectedEntry;
 
-	// �������Х�ʥ��٥å����쥯���ؤλ���
+	// グローバルなガベッジコレクタへの参照
 	TGarbageCollector *gc;
 
-	// ���ꤵ�줿����ȥ꤫��Ϥޤ륨��ȥ�ID���������
+	// 指定されたエントリから始まるエントリIDを全て列挙
 	unsigned int FindTree(TEntryID entry, vector<class TEntry>& entrycol);
 
 public:
 	TNameSpace(TGarbageCollector *col): gc(col) {}
 	virtual ~TNameSpace();
 
-	// WordCollection�Υҡ��פ����
+	// WordCollectionのヒープを確保
 	void Reserve(unsigned int n);
 
 
-	// [ �����API ]
+	// [ 情報系API ]
 
-	// ͭ������ȥ�������
+	// 有効エントリ数を取得
 	unsigned int Size(void) const;
 
 
-	// [ ����ȥ���� ]
+	// [ エントリ獲得 ]
 
-	// ����ȥ�ID����
-	// "."�ϥ롼�Ȥ򼨤���
-	// ����� : 1���ꥸ�󡢸��Ĥ���ʤ����0���֤�
+	// エントリID取得
+	// "."はルートを示す。
+	// 戻り値 : 1オリジン、見つからなければ0を返す
 	class TEntry Get(const string& entry);
 
-	// ����ȥ����������
-	// ���˥���ȥ꤬¸�ߤ�����ϡ�����������ID���֤�
-	// "."�ϥ롼�Ȥ򼨤���
-	// ����� : ������������ȥ��ID
+	// エントリを生成する
+	// 既にエントリが存在する場合は、生成せずにIDを返す
+	// "."はルートを示す。
+	// 戻り値 : 生成したエントリのID
 	class TEntry Create(const string& entry);
 
 
-	// [ ����ȥ���� ]
+	// [ エントリ操作 ]
 
-	// ���ƤΥ���ȥ��������
+	// 全てのエントリを削除する
 	void ClearAllEntry(void);
 
 
-	// [ ������API ]
+	// [ 検索系API ]
 
-	// ����ȥ���������
-	// ����� : ����ȥ�θĿ�
+	// エントリを全て列挙
+	// 戻り値 : エントリの個数
 	unsigned int FindAllEntry(vector<class TEntry> &entrycol);
 
-	// ����ȥ�̾���.�פ�ʬ�򤹤�
+	// エントリ名を「.」で分解する
 	static void SplitEntryName(const string& entryname,vector<string> &entryname_node);
-	// ���ꤵ�줿ñ���ޤ२��ȥ꤬¸�ߤ��뤫Ĵ�٤�
-	// ����� : ¸�ߤ����true
+	// 指定された単語を含むエントリが存在するか調べる
+	// 戻り値 : 存在すればtrue
 	bool ContainsWord(TWordID id) const;
 
 	friend class TEntry;
 };
 //---------------------------------------------------------------------------
-// ����ȥ�
+// エントリ
 class TEntry {
 private:
 	TNameSpace * ns;
 	TEntryID entry;
 
-	// �񤭹����ݸ�����å�
-	// ����� : ������ݸ��оݤʤ��true
+	// 書き込み保護チェック
+	// 戻り値 : 書込み保護対象ならばtrue
 	bool AssertIfProtected(void);
 
 public:
@@ -148,116 +148,116 @@ public:
 		else return (entry<r.entry);
 	}
 
-	// �ϰϳ��Υ���ǥå���
+	// 範囲外のインデックス
 	static const unsigned int NPos;		// UINT_MAX
-		// ���ơ���������class���Ф�const�Ϥ������ξ������������ʤꤽ����
-		// ��Τ�����VC++6.0�ΥХ��ǡ���ǰ�ʤ��餽���⤤���ʤ���
-		// ���ΥХ��ϡ������ͤ�������뤳�Ȥˤ�äƲ���Ǥ��롣
-		// �ºݤ��ͤ��ɤ��ʤäƤ뤫�ϡ��������������β������򸫤Ƥ�������������
-		// �ܤ����ϲ������ȡ�(�դ������)
+		// さて、こうしたclassメンバのconstはすぐその場で定義したくなりそうな
+		// ものだが、VC++6.0のバグで、残念ながらそうもいかない。
+		// このバグは、外で値を定義することによって回避できる。
+		// 実際の値がどうなってるかは、お手数だが宣言の下の方を見ていただきたい。
+		// 詳しくは下記参照。(ふざけるな)
 		// BUG: C2258 and C2252 on in Place Initialization of Static Const Members (Q241569)
 		// http://support.microsoft.com/default.aspx?scid=kb;en-us;Q241569
 
-	// ���Υ���ȥ���ä���硢�ٹ������˻Ĥ���
-	// �޾줷�Τ�Ū��
-	// ����� : ���ξ��true
+	// 空のエントリだった場合、警告をログに残す。
+	// 急場しのぎ的。
+	// 戻り値 : 空の場合true
 	bool AssertIfEmpty(const string& name);
 
 
-	// [ �����API ]
+	// [ 情報系API ]
 
-	// ���ꤵ�줿����ȥ��ñ��������
-	// ����� : ñ��θĿ�
+	// 指定されたエントリの単語数を取得
+	// 戻り値 : 単語の個数
 	unsigned int Size(void) const;
 
-	// ͭ���ʥ���ȥ�Ǥ��뤫��Ĵ�٤�
-	// ����� : ͭ���ʤ鿿
+	// 有効なエントリであるかを調べる
+	// 戻り値 : 有効なら真
 	bool IsValid(void) const { return ((ns!=NULL)&&(entry!=0)); }
 
 
-	// [ ID�Ѵ��� ]
+	// [ ID変換系 ]
 
-	// ����ȥ�̾������
-	// ����� : ����ȥ�̾ʸ����
+	// エントリ名を得る
+	// 戻り値 : エントリ名文字列
 	string GetName(void) const;
 
-	// ID������
+	// IDを得る
 	TEntryID GetID(void) const { return entry; }
 
 
-	// [ �����ɲá������API ]
+	// [ 辞書追加・削除系API ]
 
-	// ���ꤵ�줿����ȥ����ˤ���
-	// ����˶�����ȥ��ñ�줬�Ĥ�
-	// ����� : ������true
+	// 指定されたエントリを空にする
+	// メモリに空エントリと単語が残る
+	// 戻り値 : 成功でtrue
 	bool Clear(void);
 
-	// ���Υ���ȥ�ʲ��Υ���ȥ�����ƶ��ˤ���
-	// ����˶�����ȥ��ñ�줬�ĤäƤ��ɤ�
+	// このエントリ以下のエントリを全て空にする
+	// メモリに空エントリと単語が残っても良い
 	void ClearTree(void);
 
-	// ����ȥ�Ǹ����ؤ�ñ����ɲ�
+	// エントリ最後尾への単語の追加
 	void Push(TWordID id);
 
-	// ���ꤵ�줿����ȥ����ˤ��Ƥ���ñ����ɲ�
-	// ����ȥ���ѿ�Ū�����Ѥ�����˻��Ѥ���
+	// 指定されたエントリを空にしてから単語を追加
+	// エントリを変数的に利用する時に使用する
 	void PushAfterClear(TWordID id);
 
-	// ����ȥ�Ǹ�����ñ��κ��
-	// ����� : ������줿ñ��
+	// エントリ最後尾の単語の削除
+	// 戻り値 : 削除された単語
 	TWordID Pop(void);
 
-	// ����ȥ�����ؤ�ñ�������
+	// エントリ途中への単語の挿入
 	void Insert(unsigned int pos,TWordID id);
 
-	// ����ȥ������ñ��κ��
+	// エントリ途中の単語の削除
 	void Erase(unsigned int st,unsigned int end);
 
-	// ����ȥ������ñ��������ؤ�
-	// ����� : ������줿ñ��
+	// エントリ途中の単語の入れ替え
+	// 戻り値 : 削除された単語
 	TWordID Replace(unsigned int pos,TWordID id);
 
-	// ����ȥ������ñ��������ؤ�(����ǥå������ϰϳ��ξ�硢id2���ɲ�)
-	// ����� : ������줿ñ��
+	// エントリ途中の単語の入れ替え(インデックスが範囲外の場合、id2を追加)
+	// 戻り値 : 削除された単語
 	TWordID Replace2(unsigned int pos,TWordID id,TWordID id2);
 
-	// ����ȥ�ؤν񤭹��ߤ�ػߤ���
+	// エントリへの書き込みを禁止する
 	void WriteProtect(void);
 
 
-	// [ ������API ]
+	// [ 検索系API ]
 
-	// ���ꤵ�줿����ȥ꤬�ޤޤ�뤫�ݤ����֤�
-	// ����� : �ޤޤ����true
+	// 指定されたエントリが含まれるか否かを返す
+	// 戻り値 : 含まれる場合true
 //	bool Contains(TEntryID id) const;
 
-	// ���ꤵ�줿����ȥ�λ��ꤷ������(0���ꥸ��)��ñ����֤�
-	// ����� : ñ���ID
+	// 指定されたエントリの指定した順番(0オリジン)の単語を返す
+	// 戻り値 : 単語のID
 	TWordID Index(unsigned int index=0) const;
 
-	// ���ꤵ�줿����ȥ��⤫����ꤷ��ñ��򸡺�
-	// ����� : ����ǥå���(���Ĥ���ʤ����NPos)
+	// 指定されたエントリ内から指定した単語を検索
+	// 戻り値 : インデックス(見つからなければNPos)
 	unsigned int Find(TWordID id,unsigned int pos=0) const;
 
-	// ���ꤵ�줿����ȥ��⤫����ꤷ��ñ��򸡺�(�ս�)
-	// ����� : ����ǥå���(���Ĥ���ʤ����NPos)
+	// 指定されたエントリ内から指定した単語を検索(逆順)
+	// 戻り値 : インデックス(見つからなければNPos)
 	unsigned int RFind(TWordID id,unsigned int pos=NPos) const;
 
-	// ���ꤵ�줿����ȥ��ñ����������
-	// ����� : ñ��θĿ�
+	// 指定されたエントリの単語を全て列挙
+	// 戻り値 : 単語の個数
 	unsigned int FindAll(vector<TWordID> &wordcol) const;
 
-	// �ƥ���ȥ����
-	// ����� : 1���ꥸ�󡢸��Ĥ���ʤ����0���֤�
+	// 親エントリ取得
+	// 戻り値 : 1オリジン、見つからなければ0を返す
 	TEntry GetParent(void) const;
 
-	// ���֥���ȥ���������
-	// ����� : ����ȥ�θĿ�
+	// サブエントリを全て列挙
+	// 戻り値 : エントリの個数
 	unsigned int FindAllSubEntry(vector<TEntry> &entrycol) const;
 
-	// ���ꤵ�줿����ȥ�̾����Ϥޤ륨��ȥ���������
-	// ���Υ���ȥ��̵��
-	// ����� : ����ȥ�θĿ�
+	// 指定されたエントリ名から始まるエントリを全て列挙
+	// 空のエントリは無視
+	// 戻り値 : エントリの個数
 	unsigned int FindTree(vector<TEntry> &entrycol) const;
 };
 //---------------------------------------------------------------------------
@@ -267,8 +267,8 @@ inline TNameSpace::~TNameSpace()
 	ClearAllEntry();
 }
 //---------------------------------------------------------------------------
-// ���ꤵ�줿����ȥ꤬�ޤޤ�뤫�ݤ����֤�
-// ����� : �ޤޤ����true
+// 指定されたエントリが含まれるか否かを返す
+// 戻り値 : 含まれる場合true
 #if 0
 inline bool TNameSpace::Contains(TEntryID id) const
 {
@@ -276,28 +276,28 @@ inline bool TNameSpace::Contains(TEntryID id) const
 }
 #endif
 //---------------------------------------------------------------------------
-// WordCollection�Υҡ��פ����
+// WordCollectionのヒープを確保
 inline void TNameSpace::Reserve(unsigned int n)
 {
 	EntryCollection.Reserve(n);
 }
 //---------------------------------------------------------------------------
-// ͭ������ȥ�������
+// 有効エントリ数を取得
 inline unsigned int TNameSpace::Size(void) const
 {
 	return Dictionary.size();
 }
 //---------------------------------------------------------------------------
-// ����ȥ�ID����
-// "."�ϥ롼�Ȥ򼨤���
-// ����� : 1���ꥸ�󡢸��Ĥ���ʤ����0���֤�
+// エントリID取得
+// "."はルートを示す。
+// 戻り値 : 1オリジン、見つからなければ0を返す
 inline TEntry TNameSpace::Get(const string& entry)
 {
 	return((entry==".")?TEntry(this,0):TEntry(this, EntryCollection.Find(entry)));
 }
 //--------------------------------------------------------------------------
-// ���ꤵ�줿ñ���ޤ२��ȥ꤬¸�ߤ��뤫Ĵ�٤�
-// ����� : ¸�ߤ����true
+// 指定された単語を含むエントリが存在するか調べる
+// 戻り値 : 存在すればtrue
 inline bool TNameSpace::ContainsWord(TWordID id) const
 {
 	if (ReverseDictionary.count(id)==0) return false;
@@ -305,15 +305,15 @@ inline bool TNameSpace::ContainsWord(TWordID id) const
 	return (it->second.size()!=0);
 }
 //---------------------------------------------------------------------------
-// �ƥ���ȥ����
+// 親エントリ取得
 inline TEntry TEntry::GetParent(void) const
 {
 	map<TEntryID,TEntryID>::const_iterator it=ns->ParentEntry.find(entry);
 	return((it!=ns->ParentEntry.end())?(TEntry(ns,it->second)):(TEntry(ns,0)));
 }
 //---------------------------------------------------------------------------
-// ����ȥ�ID���饨��ȥ�̾���Ѵ�
-// ����� : ����ȥ�̾ʸ����
+// エントリIDからエントリ名に変換
+// 戻り値 : エントリ名文字列
 inline string TEntry::GetName(void) const
 {
 	string const*entryname=ns->EntryCollection.Find(entry);
@@ -321,8 +321,8 @@ inline string TEntry::GetName(void) const
 	else return (*entryname);
 }
 //--------------------------------------------------------------------------
-// �񤭹����ݸ�����å�
-// ����� : ������ݸ��оݤʤ��true
+// 書き込み保護チェック
+// 戻り値 : 書込み保護対象ならばtrue
 inline bool TEntry::AssertIfProtected(void)
 {
 	if(IsValid()&&ns->ProtectedEntry.count(entry)){
@@ -335,23 +335,23 @@ inline bool TEntry::AssertIfProtected(void)
 	}
 }
 //---------------------------------------------------------------------------
-// ���ꤵ�줿����ȥ����ˤ��Ƥ���ñ����ɲ�
-// ����ȥ���ѿ�Ū�����Ѥ�����˻��Ѥ���
+// 指定されたエントリを空にしてから単語を追加
+// エントリを変数的に利用する時に使用する
 inline void TEntry::PushAfterClear(TWordID id)
 {
 	Clear();
 	Push(id);
 }
 //--------------------------------------------------------------------------
-// ����ȥ�ؤν񤭹��ߤ�ػߤ���
+// エントリへの書き込みを禁止する
 inline void TEntry::WriteProtect(void)
 {
 	if(IsValid()) ns->ProtectedEntry.insert(entry);
 }
 //--------------------------------------------------------------------------
-// ���Υ���ȥ���ä���硢�ٹ������˻Ĥ���
-// �޾줷�Τ�Ū��
-// ����� : ���ξ��true
+// 空のエントリだった場合、警告をログに残す。
+// 急場しのぎ的。
+// 戻り値 : 空の場合true
 inline bool TEntry::AssertIfEmpty(const string& name)
 {
 	if(((!IsValid())||(!Size()))&&ns->gc->GetLogger().Check(kawari_log::LOG_DECL)){

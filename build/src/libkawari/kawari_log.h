@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// ¥í¥¬¡¼
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ãƒ­ã‚¬ãƒ¼
 //
 //      Programed by Suikyo
 //
-//  2002.04.12  Phase 8.0.0   Engine¤«¤éÊ¬Î¥
+//  2002.04.12  Phase 8.0.0   Engineã‹ã‚‰åˆ†é›¢
 //
 //---------------------------------------------------------------------------
 #ifndef KAWARI_LOG_H
@@ -35,35 +35,35 @@ namespace kawari_log {
 //---------------------------------------------------------------------------
 class TKawariLogger {
 private:
-	// ¥í¥°¥¹¥È¥ê¡¼¥à
+	// ãƒ­ã‚°ã‚¹ãƒˆãƒªãƒ¼ãƒ 
 	std::ostream *LogStream;
 
-	// ¤É¤³¤Ë¤âÆş½ĞÎÏ¤·¤Ê¤¤¥¹¥È¥ê¡¼¥à
+	// ã©ã“ã«ã‚‚å…¥å‡ºåŠ›ã—ãªã„ã‚¹ãƒˆãƒªãƒ¼ãƒ 
 	std::ostream *NullStream;
 
-	// ¥¨¥é¡¼¥ì¥Ù¥ë (ÏÀÍıÏÂ)
+	// ã‚¨ãƒ©ãƒ¼ãƒ¬ãƒ™ãƒ« (è«–ç†å’Œ)
 	unsigned int errlevel;
 
 public:
-	// ½ĞÎÏ¥¹¥È¥ê¡¼¥à¼èÆÀ
+	// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ å–å¾—
 	std::ostream& GetStream(void) const;
 
-	// ½ĞÎÏ¥¹¥È¥ê¡¼¥à¼èÆÀ
+	// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ å–å¾—
 	std::ostream& GetStream(kawari_log::LOGLEVEL lvl) const;
 
-	// ½ĞÎÏ¥¹¥È¥ê¡¼¥à¤ÎÀßÄê
+	// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®è¨­å®š
 	void SetStream(std::ostream *outstream);
 
-	// ½ĞÎÏ¥¹¥È¥ê¡¼¥à¤òÉ¸½à½ĞÎÏ¤ËÀßÄê
+	// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’æ¨™æº–å‡ºåŠ›ã«è¨­å®š
 	void SetStreamStdOut(void);
 
-	// ¥¨¥é¡¼¥ì¥Ù¥ë¤òÆÀ¤ë
+	// ã‚¨ãƒ©ãƒ¼ãƒ¬ãƒ™ãƒ«ã‚’å¾—ã‚‹
 	unsigned int ErrLevel(void) const { return errlevel; }
 
-	// ¥¨¥é¡¼¥ì¥Ù¥ë¤ÎÀßÄê
+	// ã‚¨ãƒ©ãƒ¼ãƒ¬ãƒ™ãƒ«ã®è¨­å®š
 	void SetErrLevel(unsigned int level);
 
-	// ¥¨¥é¡¼¥ì¥Ù¥ë¤Î¥Á¥§¥Ã¥¯
+	// ã‚¨ãƒ©ãƒ¼ãƒ¬ãƒ™ãƒ«ã®ãƒã‚§ãƒƒã‚¯
 	bool Check(unsigned int lvl) const{
 		return ((errlevel&lvl)!=0);
 	}
@@ -71,13 +71,13 @@ public:
 	~TKawariLogger ();
 };
 //---------------------------------------------------------------------------
-// ½ĞÎÏ¥¹¥È¥ê¡¼¥à¼èÆÀ
+// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ å–å¾—
 inline std::ostream& TKawariLogger::GetStream(void) const
 {
 	return(*LogStream);
 }
 //---------------------------------------------------------------------------
-// ½ĞÎÏ¥¹¥È¥ê¡¼¥à¼èÆÀ
+// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ å–å¾—
 inline std::ostream& TKawariLogger::GetStream(kawari_log::LOGLEVEL lvl) const{
 	if ((errlevel&lvl)!=0)
 		return(*LogStream);
@@ -85,7 +85,7 @@ inline std::ostream& TKawariLogger::GetStream(kawari_log::LOGLEVEL lvl) const{
 		return(*NullStream);
 }
 //---------------------------------------------------------------------------
-// ½ĞÎÏ¥¹¥È¥ê¡¼¥à¤ÎÀßÄê
+// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®è¨­å®š
 inline void TKawariLogger::SetStream(std::ostream *outstream)
 {
 	if (outstream)
@@ -94,12 +94,12 @@ inline void TKawariLogger::SetStream(std::ostream *outstream)
 		LogStream=NullStream;
 }
 //---------------------------------------------------------------------------
-// ¥¨¥é¡¼¥ì¥Ù¥ë¤ÎÀßÄê
+// ã‚¨ãƒ©ãƒ¼ãƒ¬ãƒ™ãƒ«ã®è¨­å®š
 inline void TKawariLogger::SetErrLevel(unsigned int level){
 	errlevel=level;
 }
 //---------------------------------------------------------------------------
-// ½ĞÎÏ¥¹¥È¥ê¡¼¥à¤òÉ¸½à½ĞÎÏ¤ËÀßÄê
+// å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’æ¨™æº–å‡ºåŠ›ã«è¨­å®š
 inline void TKawariLogger::SetStreamStdOut(void){
 	LogStream=&cout;
 }

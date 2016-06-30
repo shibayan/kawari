@@ -1,25 +1,25 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
 // KawariInlineScript -- file attribute --
 //
 //      Programed by Kouji.U (sky)
 //
 //  2001.06.03  Created
-//  2001.06.17  Phase 6.0     Phase6.0¤Ë¤¢¤ï¤»¤Æ½¤Àµ (NAKAUE.T)
-//  2001.07.14  Phase 6.1     load¤ÇÀäÂĞ¥Ñ¥¹»ØÄê²ÄÇ½¤Ë (NAKAUE.T)
-//  2001.07.19  Phase 6.2     MingwÂĞ±ş (NAKAUE.T)
-//  2001.12.09  Phase 7.1.2   kis_textfile¤ÈÅı¹ç
-//                            readdirÄÉ²Ã
-//  2001.12.18  Phase 7.2     VC¸ş¤±¤ËFindFirstFileA¡¢FindNextFileA¤ò»È¤Ã¤¿
-//                            opendir/readdir/closedirºîÀ®(Thanks: ¤¨¤Ó¤µ¤ï)
-//  2002.03.17  Phase 7.9.0   Phase7.9¤Ë¹ç¤ï¤»¤ÆÊÑ¹¹ (NAKAUE.T)
-//                            textload»ÅÍÍÊÑ¹¹/textsaveÄÉ²Ã
-//                            readdir¤Ç.¤È..¤ò½ü³°
-//  2002.04.16  Phase 8.0.0   ¥Ñ¥¹Ê¸»úÎóÁàºî¤òmisc/misc.cpp¤Ø°ÜÆ°
-//  2002.07.10  Phase 8.1.0   isdir/isexist/isfileÄÉ²Ã
-//  2008.01.23  Phase 8.2.5   isexist(¥ë¡¼¥È¥Ç¥£¥ì¥¯¥È¥ê¸íÇ§ÂĞºö)
-//  2008.03.30  Phase 8.2.8   textsave½¤Àµ(Ê£¿ô¤Î¥¨¥ó¥È¥ê¤òÊİÂ¸¤Ç¤­¤Ê¤¤)
+//  2001.06.17  Phase 6.0     Phase6.0ã«ã‚ã‚ã›ã¦ä¿®æ­£ (NAKAUE.T)
+//  2001.07.14  Phase 6.1     loadã§çµ¶å¯¾ãƒ‘ã‚¹æŒ‡å®šå¯èƒ½ã« (NAKAUE.T)
+//  2001.07.19  Phase 6.2     Mingwå¯¾å¿œ (NAKAUE.T)
+//  2001.12.09  Phase 7.1.2   kis_textfileã¨çµ±åˆ
+//                            readdirè¿½åŠ 
+//  2001.12.18  Phase 7.2     VCå‘ã‘ã«FindFirstFileAã€FindNextFileAã‚’ä½¿ã£ãŸ
+//                            opendir/readdir/closedirä½œæˆ(Thanks: ãˆã³ã•ã‚)
+//  2002.03.17  Phase 7.9.0   Phase7.9ã«åˆã‚ã›ã¦å¤‰æ›´ (NAKAUE.T)
+//                            textloadä»•æ§˜å¤‰æ›´/textsaveè¿½åŠ 
+//                            readdirã§.ã¨..ã‚’é™¤å¤–
+//  2002.04.16  Phase 8.0.0   ãƒ‘ã‚¹æ–‡å­—åˆ—æ“ä½œã‚’misc/misc.cppã¸ç§»å‹•
+//  2002.07.10  Phase 8.1.0   isdir/isexist/isfileè¿½åŠ 
+//  2008.01.23  Phase 8.2.5   isexist(ãƒ«ãƒ¼ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªèª¤èªå¯¾ç­–)
+//  2008.03.30  Phase 8.2.8   textsaveä¿®æ­£(è¤‡æ•°ã®ã‚¨ãƒ³ãƒˆãƒªã‚’ä¿å­˜ã§ããªã„)
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -53,7 +53,7 @@ void KIS_save::Run(const vector<string>& args, bool crypt)
 	vector<string> entry;
 	entry.insert(entry.end(),args.begin()+2,args.end());
 
-	// save¤ÏÁêÂĞ¥Ñ¥¹¤Î¤ß
+	// saveã¯ç›¸å¯¾ãƒ‘ã‚¹ã®ã¿
 	string filename;
 	if (IsAbsolutePath(CanonicalPath(args[1])))
 		filename=PathToFileName(args[1]);
@@ -61,7 +61,7 @@ void KIS_save::Run(const vector<string>& args, bool crypt)
 		filename=CanonicalPath(Engine->GetDataPath(), args[1]);
 
 	if(!Engine->SaveKawariDict(filename,entry,crypt)) {
-		// ¥¨¥é¡¼
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_FILE_SAVE_FAILED) << filename << endl;
 	}
 
@@ -75,7 +75,7 @@ string KIS_load::Function(const vector<string>& args)
 	string filename=CanonicalPath(Engine->GetDataPath(), args[1]);
 
 	if(!Engine->LoadKawariDict(filename)) {
-		// ¥¨¥é¡¼
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_FILE_LOAD_FAILED) << filename << endl;
 	}
 
@@ -91,7 +91,7 @@ string KIS_textload::Function(const vector<string>& args)
 	ifstream ifs;
 	ifs.open(filename.c_str());
 	if(!ifs.is_open()) {
-		// ¥¨¥é¡¼
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_FILE_LOAD_FAILED) << filename << endl;
 		return("");
 	}
@@ -112,7 +112,7 @@ string KIS_textsave::Function_(const vector<string>& args,bool flag)
 {
 	if(!AssertArgument(args, 3)) return ("");
 
-	// save¤ÏÁêÂĞ¥Ñ¥¹¤Î¤ß
+	// saveã¯ç›¸å¯¾ãƒ‘ã‚¹ã®ã¿
 	string filename;
 	if (IsAbsolutePath(CanonicalPath(args[1])))
 		filename=PathToFileName(args[1]);
@@ -123,7 +123,7 @@ string KIS_textsave::Function_(const vector<string>& args,bool flag)
 	if(flag) ofs.open(filename.c_str());
 	 else ofs.open(filename.c_str(), ios::app);
 	if(!ofs.is_open()) {
-		// ¥¨¥é¡¼
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_FILE_LOAD_FAILED) << filename << endl;
 		return("");
 	}
@@ -230,8 +230,8 @@ string KIS_isexist::Function(const vector<string>& args)
 
 	unsigned int pos=ctow(dirname).rfind(FILE_SEPARATOR);
 	if(pos==string::npos) {
-		// ¥Õ¥ë¥Ñ¥¹¤Ê¤Î¤Ëdirname¤ËFILE_SEPARATOR¤¬¤Ê¤¤¾ì¹ç¡¢¿äÄê¤Ç¥ë¡¼¥È
-		// FILE_SEPARATOR¤òÄÉ²Ã¤·¥«¥ì¥ó¥È¥Ç¥£¥ì¥¯¥È¥ê¤È¤Î¸íÇ§¤òËÉ¤°
+		// ãƒ•ãƒ«ãƒ‘ã‚¹ãªã®ã«dirnameã«FILE_SEPARATORãŒãªã„å ´åˆã€æ¨å®šã§ãƒ«ãƒ¼ãƒˆ
+		// FILE_SEPARATORã‚’è¿½åŠ ã—ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã¨ã®èª¤èªã‚’é˜²ã
 		dirname+=FILE_SEPARATOR;
 	}
 

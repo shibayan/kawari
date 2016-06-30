@@ -1,29 +1,29 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
 // KawariInlineScript
 //
 //---------------------------------------------------------------------------
-// »ÈÍÑ¤¹¤ë¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È¥æ¥Ë¥Ã¥È¤Î¥Ø¥Ã¥À¥Õ¥¡¥¤¥ë¤ò¤³¤³¤ËÎóµó¤·¤Æ¤¯¤À¤µ¤¤
+// ä½¿ç”¨ã™ã‚‹ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¦ãƒ‹ãƒƒãƒˆã®ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã“ã“ã«åˆ—æŒ™ã—ã¦ãã ã•ã„
 //---------------------------------------------------------------------------
-//#include "kis/kis_debug.h"			// ¥Ç¥Ğ¥Ã¥°¥³¡¼¥É
-#include "kis/kis_echo.h"			// ¥¨¥³¡¼
-#include "kis/kis_dict.h"			// ¼­½ñÁàºî
-//#include "kis/kis_test.h"			// ¾ò·ï¼°
-#include "kis/kis_date.h"			// Æü»ş
-#include "kis/kis_counter.h"		// ¥«¥¦¥ó¥¿
+//#include "kis/kis_debug.h"			// ãƒ‡ãƒãƒƒã‚°ã‚³ãƒ¼ãƒ‰
+#include "kis/kis_echo.h"			// ã‚¨ã‚³ãƒ¼
+#include "kis/kis_dict.h"			// è¾æ›¸æ“ä½œ
+//#include "kis/kis_test.h"			// æ¡ä»¶å¼
+#include "kis/kis_date.h"			// æ—¥æ™‚
+#include "kis/kis_counter.h"		// ã‚«ã‚¦ãƒ³ã‚¿
 //#include "kis/kis_expr.h"			// expr
-#include "kis/kis_math.h"			// ¿ô³Ø´Ø¿ô
-#include "kis/kis_file.h"			// ¥Õ¥¡¥¤¥ëÁàºî
-#include "kis/kis_escape.h"			// Ê¸»úÎó¥¨¥¹¥±¡¼¥×
-#include "kis/kis_help.h"			// ¥ª¥ó¥é¥¤¥ó¥Ø¥ë¥×
+#include "kis/kis_math.h"			// æ•°å­¦é–¢æ•°
+#include "kis/kis_file.h"			// ãƒ•ã‚¡ã‚¤ãƒ«æ“ä½œ
+#include "kis/kis_escape.h"			// æ–‡å­—åˆ—ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—
+#include "kis/kis_help.h"			// ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ãƒ˜ãƒ«ãƒ—
 #include "kis/kis_substitute.h"		// toupper,tolower
 #include "kis/kis_split.h"			// split
-#include "kis/kis_string.h"			// Ê¸»úÎó
-#include "kis/kis_communicate.h"	// ¿·¥³¥ß¥å¥Ë¥±¡¼¥Èµ¡¹½
-#include "kis/kis_xargs.h"			// °ú¿ôÅ¸³«¼Â¹Ô
+#include "kis/kis_string.h"			// æ–‡å­—åˆ—
+#include "kis/kis_communicate.h"	// æ–°ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆæ©Ÿæ§‹
+#include "kis/kis_xargs.h"			// å¼•æ•°å±•é–‹å®Ÿè¡Œ
 #include "kis/kis_saori.h"			// SAORI/1.0
-#include "kis/kis_system.h"			// ¥·¥¹¥Æ¥àÁàºî
-#include "kis/kis_urllist.h"		// SHIORI/2.5 URL¥ê¥¹¥È
+#include "kis/kis_system.h"			// ã‚·ã‚¹ãƒ†ãƒ æ“ä½œ
+#include "kis/kis_urllist.h"		// SHIORI/2.5 URLãƒªã‚¹ãƒˆ
 //---------------------------------------------------------------------------
 

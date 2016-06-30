@@ -1,6 +1,6 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
 // KawariInlineScript -- SAORI --
 //
 //  2001.03.28 initial
@@ -64,20 +64,20 @@ string KIS_saorilist::Function(const vector<string>& args)
 bool KIS_callsaori::CallSaori(
 	const string& saoriname, const vector<string>& args, TPHMessage &response)
 {
-	// ¥ê¥¯¥¨¥¹¥ÈÀ¸À®
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆç”Ÿæˆ
 	TPHMessage request;
 	request.SetStartline("EXECUTE SAORI/1.0");
 	request["Sender"]="kawari";
 	request["Charset"]="Shift_JIS";
 	string slevel=Engine->IndexParse("system.Sender.Path");
-	// shiori.dll¤«¤éÆ°¤«¤·¤¿¾ì¹ç¡¢Sender.Path¤ÏÉ¬¤ºÀßÄê¤µ¤ì¤ë¡£
-	// ¤½¤¦¤Ç¤Ê¤¤¤Î¤Ï¹¬¿å¡£¤À¤«¤éLocal¤ÇÎÉ¤¤¡£
+	// shiori.dllã‹ã‚‰å‹•ã‹ã—ãŸå ´åˆã€Sender.Pathã¯å¿…ãšè¨­å®šã•ã‚Œã‚‹ã€‚
+	// ãã†ã§ãªã„ã®ã¯å¹¸æ°´ã€‚ã ã‹ã‚‰Localã§è‰¯ã„ã€‚
 	request["SecurityLevel"]=(slevel.size())?
 		((slevel=="local")? string("Local") : slevel): string("Local");
 	for (unsigned int i=0; i<args.size(); i++)
 		request["Argument"+IntToString(i)]=args[i];
 
-	// ¥ê¥¯¥¨¥¹¥È
+	// ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	if ((!Engine->RequestToSAORIModule(saoriname, request, response))
 		||(!response.GetStartline().size())){
 		// Failed
@@ -85,7 +85,7 @@ bool KIS_callsaori::CallSaori(
 		return false;
 	}
 
-	// ¥¹¥Æ¡¼¥¿¥¹¥é¥¤¥ó¤ÎÊ¬²ò
+	// ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ©ã‚¤ãƒ³ã®åˆ†è§£
 	const string &statusline=response.GetStartline();
 	unsigned int pos=statusline.find(' ');
 	if (pos==string::npos) return false;

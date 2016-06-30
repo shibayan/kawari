@@ -1,18 +1,18 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
 // KawariInlineScript -- split --
 //
-//      Programed by ¤µ¤È¡¼/NAKAUE.T
+//      Programed by ã•ã¨ãƒ¼/NAKAUE.T
 //
-//  2002.01.07  Phase 7.3     findpos¥µ¥Ö¥³¥Ş¥ó¥ÉÄÉ²Ã (¤µ¤È¡¼)
-//                            split¥³¥Ş¥ó¥ÉÄÉ²Ã(¤µ¤È¡¼)
-//  2002.03.17  Phase 7.9.0   7.9¤Î»ÅÍÍ¤Ë¹ç¤ï¤»¤¿ (NAKAUE.T)
-//                            split¤¬¤Ê¤¼expr¤È¤Ş¤È¤á¤é¤ì¤Æ¤¤¤ë¤«Íı²ò¤Ë¶ì¤·¤à¤Î¤Ç°ÜÆ°
-//                            split»ÅÍÍÊÑ¹¹
+//  2002.01.07  Phase 7.3     findposã‚µãƒ–ã‚³ãƒãƒ³ãƒ‰è¿½åŠ  (ã•ã¨ãƒ¼)
+//                            splitã‚³ãƒãƒ³ãƒ‰è¿½åŠ (ã•ã¨ãƒ¼)
+//  2002.03.17  Phase 7.9.0   7.9ã®ä»•æ§˜ã«åˆã‚ã›ãŸ (NAKAUE.T)
+//                            splitãŒãªãœexprã¨ã¾ã¨ã‚ã‚‰ã‚Œã¦ã„ã‚‹ã‹ç†è§£ã«è‹¦ã—ã‚€ã®ã§ç§»å‹•
+//                            splitä»•æ§˜å¤‰æ›´
 //
 //---------------------------------------------------------------------------
-// ´Ø¿ô¥Æ¡¼¥Ö¥ë¤Ø¤ÎÅĞÏ¿
+// é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ç™»éŒ²
 #ifdef INLINE_SCRIPT_REGIST
 INLINE_SCRIPT_REGIST(KIS_split);
 INLINE_SCRIPT_REGIST(KIS_join);
@@ -28,7 +28,7 @@ INLINE_SCRIPT_REGIST(KIS_join);
 class KIS_split : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void){
 		Name_="split";
 		Format_="split Entry1 string delimiter";
@@ -38,14 +38,14 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------
 class KIS_join : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void){
 		Name_="join";
 		Format_="join Entry1 delimiter";
@@ -55,7 +55,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args);
 };
 //---------------------------------------------------------------------------

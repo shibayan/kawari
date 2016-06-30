@@ -1,14 +1,14 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// KawariInlineScript -- ¿ô³Ø --
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// KawariInlineScript -- æ•°å­¦ --
 //
 //      Programed by Kouji.U (SUIKYO)
 //
 //  2001.06.17  Phase 5.4     
 //
 //---------------------------------------------------------------------------
-// ´Ø¿ô¥Æ¡¼¥Ö¥ë¤Ø¤ÎÅĞÏ¿
+// é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ç™»éŒ²
 #ifdef INLINE_SCRIPT_REGIST
 INLINE_SCRIPT_REGIST(KIS_rand);
 INLINE_SCRIPT_REGIST(KIS_srand);
@@ -28,7 +28,7 @@ using namespace std;
 //---------------------------------------------------------------------------
 class KIS_rand : public TKisFunction_base {
 public:
-    // Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+    // Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="rand";
@@ -39,7 +39,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
     virtual string Function(const vector<string>& args){
         if (args.size()>=2) 
             return (IntToString(Random(atoi(args[1].c_str()))));
@@ -51,7 +51,7 @@ public:
 //---------------------------------------------------------------------------
 class KIS_srand : public TKisFunction_base {
 public:
-    // Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+    // Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="srand";
@@ -62,7 +62,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
     virtual string Function(const vector<string>& args){
 		if (args.size()>=2) 
 			SRandom(atoi(args[1].c_str()));

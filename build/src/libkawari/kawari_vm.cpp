@@ -1,22 +1,22 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-//  ²ÚÏÂÍü²¾ÁÛµ¡³£(¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È¥¨¥ó¥¸¥ó)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+//  è¯å’Œæ¢¨ä»®æƒ³æ©Ÿæ¢°(ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚¨ãƒ³ã‚¸ãƒ³)
 //
 //      Programed by NAKAUE.T (Meister) / Suikyo
 //
-//  2001.05.24  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é²½
-//  2001.06.12  Phase 5.3.2   ¥À¥ß¡¼¥³¥ó¥Æ¥­¥¹¥È
-//  2001.06.17  Phase 6.0     ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥ÈÆâ¤ÎÍúÎò»²¾È¤Î¥Ğ¥°½¤Àµ
-//  2001.07.21  Phase 6.2     ´Ø¿ô¾ğÊó»²¾È
-//  2001.08.08  Phase 6.2     ´Ø¿ô¥Æ¡¼¥Ö¥ë»²¾È
-//  2002.03.10  Phase 7.9.0   kawari_engine_base.hÇÑ»ß
-//                            ¼­½ñ¤ÎÄ¾ÀÜ¥¢¥¯¥»¥¹¶Ø»ß
-//  2002.03.17                KIU¤Ë¹ç¤ï¤»¤ÆTKisEngine¤«¤éTKawariVM¤ËÌ¾¾ÎÊÑ¹¹
-//                            Æ±¤¸¤¯TKawariCode~¤«¤éTKVMCode~¤ËÌ¾¾ÎÊÑ¹¹
-//  2002.04.18  Phase 8.0.0   ½ñ¤­Ä¾¤·
-//                            ¥³¥ó¥Æ¥­¥¹¥È¼ş¤ê¤Ï¼­½ñ¤Ø
-//                            Îã³°¾õÂÖ¤Î¼Â¸½
+//  2001.05.24  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©åŒ–
+//  2001.06.12  Phase 5.3.2   ãƒ€ãƒŸãƒ¼ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+//  2001.06.17  Phase 6.0     ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®å±¥æ­´å‚ç…§ã®ãƒã‚°ä¿®æ­£
+//  2001.07.21  Phase 6.2     é–¢æ•°æƒ…å ±å‚ç…§
+//  2001.08.08  Phase 6.2     é–¢æ•°ãƒ†ãƒ¼ãƒ–ãƒ«å‚ç…§
+//  2002.03.10  Phase 7.9.0   kawari_engine_base.hå»ƒæ­¢
+//                            è¾æ›¸ã®ç›´æ¥ã‚¢ã‚¯ã‚»ã‚¹ç¦æ­¢
+//  2002.03.17                KIUã«åˆã‚ã›ã¦TKisEngineã‹ã‚‰TKawariVMã«åç§°å¤‰æ›´
+//                            åŒã˜ãTKawariCode~ã‹ã‚‰TKVMCode~ã«åç§°å¤‰æ›´
+//  2002.04.18  Phase 8.0.0   æ›¸ãç›´ã—
+//                            ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆå‘¨ã‚Šã¯è¾æ›¸ã¸
+//                            ä¾‹å¤–çŠ¶æ…‹ã®å®Ÿç¾
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -37,14 +37,14 @@ using namespace kawari::resource;
 #include <cstdlib>
 using namespace std;
 //---------------------------------------------------------------------------
-// ´Ø¿ô¤òÅĞÏ¿¤¹¤ë¥¨¥ó¥È¥ê¤Î¥×¥ì¥Õ¥£¥Ã¥¯¥¹
+// é–¢æ•°ã‚’ç™»éŒ²ã™ã‚‹ã‚¨ãƒ³ãƒˆãƒªã®ãƒ—ãƒ¬ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 const string TKawariVM::SYSTEM_FUNCTION_PREFIX="System.Function.";
 
 //---------------------------------------------------------------------------
-// ¥¤¥ó¥¿¥×¥ê¥¿¤Î¾õÂÖ
+// ã‚¤ãƒ³ã‚¿ãƒ—ãƒªã‚¿ã®çŠ¶æ…‹
 TKawariVM::InterpState::InterpState (TKawariVM::InterpState::StateValue s, string str, bool ovr) : state(s), mes(str), override(ovr) {}
 //---------------------------------------------------------------------------
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKawariVM::TKawariVM(TKawariEngine &eng, TNS_KawariDictionary &d, TKawariLogger &lgr)
 	 : engine(eng), dictionary(d),
 	   state(InterpState(TKawariVM::InterpState::NORMAL, "")), logger(lgr) {
@@ -64,7 +64,7 @@ TKawariVM::TKawariVM(TKawariEngine &eng, TNS_KawariDictionary &d, TKawariLogger 
 }
 
 //---------------------------------------------------------------------------
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKawariVM::~TKawariVM(){
 	for (vector<TKisFunction_base *>::iterator it=FunctionList.begin();it!=FunctionList.end();it++)
 		if (*it)
@@ -74,33 +74,33 @@ TKawariVM::~TKawariVM(){
 
 
 //---------------------------------------------------------------------------
-// ¥³¡¼¥É¼Â¹Ô·Ï
+// ã‚³ãƒ¼ãƒ‰å®Ÿè¡Œç³»
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
-// ¿·¤·¤¤¥³¥ó¥Æ¥­¥¹¥È¤òºîÀ®¤·¡¢¥³¡¼¥É¤ò¼Â¹Ô¤¹¤ë¡£
-// ¼Â¹Ô¤¬½ªÎ»¤¹¤ë¤È¥³¥ó¥Æ¥­¥¹¥È¤ÏÇË´ş¡£
+// æ–°ã—ã„ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ä½œæˆã—ã€ã‚³ãƒ¼ãƒ‰ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+// å®Ÿè¡ŒãŒçµ‚äº†ã™ã‚‹ã¨ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã¯ç ´æ£„ã€‚
 string TKawariVM::RunWithNewContext(class TKVMCode_base *code){
 	if (!code) return "";
 	dictionary.CreateContext();
 	string retstr=code->Run(*this);
 	dictionary.DeleteContext();
 
-	// Return¾õÂÖ¤Î²ò·è
+	// ReturnçŠ¶æ…‹ã®è§£æ±º
 	if (GetState().state==InterpState::RETURN){
 		if (GetState().mes.size())
 			retstr=GetState().mes;
 	}
 
-	// ¾õÂÖ¤Î¥ê¥»¥Ã¥È
+	// çŠ¶æ…‹ã®ãƒªã‚»ãƒƒãƒˆ
 	ResetState();
 
 	return retstr;
 }
 //---------------------------------------------------------------------------
-// ¸½ºß¤Î¥³¥ó¥Æ¥­¥¹¥È¾å¤Ç¥³¡¼¥É¤ò¼Â¹Ô¤¹¤ë¡£
-// ¼Â¹Ô¤¬½ªÎ»¤¹¤ë¤ÈÍúÎò»²¾È¥¹¥¿¥Ã¥¯¤ò¼Â¹ÔÁ°¤Î¥İ¥¤¥ó¥È¤Ş¤Ç´¬¤­Ìá¤¹¡£
-// ¸½ºß¤Î¥³¥ó¥Æ¥­¥¹¥È¤¬¤Ê¤¤¾ì¹ç¤ÏRunWithNewContext()¤ò¸Æ¤Ö¡£
+// ç¾åœ¨ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆä¸Šã§ã‚³ãƒ¼ãƒ‰ã‚’å®Ÿè¡Œã™ã‚‹ã€‚
+// å®Ÿè¡ŒãŒçµ‚äº†ã™ã‚‹ã¨å±¥æ­´å‚ç…§ã‚¹ã‚¿ãƒƒã‚¯ã‚’å®Ÿè¡Œå‰ã®ãƒã‚¤ãƒ³ãƒˆã¾ã§å·»ãæˆ»ã™ã€‚
+// ç¾åœ¨ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãŒãªã„å ´åˆã¯RunWithNewContext()ã‚’å‘¼ã¶ã€‚
 string TKawariVM::RunWithCurrentContext(TKVMCode_base *code){
 	if (dictionary.GetContextStackDepth()){
 		unsigned int frame=dictionary.LinkFrame();
@@ -108,32 +108,32 @@ string TKawariVM::RunWithCurrentContext(TKVMCode_base *code){
 		dictionary.UnlinkFrame(frame);
 		return retstr;
 	}else{
-		// ¥³¥ó¥Æ¥­¥¹¥È¤¬¤¢¤ê¤Ş¤»¤ó¡¼
+		// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãŒã‚ã‚Šã¾ã›ã‚“ãƒ¼
 		return RunWithNewContext(code);
 	}
 }
 //---------------------------------------------------------------------------
-// ´Ø¿ô¼Â¹Ô
+// é–¢æ•°å®Ÿè¡Œ
 string TKawariVM::FunctionCall(const vector<string>& args){
 	if (!args[0].size()) return ("");
-	// ÀèÆ¬¤Ë'.'¤¬¤¢¤ë¾ì¹ç¤Ï¶¯À©¥Ó¥ë¥È¥¤¥ó¥³¥Ş¥ó¥É¸Æ¤Ó½Ğ¤·
+	// å…ˆé ­ã«'.'ãŒã‚ã‚‹å ´åˆã¯å¼·åˆ¶ãƒ“ãƒ«ãƒˆã‚¤ãƒ³ã‚³ãƒãƒ³ãƒ‰å‘¼ã³å‡ºã—
 	if (args[0][0]=='.') {
 		string comname=args[0].substr(1);
 		if (FunctionTable.count(comname))
 			return (FunctionTable[comname]->Function(args));
 	}else{
 		TEntry entry=dictionary.GetEntry(SYSTEM_FUNCTION_PREFIX+args[0]);
-		// ¥æ¡¼¥¶ÄêµÁ´Ø¿ô¤òÍ¥Àè
+		// ãƒ¦ãƒ¼ã‚¶å®šç¾©é–¢æ•°ã‚’å„ªå…ˆ
 		if (entry.IsValid()&&entry.Size()){
-			// ºÇ½é¤ÎÃ±¸ì¤ò¼ÂÂÎ¤È¤¹¤ë
+			// æœ€åˆã®å˜èªã‚’å®Ÿä½“ã¨ã™ã‚‹
 			TWordID id=entry.Index();
 			if (!id) return "";
 			TKVMCode_base *code=dictionary.GetWordFromID(id);
 
-			// ¥³¥ó¥Æ¥­¥¹¥ÈºîÀ®
+			// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
 			dictionary.CreateContext();
 
-			// °ú¿ô³ÊÇ¼
+			// å¼•æ•°æ ¼ç´
 			if (args.size()){
 				TEntry argentry=dictionary.CreateEntry("@arg");
 				for(unsigned int i=0; i<args.size(); i++){
@@ -142,13 +142,13 @@ string TKawariVM::FunctionCall(const vector<string>& args){
 							TKawariCompiler::CompileAsString(args[i])));
 				}
 			}
-			// ¥³¡¼¥É¼Â¹Ô
+			// ã‚³ãƒ¼ãƒ‰å®Ÿè¡Œ
 			string retstr=code->Run(*this);
 
-			// ¥³¥ó¥Æ¥­¥¹¥Èºï½ü
+			// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆå‰Šé™¤
 			dictionary.DeleteContext();
 
-			// Return¾õÂÖ¤Î²ò·è
+			// ReturnçŠ¶æ…‹ã®è§£æ±º
 			if (GetState().state==InterpState::RETURN){
 				if (GetState().override)
 					retstr=GetState().mes;
@@ -157,7 +157,7 @@ string TKawariVM::FunctionCall(const vector<string>& args){
 
 			return retstr;
 		}else if(FunctionTable.count(args[0])){
-			// ¥Ó¥ë¥È¥¤¥ó´Ø¿ô
+			// ãƒ“ãƒ«ãƒˆã‚¤ãƒ³é–¢æ•°
 			return (FunctionTable[args[0]]->Function(args));
 		}
 	}
@@ -165,7 +165,7 @@ string TKawariVM::FunctionCall(const vector<string>& args){
 	return "";
 }
 //---------------------------------------------------------------------------
-// ¥Ó¥ë¥È¥¤¥ó´Ø¿ô¤Î¾ğÊó¤òÆÀ¤ë
+// ãƒ“ãƒ«ãƒˆã‚¤ãƒ³é–¢æ•°ã®æƒ…å ±ã‚’å¾—ã‚‹
 bool TKawariVM::GetFunctionInfo(const string &name, TKisFunctionInfo &info){
 	if (FunctionTable.count(name)){
 		info=FunctionTable[name]->GetInformation();
@@ -175,7 +175,7 @@ bool TKawariVM::GetFunctionInfo(const string &name, TKisFunctionInfo &info){
 	}
 }
 //---------------------------------------------------------------------------
-// ¥Ó¥ë¥È¥¤¥ó´Ø¿ô¤Î¥ê¥¹¥È
+// ãƒ“ãƒ«ãƒˆã‚¤ãƒ³é–¢æ•°ã®ãƒªã‚¹ãƒˆ
 unsigned int TKawariVM::GetFunctionList(vector<string> &list) const{
 	for (vector<TKisFunction_base*>::const_iterator it=FunctionList.begin();it!=FunctionList.end();it++)
 		list.push_back(string((*it)->Name()));

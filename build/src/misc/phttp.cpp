@@ -1,6 +1,6 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// TPHMessage - µ¶HTTP¥á¥Ã¥»¡¼¥¸ -
+// TPHMessage - å½HTTPãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ -
 //
 //      Programed by Suikyo.
 //
@@ -18,7 +18,7 @@
 #include <string>
 using namespace std;
 //---------------------------------------------------------------------------
-// ¥·¥ê¥¢¥é¥¤¥º
+// ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
 string TPHMessage::Serialize(void) const{
 	string ret=startline;
 	ret+="\x0d\x0a";
@@ -31,7 +31,7 @@ string TPHMessage::Serialize(void) const{
 	return ret;
 }
 //---------------------------------------------------------------------------
-// ¥Ç¥·¥ê¥¢¥é¥¤¥º
+// ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
 void TPHMessage::Deserialize(const string &mes){
 #ifdef HAVE_SSTREAM_H
 	istringstream *ifs=new istringstream(mes.c_str());
@@ -41,13 +41,13 @@ void TPHMessage::Deserialize(const string &mes){
 	string buff;
 
 	getline(*ifs,buff,'\x0a');
-	if(buff[buff.size()-1]=='\x0d') buff.erase(buff.size()-1);	// 0x0d¤ò¼è¤ê½ü¤¯
+	if(buff[buff.size()-1]=='\x0d') buff.erase(buff.size()-1);	// 0x0dã‚’å–ã‚Šé™¤ã
 	startline=buff;
 
-	// ¥Ø¥Ã¥À¤òÊ¬²ò¤·¤Æmap¤ËÀÑ¤à
+	// ãƒ˜ãƒƒãƒ€ã‚’åˆ†è§£ã—ã¦mapã«ç©ã‚€
 	while(getline(*ifs,buff,'\x0a')) {
 		if(buff.size()==0) break;
-		if(buff[buff.size()-1]=='\x0d') buff.erase(buff.size()-1);	// 0x0d¤ò¼è¤ê½ü¤¯
+		if(buff[buff.size()-1]=='\x0d') buff.erase(buff.size()-1);	// 0x0dã‚’å–ã‚Šé™¤ã
 		if(buff.size()==0) break;
 
 		unsigned int pos=buff.find(':');
@@ -62,7 +62,7 @@ void TPHMessage::Deserialize(const string &mes){
 	delete ifs;
 }
 //---------------------------------------------------------------------------
-// ¥À¥ó¥×
+// ãƒ€ãƒ³ãƒ—
 void TPHMessage::Dump(ostream &os) const{
 	os << startline << endl;
 	for (TPHMessage::const_iterator it=begin(); it!=end(); it++){

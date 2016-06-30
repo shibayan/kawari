@@ -1,31 +1,31 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 //
-// "������" for ����ʳ��β����ʳ��β���
-// �С������ɽ��
+// "華和梨" for あれ以外の何か以外の何か
+// バージョン表記
 //
 //      Programed by Suikyo.
 //
-//  2002.04.13  Phase 8.0.0   �ܿ�
+//  2002.04.13  Phase 8.0.0   移植
 //
 //---------------------------------------------------------------------------
 #ifndef KAWARI_VERSION_H
 #define KAWARI_VERSION_H
 //---------------------------------------------------------------------------
-// SHIORI��åѡ�
+// SHIORIラッパー
 
 #define KAWARI_NAME		"KAWARI.kdt"
-#define KAWARI_AUTHOR	"KawariDeveloperTeam"	// �����(�ѿ�������)
-#define KAWARI_MAJOR	"8"		// �᥸�㡼�ֹ�(�ԥꥪ��̵������������)
-#define KAWARI_MINOR	"2"		// �ޥ��ʡ��ֹ�(�ԥꥪ��̵������������)
-#define KAWARI_SUBMINOR	"8"		// �Х��ե��å���(�ԥꥪ��̵������������)
+#define KAWARI_AUTHOR	"KawariDeveloperTeam"	// 著作者(英数字だけ)
+#define KAWARI_MAJOR	"8"		// メジャー番号(ピリオド無し、数字だけ)
+#define KAWARI_MINOR	"2"		// マイナー番号(ピリオド無し、数字だけ)
+#define KAWARI_SUBMINOR	"8"		// バグフィックス(ピリオド無し、数字だけ)
 
 //---------------------------------------------------------------------------
-// ����
+// コア
 
-// �����������������ɥ͡���
+// 華和梨コア・コードネーム
 #define KAWARI_CORE_CODENAME	"K.I.U."
 
-// �������������С������ (�����̤äƿ���ľ��)
+// 華和梨コア・バージョン (過去に遡って振り直し)
 //   1.0.0 = Phase 0.4
 //   1.1.0 = Phase 0.42
 //   2.0.0 = Phase 5.1
@@ -37,7 +37,7 @@
 //   3.2.0 = Phase 8.2.0
 #define KAWARI_CORE_VERSION	"3.2.8"
 
-// ���������������쥸�å�(Ŭ���˲��ԤǶ��ڤä�Ϣ̾)
+// 華和梨コア・クレジット(適当に改行で区切って連名)
 #define KAWARI_CORE_CREDITS \
 	" Original KAWARI Developer Team :\n" \
 "    Meister(original works)/Nise-Meister/Sato/Shino/Suikyo\n" \
@@ -47,7 +47,7 @@
 "    Mersenne Twister Library\n" \
 "       <http://www.math.keio.ac.jp/~matumoto/mt.html>\n" \
 
-// �������饤���� (modified BSD(FreeBSD) style license)
+// 華和梨ライセンス (modified BSD(FreeBSD) style license)
 #define KAWARI_CORE_LICENSE \
 "Copyright (C) 2001-2008 KAWARI Development Team\n" \
 "(Meister(original works)/Nise-Meister/Sato/Shino/Suikyo)\n" \

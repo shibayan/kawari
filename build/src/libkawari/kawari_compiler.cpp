@@ -1,13 +1,13 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// ¥³¥ó¥Ñ¥¤¥é(ÅÅ¼¡¸µ
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©(é›»æ¬¡å…ƒ
 //
 //      Programed by NAKAUE.T (Meister) / Suikyo
 //
-//  2002.03.18                KIU¤Ë¹ç¤ï¤»¤ÆTKawariCompilerÊ¬Î¥
-//                            ¡¦¡¦¡¦¤Ç¤â¡¢¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹¤¬¤Á¤ç¤Ã¤È°ã¤¦(ÎŞ)
-//  2002.04.18  Phase 8.0.0   Áö¤ë¥«¥¦¥ó¥¿¥Ã¥¯¡£¥³¥ó¥Ñ¥¤¥éÆÃ½¸¡£
+//  2002.03.18                KIUã«åˆã‚ã›ã¦TKawariCompileråˆ†é›¢
+//                            ãƒ»ãƒ»ãƒ»ã§ã‚‚ã€ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ãŒã¡ã‚‡ã£ã¨é•ã†(æ¶™)
+//  2002.04.18  Phase 8.0.0   èµ°ã‚‹ã‚«ã‚¦ãƒ³ã‚¿ãƒƒã‚¯ã€‚ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ç‰¹é›†ã€‚
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -42,29 +42,29 @@ namespace {
 	const TKawariLexer::Mode BLOCK_MODE=TKawariLexer::LITERAL_MODE3;
 }
 //=========================================================================
-// ¸ø³«¥á¥½¥Ã¥É·²
+// å…¬é–‹ãƒ¡ã‚½ãƒƒãƒ‰ç¾¤
 //=========================================================================
 
 //-------------------------------------------------------------------------
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKawariCompiler::TKawariCompiler(istream &is, TKawariLogger &lgr, const string &filename, bool pp)
 	 : logger(lgr) {
 	lexer=new TKawariLexer(is, logger, filename, pp);
 }
 //-------------------------------------------------------------------------
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKawariCompiler::~TKawariCompiler (){
 	if (lexer)
 		delete lexer;
 }
 //-------------------------------------------------------------------------
-// ¼¡¥â¡¼¥É¤òÆÀ¤ë
+// æ¬¡ãƒ¢ãƒ¼ãƒ‰ã‚’å¾—ã‚‹
 TKawariCompiler::Mode TKawariCompiler::GetNextMode(void){
 	Token::Type t=lexer->skipWS(ID_MODE);
 	if (t==Token::T_MODESWITCH){
 		lexer->ResetModeSwitch();
 		string line=lexer->getRestOfLine();
-		// ¥â¡¼¥ÉÃê½Ğºî¶È
+		// ãƒ¢ãƒ¼ãƒ‰æŠ½å‡ºä½œæ¥­
 		line=StringTrim(line);
 		if (line=="=dict")
 			return M_DICT;
@@ -79,41 +79,41 @@ TKawariCompiler::Mode TKawariCompiler::GetNextMode(void){
 	}else if (t==Token::T_EOF){
 		return M_EOF;
 	}else{
-		// ÃÏ¤Î¼­½ñ¥â¡¼¥É¤È»×¤ï¤ì
+		// åœ°ã®è¾æ›¸ãƒ¢ãƒ¼ãƒ‰ã¨æ€ã‚ã‚Œ
 		return M_DICT;
 	}
 }
 //-------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÄêµÁ¤òÆÉ¤à
+// ã‚¨ãƒ³ãƒˆãƒªå®šç¾©ã‚’èª­ã‚€
 bool TKawariCompiler::LoadEntryDefinition(vector<string> &entries, vector<TKVMCode_base *> &sentences){
 
 	Token::Type t=lexer->skipWS(ID_MODE);
 	if ((t==Token::T_EOF)||(t==Token::T_MODESWITCH)){
-		// ¥Õ¥¡¥¤¥ë¤Î½ªÎ»¤«¥â¡¼¥ÉÀÚÂØ
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚äº†ã‹ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿
 		return false;
 	}else{
-		// Ã±¸ìÄêµÁ
+		// å˜èªå®šç¾©
 
-		// ¥¨¥ó¥È¥êÌ¾¥ê¥¹¥È¤òÆÀ¤ë¡£
+		// ã‚¨ãƒ³ãƒˆãƒªåãƒªã‚¹ãƒˆã‚’å¾—ã‚‹ã€‚
 		if(!compileEntryIdList(entries)){
-			// ¥¨¥ó¥È¥êÌ¾»ØÄê¤¬Ìµ¤¤(²¿¸Î)
+			// ã‚¨ãƒ³ãƒˆãƒªåæŒ‡å®šãŒç„¡ã„(ä½•æ•…)
 			lexer->error(RC.S(ERR_COMPILER_NO_ENTRYNAMES));
 			lexer->getRestOfLine();
 			return true;
 		}
 
-		// ':'¤òÆÉ¤à¡£Ìµ¤±¤ì¤Ğ¥¨¥é¡¼¤À¤±¤É¤½¤Î¤Ş¤ŞÂ³¹Ô¡£
+		// ':'ã‚’èª­ã‚€ã€‚ç„¡ã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼ã ã‘ã©ãã®ã¾ã¾ç¶šè¡Œã€‚
 		t=lexer->skipS(ID_MODE);
 		if (t==(int)':'){
 			lexer->skip();
 			lexer->skipS();
-			// ²ş¹ÔÉÔ²ÄÊ¸ÊÂ¤Ó¤òÆÀ¤ë¡£
+			// æ”¹è¡Œä¸å¯æ–‡ä¸¦ã³ã‚’å¾—ã‚‹ã€‚
 			if (!compileNRStatementList(sentences))
 				lexer->warning(RC.S(WARN_COMPILER_BLANK_DEFINITION));
 		}else if (t==(int)'('){
 			lexer->skip();
 			lexer->skipS();
-			// Ê¸ÊÂ¤Ó¤òÆÀ¤ë¡£
+			// æ–‡ä¸¦ã³ã‚’å¾—ã‚‹ã€‚
 			if (!compileStatementList(sentences))
 				lexer->warning(RC.S(WARN_COMPILER_BLANK_DEFINITION));
 			t=lexer->skipWS(ID_MODE);
@@ -127,7 +127,7 @@ bool TKawariCompiler::LoadEntryDefinition(vector<string> &entries, vector<TKVMCo
 		}
 
 		if (logger.Check(LOG_DUMP)){
-			// ¥í¥®¥ó¥°
+			// ãƒ­ã‚®ãƒ³ã‚°
 			ostream &log=logger.GetStream();
 			log << "EntryNames(" << endl;
 			for (vector<string>::const_iterator it=entries.begin();it!=entries.end();it++){
@@ -145,11 +145,11 @@ bool TKawariCompiler::LoadEntryDefinition(vector<string> &entries, vector<TKVMCo
 	}
 }
 //-------------------------------------------------------------------------
-// KISÄêµÁ¤òÆÉ¤à
+// KISå®šç¾©ã‚’èª­ã‚€
 TKVMCode_base *TKawariCompiler::LoadInlineScript(void){
 	vector<TKVMCode_base *> tmplist;
 
-	// ºÇ½é¤Î¹Ô¤òÆÉ¤à
+	// æœ€åˆã®è¡Œã‚’èª­ã‚€
 	TKVMCode_base *code = compileScriptStatement();
 	if (code)
 		tmplist.push_back(code);
@@ -157,7 +157,7 @@ TKVMCode_base *TKawariCompiler::LoadInlineScript(void){
 	while (lexer->hasNext()){
 		Token::Type t=lexer->skipWS(SCRIPT_MODE);
 		if (t==(int)';'){
-			// ¼¡¤Î¹Ô
+			// æ¬¡ã®è¡Œ
 			lexer->skip();
 			TKVMCode_base *code = compileScriptStatement();
 			if (code)
@@ -175,7 +175,7 @@ TKVMCode_base *TKawariCompiler::LoadInlineScript(void){
 		return new TKVMCodeString("");
 }
 //-------------------------------------------------------------------------
-// Ê¸»úÎó¤òStatement¤È¤·¤ÆÃæ´Ö¥³¡¼¥É¤Ø¥³¥ó¥Ñ¥¤¥ë
+// æ–‡å­—åˆ—ã‚’Statementã¨ã—ã¦ä¸­é–“ã‚³ãƒ¼ãƒ‰ã¸ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 TKVMCode_base *TKawariCompiler::Compile(const string &src, TKawariLogger &logger){
 #ifdef HAVE_SSTREAM_H
 	istringstream is(src.c_str());
@@ -187,12 +187,12 @@ TKVMCode_base *TKawariCompiler::Compile(const string &src, TKawariLogger &logger
 }
 
 //-------------------------------------------------------------------------
-// Ê¸»úÎó¤ò¡¢¤½¤Î¤Ş¤ŞString¤È¤·¤ÆÃæ´Ö¥³¡¼¥É²½¤¹¤ë
+// æ–‡å­—åˆ—ã‚’ã€ãã®ã¾ã¾Stringã¨ã—ã¦ä¸­é–“ã‚³ãƒ¼ãƒ‰åŒ–ã™ã‚‹
 TKVMCode_base *TKawariCompiler::CompileAsString(const string &src){
 	return new TKVMCodeString(src);
 }
 //-------------------------------------------------------------------------
-// Ê¸»úÎó¤ò½¸¹ç±é»»¼°('$[' ¡Á ']'¤ÎÃæ¿È)¤È¤·¤Æ¥³¥ó¥Ñ¥¤¥ë
+// æ–‡å­—åˆ—ã‚’é›†åˆæ¼”ç®—å¼('$[' ï½ ']'ã®ä¸­èº«)ã¨ã—ã¦ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 TKVMSetCode_base *TKawariCompiler::CompileAsEntryExpression(const string &src, TKawariLogger &logger){
 #ifdef HAVE_SSTREAM_H
 	istringstream is(src.c_str());
@@ -204,30 +204,30 @@ TKVMSetCode_base *TKawariCompiler::CompileAsEntryExpression(const string &src, T
 }
 
 //-------------------------------------------------------------------------
-// ¥µ¡¼¥Ó¥¹¥á¥½¥Ã¥É
-// Ê¸»úÎó¤ò¥¨¥ó¥È¥êÌ¾¤Ç»ÈÍÑ²ÄÇ½¤ÊÊ¸»úÎó¤Ë¥¨¥ó¥³¡¼¥É¤¹¤ë
+// ã‚µãƒ¼ãƒ“ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰
+// æ–‡å­—åˆ—ã‚’ã‚¨ãƒ³ãƒˆãƒªåã§ä½¿ç”¨å¯èƒ½ãªæ–‡å­—åˆ—ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 string TKawariCompiler::EncodeEntryName(const string &orgsen){
 	return TKawariLexer::EncodeEntryName(orgsen);
 }
 //-------------------------------------------------------------------------
 
 //=========================================================================
-// Èó¸ø³«¥á¥½¥Ã¥É·²
+// éå…¬é–‹ãƒ¡ã‚½ãƒƒãƒ‰ç¾¤
 //=========================================================================
 
 //-------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÌ¾ÊÂ¤Ó ( IdLiteral S | IdLiteral S ',' S EntryIdList )
-// return : ÆÀ¤é¤ì¤¿¥¨¥ó¥È¥êÌ¾¤Î¿ô
+// ã‚¨ãƒ³ãƒˆãƒªåä¸¦ã³ ( IdLiteral S | IdLiteral S ',' S EntryIdList )
+// return : å¾—ã‚‰ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªåã®æ•°
 int TKawariCompiler::compileEntryIdList(vector<string> &list){
 	vector<string> tmplist;
 	if (!lexer->hasNext())
 		return 0;
 	Token::Type t=lexer->peek(ID_MODE);
 	if (t==Token::T_LITERAL){
-		// ºÇ½é¤Î¥¨¥ó¥È¥êÌ¾¤òÆÉ¤à
+		// æœ€åˆã®ã‚¨ãƒ³ãƒˆãƒªåã‚’èª­ã‚€
 		tmplist.push_back(lexer->getLiteral(ID_MODE));
 	}else{
-		// ¤½¤ì¤Ïµö¤µ¤ì¤Ê¤¤¤À¤í¤¦
+		// ãã‚Œã¯è¨±ã•ã‚Œãªã„ã ã‚ã†
 		lexer->error(RC.S(ERR_COMPILER_ENTRYID_NOT_FOUND));
 		return 0;
 	}
@@ -238,7 +238,7 @@ int TKawariCompiler::compileEntryIdList(vector<string> &list){
 			if (lexer->skipS()==Token::T_LITERAL){
 				tmplist.push_back(lexer->getLiteral(ID_MODE));
 			}else{
-				// ¤ª¤«¤·¤¤¡£','¤Ç½ª¤ï¤Ã¤Æ¤¤¤ë¤ó¤¸¤ã¤Ê¤¤¤«¤Ê¡£
+				// ãŠã‹ã—ã„ã€‚','ã§çµ‚ã‚ã£ã¦ã„ã‚‹ã‚“ã˜ã‚ƒãªã„ã‹ãªã€‚
 				lexer->warning(RC.S(WARN_COMPILER_ENTRYIDLIST_ENDS_WITH_COMMA));
 				break;
 			}
@@ -251,19 +251,19 @@ int TKawariCompiler::compileEntryIdList(vector<string> &list){
 }
 
 //-------------------------------------------------------------------------
-// ²ş¹ÔÉÔ²ÄÊ¸ÊÂ¤Ó¡£(Ãí°Õ)²ş¹Ô¥³¡¼¥É¤òÆÉ¤ß¹ş¤ó¤Ç½ªÎ»¡£
-// return : ÆÀ¤é¤ì¤¿Ê¸¤Î¿ô
+// æ”¹è¡Œä¸å¯æ–‡ä¸¦ã³ã€‚(æ³¨æ„)æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’èª­ã¿è¾¼ã‚“ã§çµ‚äº†ã€‚
+// return : å¾—ã‚‰ã‚ŒãŸæ–‡ã®æ•°
 int TKawariCompiler::compileNRStatementList(vector<TKVMCode_base *> &list){
 	vector<TKVMCode_base *> tmplist;
 	if (!lexer->hasNext())
 		return 0;
 	Token::Type t=lexer->skipS();
 	if (t==Token::T_EOL){
-		// ¤¤¤­¤Ê¤ê½ª¤ï¤Ã¤Æ¤·¤Ş¤Ã¤¿
+		// ã„ããªã‚Šçµ‚ã‚ã£ã¦ã—ã¾ã£ãŸ
 		lexer->skip();
 		return 0;
 	}else if (t!=(int)','){
-		// ºÇ½é¤ÎÊ¸¤òÆÉ¤à
+		// æœ€åˆã®æ–‡ã‚’èª­ã‚€
 		TKVMCode_base *stmt=compileStatement(true);
 		if (stmt){
 			tmplist.push_back(stmt);
@@ -281,10 +281,10 @@ int TKawariCompiler::compileNRStatementList(vector<TKVMCode_base *> &list){
 			TKVMCode_base *stmt=compileStatement(true);
 			if (stmt)
 				tmplist.push_back(stmt);
-			// else ','¤Ç¹Ô¤¬½ª¤ï¤Ã¤Æ¤¤¤ë¡© ¤â¤·¤¯¤Ï ', ,'¤ß¤¿¤¤¤Ë¤Ê¤Ã¤Æ¤ë¡©
-			// ¤³¤³¤Ç¡ÖNULLÊ¸»úÎó¡×¤òÆş¤ì¤ë¤ï¤±¤Ë¤Ï¤¤¤«¤Ê¤¤¡£
+			// else ','ã§è¡ŒãŒçµ‚ã‚ã£ã¦ã„ã‚‹ï¼Ÿ ã‚‚ã—ãã¯ ', ,'ã¿ãŸã„ã«ãªã£ã¦ã‚‹ï¼Ÿ
+			// ã“ã“ã§ã€ŒNULLæ–‡å­—åˆ—ã€ã‚’å…¥ã‚Œã‚‹ã‚ã‘ã«ã¯ã„ã‹ãªã„ã€‚
 		}else if (t==Token::T_EOL){
-			// ½ªÎ»
+			// çµ‚äº†
 			break;
 		}else{
 			lexer->error(RC.S(ERR_COMPILER_STATEMENTLIST_SEPARATOR_NOT_FOUND));
@@ -293,25 +293,25 @@ int TKawariCompiler::compileNRStatementList(vector<TKVMCode_base *> &list){
 				break;
 		}
 	}
-	// ¤³¤Î¹Ô¤òÁ´¤ÆÆÉ¤ß¹ş¤à
+	// ã“ã®è¡Œã‚’å…¨ã¦èª­ã¿è¾¼ã‚€
 	lexer->getRestOfLine();
 	list.insert(list.end(), tmplist.begin(), tmplist.end());
 	return tmplist.size();
 }
 
 //-------------------------------------------------------------------------
-// Ê¸ÊÂ¤Ó¡£')'¤Ç½ªÎ»
-// return : ÆÀ¤é¤ì¤¿Ê¸¤Î¿ô
+// æ–‡ä¸¦ã³ã€‚')'ã§çµ‚äº†
+// return : å¾—ã‚‰ã‚ŒãŸæ–‡ã®æ•°
 int TKawariCompiler::compileStatementList(vector<TKVMCode_base *> &list){
 	vector<TKVMCode_base *> tmplist;
 	if (!lexer->hasNext())
 		return 0;
 	Token::Type t=lexer->skipWS(ID_MODE);
 	if (t==')'){
-		// ¤¤¤­¤Ê¤ê½ª¤ï¤Ã¤Æ¤·¤Ş¤Ã¤¿
+		// ã„ããªã‚Šçµ‚ã‚ã£ã¦ã—ã¾ã£ãŸ
 		return 0;
 	}else if (t!=(int)','){
-		// ºÇ½é¤ÎÊ¸¤òÆÉ¤à
+		// æœ€åˆã®æ–‡ã‚’èª­ã‚€
 		TKVMCode_base *stmt=compileStatement(false);
 		if (stmt){
 			tmplist.push_back(stmt);
@@ -329,10 +329,10 @@ int TKawariCompiler::compileStatementList(vector<TKVMCode_base *> &list){
 			TKVMCode_base *stmt=compileStatement(false);
 			if (stmt)
 				tmplist.push_back(stmt);
-			// else ','¤Ç¹Ô¤¬½ª¤ï¤Ã¤Æ¤¤¤ë¡© ¤â¤·¤¯¤Ï ', ,'¤ß¤¿¤¤¤Ë¤Ê¤Ã¤Æ¤ë¡©
-			// ¤³¤³¤Ç¡ÖNULLÊ¸»úÎó¡×¤òÆş¤ì¤ë¤ï¤±¤Ë¤Ï¤¤¤«¤Ê¤¤¡£
+			// else ','ã§è¡ŒãŒçµ‚ã‚ã£ã¦ã„ã‚‹ï¼Ÿ ã‚‚ã—ãã¯ ', ,'ã¿ãŸã„ã«ãªã£ã¦ã‚‹ï¼Ÿ
+			// ã“ã“ã§ã€ŒNULLæ–‡å­—åˆ—ã€ã‚’å…¥ã‚Œã‚‹ã‚ã‘ã«ã¯ã„ã‹ãªã„ã€‚
 		}else if (t==')'){
-			// ½ªÎ»
+			// çµ‚äº†
 			break;
 		}else{
 			lexer->error(RC.S(ERR_COMPILER_STATEMENTLIST_SEPARATOR_NOT_FOUND));
@@ -346,14 +346,14 @@ int TKawariCompiler::compileStatementList(vector<TKVMCode_base *> &list){
 }
 
 //-------------------------------------------------------------------------
-// Ê¸ ( WS (Word WS)* / S (Word S)* )
-// NULL¤ÏÊÖ¤µ¤Ê¤¤¡£
+// æ–‡ ( WS (Word WS)* / S (Word S)* )
+// NULLã¯è¿”ã•ãªã„ã€‚
 TKVMCode_base *TKawariCompiler::compileStatement(bool noret, int m){
 	vector<TKVMCode_base *> tmplist;
 	if (noret){
-		// ²ş¹Ô¤òµö¤µ¤Ê¤¤
+		// æ”¹è¡Œã‚’è¨±ã•ãªã„
 		while (lexer->hasNext()){
-			// °ã¤¤¤Ï¤³¤Î¹Ô¤Î¤ß¡£
+			// é•ã„ã¯ã“ã®è¡Œã®ã¿ã€‚
 			lexer->skipS();
 			TKVMCode_base *code=compileWord(m);
 			if (code)
@@ -362,9 +362,9 @@ TKVMCode_base *TKawariCompiler::compileStatement(bool noret, int m){
 				break;
 		}
 	}else{
-		// ²ş¹Ô¤òµö¤¹(¶²¤é¤¯¥Ö¥í¥Ã¥¯Ãæ¤Î¤ß)
+		// æ”¹è¡Œã‚’è¨±ã™(æã‚‰ããƒ–ãƒ­ãƒƒã‚¯ä¸­ã®ã¿)
 		while (lexer->hasNext()){
-			// °ã¤¤¤Ï¤³¤Î¹Ô¤Î¤ß¡£
+			// é•ã„ã¯ã“ã®è¡Œã®ã¿ã€‚
 			lexer->skipWS();
 			TKVMCode_base *code=compileWord(m);
 			if (code)
@@ -383,12 +383,12 @@ TKVMCode_base *TKawariCompiler::compileStatement(bool noret, int m){
 }
 
 //-------------------------------------------------------------------------
-// ¥¹¥¯¥ê¥×¥ÈÊ¸ ( WS (Word WS)* )
-// NULL¤ÏÊÖ¤µ¤Ê¤¤¡£
+// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ ( WS (Word WS)* )
+// NULLã¯è¿”ã•ãªã„ã€‚
 TKVMCode_base *TKawariCompiler::compileScriptStatement(void){
 	vector<TKVMCode_base *> tmplist;
 
-	// ºÇ½é¤ÎÃ±¸ì¤òÆÉ¤à¡£
+	// æœ€åˆã®å˜èªã‚’èª­ã‚€ã€‚
 	Token::Type t=lexer->skipWS(SCRIPT_MODE);
 	if (t==Token::T_LITERAL){
 		string str=lexer->getLiteral(SCRIPT_MODE);
@@ -399,7 +399,7 @@ TKVMCode_base *TKawariCompiler::compileScriptStatement(void){
 		}
 	}
 
-	// ²ş¹Ô¤òµö¤¹
+	// æ”¹è¡Œã‚’è¨±ã™
 	while (lexer->hasNext()){
 		lexer->skipWS();
 		TKVMCode_base *code=compileWord(SCRIPT_MODE);
@@ -415,24 +415,24 @@ TKVMCode_base *TKawariCompiler::compileScriptStatement(void){
 //-------------------------------------------------------------------------
 // if
 TKVMCode_base *TKawariCompiler::compileScriptIF(void){
-	// 'if'¤Î¸å¤«¤é»Ï¤Ş¤ë
+	// 'if'ã®å¾Œã‹ã‚‰å§‹ã¾ã‚‹
 	vector<TKVMCode_base *> condlist;
 	vector<TKVMCode_base *> list;
 
 	while (lexer->hasNext()){
-		// ¾ò·ïÊ¸
+		// æ¡ä»¶æ–‡
 		lexer->skipWS();
 		TKVMCode_base *code=compileWord(SCRIPT_MODE);
 		if (!code) break;
 		condlist.push_back(code);
 
-		// ¼Â¹ÔÊ¸
+		// å®Ÿè¡Œæ–‡
 		lexer->skipWS();
 		code=compileWord(SCRIPT_MODE);
 		if (!code) break;
 		list.push_back(code);
 
-		// Í½Ìó¸ìÃµ¤·
+		// äºˆç´„èªæ¢ã—
 		Token::Type t=lexer->skipWS(SCRIPT_MODE);
 		if (t!=Token::T_LITERAL) break;
 
@@ -466,13 +466,13 @@ TKVMCode_base *TKawariCompiler::compileScriptIF(void){
 }
 
 //-------------------------------------------------------------------------
-// Ã±¸ì ( (QLiteral | Literal | Block | Subst | S)* )
-// ¥¹¥¯¥ê¥×¥ÈÃæÃ±¸ì ( (QLiteral | Literal | Block | Subst)* )
-// NULL¤òÊÖ¤¹¡£
+// å˜èª ( (QLiteral | Literal | Block | Subst | S)* )
+// ã‚¹ã‚¯ãƒªãƒ—ãƒˆä¸­å˜èª ( (QLiteral | Literal | Block | Subst)* )
+// NULLã‚’è¿”ã™ã€‚
 TKVMCode_base *TKawariCompiler::compileWord(int m){
 	TKawariLexer::Mode mode=(TKawariLexer::Mode)m;
 	vector<TKVMCode_base *> tmplist;
-	bool escape=false;	// ¥ë¡¼¥×Ã¦½Ğ¥Õ¥é¥°
+	bool escape=false;	// ãƒ«ãƒ¼ãƒ—è„±å‡ºãƒ•ãƒ©ã‚°
 	while (lexer->hasNext()&&(!escape)){
 		Token::Type t=lexer->peek(mode);
 		TKVMCode_base *code=NULL;
@@ -484,7 +484,7 @@ TKVMCode_base *TKawariCompiler::compileWord(int m){
 				if (t==Token::T_LITERAL){
 					string tmps=lexer->getLiteral(mode);
 					if (!tmps.size()){
-						// º£¤Ç¤â¤¢¤êÆÀ¤ë¤ó¤À¤Ã¤±¡©
+						// ä»Šã§ã‚‚ã‚ã‚Šå¾—ã‚‹ã‚“ã ã£ã‘ï¼Ÿ
 						escape=true;
 						break;
 					}
@@ -499,7 +499,7 @@ TKVMCode_base *TKawariCompiler::compileWord(int m){
 			if (s.size()||force)
 				code=new TKVMCodeString(s);
 			else
-				break;	// Ìµ¸Â¥ë¡¼¥×Èò¤±
+				break;	// ç„¡é™ãƒ«ãƒ¼ãƒ—é¿ã‘
 		}else if(t==(int)'('){
 			// Block
 			code=compileBlock();
@@ -521,8 +521,8 @@ TKVMCode_base *TKawariCompiler::compileWord(int m){
 	}
 }
 //-------------------------------------------------------------------------
-// ÃÖ´¹ ( '$' ( EntryCallSubst | EntryIndexSubst | InlineScriptSubst | ExprSubst ) )
-// NULL¤òÊÖ¤¹
+// ç½®æ› ( '$' ( EntryCallSubst | EntryIndexSubst | InlineScriptSubst | ExprSubst ) )
+// NULLã‚’è¿”ã™
 TKVMCode_base *TKawariCompiler::compileSubst(void){
 	if (lexer->peek(ID_MODE)!=(int)'$'){
 		lexer->error(RC.S(ERR_COMPILER_INTERNAL_SUBST));
@@ -549,8 +549,8 @@ TKVMCode_base *TKawariCompiler::compileSubst(void){
 }
 
 //-------------------------------------------------------------------------
-// ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È ( '(' ScriptStatementSeq ') )
-// NULL¤ÏÊÖ¤µ¤Ê¤¤
+// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆ ( '(' ScriptStatementSeq ') )
+// NULLã¯è¿”ã•ãªã„
 TKVMCode_base *TKawariCompiler::compileInlineScriptSubst(void) {
 	if (lexer->peek(ID_MODE)!=(int)'('){
 		lexer->error(RC.S(ERR_COMPILER_INTERNAL_INLINE_SCRIPT));
@@ -561,7 +561,7 @@ TKVMCode_base *TKawariCompiler::compileInlineScriptSubst(void) {
 
 	vector<TKVMCode_base *> tmplist;
 
-	// ºÇ½é¤Î¹Ô¤òÆÉ¤à
+	// æœ€åˆã®è¡Œã‚’èª­ã‚€
 	TKVMCode_base *code = compileScriptStatement();
 	if (code)
 		tmplist.push_back(code);
@@ -570,13 +570,13 @@ TKVMCode_base *TKawariCompiler::compileInlineScriptSubst(void) {
 	while (lexer->hasNext()){
 		Token::Type t=lexer->skipWS(SCRIPT_MODE);
 		if (t==(int)';'){
-			// ¼¡¤Î¹Ô
+			// æ¬¡ã®è¡Œ
 			lexer->skip();
 			TKVMCode_base *code = compileScriptStatement();
 			if (code)
 				tmplist.push_back(code);
 		}else if (t==(int)')'){
-			// That's end. ¤â¤¦½ª¤ï¤ê
+			// That's end. ã‚‚ã†çµ‚ã‚ã‚Š
 			lexer->skip();
 			closed=true;
 			break;
@@ -592,9 +592,9 @@ TKVMCode_base *TKawariCompiler::compileInlineScriptSubst(void) {
 }
 
 //-------------------------------------------------------------------------
-// ¥Ö¥í¥Ã¥¯ ( '(' WS Statement ')' )
-// É¬¤º¼¡¤Ë'('¤¬Íè¤Ê¤±¤ì¤Ğ¤Ê¤é¤Ê¤¤
-// NULL¤òÊÖ¤¹¤³¤È¤¬¤¢¤ë¡£
+// ãƒ–ãƒ­ãƒƒã‚¯ ( '(' WS Statement ')' )
+// å¿…ãšæ¬¡ã«'('ãŒæ¥ãªã‘ã‚Œã°ãªã‚‰ãªã„
+// NULLã‚’è¿”ã™ã“ã¨ãŒã‚ã‚‹ã€‚
 TKVMCode_base *TKawariCompiler::compileBlock(void) {
 	if (lexer->peek(ID_MODE)!=(int)'('){
 		lexer->error(RC.S(ERR_COMPILER_INTERNAL_BLOCK));
@@ -605,7 +605,7 @@ TKVMCode_base *TKawariCompiler::compileBlock(void) {
 	Token::Type t=lexer->skipWS(BLOCK_MODE);
 
 	if (t==(int)')'){
-		// ¤¤¤­¤Ê¤ê½ªÎ»
+		// ã„ããªã‚Šçµ‚äº†
 		lexer->skip();
 		return NULL;
 	}
@@ -614,7 +614,7 @@ TKVMCode_base *TKawariCompiler::compileBlock(void) {
 
 	t=lexer->skipWS(BLOCK_MODE);
 	if (t==(int)')'){
-		// ½ªÎ»
+		// çµ‚äº†
 		lexer->skip();
 	}else{
 		lexer->error(RC.S(ERR_COMPILER_BLOCK_NOT_CLOSED));
@@ -624,11 +624,11 @@ TKVMCode_base *TKawariCompiler::compileBlock(void) {
 
 
 //--------------------------------------------------------------------------
-// Åº¤¨»úÉÕ¤­¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤·´Ê°×ÈÇ
+// æ·»ãˆå­—ä»˜ãã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã—ç°¡æ˜“ç‰ˆ
 // ( EntryWord '[' WS Expr WS ']' )
-// ÀèÆ¬¤Î'$'¤Ï´û¤Ë¾Ã¤¨¤Æ¤¤¤ë¡£
+// å…ˆé ­ã®'$'ã¯æ—¢ã«æ¶ˆãˆã¦ã„ã‚‹ã€‚
 TKVMCode_base *TKawariCompiler::compileEntryIndexSubst(void){
-	// ¤³¤³¤Ï¤«¤Ê¤êÎã³°Åª¡£¥¨¥é¡¼¤¬¤¢¤ë¤È¤¤¤­¤Ê¤êÈ´¤±¤ë¡£
+	// ã“ã“ã¯ã‹ãªã‚Šä¾‹å¤–çš„ã€‚ã‚¨ãƒ©ãƒ¼ãŒã‚ã‚‹ã¨ã„ããªã‚ŠæŠœã‘ã‚‹ã€‚
 
 	TKVMCode_base *tmp_id=compileEntryWord();
 	if (!tmp_id){
@@ -654,7 +654,7 @@ TKVMCode_base *TKawariCompiler::compileEntryIndexSubst(void){
 }
 
 //--------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÌ¾ ( (IdLiteral | Subst)+ WS )
+// ã‚¨ãƒ³ãƒˆãƒªå ( (IdLiteral | Subst)+ WS )
 TKVMCode_base *TKawariCompiler::compileEntryWord(void){
 	vector<TKVMCode_base *> tmplist;
 
@@ -680,11 +680,11 @@ TKVMCode_base *TKawariCompiler::compileEntryWord(void){
 }
 
 //=====================================================================
-// ¼°
+// å¼
 //=====================================================================
 
-// ¼° ( '[' Expression  ']' )
-// NULL¤¬ÊÖ¤ë¤«¤â¡£
+// å¼ ( '[' Expression  ']' )
+// NULLãŒè¿”ã‚‹ã‹ã‚‚ã€‚
 TKVMCode_base *TKawariCompiler::compileExprSubst(void){
 	if (lexer->peek(ID_MODE)!=(int)'['){
 		lexer->error(RC.S(ERR_COMPILER_INTERNAL_EXPR));
@@ -709,7 +709,7 @@ TKVMCode_base *TKawariCompiler::compileExprSubst(void){
 	return ret;
 }
 
-// ÏÀÍıÏÂ ( '||' )
+// è«–ç†å’Œ ( '||' )
 TKVMExprCode_base *TKawariCompiler::compileExpr0(void){
 	TKVMExprCode_base *l=compileExpr1();
 	if (!l) return NULL;
@@ -727,7 +727,7 @@ TKVMExprCode_base *TKawariCompiler::compileExpr0(void){
 	}
 }
 
-// ÏÀÍıÀÑ ( '&&' )
+// è«–ç†ç© ( '&&' )
 TKVMExprCode_base *TKawariCompiler::compileExpr1(void){
 	TKVMExprCode_base *l=compileExpr2();
 	if (!l) return NULL;
@@ -745,7 +745,7 @@ TKVMExprCode_base *TKawariCompiler::compileExpr1(void){
 	}
 }
 
-// Åù¼° ( '=' | '==' | '!=' | '=~' | '!~" )
+// ç­‰å¼ ( '=' | '==' | '!=' | '=~' | '!~" )
 TKVMExprCode_base *TKawariCompiler::compileExpr2(void){
 	TKVMExprCode_base *l=compileExpr3();
 	if (!l) return NULL;
@@ -773,9 +773,9 @@ TKVMExprCode_base *TKawariCompiler::compileExpr2(void){
 	}
 }
 
-// Èæ³Ó ( '<' | '<=' | '>' | '>=' )
+// æ¯”è¼ƒ ( '<' | '<=' | '>' | '>=' )
 TKVMExprCode_base *TKawariCompiler::compileExpr3(void){
-	// ÊÂÎó¤¹¤ë¤³¤È¤Ï¤¢¤êÆÀ¤Ê¤¤
+	// ä¸¦åˆ—ã™ã‚‹ã“ã¨ã¯ã‚ã‚Šå¾—ãªã„
 	TKVMExprCode_base *l=compileExpr4();
 	if (!l) return NULL;
 	lexer->skipWS();
@@ -802,7 +802,7 @@ TKVMExprCode_base *TKawariCompiler::compileExpr3(void){
 	}
 }
 
-// ¥Ó¥Ã¥ÈOR ('|' | '^')
+// ãƒ“ãƒƒãƒˆOR ('|' | '^')
 TKVMExprCode_base *TKawariCompiler::compileExpr4(void){
 	TKVMExprCode_base *l=compileExpr5();
 	if (!l) return NULL;
@@ -824,7 +824,7 @@ TKVMExprCode_base *TKawariCompiler::compileExpr4(void){
 	}
 }
 
-// ¥Ó¥Ã¥ÈAND ('&')
+// ãƒ“ãƒƒãƒˆAND ('&')
 TKVMExprCode_base *TKawariCompiler::compileExpr5(void){
 	TKVMExprCode_base *l=compileExpr6();
 	if (!l) return NULL;
@@ -842,7 +842,7 @@ TKVMExprCode_base *TKawariCompiler::compileExpr5(void){
 	}
 }
 
-// ²Ã¸º»» ('+' | '-')
+// åŠ æ¸›ç®— ('+' | '-')
 TKVMExprCode_base *TKawariCompiler::compileExpr6(void){
 	TKVMExprCode_base *l=compileExpr7();
 	if (!l) return NULL;
@@ -864,7 +864,7 @@ TKVMExprCode_base *TKawariCompiler::compileExpr6(void){
 	}
 }
 
-// ¾è½ü»» ('*' | '/' | '%')
+// ä¹—é™¤ç®— ('*' | '/' | '%')
 TKVMExprCode_base *TKawariCompiler::compileExpr7(void){
 	TKVMExprCode_base *l=compileExpr8();
 	if (!l) return NULL;
@@ -890,9 +890,9 @@ TKVMExprCode_base *TKawariCompiler::compileExpr7(void){
 	}
 }
 
-// Ã±¹à±é»»»Ò ('+' | '-' | '!' | '~')
+// å˜é …æ¼”ç®—å­ ('+' | '-' | '!' | '~')
 TKVMExprCode_base *TKawariCompiler::compileExpr8(void){
-	// Ã±¹à±é»»»Ò¼«ÂÎ¤Ï±¦·ë¹ç
+	// å˜é …æ¼”ç®—å­è‡ªä½“ã¯å³çµåˆ
 	lexer->skipWS();
 	Token token=lexer->next(ID_MODE);
 	if (token.str=="+"){
@@ -917,7 +917,7 @@ TKVMExprCode_base *TKawariCompiler::compileExpr8(void){
 	}
 }
 
-// Îß¾è ( '**' )
+// ç´¯ä¹— ( '**' )
 TKVMExprCode_base *TKawariCompiler::compileExpr9(void){
 	TKVMExprCode_base *l=compileExprFactor();
 	if (!l) return NULL;
@@ -935,7 +935,7 @@ TKVMExprCode_base *TKawariCompiler::compileExpr9(void){
 	}
 }
 
-// ExprÍ×ÁÇ ( '(' Expression ')' | ExprWord )
+// Exprè¦ç´  ( '(' Expression ')' | ExprWord )
 TKVMExprCode_base *TKawariCompiler::compileExprFactor(void){
 	Token::Type t=lexer->skipWS(ID_MODE);
 	if (t==(int)'('){
@@ -954,11 +954,11 @@ TKVMExprCode_base *TKawariCompiler::compileExprFactor(void){
 	}
 }
 
-// ExprÃ±¸ì ( (NumericLiteral | QuotedLiteral | Subst)+ WS )
+// Exprå˜èª ( (NumericLiteral | QuotedLiteral | Subst)+ WS )
 TKVMExprCode_base *TKawariCompiler::compileExprWord(void){
 	lexer->skipWS();
 	vector<TKVMCode_base *> tmplist;
-	bool escape=false;	// ¥ë¡¼¥×Ã¦½Ğ¥Õ¥é¥°
+	bool escape=false;	// ãƒ«ãƒ¼ãƒ—è„±å‡ºãƒ•ãƒ©ã‚°
 	while (lexer->hasNext()&&(!escape)){
 		Token::Type t=lexer->peek(ID_MODE);
 		if ((t==Token::T_QLITERAL)||(t==Token::T_LITERAL)){
@@ -968,7 +968,7 @@ TKVMExprCode_base *TKawariCompiler::compileExprWord(void){
 				if (t==Token::T_QLITERAL){
 					s+=TKawariLexer::DecodeQuotedString(lexer->getQuotedLiteral());
 				}else if (t==Token::T_LITERAL){
-					// ½½¿Ê¿ôÃÍ¤·¤«µö¤µ¤ì¤Ê¤¤
+					// åé€²æ•°å€¤ã—ã‹è¨±ã•ã‚Œãªã„
 					string tmps=lexer->getDecimalLiteral();
 					if (!tmps.size()){
 						lexer->error(RC.S(ERR_COMPILER_ILLCHAR_IN_EXPRESSION));
@@ -998,11 +998,11 @@ TKVMExprCode_base *TKawariCompiler::compileExprWord(void){
 }
 
 //=====================================================================
-// ¥¨¥ó¥È¥ê½¸¹ç±é»»¼°
+// ã‚¨ãƒ³ãƒˆãƒªé›†åˆæ¼”ç®—å¼
 //=====================================================================
 
 //-------------------------------------------------------------------------
-// ¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤· ( '{' EntryExpr '}' )
+// ã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã— ( '{' EntryExpr '}' )
 TKVMCode_base *TKawariCompiler::compileEntryCallSubst(void) {
 	if (lexer->peek(ID_MODE)!=(int)'{'){
 		lexer->error(RC.S(ERR_COMPILER_INTERNAL_ENTRYCALL));
@@ -1011,7 +1011,7 @@ TKVMCode_base *TKawariCompiler::compileEntryCallSubst(void) {
 	}
 	lexer->skip();
 	if (lexer->skipWS(ID_MODE)==(int)'-'){
-		// Éé¤Î¿ô¤ÎÍúÎò»²¾È
+		// è² ã®æ•°ã®å±¥æ­´å‚ç…§
 		lexer->skip();
 		string fnum=lexer->getDecimalLiteral();
 		if (lexer->skipWS(ID_MODE)!=(int)'}'){
@@ -1032,18 +1032,18 @@ TKVMCode_base *TKawariCompiler::compileEntryCallSubst(void) {
 
 	if (!code) return NULL;
 
-	// ÆâÍÆ¥Á¥§¥Ã¥¯
+	// å†…å®¹ãƒã‚§ãƒƒã‚¯
 	const TKVMSetCodeWord *cw=dynamic_cast<const TKVMSetCodeWord *>(code);
 	if (cw){
 		const TKVMCodeIDString *cs=cw->GetIfPVW();
 		if (cs){
 			if (IsInteger(cs->s)){
-				// ÍúÎò»²¾È
+				// å±¥æ­´å‚ç…§
 				TKVMCode_base *ret=new TKVMCodeHistoryCall(atoi(cs->s.c_str()));
 				delete code;
 				return ret;
 			}else{
-				// ½ã¿è²¾ÁÛÃ±¸ì
+				// ç´”ç²‹ä»®æƒ³å˜èª
 				TKVMCode_base *ret=new TKVMCodePVW(cs->s);
 				delete code;
 				return ret;
@@ -1054,7 +1054,7 @@ TKVMCode_base *TKawariCompiler::compileEntryCallSubst(void) {
 	return new TKVMCodeEntryCall(code);
 }
 
-// ÏÂº¹ ('+' | '-')
+// å’Œå·® ('+' | '-')
 TKVMSetCode_base *TKawariCompiler::compileSetExpr0(void){
 	TKVMSetCode_base *l=compileSetExpr1();
 	if (!l) return NULL;
@@ -1074,7 +1074,7 @@ TKVMSetCode_base *TKawariCompiler::compileSetExpr0(void){
 	}
 }
 
-// ÀÑ ('&')
+// ç© ('&')
 TKVMSetCode_base *TKawariCompiler::compileSetExpr1(void){
 	TKVMSetCode_base *l=compileSetExprFactor();
 	if (!l) return NULL;
@@ -1090,7 +1090,7 @@ TKVMSetCode_base *TKawariCompiler::compileSetExpr1(void){
 	}
 }
 
-// ½¸¹ç±é»»¼°Í×ÁÇ ( '(' EntryExpr ')' | EntryWord )
+// é›†åˆæ¼”ç®—å¼è¦ç´  ( '(' EntryExpr ')' | EntryWord )
 TKVMSetCode_base *TKawariCompiler::compileSetExprFactor(void){
 	Token::Type t=lexer->skipWS(ID_MODE);
 	if (t==(int)'('){
@@ -1109,7 +1109,7 @@ TKVMSetCode_base *TKawariCompiler::compileSetExprFactor(void){
 	}
 }
 
-// ½¸¹ç±é»»¼°Ã±¸ì ( (IdLiteral | Subst)+ WS )
+// é›†åˆæ¼”ç®—å¼å˜èª ( (IdLiteral | Subst)+ WS )
 TKVMSetCode_base *TKawariCompiler::compileSetExprWord(void){
 	vector<TKVMCode_base *> tmplist;
 

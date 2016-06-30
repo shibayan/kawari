@@ -1,13 +1,13 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// SAORI ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹(Native)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// SAORI ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(Native)
 //
 //      Programed by Suikyo.
 //
-//  2002.04.15  Phase 8.0.0   ¤¨¤Ó¤µ¤ï¤µ¤ó¥Ğ¡¼¥¸¥ç¥ó¤ò»²¹Í¤ËÆ³Æş
-//  2004.02.13  Phase 8.2.0   (phonohawk) libdl¤ò»È¤¦¾ì¹ç¤Ë¤ÏÂåÂØ¥é¥¤¥Ö¥é¥ê¤âÃµ¤¹
-//                  »²¹Í:  http://ccm.sherry.jp/ninni/pa_spec/saori-posix.html
+//  2002.04.15  Phase 8.0.0   ãˆã³ã•ã‚ã•ã‚“ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‚è€ƒã«å°å…¥
+//  2004.02.13  Phase 8.2.0   (phonohawk) libdlã‚’ä½¿ã†å ´åˆã«ã¯ä»£æ›¿ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚‚æ¢ã™
+//                  å‚è€ƒ:  http://ccm.sherry.jp/ninni/pa_spec/saori-posix.html
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -44,12 +44,12 @@ static string str_getenv(const string& name) {
 static vector<string> posix_dll_search_path;
 static bool posix_dll_search_path_is_ready = false;
 static string posix_search_fallback_dll(const string& dllfile) {
-    // dllfile¤ÏÃµ¤·¤¿¤¤¥Õ¥¡¥¤¥ëDLLÌ¾¡£¥Ñ¥¹¶èÀÚ¤êÊ¸»ú¤Ï/¡£
-    // ÂåÂØ¥é¥¤¥Ö¥é¥ê¤¬¸«ÉÕ¤«¤ì¤Ğ¤½¤ÎÀäÂĞ¥Ñ¥¹¤ò¡¢
-    // ¸«ÉÕ¤±¤é¤ì¤Ê¤±¤ì¤Ğ¶õÊ¸»úÎó¤òÊÖ¤¹¡£
+    // dllfileã¯æ¢ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«DLLåã€‚ãƒ‘ã‚¹åŒºåˆ‡ã‚Šæ–‡å­—ã¯/ã€‚
+    // ä»£æ›¿ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒè¦‹ä»˜ã‹ã‚Œã°ãã®çµ¶å¯¾ãƒ‘ã‚¹ã‚’ã€
+    // è¦‹ä»˜ã‘ã‚‰ã‚Œãªã‘ã‚Œã°ç©ºæ–‡å­—åˆ—ã‚’è¿”ã™ã€‚
     
     if (!posix_dll_search_path_is_ready) {
-	// SAORI_FALLBACK_PATH¤ò¸«¤ë¡£
+	// SAORI_FALLBACK_PATHã‚’è¦‹ã‚‹ã€‚
 	string path = str_getenv("SAORI_FALLBACK_PATH");
 	if (path.length() > 0) {
 	    while (true) {
@@ -77,7 +77,7 @@ static string posix_search_fallback_dll(const string& dllfile) {
 	string fpath = *ite + '/' + fname;
 	struct stat sb;
 	if (stat(fpath.c_str(), &sb) == 0) {
-	    // ÂåÂØ¥é¥¤¥Ö¥é¥ê¤¬Â¸ºß¤¹¤ë¤è¤¦¤À¡£¤³¤ì°Ê¾å¤Î¥Á¥§¥Ã¥¯¤Ï¾ÊÎ¬¡£
+	    // ä»£æ›¿ãƒ©ã‚¤ãƒ–ãƒ©ãƒªãŒå­˜åœ¨ã™ã‚‹ã‚ˆã†ã ã€‚ã“ã‚Œä»¥ä¸Šã®ãƒã‚§ãƒƒã‚¯ã¯çœç•¥ã€‚
 	    return fpath;
 	}
     }
@@ -119,10 +119,10 @@ SAORI_HANDLE load_library(const string &file){
 	
 	bool do_fallback = true;
 	if (!fallback_always) {
-	    // SAORI_FALLBACK_ALWAYS¤¬¶õ¤Ç¤â0¤Ç¤â¤Ê¤±¤ì¤Ğ¡¢¤Ş¤º¤Ï»î¤·¤Ëdlopen¤·¤Æ¤ß¤ë¡£
+	    // SAORI_FALLBACK_ALWAYSãŒç©ºã§ã‚‚0ã§ã‚‚ãªã‘ã‚Œã°ã€ã¾ãšã¯è©¦ã—ã«dlopenã—ã¦ã¿ã‚‹ã€‚
 	    void* handle = ::dlopen(file.c_str(), RTLD_LAZY);
 	    if (handle != NULL) {
-		// load, unload, request¤ò¼è¤ê½Ğ¤·¤Æ¤ß¤ë¡£
+		// load, unload, requestã‚’å–ã‚Šå‡ºã—ã¦ã¿ã‚‹ã€‚
 		void* sym_load = ::dlsym(handle, "load");
 		void* sym_unload = ::dlsym(handle, "unload");
 		void* sym_request = ::dlsym(handle, "request");
@@ -134,15 +134,15 @@ SAORI_HANDLE load_library(const string &file){
 	}
 	
 	if (do_fallback) {
-	    // ÂåÂØ¥é¥¤¥Ö¥é¥ê¤òÃµ¤¹¡£
+	    // ä»£æ›¿ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’æ¢ã™ã€‚
 	    string fallback_lib = posix_search_fallback_dll(file);
 	    if (fallback_lib.length() == 0) {
-		// Ìµ¤¤
-		// Logger¤ò»È¤¦¤Ë¤Ï¡¢¤³¤Î´Ø¿ô¤¬IModuleFactory¤Î¥á¥½¥Ã¥É¤Ç¤Ê¤±¤ì¤Ğ¤Ê¤é¤Ê¤¤¡Ä
+		// ç„¡ã„
+		// Loggerã‚’ä½¿ã†ã«ã¯ã€ã“ã®é–¢æ•°ãŒIModuleFactoryã®ãƒ¡ã‚½ãƒƒãƒ‰ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„â€¦
 		return NULL;
 	    }
 	    else {
-		// ¤¢¤Ã¤¿¤Î¤Ç¡¢¤³¤ì¤ò»È¤¦¡£
+		// ã‚ã£ãŸã®ã§ã€ã“ã‚Œã‚’ä½¿ã†ã€‚
 		return (SAORI_HANDLE)::dlopen(fallback_lib.c_str(), RTLD_LAZY);
 	    }
 	}
@@ -181,7 +181,7 @@ TModule *TModuleFactoryNative::CreateModule(const string &path){
 	}
 }
 //---------------------------------------------------------------------------
-// ¥â¥¸¥å¡¼¥ë¤Î´°Á´ÇË´ş
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å®Œå…¨ç ´æ£„
 void TModuleFactoryNative::DeleteModule(TModule *module){
 	if (module){
 		GetLogger().GetStream(LOG_INFO) << "[SAORI Native] FreeLibrary" << endl;
@@ -190,16 +190,16 @@ void TModuleFactoryNative::DeleteModule(TModule *module){
 	}
 }
 //---------------------------------------------------------------------------
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TModuleFactoryNative::TModuleFactoryNative(TKawariLogger &lgr)
 	: IModuleFactory(lgr) {
 }
 //---------------------------------------------------------------------------
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TModuleFactoryNative::~TModuleFactoryNative(){
 }
 //---------------------------------------------------------------------------
-// ½é´ü²½
+// åˆæœŸåŒ–
 bool TModuleNative::Initialize(void){
 	func_load=(BOOL (SHIORI_CALL *)(MEMORY_HANDLE, long))get_symbol(handle, "load");
 	func_unload=(BOOL (SHIORI_CALL *)(void))get_symbol(handle, "unload");

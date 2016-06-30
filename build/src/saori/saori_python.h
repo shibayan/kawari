@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "‰Ø˜a—œ" for ‚ ‚êˆÈŠO‚Ì‰½‚©ˆÈŠO‚Ì‰½‚©
-// SAORI ƒCƒ“ƒ^[ƒtƒF[ƒX(pythonƒ‚ƒWƒ…[ƒ‹)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// SAORI ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(pythonãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«)
 //
 //              ABE, Suikyo
 //
-//  2003.03.07  Phase 8.1.0   “±“ü
+//  2003.03.07  Phase 8.1.0   å°Žå…¥
 //
 //---------------------------------------------------------------------------
 #ifndef SAORI_PYTHON_H
@@ -19,30 +19,30 @@
 #include <string>
 #include <map>
 //---------------------------------------------------------------------------
-// ‰Šú‰»
+// åˆæœŸåŒ–
 PyObject *wrap_setcallback(PyObject *self, PyObject *args);
 //---------------------------------------------------------------------------
 namespace saori{
 //---------------------------------------------------------------------------
 class TModuleFactoryPython : public IModuleFactory{
 public:
-	// ƒ‚ƒWƒ…[ƒ‹‚ÌŒŸõ‚Æ¶¬
-	// –ß‚è’l: ¶¬‚É¬Œ÷‚µ‚½ê‡AƒCƒ“ƒXƒ^ƒ“ƒXBŽ¸”s‚µ‚½ê‡ANULLB
+	// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®æ¤œç´¢ã¨ç”Ÿæˆ
+	// æˆ»ã‚Šå€¤: ç”Ÿæˆã«æˆåŠŸã—ãŸå ´åˆã€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚å¤±æ•—ã—ãŸå ´åˆã€NULLã€‚
 	virtual TModule *CreateModule(const std::string &path);
 
-	// ƒ‚ƒWƒ…[ƒ‹‚ÌŠ®‘S”jŠü
+	// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å®Œå…¨ç ´æ£„
 	virtual void DeleteModule(TModule *module);
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TModuleFactoryPython(class TKawariLogger &lgr);
 
-	// ƒfƒXƒgƒ‰ƒNƒ^
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TModuleFactoryPython(void);
 };
 //---------------------------------------------------------------------------
 class TModulePython : public TModule{
 public:
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	virtual bool Initialize(void);
 	// SAORI/1.0 Load
 	virtual bool Load(void);

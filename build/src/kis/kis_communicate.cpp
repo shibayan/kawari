@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// KawariInlineScript -- ¥³¥ß¥å¥Ë¥±¡¼¥È --
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// KawariInlineScript -- ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆ --
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2002.03.18  Phase 7.9.0   ¿·¥³¥ß¥å¥Ë¥±¡¼¥Èµ¡¹½
+//  2002.03.18  Phase 7.9.0   æ–°ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ãƒˆæ©Ÿæ§‹
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -44,7 +44,7 @@ string KIS_communicate::Function(const vector<string>& args)
 	if(st<0) st=size+st;
 	if(end<0) end=size+end;
 	if((st<0)||(end<0)||(st>end)) {
-		// ¥¨¥é¡¼
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_DICT_INVALID_INDEX) << endl;
 		return("");
 	}
@@ -57,7 +57,7 @@ string KIS_communicate::Function(const vector<string>& args)
 #else
 	TEntryRange range=Engine->GetEntryRange(args[1]);
 	if(range.Start==TKawariEngine::NPos){
-		// ¥¨¥é¡¼
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_DICT_INVALID_INDEX) << endl;
 		return("");
 	}

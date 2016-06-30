@@ -1,13 +1,13 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
 //  2001.05.30  Phase 5.1     First version
 //
 //      Programed by NAKAUE.T (Meister)
 //
 //  2001.05.25  Phase 5.1     First version
-//  2005.06.21  Phase 8.2.3   Éé¤ÎÅº¤¨»ú¤ËÂĞ±ş
-//  2005.06.28  Phase 8.2.3   TEntryRangeÂĞ±ş
+//  2005.06.21  Phase 8.2.3   è² ã®æ·»ãˆå­—ã«å¯¾å¿œ
+//  2005.06.28  Phase 8.2.3   TEntryRangeå¯¾å¿œ
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -36,20 +36,20 @@ string KIS_inc::Function_(const vector<string>& args,bool flag_dec)
 	int range=TKawariEngine::DecodeEntryName(args[1],entryname,st,end);
 
 	switch(range) {
-	case 0:		// ÈÏ°Ï»ØÄêÌµ¤·
+	case 0:		// ç¯„å›²æŒ‡å®šç„¡ã—
 		st=end=0;
 		break;
-	case 1:		// Ã±ÆÈÍ×ÁÇ»ØÄê
+	case 1:		// å˜ç‹¬è¦ç´ æŒ‡å®š
 		size=Engine->EntrySize(entryname);
 		if(st<0) st=size+st;
 		if(st<0) {
-			// ¥¨¥é¡¼
+			// ã‚¨ãƒ©ãƒ¼
 			GetLogger().GetStream(kawari_log::LOG_ERROR) << args[0] << RC.S(ERR_KIS_DICT_INVALID_INDEX) << endl;
 			return("");
 		}
 		break;
-	case 2:		// ÈÏ°Ï»ØÄê
-		// ¥¨¥é¡¼
+	case 2:		// ç¯„å›²æŒ‡å®š
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(kawari_log::LOG_ERROR) << args[0] << RC.S(ERR_KIS_DICT_INVALID_INDEX) << endl;
 		return("");
 	}
@@ -82,9 +82,9 @@ string KIS_inc::Function_(const vector<string>& args,bool flag_dec)
 	if(!range.Range)
 		range.Start=range.End=0;
 
-	//MEMO: ÈÏ°Ï»ØÄê¤·¤¿¾ì¹ç¡¢¤½¤ÎÁ´¤Æ¤òinc/dec¤¹¤ë¤è¤¦¤Ë»ÅÍÍÄÉ²Ã¡£
+	//MEMO: ç¯„å›²æŒ‡å®šã—ãŸå ´åˆã€ãã®å…¨ã¦ã‚’inc/decã™ã‚‹ã‚ˆã†ã«ä»•æ§˜è¿½åŠ ã€‚
 	for(unsigned int i=range.Start;i<=range.End;i++){
-		// atoi()¤Ï""¤ËÂĞ¤·¤Æ0¤òÊÖ¤¹¤³¤È¤¬Êİ¾Ú¤µ¤ì¤Æ¤¤¤ë¡£
+		// atoi()ã¯""ã«å¯¾ã—ã¦0ã‚’è¿”ã™ã“ã¨ãŒä¿è¨¼ã•ã‚Œã¦ã„ã‚‹ã€‚
 		int counter=atoi(Engine->IndexParse(range.Entry,i).c_str())+diff;
 		if(((!flag_dec)&&(counter>limit))
 		   ||(flag_dec&&(counter<limit))) counter=limit;

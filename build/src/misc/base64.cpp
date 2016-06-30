@@ -1,6 +1,6 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// Base64¥¨¥ó¥³¡¼¥À/¥Ç¥³¡¼¥À
+// Base64ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€/ãƒ‡ã‚³ãƒ¼ãƒ€
 //
 //      Programed by NAKAUE.T (Meister)
 //
@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 #include "misc/base64.h"
 //---------------------------------------------------------------------------
-// Base64¤Î¥¨¥ó¥³¡¼¥É
+// Base64ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
 string EncodeBase64(string& str)
 {
 	const char *table="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -19,8 +19,8 @@ string EncodeBase64(string& str)
 	string encodedstr;
 
 	int rest=str.size()%3;
-	if(rest==1) str+='\0';	// ¥À¥ß¡¼¥Ç¡¼¥¿
-	if(rest>0) str+='\0';	// ¥À¥ß¡¼¥Ç¡¼¥¿
+	if(rest==1) str+='\0';	// ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
+	if(rest>0) str+='\0';	// ãƒ€ãƒŸãƒ¼ãƒ‡ãƒ¼ã‚¿
 
 	unsigned int len=str.size()/3;
 	for(unsigned int i=0;i<len;i++) {
@@ -48,12 +48,12 @@ string EncodeBase64(string& str)
 	return(encodedstr);
 }
 //---------------------------------------------------------------------------
-// Base64¤Î¥Ç¥³¡¼¥É
+// Base64ã®ãƒ‡ã‚³ãƒ¼ãƒ‰
 #if defined(STRING_APPEND_INATOMIC)
 string DecodeBase64(const string& encodedstr)
 {
 	string str;
-	char *s_top = new char[encodedstr.size()];	// ¤Û¤ó¤È¤Ï£´Ê¬¤Î£³¤Ç¤è¤¤ 
+	char *s_top = new char[encodedstr.size()];	// ã»ã‚“ã¨ã¯ï¼”åˆ†ã®ï¼“ã§ã‚ˆã„ 
 	char *s = s_top;
 
 	unsigned int rest=0;

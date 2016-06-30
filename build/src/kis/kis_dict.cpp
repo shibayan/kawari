@@ -1,27 +1,27 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// KawariInlineScript -- ¼­½ñÁàºî --
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// KawariInlineScript -- è¾æ›¸æ“ä½œ --
 //
 //      Programed by NAKAUE.T (Meister)
 //
 //  2001.05.25  Phase 5.1     First version
-//  2001.06.17  Phase 5.4     enumerateÉü³è
-//  2001.07.08  Phase 6.0     eval¥Ğ¥°¥Õ¥£¥Ã¥¯¥¹
-//  2001.07.14  Phase 6.1     clearÄÉ²Ã
-//  2001.08.08  Phase 6.2     entryÄÉ²Ã
-//  2001.08.25  Phase 6.3     entry»ÅÍÍÄÉ²Ã
-//                            get¤³¤Ã¤½¤êÄÉ²Ã
-//                            sizeÄÉ²Ã
-//  2001.12.18  Phase 7.2     array¤µ¤é¤Ë¤³¤Ã¤½¤êÄÉ²Ã
-//  2002.03.10  Phase 7.9.0   ¼­½ñ¤ÎÄ¾ÀÜ¥¢¥¯¥»¥¹¶Ø»ß
-//                            enumerate,arrayÇÑ»ß
-//                            get»ÅÍÍÊÑ¹¹,exec,enumexecÆ³Æş
-//  2002.03.13                ¥¨¥ó¥È¥êÌ¾¤ËÅº¤¨»ú³µÇ°Æ³Æş
-//  2002.03.17                ¼­½ñÁàºî´Ø¿ôÀ°Íı
-//                            listÁàºî´Ø¿ôÄÉ²Ã
-//  2005.06.28  Phase 8.2.3   TEntryRangeÂĞ±ş
-//  2008.02.16  Phase 8.2.7   entrycount¥Ğ¥°¥Õ¥£¥Ã¥¯¥¹
+//  2001.06.17  Phase 5.4     enumerateå¾©æ´»
+//  2001.07.08  Phase 6.0     evalãƒã‚°ãƒ•ã‚£ãƒƒã‚¯ã‚¹
+//  2001.07.14  Phase 6.1     clearè¿½åŠ 
+//  2001.08.08  Phase 6.2     entryè¿½åŠ 
+//  2001.08.25  Phase 6.3     entryä»•æ§˜è¿½åŠ 
+//                            getã“ã£ãã‚Šè¿½åŠ 
+//                            sizeè¿½åŠ 
+//  2001.12.18  Phase 7.2     arrayã•ã‚‰ã«ã“ã£ãã‚Šè¿½åŠ 
+//  2002.03.10  Phase 7.9.0   è¾æ›¸ã®ç›´æ¥ã‚¢ã‚¯ã‚»ã‚¹ç¦æ­¢
+//                            enumerate,arrayå»ƒæ­¢
+//                            getä»•æ§˜å¤‰æ›´,exec,enumexecå°å…¥
+//  2002.03.13                ã‚¨ãƒ³ãƒˆãƒªåã«æ·»ãˆå­—æ¦‚å¿µå°å…¥
+//  2002.03.17                è¾æ›¸æ“ä½œé–¢æ•°æ•´ç†
+//                            listæ“ä½œé–¢æ•°è¿½åŠ 
+//  2005.06.28  Phase 8.2.3   TEntryRangeå¯¾å¿œ
+//  2008.02.16  Phase 8.2.7   entrycountãƒã‚°ãƒ•ã‚£ãƒƒã‚¯ã‚¹
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -76,7 +76,7 @@ string KIS_set::Function_(const vector<string>& args,bool flag_str)
 	int range=TKawariEngine::DecodeEntryName(args[1],entryname,st,end);
 
 	switch(range) {
-	case 0:		// ÈÏ°Ï»ØÄêÌµ¤·
+	case 0:		// ç¯„å›²æŒ‡å®šç„¡ã—
 		if (flag){
 			TEntry entry=Engine->CreateEntry(entryname);
 			TWordID id=Engine->CreateStrWord(word);
@@ -85,14 +85,14 @@ string KIS_set::Function_(const vector<string>& args,bool flag_str)
 			Engine->PushAfterClear(entryname,word);
 		}
 		break;
-	case 1:		// Ã±ÆÈÍ×ÁÇ»ØÄê
-	case 2:		// ÈÏ°Ï»ØÄê
+	case 1:		// å˜ç‹¬è¦ç´ æŒ‡å®š
+	case 2:		// ç¯„å›²æŒ‡å®š
 		{
 			unsigned int size=Engine->EntrySize(entryname);
 			if(st<0) st=size+st;
 			if(end<0) end=size+end;
 			if((st<0)||(end<0)||(st>end)) {
-				// ¥¨¥é¡¼
+				// ã‚¨ãƒ©ãƒ¼
 				GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_DICT_INVALID_INDEX) << endl;
 				return("");
 			}
@@ -240,7 +240,7 @@ string KIS_get::Function_(const vector<string>& args,bool flag)
 	if(st<0) st=size+st;
 	if(end<0) end=size+end;
 	if((st<0)||(end<0)||(st>end)) {
-		// ¥¨¥é¡¼
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_DICT_INVALID_INDEX) << endl;
 		return("");
 	}
@@ -259,7 +259,7 @@ string KIS_get::Function_(const vector<string>& args,bool flag)
 	}
 
 	string retstr;
-	//MEMO: ¥µ¥¤¥º³°(Â¸ºß¤·¤Ê¤¤Ã±¸ì)¤ÎµÕ¥³¥ó¥Ñ¥¤¥ë·ë²Ì¤Ï»ÅÍÍ¤È¤·¤ÆÊİ¾Ú¤µ¤ì¤ë¤Î¤«¡©
+	//MEMO: ã‚µã‚¤ã‚ºå¤–(å­˜åœ¨ã—ãªã„å˜èª)ã®é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«çµæœã¯ä»•æ§˜ã¨ã—ã¦ä¿è¨¼ã•ã‚Œã‚‹ã®ã‹ï¼Ÿ
 	if(flag)
 		for(unsigned int i=range.Start;i<=range.End;i++)
 			retstr+=Engine->IndexWord(range.Entry,i);
@@ -280,17 +280,17 @@ string KIS_clear::Function(const vector<string>& args)
 	int range=TKawariEngine::DecodeEntryName(args[1],entryname,st,end);
 
 	switch(range) {
-	case 0:		// ÈÏ°Ï»ØÄêÌµ¤·
+	case 0:		// ç¯„å›²æŒ‡å®šç„¡ã—
 		Engine->ClearEntry(entryname);
 		break;
-	case 1:		// Ã±ÆÈÍ×ÁÇ»ØÄê
-	case 2:		// ÈÏ°Ï»ØÄê
+	case 1:		// å˜ç‹¬è¦ç´ æŒ‡å®š
+	case 2:		// ç¯„å›²æŒ‡å®š
 		{
 			unsigned int size=Engine->EntrySize(entryname);
 			if(st<0) st=size+st;
 			if(end<0) end=size+end;
 			if((st<0)||(end<0)||(st>end)) {
-				// ¥¨¥é¡¼
+				// ã‚¨ãƒ©ãƒ¼
 				GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_DICT_INVALID_INDEX) << endl;
 				return("");
 			}
@@ -327,7 +327,7 @@ string KIS_insert::Function_(const vector<string>& args,bool flag_str)
 	unsigned int size=Engine->EntrySize(entryname);
 	if(st<0) st=size+st;
 	if(st<0){
-		// ¥¨¥é¡¼
+		// ã‚¨ãƒ©ãƒ¼
 		GetLogger().GetStream(LOG_ERROR) << args[0] << RC.S(ERR_KIS_DICT_INVALID_INDEX) << endl;
 		return ("");
 	}
@@ -351,8 +351,8 @@ string KIS_insert::Function_(const vector<string>& args,bool flag_str)
 		return("");
 	}
 
-	//MEMO: push¤äunshift¤ÏÆó¤ÄÌÜ°Ê¹ß¤Î°ú¿ô¤òcat¤¹¤ë¤Î¤Ë¡¢
-	//insert·Ï¤ÏÃ±ÆÈ¤ÎÃ±¸ì¤·¤«¼è¤é¤Ê¤¤¤Î¤Ï¤Ê¤¼¡©  º£¤µ¤éÊÑ¤¨¤é¤ì¤Ê¤¤¤±¤É¡£
+	//MEMO: pushã‚„unshiftã¯äºŒã¤ç›®ä»¥é™ã®å¼•æ•°ã‚’catã™ã‚‹ã®ã«ã€
+	//insertç³»ã¯å˜ç‹¬ã®å˜èªã—ã‹å–ã‚‰ãªã„ã®ã¯ãªãœï¼Ÿ  ä»Šã•ã‚‰å¤‰ãˆã‚‰ã‚Œãªã„ã‘ã©ã€‚
 	TWordID wid=(flag_str)?
 		Engine->CreateStrWord(args[2]): Engine->CreateWord(args[2]);
 	range.Entry.Insert(range.Start, wid);
@@ -428,11 +428,11 @@ string KIS_cleartree::Function(const vector<string>& args)
 }
 //---------------------------------------------------------------------------
 void KIS_listsub::_Function(const vector<string>& args, bool subflag){
-	// ¥¨¥ó¥È¥êÁàºî¼ş¤ê¤Ï¥¨¥é¡¼¥Á¥§¥Ã¥¯¤ò¿µ½Å¤Ë¤ä¤ê¤Ş¤¹¡£
+	// ã‚¨ãƒ³ãƒˆãƒªæ“ä½œå‘¨ã‚Šã¯ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’æ…é‡ã«ã‚„ã‚Šã¾ã™ã€‚
 	if(!AssertArgument(args, 3, 3)) return;
 	if((!args[1].size())||(!args[2].size())) return;
 
-	// "."¤Ç¤â¾å¼ê¤¯¤¤¤¯
+	// "."ã§ã‚‚ä¸Šæ‰‹ãã„ã
 	TEntry parententry=Engine->CreateEntry(args[2]);
 	TEntry tempentry=Engine->CreateEntry(args[1]);
 
@@ -456,7 +456,7 @@ void KIS_copy::_Function(const vector<string>& args, bool rmflag){
 	if(!AssertArgument(args, 3, 3)) return;
 	if((!args[1].size())||(!args[2].size())) return;
 
-	// °ú¿ô¤Î½çÈÖ¤É¤¦¤¹¤ë¤«¡Ä¡Ä
+	// å¼•æ•°ã®é †ç•ªã©ã†ã™ã‚‹ã‹â€¦â€¦
 	TEntry srcentry=Engine->GetEntry(args[1]);
 	TEntry dstentry=Engine->CreateEntry(args[2]);
 	if(!srcentry.IsValid()) return;

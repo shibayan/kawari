@@ -1,14 +1,14 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// KawariInlineScript´ğËÜ¥¯¥é¥¹
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// KawariInlineScriptåŸºæœ¬ã‚¯ãƒ©ã‚¹
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.05.14  Phase 0.50    ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥ÈÀ°Íı
-//  2001.05.24  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é²½
-//  2002.03.17  Phase 7.9.0   TKisEngine¤«¤éKIU¤Ë¹ç¤ï¤»¤ÆTKawariVM¤ËÌ¾¾ÎÊÑ¹¹
-//  2002.03.19  Phase 8.0     º£ÅÙ¤ÏTKawariEngine¤ËÊÑ¹¹
+//  2001.05.14  Phase 0.50    ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ•´ç†
+//  2001.05.24  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©åŒ–
+//  2002.03.17  Phase 7.9.0   TKisEngineã‹ã‚‰KIUã«åˆã‚ã›ã¦TKawariVMã«åç§°å¤‰æ›´
+//  2002.03.19  Phase 8.0     ä»Šåº¦ã¯TKawariEngineã«å¤‰æ›´
 //
 //---------------------------------------------------------------------------
 #ifndef KIS_BASE_H
@@ -24,12 +24,12 @@
 #include <vector>
 using namespace std;
 //---------------------------------------------------------------------------
-// KIS´Ø¿ô¤Î¾ğÊó¤òÉ½¤¹¹½Â¤ÂÎ
+// KISé–¢æ•°ã®æƒ…å ±ã‚’è¡¨ã™æ§‹é€ ä½“
 struct TKisFunctionInfo {
-	string name;			// ´Ø¿ôÌ¾
-	string format;			// Ê¸Ë¡
-	string returnval;		// Ìá¤êÃÍ
-	string information;	// ²òÀâ
+	string name;			// é–¢æ•°å
+	string format;			// æ–‡æ³•
+	string returnval;		// æˆ»ã‚Šå€¤
+	string information;	// è§£èª¬
 	TKisFunctionInfo (void) {}
 	TKisFunctionInfo (const char *n, const char *f, const char *r, const char *i)
 		: name(string(n)), format(string(f)),
@@ -43,18 +43,18 @@ struct TKisFunctionInfo {
 	}
 };
 //---------------------------------------------------------------------------
-// ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È´Ø¿ô¤Î´ğËÜ¥¯¥é¥¹
-// (Th!rd¤Î¥¢¥¤¥Ç¥¢¤ò¥ê¥Õ¥¡¥¤¥ó)
+// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆé–¢æ•°ã®åŸºæœ¬ã‚¯ãƒ©ã‚¹
+// (Th!rdã®ã‚¢ã‚¤ãƒ‡ã‚¢ã‚’ãƒªãƒ•ã‚¡ã‚¤ãƒ³)
 class TKisFunction_base {
 protected:
 
-	// ´Ø¿ô¾ğÊó
+	// é–¢æ•°æƒ…å ±
 	char *Name_;
 	char *Format_;
 	char *Returnval_;
 	char *Information_;
 
-	// ²ÚÏÂÍü¥¨¥ó¥¸¥ó
+	// è¯å’Œæ¢¨ã‚¨ãƒ³ã‚¸ãƒ³
 	class TKawariEngine *Engine;
 
 	inline TKawariLogger &GetLogger(void) { return Engine->GetLogger(); }
@@ -68,10 +68,10 @@ public:
 		Information_="none.";
 	}
 
-	// ¤Ç¤¹¤È¤é¤¯¤¿
+	// ã§ã™ã¨ã‚‰ããŸ
 	virtual ~TKisFunction_base() { }
 
-	// ´Ø¿ô¾ğÊó¼èÆÀ
+	// é–¢æ•°æƒ…å ±å–å¾—
 	const TKisFunctionInfo GetInformation (void) const {
 		return TKisFunctionInfo(Name_, Format_, Returnval_, Information_);
 	}
@@ -81,19 +81,19 @@ public:
 	const char* Returnval(void) const {return(Returnval_);}
 	const char* Information(void) const {return(Information_);}
 
-	// ²ÚÏÂÍü¥¨¥ó¥¸¥óÀßÄê
+	// è¯å’Œæ¢¨ã‚¨ãƒ³ã‚¸ãƒ³è¨­å®š
 	void NotifyEngine(class TKawariEngine *engine)
 	{
 		Engine=engine;
 	}
 
-	// ½é´ü²½
+	// åˆæœŸåŒ–
 	virtual bool Init(void)=0;
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args)=0;
 
-	// °ú¿ô»ØÄê¥¨¥é¡¼¤Î¥í¥°½ĞÎÏ
+	// å¼•æ•°æŒ‡å®šã‚¨ãƒ©ãƒ¼ã®ãƒ­ã‚°å‡ºåŠ›
 	bool AssertArgument(const vector<string>& args, const unsigned int min){
 		using namespace kawari_log;
 		bool ret=true;
@@ -107,7 +107,7 @@ public:
 		return ret;
 	}
 
-	// °ú¿ô»ØÄê¥¨¥é¡¼¤Î¥í¥°½ĞÎÏ
+	// å¼•æ•°æŒ‡å®šã‚¨ãƒ©ãƒ¼ã®ãƒ­ã‚°å‡ºåŠ›
 	bool AssertArgument(const vector<string>& args, const unsigned int min, const unsigned int max){
 		using namespace kawari_log;
 		bool ret=true;
@@ -130,7 +130,7 @@ public:
 class KIS_SampleFunction : public TKisFunction_base {
 public:
 
-	// Init¤ÇÌ¾Á°¤½¤ÎÂ¾¤Î¾ğÊó¤òÀßÄê¤·¤Æ¤¯¤À¤µ¤¤
+	// Initã§åå‰ãã®ä»–ã®æƒ…å ±ã‚’è¨­å®šã—ã¦ãã ã•ã„
 	virtual bool Init(void)
 	{
 		Name_="SampleFunction";
@@ -141,7 +141,7 @@ public:
 		return(true);
 	}
 
-	// ¥¤¥ó¥¿¡¼¥×¥ê¥¿
+	// ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
 	virtual string Function(const vector<string>& args)
 	{
 		string ret;
@@ -149,7 +149,7 @@ public:
 		return(ret);
 	}
 };
-// ¤³¤ì¤ÇÅĞÏ¿
+// ã“ã‚Œã§ç™»éŒ²
 INLINE_SCRIPT_REGIST(KIS_SampleFunction);
 #endif
 //---------------------------------------------------------------------------

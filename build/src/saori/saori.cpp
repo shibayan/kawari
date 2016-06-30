@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// SAORI ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹(ÈÆÍÑ)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// SAORI ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(æ±ç”¨)
 //
 //      Programed by Suikyo.
 //
-//  2002.04.15  Phase 8.0.0   ¤¨¤Ó¤µ¤ï¤µ¤ó¥Ğ¡¼¥¸¥ç¥ó¤ò»²¹Í¤ËÆ³Æş
+//  2002.04.15  Phase 8.0.0   ãˆã³ã•ã‚ã•ã‚“ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’å‚è€ƒã«å°å…¥
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -48,13 +48,13 @@ bool TBind::Query(const TPHMessage &request, TPHMessage &response){
 		request.Dump(logger.GetStream());
 	}
 
-	// ¥·¥ê¥¢¥é¥¤¥º
+	// ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
 	string reqstr=request.Serialize();
 
 	// Request
 	string resstr=module->Request(reqstr);
 
-	// ¥Ç¥·¥ê¥¢¥é¥¤¥º
+	// ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
 	response.Deserialize(resstr);
 
 	if (logger.Check(LOG_INFO)){
@@ -76,7 +76,7 @@ void TBind::Attach(void){
 
 	TPHMessage request, response;
 
-	// GET Version ¥Á¥§¥Ã¥¯
+	// GET Version ãƒã‚§ãƒƒã‚¯
 	request.SetStartline("GET Version SAORI/1.0");
 	request["Charset"]="Shift_JIS";
 	request["Sender"]="kawari";
@@ -104,9 +104,9 @@ TBind::~TBind(){
 	Detach();
 }
 //---------------------------------------------------------------------------
-// ¥â¥¸¥å¡¼¥ë¤ÎÅĞÏ¿
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ç™»éŒ²
 void TSaoriPark::RegisterModule(const string &aliasname, const string &path, const saori::LOADTYPE type){
-	// 2002/09/02 Â¿½Å¥í¡¼¥ÉÂĞºö suikyo@yk.rim.or.jp
+	// 2002/09/02 å¤šé‡ãƒ­ãƒ¼ãƒ‰å¯¾ç­– suikyo@yk.rim.or.jp
 	if (aliasmap.count(aliasname))
 		EraseModule(aliasname);
 	TBind *module=new TBind((*factory), logger, path, type);
@@ -115,7 +115,7 @@ void TSaoriPark::RegisterModule(const string &aliasname, const string &path, con
 	logger.GetStream(LOG_INFO) << "[SAORI] Registered \"" << aliasname << "\" = (" << path << ")" << endl;
 }
 //---------------------------------------------------------------------------
-// ¥â¥¸¥å¡¼¥ëÅĞÏ¿¤Îºï½ü
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ç™»éŒ²ã®å‰Šé™¤
 void TSaoriPark::EraseModule(const string &alias){
 	if (aliasmap.count(alias)){
 		TBind *module=aliasmap[alias];
@@ -127,7 +127,7 @@ void TSaoriPark::EraseModule(const string &alias){
 	}
 }
 //---------------------------------------------------------------------------
-// ¥â¥¸¥å¡¼¥ë¤òÆÀ¤ë
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’å¾—ã‚‹
 TBind * const TSaoriPark::GetModule(const string &alias) {
 	if (aliasmap.count(alias)){
 		return aliasmap[alias];
@@ -137,7 +137,7 @@ TBind * const TSaoriPark::GetModule(const string &alias) {
 	}
 }
 //---------------------------------------------------------------------------
-// ÅĞÏ¿ºÑ¤ß¥â¥¸¥å¡¼¥ëÌ¾¤Î¥ê¥¹¥È¤òÆÀ¤ë
+// ç™»éŒ²æ¸ˆã¿ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«åã®ãƒªã‚¹ãƒˆã‚’å¾—ã‚‹
 int TSaoriPark::ListModule(vector<string> &list)
 {
 	logger.GetStream(LOG_INFO) << "listmodule" << endl;
@@ -155,7 +155,7 @@ TSaoriPark::TSaoriPark(TKawariLogger &lgr) : logger(lgr) {
 	factory=new TModuleFactoryMaster(logger);
 }
 //---------------------------------------------------------------------------
-// Á´¥â¥¸¥å¡¼¥ë¤Î¥¢¥ó¥í¡¼¥É
+// å…¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰
 TSaoriPark::~TSaoriPark(){
 	for(map<string, TBind *>::iterator it=aliasmap.begin(); it!=aliasmap.end(); it++){
 		if (it->second){

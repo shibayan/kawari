@@ -1,29 +1,29 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// SAORI ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹(java¥â¥¸¥å¡¼¥ë)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// SAORI ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(javaãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«)
 //
 //      Programed by Suikyo.
 //
-//  2003.02.25  Phase 8.1.0   Æ³Æş
+//  2003.02.25  Phase 8.1.0   å°å…¥
 //
 //---------------------------------------------------------------------------
 /**
-	Java¤µ¤ª¤êÂĞ±ş¤Î¤¿¤á¤Ë¡¢JavaÂ¦¤ÇÉ¬Í×¤Ê¤â¤Î:
+	Javaã•ãŠã‚Šå¯¾å¿œã®ãŸã‚ã«ã€Javaå´ã§å¿…è¦ãªã‚‚ã®:
 	- VM
-	  o Java(TM)2°Ê¹ß
-	  o ²¿¤é¤«¤ÎÊıË¡¤Çµ¯Æ°ºÑ¤ßVM¹½Â¤ÂÎ¤Ø¤Î¥İ¥¤¥ó¥¿¤¬ÅÏ¤µ¤ì¤Æ¤¤¤ë
-	- ¥Õ¥¡¥¯¥È¥ê¥¯¥é¥¹
-	  o public¤Ê°ú¿ô¤Ê¤·¥³¥ó¥¹¥È¥é¥¯¥¿¤ò»ı¤Ä
-	  o public Object createModule(byte[] name)¥á¥½¥Ã¥É¤ò»ı¤Ä
-	  o ¥·¥¹¥Æ¥à¥×¥í¥Ñ¥Æ¥£"jp.nanika.saoriinterface"¤Ë´°Á´¸ÂÄê¥¯¥é¥¹Ì¾¤òÅĞÏ¿
+	  o Java(TM)2ä»¥é™
+	  o ä½•ã‚‰ã‹ã®æ–¹æ³•ã§èµ·å‹•æ¸ˆã¿VMæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãŒæ¸¡ã•ã‚Œã¦ã„ã‚‹
+	- ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚¯ãƒ©ã‚¹
+	  o publicãªå¼•æ•°ãªã—ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã‚’æŒã¤
+	  o public Object createModule(byte[] name)ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æŒã¤
+	  o ã‚·ã‚¹ãƒ†ãƒ ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£"jp.nanika.saoriinterface"ã«å®Œå…¨é™å®šã‚¯ãƒ©ã‚¹åã‚’ç™»éŒ²
         ex) net/sf/kawari/SaoriFactory
-	- ¥â¥¸¥å¡¼¥ë¥¯¥é¥¹
-	  o ¥Õ¥¡¥¯¥È¥ê¤ÎcreateModule¤Ë¤è¤Ã¤ÆÀ¸À®¤µ¤ì¤ë
+	- ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹
+	  o ãƒ•ã‚¡ã‚¯ãƒˆãƒªã®createModuleã«ã‚ˆã£ã¦ç”Ÿæˆã•ã‚Œã‚‹
 	  o public boolean load(byte[] libpath);
 	    public boolean unload(void);
 	    public byte[] request(byte[] reqstr);
-	    ¤Î»°¤Ä¤Î¥á¥½¥Ã¥É¤ò»ı¤Ä
+	    ã®ä¸‰ã¤ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’æŒã¤
 	*/
 //---------------------------------------------------------------------------
 #ifndef SAORI_JAVA_H
@@ -40,27 +40,27 @@ namespace saori{
 //---------------------------------------------------------------------------
 class TModuleFactoryJava : public IModuleFactory{
 protected:
-	// ¥Õ¥¡¥¯¥È¥ê¤Ø¤Î¥°¥í¡¼¥Ğ¥ë»²¾È
+	// ãƒ•ã‚¡ã‚¯ãƒˆãƒªã¸ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§
 	jclass cls_SaoriFactory;
 	jobject obj_SaoriFactory;
 
-	// ¥Õ¥¡¥¯¥È¥ê¥¯¥é¥¹¤Î¥á¥½¥Ã¥É¡¢
-	// "java.lang.Object createModule(java.lang.String name)"¤Î¥á¥½¥Ã¥ÉID
-	// ¥·¥°¥Í¥Á¥ã¤Ï "(Ljava/lang/String;)Ljava/lang/Object"
+	// ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚¯ãƒ©ã‚¹ã®ãƒ¡ã‚½ãƒƒãƒ‰ã€
+	// "java.lang.Object createModule(java.lang.String name)"ã®ãƒ¡ã‚½ãƒƒãƒ‰ID
+	// ã‚·ã‚°ãƒãƒãƒ£ã¯ "(Ljava/lang/String;)Ljava/lang/Object"
 	jmethodID mid_createModule;
 
 public:
-	// ¥â¥¸¥å¡¼¥ë¤Î¸¡º÷¤ÈÀ¸À®
-	// Ìá¤êÃÍ: À¸À®¤ËÀ®¸ù¤·¤¿¾ì¹ç¡¢¥¤¥ó¥¹¥¿¥ó¥¹¡£¼ºÇÔ¤·¤¿¾ì¹ç¡¢NULL¡£
+	// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®æ¤œç´¢ã¨ç”Ÿæˆ
+	// æˆ»ã‚Šå€¤: ç”Ÿæˆã«æˆåŠŸã—ãŸå ´åˆã€ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã€‚å¤±æ•—ã—ãŸå ´åˆã€NULLã€‚
 	virtual TModule *CreateModule(const std::string &path);
 
-	// ¥â¥¸¥å¡¼¥ë¤Î´°Á´ÇË´ş
+	// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å®Œå…¨ç ´æ£„
 	virtual void DeleteModule(TModule *module);
 
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TModuleFactoryJava(class TKawariLogger &lgr);
 
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TModuleFactoryJava(void);
 
 	friend class TModuleJava;
@@ -68,7 +68,7 @@ public:
 //---------------------------------------------------------------------------
 class TModuleJava : public TModule{
 public:
-	// ½é´ü²½
+	// åˆæœŸåŒ–
 	virtual bool Initialize(void);
 	// SAORI/1.0 Load
 	virtual bool Load(void);
@@ -80,15 +80,15 @@ public:
 	virtual ~TModuleJava();
 
 protected:
-	// SAORI_HANDLE¤Ï¡¢¤µ¤ª¤ê¥ª¥Ö¥¸¥§¥¯¥È¼ÂÂÎ¤Ø¤Î¥°¥í¡¼¥Ğ¥ë»²¾È
+	// SAORI_HANDLEã¯ã€ã•ãŠã‚Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå®Ÿä½“ã¸ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§
 	TModuleJava(TModuleFactoryJava &fac, const std::string &p, SAORI_HANDLE handle)
 		: TModule(fac, p, handle){}
 
-	// ¤µ¤ª¤ê¤Ø¤Î¥°¥í¡¼¥Ğ¥ë»²¾È
+	// ã•ãŠã‚Šã¸ã®ã‚°ãƒ­ãƒ¼ãƒãƒ«å‚ç…§
 	jclass cls_saori;
 	jobject obj_saori;
 
-	// ¤µ¤ª¤ê¥¯¥é¥¹¤Î³Æ¥á¥½¥Ã¥ÉID
+	// ã•ãŠã‚Šã‚¯ãƒ©ã‚¹ã®å„ãƒ¡ã‚½ãƒƒãƒ‰ID
 	// boolean load(byte[] libpath)		"([B)Z"
 	// boolean unload(void);			"(V)Z"
 	// byte[] request(byte[] reqstr);	"([B)[B"

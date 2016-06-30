@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// Ãæ´Ö¥³¡¼¥É(½¸¹ç±é»»¼°)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰(é›†åˆæ¼”ç®—å¼)
 //
 //      Programed by Suikyo.
 //
-//  2002.04.18  Phase 8.0.0   ½¸¹ç±é»»¼°Ãæ´Ö¥³¡¼¥ÉºîÀ®
+//  2002.04.18  Phase 8.0.0   é›†åˆæ¼”ç®—å¼ä¸­é–“ã‚³ãƒ¼ãƒ‰ä½œæˆ
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -17,9 +17,9 @@
 //---------------------------------------------------------------------------
 using namespace std;
 //---------------------------------------------------------------------------
-// ½¸¹ç±é»»¼°Ãæ´Ö¥³¡¼¥É¤Î´ğÄì¥¯¥é¥¹
+// é›†åˆæ¼”ç®—å¼ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 
-// ¼Â¹Ô
+// å®Ÿè¡Œ
 string TKVMSetCode_base::Run(TKawariVM &vm){
 	set<TWordID> wordset;
 	Evaluate(vm, wordset);
@@ -37,9 +37,9 @@ string TKVMSetCode_base::Run(TKawariVM &vm){
 }
 
 //---------------------------------------------------------------------------
-// ½¸¹ç±é»»¼°Æó¹à±é»»»Ò¥³¡¼¥É¤Î´ğÄì¥¯¥é¥¹
+// é›†åˆæ¼”ç®—å¼äºŒé …æ¼”ç®—å­ã‚³ãƒ¼ãƒ‰ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMSetBinaryCode_base::Less(const TKVMCode_base& r_) const{
 	const TKVMSetBinaryCode_base &r=dynamic_cast<const TKVMSetBinaryCode_base &>(r_);
 	if(TKVMCode_baseP_Less()(lhs, r.lhs)) return (true);
@@ -48,12 +48,12 @@ bool TKVMSetBinaryCode_base::Less(const TKVMCode_base& r_) const{
 	if(TKVMCode_baseP_Less()(r.rhs, rhs)) return (false);
 	return (false);
 }
-// µÕ¥³¥ó¥Ñ¥¤¥ë
+// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 string TKVMSetBinaryCode_base::DisCompile(void) const{
 	if (!(lhs&&rhs)) return "";
 	return lhs->DisCompile()+GetOperator()+rhs->DisCompile();
 }
-// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 ostream &TKVMSetBinaryCode_base::Debug(ostream& os, unsigned int level) const{
 	if (lhs) lhs->Debug(os, level+1);
 	DebugIndent(os, level) << GetOperator() << endl;
@@ -62,9 +62,9 @@ ostream &TKVMSetBinaryCode_base::Debug(ostream& os, unsigned int level) const{
 }
 
 //---------------------------------------------------------------------------
-// ÏÂ
+// å’Œ
 
-// ¼°É¾²Á
+// å¼è©•ä¾¡
 void TKVMSetCodePLUS::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 	set<TWordID> l;
 	set<TWordID> r;
@@ -95,9 +95,9 @@ void TKVMSetCodePLUS::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 }
 
 //---------------------------------------------------------------------------
-// º¹
+// å·®
 
-// ¼°É¾²Á
+// å¼è©•ä¾¡
 void TKVMSetCodeMINUS::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 	set<TWordID> l;
 	set<TWordID> r;
@@ -124,9 +124,9 @@ void TKVMSetCodeMINUS::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 }
 
 //---------------------------------------------------------------------------
-// ÀÑ
+// ç©
 
-// ¼°É¾²Á
+// å¼è©•ä¾¡
 void TKVMSetCodeAND::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 	set<TWordID> l;
 	set<TWordID> r;
@@ -153,7 +153,7 @@ void TKVMSetCodeAND::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 //---------------------------------------------------------------------------
 // Set Expression Word
 
-// ¼°É¾²Á
+// å¼è©•ä¾¡
 void TKVMSetCodeWord::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 	string entryname=code->Run(vm);
 	TEntry entry=vm.Dictionary().GetEntry(entryname);
@@ -161,7 +161,7 @@ void TKVMSetCodeWord::Evaluate(TKawariVM &vm, set<TWordID> &wordcol){
 	vm.Dictionary().GetWordCollection(entry, wordcol);
 }
 
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMSetCodeWord::Less(const TKVMCode_base& r_) const{
 	const TKVMSetCodeWord &r=dynamic_cast<const TKVMSetCodeWord &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
@@ -169,46 +169,46 @@ bool TKVMSetCodeWord::Less(const TKVMCode_base& r_) const{
 	return false;
 }
 
-// ¤â¤·code¤¬TKVMCodeIDString¤Ê¤é¤Ğ¡¢¤½¤ÎÊ¸»úÎó¤òÊÖ¤¹
+// ã‚‚ã—codeãŒTKVMCodeIDStringãªã‚‰ã°ã€ãã®æ–‡å­—åˆ—ã‚’è¿”ã™
 const TKVMCodeIDString *TKVMSetCodeWord::GetIfPVW(void) const{
 	const TKVMCodeIDString *cs=dynamic_cast<const TKVMCodeIDString *>(code);
 	return cs;
 }
 //-------------------------------------------------------------------------
-// ¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤· ( '${' EntryExpr '}' )
+// ã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã— ( '${' EntryExpr '}' )
 
-// ¼Â¹Ô
+// å®Ÿè¡Œ
 string TKVMCodeEntryCall::Run(TKawariVM &vm){
 	string retstr=code->Run(vm);
 	vm.Dictionary().PushToHistory(retstr);
 	return retstr;
 }
-// µÕ¥³¥ó¥Ñ¥¤¥ë
+// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 string TKVMCodeEntryCall::DisCompile(void) const{
 	return "${"+code->DisCompile()+"}";
 }
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMCodeEntryCall::Less(const TKVMCode_base& r_) const{
 	const TKVMCodeEntryCall &r=dynamic_cast<const TKVMCodeEntryCall &>(r_);
 	if(TKVMCode_baseP_Less()(code, r.code)) return (true);
 	if(TKVMCode_baseP_Less()(r.code, code)) return (false);
 	return false;
 }
-// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 ostream &TKVMCodeEntryCall::Debug(ostream& os, unsigned int level) const{
 	DebugIndent(os, level) << "EntryCall(" << endl;
 	code->Debug(os, level+1);
 	return DebugIndent(os, level) << ")" << endl;
 }
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKVMCodeEntryCall::~TKVMCodeEntryCall(){
 	if (code) delete code;
 }
 
 //---------------------------------------------------------------------------
-// ½ã¿è²¾ÁÛÃ±¸ì(ÆÃ¼ì¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤·) ( '${' Literal '}' )
+// ç´”ç²‹ä»®æƒ³å˜èª(ç‰¹æ®Šã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã—) ( '${' Literal '}' )
 
-// ¼Â¹Ô
+// å®Ÿè¡Œ
 string TKVMCodePVW::Run(class TKawariVM &vm){
 	TEntry eid=vm.Dictionary().GetEntry(entry);
 	eid.AssertIfEmpty(entry);
@@ -225,16 +225,16 @@ string TKVMCodePVW::Run(class TKawariVM &vm){
 
 	return retstr;
 }
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMCodePVW::Less(const TKVMCode_base& r_) const{
 	const TKVMCodePVW &r=dynamic_cast<const TKVMCodePVW &>(r_);
 	return (entry < r.entry);
 }
-// µÕ¥³¥ó¥Ñ¥¤¥ë
+// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 string TKVMCodePVW::DisCompile(void) const{
 	return "${"+entry+"}";
 }
-// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 ostream &TKVMCodePVW::Debug(ostream& os, unsigned int level) const{
 	DebugIndent(os, level) << "EntryCall[PVW](" << endl;
 	DebugIndent(os, level+1) << entry << endl;
@@ -242,9 +242,9 @@ ostream &TKVMCodePVW::Debug(ostream& os, unsigned int level) const{
 }
 
 //---------------------------------------------------------------------------
-// ÍúÎò»²¾È ( '${' Integer '}' )
+// å±¥æ­´å‚ç…§ ( '${' Integer '}' )
 
-// ¼Â¹Ô
+// å®Ÿè¡Œ
 string TKVMCodeHistoryCall::Run(class TKawariVM &vm){
 	string retstr=vm.Dictionary().GetHistory(index);
 
@@ -252,16 +252,16 @@ string TKVMCodeHistoryCall::Run(class TKawariVM &vm){
 
 	return retstr;
 }
-// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 bool TKVMCodeHistoryCall::Less(const TKVMCode_base& r_) const{
 	const TKVMCodeHistoryCall &r=dynamic_cast<const TKVMCodeHistoryCall &>(r_);
 	return (index<r.index);
 }
-// µÕ¥³¥ó¥Ñ¥¤¥ë
+// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 string TKVMCodeHistoryCall::DisCompile(void) const{
 	return "${"+IntToString(index)+"}";
 }
-// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 ostream &TKVMCodeHistoryCall::Debug(ostream& os, unsigned int level) const{
 	DebugIndent(os, level) << "HistoryCall(" << endl;
 	DebugIndent(os, level+1) << index << endl;

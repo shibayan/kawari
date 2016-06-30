@@ -1,6 +1,6 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// TPHMessage - µ¶HTTP¥á¥Ã¥»¡¼¥¸ -
+// TPHMessage - å½HTTPãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ -
 //
 //      Programed by Suikyo.
 //
@@ -19,19 +19,19 @@ class TPHMessage : public TMMap<std::string, std::string> {
 private:
 	std::string startline;
 public:
-	// ¥¹¥¿¡¼¥È¥é¥¤¥ó¤ÎÀßÄê
+	// ã‚¹ã‚¿ãƒ¼ãƒˆãƒ©ã‚¤ãƒ³ã®è¨­å®š
 	void SetStartline(const std::string &line) { startline=line; }
 
-	// ¥¹¥¿¡¼¥È¥é¥¤¥ó¤òÆÀ¤ë
+	// ã‚¹ã‚¿ãƒ¼ãƒˆãƒ©ã‚¤ãƒ³ã‚’å¾—ã‚‹
 	std::string GetStartline(void) const { return startline; }
 
-	// ¥·¥ê¥¢¥é¥¤¥º
+	// ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
 	std::string Serialize(void) const;
 
-	// ¥Ç¥·¥ê¥¢¥é¥¤¥º
+	// ãƒ‡ã‚·ãƒªã‚¢ãƒ©ã‚¤ã‚º
 	void Deserialize(const std::string &mes);
 
-	// ¥À¥ó¥×
+	// ãƒ€ãƒ³ãƒ—
 	void Dump(std::ostream &os) const;
 };
 //---------------------------------------------------------------------------

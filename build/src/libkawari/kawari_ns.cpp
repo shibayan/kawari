@@ -1,14 +1,14 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// Ì¾Á°¶õ´Ö
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// åå‰ç©ºé–“
 //
 //      Programed by Suikyo
 //
-//  2002.05.12  Phase 8.0.0   Ê¬Î¥
-//  2003.11.17                FindAllSubEntry¤Ë¥¨¥ó¥È¥ê¼Âºß¥Á¥§¥Ã¥¯¤µ¤»¤ë
-//  2003.12.02  Phase 8.2.0   FindAllSubEntry(Ä¾²¼¤è¤ê¿¼¤¤¥µ¥Ö¥¨¥ó¥È¥êÂĞºö)
-//  2005.10.28  Phase 8.2.4   RFind(¥¤¥ó¥Ç¥Ã¥¯¥¹¤Î¥Ç¥¯¥ê¥á¥ó¥È½ç½ø¤ò½¤Àµ)
+//  2002.05.12  Phase 8.0.0   åˆ†é›¢
+//  2003.11.17                FindAllSubEntryã«ã‚¨ãƒ³ãƒˆãƒªå®Ÿåœ¨ãƒã‚§ãƒƒã‚¯ã•ã›ã‚‹
+//  2003.12.02  Phase 8.2.0   FindAllSubEntry(ç›´ä¸‹ã‚ˆã‚Šæ·±ã„ã‚µãƒ–ã‚¨ãƒ³ãƒˆãƒªå¯¾ç­–)
+//  2005.10.28  Phase 8.2.4   RFind(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆé †åºã‚’ä¿®æ­£)
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -20,15 +20,15 @@ using namespace kawari_log;
 //---------------------------------------------------------------------------
 using namespace std;
 //---------------------------------------------------------------------------
-// ÈÏ°Ï³°¤Î¥¤¥ó¥Ç¥Ã¥¯¥¹
+// ç¯„å›²å¤–ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 const unsigned int TEntry::NPos=UINT_MAX;
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥ê¤òÀ¸À®¤¹¤ë
-// ´û¤Ë¥¨¥ó¥È¥ê¤¬Â¸ºß¤¹¤ë¾ì¹ç¤Ï¡¢À¸À®¤»¤º¤ËID¤òÊÖ¤¹
-// Ìá¤êÃÍ : À¸À®¤·¤¿¥¨¥ó¥È¥ê¤ÎID
+// ã‚¨ãƒ³ãƒˆãƒªã‚’ç”Ÿæˆã™ã‚‹
+// æ—¢ã«ã‚¨ãƒ³ãƒˆãƒªãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ã€ç”Ÿæˆã›ãšã«IDã‚’è¿”ã™
+// æˆ»ã‚Šå€¤ : ç”Ÿæˆã—ãŸã‚¨ãƒ³ãƒˆãƒªã®ID
 TEntry TNameSpace::Create(const string& entry)
 {
-	// "."¤Ï¥ë¡¼¥È¤ò¼¨¤¹¡£
+	// "."ã¯ãƒ«ãƒ¼ãƒˆã‚’ç¤ºã™ã€‚
 	if(entry==".") return(TEntry(this,0));
 
 	vector<string> entryname_node;
@@ -43,7 +43,7 @@ TEntry TNameSpace::Create(const string& entry)
 
 		id=0;
 		if (EntryCollection.Insert(entryname,&id)){
-			// ¿·µ¬ÄÉ²Ã»ş¤Ë¸Â¤ê¡£
+			// æ–°è¦è¿½åŠ æ™‚ã«é™ã‚Šã€‚
 			ParentEntry[id]=parent;
 			SubEntry.insert(pair<TEntryID,TEntryID>(parent,id));
 		}
@@ -53,7 +53,7 @@ TEntry TNameSpace::Create(const string& entry)
 	return(TEntry(this,id));
 }
 //---------------------------------------------------------------------------
-// Á´¤Æ¤Î¥¨¥ó¥È¥ê¤òºï½ü¤¹¤ë
+// å…¨ã¦ã®ã‚¨ãƒ³ãƒˆãƒªã‚’å‰Šé™¤ã™ã‚‹
 void TNameSpace::ClearAllEntry(void)
 {
 	vector<TEntry> entrycol;
@@ -63,8 +63,8 @@ void TNameSpace::ClearAllEntry(void)
 	}
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÌ¾¤òÁ´¤ÆÎóµó
-// Ìá¤êÃÍ : ¥¨¥ó¥È¥ê¤Î¸Ä¿ô
+// ã‚¨ãƒ³ãƒˆãƒªåã‚’å…¨ã¦åˆ—æŒ™
+// æˆ»ã‚Šå€¤ : ã‚¨ãƒ³ãƒˆãƒªã®å€‹æ•°
 unsigned int TNameSpace::FindAllEntry(vector<TEntry> &entrycol)
 {
 	TDictionary::const_iterator it;
@@ -80,7 +80,7 @@ unsigned int TNameSpace::FindAllEntry(vector<TEntry> &entrycol)
 	return(n);
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÌ¾¤ò¡Ö.¡×¤ÇÊ¬²ò¤¹¤ë
+// ã‚¨ãƒ³ãƒˆãƒªåã‚’ã€Œ.ã€ã§åˆ†è§£ã™ã‚‹
 void TNameSpace::SplitEntryName(const string& entryname,vector<string> &entryname_node)
 {
 	string::size_type pos=0;
@@ -99,8 +99,8 @@ void TNameSpace::SplitEntryName(const string& entryname,vector<string> &entrynam
 	return;
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥ê¤ÎÃ±¸ì¿ô¤ò¼èÆÀ
-// Ìá¤êÃÍ : Ã±¸ì¤Î¸Ä¿ô
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªã®å˜èªæ•°ã‚’å–å¾—
+// æˆ»ã‚Šå€¤ : å˜èªã®å€‹æ•°
 unsigned int TEntry::Size(void) const
 {
 	if(!IsValid()) return(0);
@@ -109,20 +109,20 @@ unsigned int TEntry::Size(void) const
 	return(it->second.size());
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥ê¤ò¶õ¤Ë¤¹¤ë
-// ¥á¥â¥ê¤Ë¶õ¥¨¥ó¥È¥ê¤ÈÃ±¸ì¤¬»Ä¤ë
-// Ìá¤êÃÍ : À®¸ù¤Çtrue
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªã‚’ç©ºã«ã™ã‚‹
+// ãƒ¡ãƒ¢ãƒªã«ç©ºã‚¨ãƒ³ãƒˆãƒªã¨å˜èªãŒæ®‹ã‚‹
+// æˆ»ã‚Šå€¤ : æˆåŠŸã§true
 bool TEntry::Clear(void)
 {
 	if((!IsValid())||(ns->Dictionary.count(entry)==0)) return(false);
 	if(AssertIfProtected()) return(false);
 
-	// Á´Ã±¸ì¤ËÂĞ¤·¤Æ¡Ä¡Ä
+	// å…¨å˜èªã«å¯¾ã—ã¦â€¦â€¦
 	for(vector<TWordID>::iterator it=ns->Dictionary[entry].begin();it!=ns->Dictionary[entry].end();it++) {
 		TWordID wid=(*it);
-		// µÕ°ú¤­¼­½ñ¤Î¾Ãµî
+		// é€†å¼•ãè¾æ›¸ã®æ¶ˆå»
 		ns->ReverseDictionary[wid].erase(ns->ReverseDictionary[wid].lower_bound(entry));
-		// GC¤ËÅĞÏ¿
+		// GCã«ç™»éŒ²
 		ns->gc->MarkWordForGC(wid);
 	}
 
@@ -131,8 +131,8 @@ bool TEntry::Clear(void)
 	return(true);
 }
 //---------------------------------------------------------------------------
-// ¤³¤Î¥¨¥ó¥È¥ê°Ê²¼¤Î¥¨¥ó¥È¥ê¤òÁ´¤Æ¶õ¤Ë¤¹¤ë
-// ¥á¥â¥ê¤Ë¶õ¥¨¥ó¥È¥ê¤ÈÃ±¸ì¤¬»Ä¤Ã¤Æ¤âÎÉ¤¤
+// ã“ã®ã‚¨ãƒ³ãƒˆãƒªä»¥ä¸‹ã®ã‚¨ãƒ³ãƒˆãƒªã‚’å…¨ã¦ç©ºã«ã™ã‚‹
+// ãƒ¡ãƒ¢ãƒªã«ç©ºã‚¨ãƒ³ãƒˆãƒªã¨å˜èªãŒæ®‹ã£ã¦ã‚‚è‰¯ã„
 void TEntry::ClearTree(void)
 {
 	if(!IsValid()) return;
@@ -144,7 +144,7 @@ void TEntry::ClearTree(void)
 	if (IsValid()) Clear();
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êºÇ¸åÈø¤Ø¤ÎÃ±¸ì¤ÎÄÉ²Ã
+// ã‚¨ãƒ³ãƒˆãƒªæœ€å¾Œå°¾ã¸ã®å˜èªã®è¿½åŠ 
 void TEntry::Push(TWordID id)
 {
 	if((!IsValid())||(id==0)) return;
@@ -153,7 +153,7 @@ void TEntry::Push(TWordID id)
 	ns->ReverseDictionary[id].insert(entry);
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êºÇ¸åÈø¤ÎÃ±¸ì¤Îºï½ü
+// ã‚¨ãƒ³ãƒˆãƒªæœ€å¾Œå°¾ã®å˜èªã®å‰Šé™¤
 TWordID TEntry::Pop(void)
 {
 	if((!IsValid())||(ns->Dictionary.count(entry)==0)) return(0);
@@ -161,14 +161,14 @@ TWordID TEntry::Pop(void)
 	TWordID id=ns->Dictionary[entry].back();
 	ns->Dictionary[entry].pop_back();
 
-	// µÕ°ú¤­¼­½ñ¤Î¾Ãµî
+	// é€†å¼•ãè¾æ›¸ã®æ¶ˆå»
 	ns->ReverseDictionary[id].erase(ns->ReverseDictionary[id].lower_bound(entry));
-	// GC¤ËÅĞÏ¿
+	// GCã«ç™»éŒ²
 	ns->gc->MarkWordForGC(id);
 	return id;
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÅÓÃæ¤Ø¤ÎÃ±¸ì¤ÎÁŞÆş
+// ã‚¨ãƒ³ãƒˆãƒªé€”ä¸­ã¸ã®å˜èªã®æŒ¿å…¥
 void TEntry::Insert(unsigned int pos,TWordID id)
 {
 	if((!IsValid())||(id==0)) return;
@@ -179,10 +179,10 @@ void TEntry::Insert(unsigned int pos,TWordID id)
 	ns->ReverseDictionary[id].insert(entry);
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÅÓÃæ¤ÎÃ±¸ì¤Îºï½ü
+// ã‚¨ãƒ³ãƒˆãƒªé€”ä¸­ã®å˜èªã®å‰Šé™¤
 void TEntry::Erase(unsigned int st,unsigned int end)
 {
-	// st, ed¤Ï¿®ÍÑ¤Ç¤­¤Ê¤¤¤³¤È¤ËÃí°Õ!
+	// st, edã¯ä¿¡ç”¨ã§ããªã„ã“ã¨ã«æ³¨æ„!
 	if((!IsValid())||(st>end)||(st==NPos)) return;
 	if(AssertIfProtected()) return;
 
@@ -194,18 +194,18 @@ void TEntry::Erase(unsigned int st,unsigned int end)
 	if(end!=NPos) itend=ns->Dictionary[entry].begin()+end+1;
 	 else itend=ns->Dictionary[entry].end();
 
-	// µÕ°ú¤­¼­½ñ¤Î¾Ãµî
+	// é€†å¼•ãè¾æ›¸ã®æ¶ˆå»
 	for(vector<TWordID>::iterator it=itst;it!=itend;it++) {
 		TWordID id=*it;
 		ns->ReverseDictionary[id].erase(ns->ReverseDictionary[id].lower_bound(entry));
-		// GC¤ËÅĞÏ¿
+		// GCã«ç™»éŒ²
 		ns->gc->MarkWordForGC(id);
 	}
 
 	ns->Dictionary[entry].erase(itst,itend);
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÅÓÃæ¤ÎÃ±¸ì¤ÎÆş¤ìÂØ¤¨
+// ã‚¨ãƒ³ãƒˆãƒªé€”ä¸­ã®å˜èªã®å…¥ã‚Œæ›¿ãˆ
 TWordID TEntry::Replace(unsigned int pos,TWordID id)
 {
 	if((!IsValid())||(id==0)) return(0);
@@ -213,10 +213,10 @@ TWordID TEntry::Replace(unsigned int pos,TWordID id)
 
 	if(ns->Dictionary[entry].size()<pos) return(0);
 
-	// µÕ°ú¤­¼­½ñ¤Î¾Ãµî
+	// é€†å¼•ãè¾æ›¸ã®æ¶ˆå»
 	TWordID oldid=ns->Dictionary[entry][pos];
 	ns->ReverseDictionary[oldid].erase(ns->ReverseDictionary[oldid].lower_bound(entry));
-	// GC¤ËÅĞÏ¿
+	// GCã«ç™»éŒ²
 	ns->gc->MarkWordForGC(oldid);
 
 	ns->Dictionary[entry][pos]=id;
@@ -225,8 +225,8 @@ TWordID TEntry::Replace(unsigned int pos,TWordID id)
 	return(oldid);
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥êÅÓÃæ¤ÎÃ±¸ì¤ÎÆş¤ìÂØ¤¨(¥¤¥ó¥Ç¥Ã¥¯¥¹¤¬ÈÏ°Ï³°¤Î¾ì¹ç¡¢id2¤òÄÉ²Ã)
-// Ìá¤êÃÍ : ºï½ü¤µ¤ì¤¿Ã±¸ì
+// ã‚¨ãƒ³ãƒˆãƒªé€”ä¸­ã®å˜èªã®å…¥ã‚Œæ›¿ãˆ(ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒç¯„å›²å¤–ã®å ´åˆã€id2ã‚’è¿½åŠ )
+// æˆ»ã‚Šå€¤ : å‰Šé™¤ã•ã‚ŒãŸå˜èª
 TWordID TEntry::Replace2(unsigned int pos,TWordID id,TWordID id2)
 {
 	if((!IsValid())||(id==0)||(AssertIfProtected())) return(0);
@@ -242,8 +242,8 @@ TWordID TEntry::Replace2(unsigned int pos,TWordID id,TWordID id2)
 	}
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥ê¤Î»ØÄê¤·¤¿½çÈÖ(0¥ª¥ê¥¸¥ó)¤ÎÃ±¸ì¤òÊÖ¤¹
-// Ìá¤êÃÍ : Ã±¸ì¤ÎID
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªã®æŒ‡å®šã—ãŸé †ç•ª(0ã‚ªãƒªã‚¸ãƒ³)ã®å˜èªã‚’è¿”ã™
+// æˆ»ã‚Šå€¤ : å˜èªã®ID
 TWordID TEntry::Index(unsigned int index) const
 {
 	if(!IsValid()) return(0);
@@ -254,8 +254,8 @@ TWordID TEntry::Index(unsigned int index) const
 	return(it->second[index]);
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥êÆâ¤«¤é»ØÄê¤·¤¿Ã±¸ì¤ò¸¡º÷
-// Ìá¤êÃÍ : ¥¤¥ó¥Ç¥Ã¥¯¥¹(¸«¤Ä¤«¤é¤Ê¤±¤ì¤ĞNPos)
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªå†…ã‹ã‚‰æŒ‡å®šã—ãŸå˜èªã‚’æ¤œç´¢
+// æˆ»ã‚Šå€¤ : ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°NPos)
 unsigned int TEntry::Find(TWordID id,unsigned int pos) const
 {
 	if(!IsValid()) return(0);
@@ -269,8 +269,8 @@ unsigned int TEntry::Find(TWordID id,unsigned int pos) const
 	return(NPos);
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥êÆâ¤«¤é»ØÄê¤·¤¿Ã±¸ì¤ò¸¡º÷(µÕ½ç)
-// Ìá¤êÃÍ : ¥¤¥ó¥Ç¥Ã¥¯¥¹(¸«¤Ä¤«¤é¤Ê¤±¤ì¤ĞNPos)
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªå†…ã‹ã‚‰æŒ‡å®šã—ãŸå˜èªã‚’æ¤œç´¢(é€†é †)
+// æˆ»ã‚Šå€¤ : ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°NPos)
 unsigned int TEntry::RFind(TWordID id,unsigned int pos) const
 {
 	if(!IsValid()) return(0);
@@ -287,8 +287,8 @@ unsigned int TEntry::RFind(TWordID id,unsigned int pos) const
 	return(NPos);
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥ê¤ÎÃ±¸ì¤òÁ´¤ÆÎóµó
-// Ìá¤êÃÍ : Ã±¸ì¤Î¸Ä¿ô
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªã®å˜èªã‚’å…¨ã¦åˆ—æŒ™
+// æˆ»ã‚Šå€¤ : å˜èªã®å€‹æ•°
 unsigned int TEntry::FindAll(vector<TWordID> &wordcol) const
 {
 	if(!IsValid()) return(0);
@@ -300,12 +300,12 @@ unsigned int TEntry::FindAll(vector<TWordID> &wordcol) const
 	return(it->second.size());
 }
 //---------------------------------------------------------------------------
-// ¥µ¥Ö¥¨¥ó¥È¥êID¤òÁ´¤ÆÎóµó
-// Ìá¤êÃÍ : ¥¨¥ó¥È¥ê¤Î¸Ä¿ô
+// ã‚µãƒ–ã‚¨ãƒ³ãƒˆãƒªIDã‚’å…¨ã¦åˆ—æŒ™
+// æˆ»ã‚Šå€¤ : ã‚¨ãƒ³ãƒˆãƒªã®å€‹æ•°
 unsigned int TEntry::FindAllSubEntry(vector<TEntry> &entrycol) const
 {
 //	if(!IsValid()) return(0);
-	// entry==0¤Î»ş¤Ï¥ë¡¼¥ÈÄ¾²¼¤òÃµ¤¹
+	// entry==0ã®æ™‚ã¯ãƒ«ãƒ¼ãƒˆç›´ä¸‹ã‚’æ¢ã™
 	typedef multimap<TEntryID,TEntryID>::const_iterator T;
 	pair<T,T> range=ns->SubEntry.equal_range(entry);
 	unsigned int n=0;
@@ -317,7 +317,7 @@ unsigned int TEntry::FindAllSubEntry(vector<TEntry> &entrycol) const
 			entrycol.push_back(current);
 			n++;
 		}else if(current.FindTree(dmyentrycol)){
-			// ¹¹¤Ë²¼¤Î³¬ÁØ¤Ë(¥µ¥Ö)+¥¨¥ó¥È¥ê¤¬¤¢¤ì¤ĞÀ¸¤­¤Æ¤¤¤ë¤³¤È¤Ë¤¹¤ë
+			// æ›´ã«ä¸‹ã®éšå±¤ã«(ã‚µãƒ–)+ã‚¨ãƒ³ãƒˆãƒªãŒã‚ã‚Œã°ç”Ÿãã¦ã„ã‚‹ã“ã¨ã«ã™ã‚‹
 			entrycol.push_back(current);
 			n++;
 		}
@@ -326,10 +326,10 @@ unsigned int TEntry::FindAllSubEntry(vector<TEntry> &entrycol) const
 	return(n);
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥êÌ¾¤«¤é»Ï¤Ş¤ë¥¨¥ó¥È¥êID¤òÁ´¤ÆÎóµó
-// "."¤Ï¥ë¡¼¥È¤ò¼¨¤¹¡£
-// ¶õ¤Î¥¨¥ó¥È¥ê¤ÏÌµ»ë
-// Ìá¤êÃÍ : ¥¨¥ó¥È¥ê¤Î¸Ä¿ô
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªåã‹ã‚‰å§‹ã¾ã‚‹ã‚¨ãƒ³ãƒˆãƒªIDã‚’å…¨ã¦åˆ—æŒ™
+// "."ã¯ãƒ«ãƒ¼ãƒˆã‚’ç¤ºã™ã€‚
+// ç©ºã®ã‚¨ãƒ³ãƒˆãƒªã¯ç„¡è¦–
+// æˆ»ã‚Šå€¤ : ã‚¨ãƒ³ãƒˆãƒªã®å€‹æ•°
 unsigned int TNameSpace::FindTree(TEntryID entry, vector<TEntry> &entrycol)
 {
 //	if(!IsValid()) return(0);
@@ -350,10 +350,10 @@ unsigned int TNameSpace::FindTree(TEntryID entry, vector<TEntry> &entrycol)
 	return(n);
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥êÌ¾¤«¤é»Ï¤Ş¤ë¥¨¥ó¥È¥êID¤òÁ´¤ÆÎóµó
-// "."¤Ï¥ë¡¼¥È¤ò¼¨¤¹¡£
-// ¶õ¤Î¥¨¥ó¥È¥ê¤ÏÌµ»ë
-// Ìá¤êÃÍ : ¥¨¥ó¥È¥ê¤Î¸Ä¿ô
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªåã‹ã‚‰å§‹ã¾ã‚‹ã‚¨ãƒ³ãƒˆãƒªIDã‚’å…¨ã¦åˆ—æŒ™
+// "."ã¯ãƒ«ãƒ¼ãƒˆã‚’ç¤ºã™ã€‚
+// ç©ºã®ã‚¨ãƒ³ãƒˆãƒªã¯ç„¡è¦–
+// æˆ»ã‚Šå€¤ : ã‚¨ãƒ³ãƒˆãƒªã®å€‹æ•°
 unsigned int TEntry::FindTree(vector<TEntry> &entrycol) const
 {
 	return(ns->FindTree(entry, entrycol));

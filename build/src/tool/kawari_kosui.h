@@ -1,10 +1,10 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
 //  Kawari - KOSUI Adapter
 //
 //      Programed by Suikyo
 //
-//  2002.04.12  Phase 8.0.0   ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹ÀÚ¤êÄ¾¤·
+//  2002.04.12  Phase 8.0.0   ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹åˆ‡ã‚Šç›´ã—
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -24,24 +24,24 @@ using namespace std;
 #include "libkawari/kawari_version.h"
 #include "misc/misc.h"
 //---------------------------------------------------------------------------
-// ²ÚÏÂÍü¡á¹¬¿å¥¢¥À¥×¥¿
+// è¯å’Œæ¢¨ï¼å¹¸æ°´ã‚¢ãƒ€ãƒ—ã‚¿
 class TKawariKosuiAdapter: public TKawariInterface_base {
 private:
 
-	// ²ÚÏÂÍü¥¨¥ó¥¸¥ó
+	// è¯å’Œæ¢¨ã‚¨ãƒ³ã‚¸ãƒ³
 	TKawariEngine engine;
 
 public:
 
 	TKawariKosuiAdapter(const string& datapath,const string& inifile)
 	{
-		// Íğ¿ô½é´ü²½
+		// ä¹±æ•°åˆæœŸåŒ–
 		SRandom((unsigned int)time(NULL));
 
 		engine.CreateEntry("System.DataPath").Push(engine.CreateStrWord(datapath));
 		engine.WriteProtect("System.DataPath");
 
-		// ¥»¥Ã¥È¥¢¥Ã¥×
+		// ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—
 		engine.GetLogger().SetStream(&cout);
 		engine.SetDataPath(datapath);
 
@@ -56,7 +56,7 @@ public:
 		for(unsigned int i=0;i<size;i++) engine.Parse(entry.Index(i));
 	}
 
-	// ¾ğÊó¤òÆÀ¤ë
+	// æƒ…å ±ã‚’å¾—ã‚‹
 	virtual string GetInformation(void)
 	{
 		return (
@@ -65,7 +65,7 @@ public:
 			KAWARI_CORE_CREDITS);
 	}
 
-	// Í¿¤¨¤é¤ì¤¿¥¹¥¯¥ê¥×¥È¤ò²ò¼á¡¦¼Â¹Ô¤¹¤ë
+	// ä¸ãˆã‚‰ã‚ŒãŸã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’è§£é‡ˆãƒ»å®Ÿè¡Œã™ã‚‹
 	virtual string Parse(const string& script)
 	{
 		return(engine.Parse(script));

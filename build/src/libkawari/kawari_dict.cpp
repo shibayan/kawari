@@ -1,22 +1,22 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// ¼­½ñ
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// è¾æ›¸
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.04.21  Phase 0.50a1  ¼­½ñ´ÉÍı¤Î¥¯¥é¥¹²½
-//  2001.05.03  Phase 0.50a4  ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È
-//  2001.05.26  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é²½
-//                            APIÀ°Íı
-//  2001.06.17  Phase 5.4     Ê£¿ô¥¨¥ó¥È¥ê¤Ø¤ÎÆ±»şÄÉ²Ã¤Î¥Ğ¥°½¤Àµ
-//                            µÕ¥³¥ó¥Ñ¥¤¥é
-//  2001.12.16  Phase 7.2     ClearEntry(TEntryID entry)¤Î¥Ğ¥°½¤Àµ
-//                            (Thanks: ¤·¤Î)
-//  2002.03.10  Phase 7.9.0   ¼­½ñ¥¢¥¯¥»¥¹¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹¶¯²½
-//  2002.05.09  Phase 8.0.0   Ì¾Á°¶õ´Öµ¡Ç½¤òÊ¬Î¥¡£
-//                            KIS++¤Ø¤ÎÉÛÀĞ¡©
-//  2002.05.20                PVW¤«¤é¤Î¥¨¥ó¥È¥êÌ¾¼èÆÀ¤ò¼Â¹Ô»ş¤Ë»ı¤Á±Û¤·
+//  2001.04.21  Phase 0.50a1  è¾æ›¸ç®¡ç†ã®ã‚¯ãƒ©ã‚¹åŒ–
+//  2001.05.03  Phase 0.50a4  ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+//  2001.05.26  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©åŒ–
+//                            APIæ•´ç†
+//  2001.06.17  Phase 5.4     è¤‡æ•°ã‚¨ãƒ³ãƒˆãƒªã¸ã®åŒæ™‚è¿½åŠ ã®ãƒã‚°ä¿®æ­£
+//                            é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©
+//  2001.12.16  Phase 7.2     ClearEntry(TEntryID entry)ã®ãƒã‚°ä¿®æ­£
+//                            (Thanks: ã—ã®)
+//  2002.03.10  Phase 7.9.0   è¾æ›¸ã‚¢ã‚¯ã‚»ã‚¹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹å¼·åŒ–
+//  2002.05.09  Phase 8.0.0   åå‰ç©ºé–“æ©Ÿèƒ½ã‚’åˆ†é›¢ã€‚
+//                            KIS++ã¸ã®å¸ƒçŸ³ï¼Ÿ
+//  2002.05.20                PVWã‹ã‚‰ã®ã‚¨ãƒ³ãƒˆãƒªåå–å¾—ã‚’å®Ÿè¡Œæ™‚ã«æŒã¡è¶Šã—
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -34,33 +34,33 @@ using namespace kawari_log;
 #include <iostream>
 using namespace std;
 //---------------------------------------------------------------------------
-// ÈÏ°Ï³°¤Î¥¤¥ó¥Ç¥Ã¥¯¥¹
+// ç¯„å›²å¤–ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 const unsigned int TNS_KawariDictionary::NPos=UINT_MAX;
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥ê¤òÀ¸À®¤¹¤ë
-// ´û¤Ë¥¨¥ó¥È¥ê¤¬Â¸ºß¤¹¤ë¾ì¹ç¤Ï¡¢À¸À®¤»¤º¤ËID¤òÊÖ¤¹
-// Ìá¤êÃÍ : À¸À®¤·¤¿¥¨¥ó¥È¥ê¤ÎID
+// ã‚¨ãƒ³ãƒˆãƒªã‚’ç”Ÿæˆã™ã‚‹
+// æ—¢ã«ã‚¨ãƒ³ãƒˆãƒªãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ã€ç”Ÿæˆã›ãšã«IDã‚’è¿”ã™
+// æˆ»ã‚Šå€¤ : ç”Ÿæˆã—ãŸã‚¨ãƒ³ãƒˆãƒªã®ID
 TEntry TNS_KawariDictionary::CreateEntry(const string& entry)
 {
 	TNameSpace *ns=SearchNameSpace(entry);
 	return ((ns)?ns->Create(entry): TEntry(GlobalNameSpace,0));
 }
 //---------------------------------------------------------------------------
-// Ã±¸ì¤òÀ¸À®¤¹¤ë
-// ´û¤ËÃ±¸ì¤¬Â¸ºß¤¹¤ë¾ì¹ç¤Ï¡¢À¸À®¤»¤º¤ËID¤òÊÖ¤¹
-// Ãí°Õ¡¦´û¤ËÃ±¸ìID¤ò»ı¤ÄÃ±¸ì¤Ç¤¢¤Ã¤¿¾ì¹ç¡¢delete¤µ¤ì¤ë
-// Ìá¤êÃÍ : À¸À®¤·¤¿¥¨¥ó¥È¥ê¤ÎID
+// å˜èªã‚’ç”Ÿæˆã™ã‚‹
+// æ—¢ã«å˜èªãŒå­˜åœ¨ã™ã‚‹å ´åˆã¯ã€ç”Ÿæˆã›ãšã«IDã‚’è¿”ã™
+// æ³¨æ„ãƒ»æ—¢ã«å˜èªIDã‚’æŒã¤å˜èªã§ã‚ã£ãŸå ´åˆã€deleteã•ã‚Œã‚‹
+// æˆ»ã‚Šå€¤ : ç”Ÿæˆã—ãŸã‚¨ãƒ³ãƒˆãƒªã®ID
 TWordID TNS_KawariDictionary::CreateWord(TKVMCode_base* word)
 {
 	if(!word) return(0);
 
 	TWordID id=0;
 	if(!WordCollection.Insert(word,&id)) {
-		// ´û¤ËÅĞÏ¿ºÑ¤ß¤ÎÃ±¸ì¤À¤Ã¤¿
+		// æ—¢ã«ç™»éŒ²æ¸ˆã¿ã®å˜èªã ã£ãŸ
 		delete word;
 		word=GetWordFromID(id);
 	}else{
-		// ½ã¿è²¾ÁÛÃ±¸ì
+		// ç´”ç²‹ä»®æƒ³å˜èª
 		TKVMCodePVW *pvw=dynamic_cast<TKVMCodePVW *>(word);
 		if (pvw)
 			PVWSet.insert(id);
@@ -69,20 +69,20 @@ TWordID TNS_KawariDictionary::CreateWord(TKVMCode_base* word)
 	return(id);
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥êÁ´¤Æ¤Ë´Ş¤Ş¤ì¤ëÃ±¸ì¤ò
-// ½ã¿è²¾ÁÛÃ±¸ì¡Ö${¥¨¥ó¥È¥êÌ¾}¡×¤Î¤ßÅ¸³«¤·¤ÆºÆµ¢Åª¤ËÎóµó¤¹¤ë
-// Ìá¤êÃÍ : Ã±¸ì¤Î¸Ä¿ô
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªå…¨ã¦ã«å«ã¾ã‚Œã‚‹å˜èªã‚’
+// ç´”ç²‹ä»®æƒ³å˜èªã€Œ${ã‚¨ãƒ³ãƒˆãƒªå}ã€ã®ã¿å±•é–‹ã—ã¦å†å¸°çš„ã«åˆ—æŒ™ã™ã‚‹
+// æˆ»ã‚Šå€¤ : å˜èªã®å€‹æ•°
 unsigned int TNS_KawariDictionary::GetWordCollection(TEntry start_entry,set<TWordID> &wordcol)
 {
-	// ²áµî¤Ë¸¡º÷ºÑ¤ß¤Î¥¨¥ó¥È¥ê
+	// éå»ã«æ¤œç´¢æ¸ˆã¿ã®ã‚¨ãƒ³ãƒˆãƒª
 	set<TEntry> donelist;
-	// ¸¡º÷Í½Äê¤Î¥¨¥ó¥È¥ê
+	// æ¤œç´¢äºˆå®šã®ã‚¨ãƒ³ãƒˆãƒª
 	vector<TEntry> parselist;
 
 	parselist.push_back(start_entry);
 
 	while(parselist.size()) {
-		// ¼¡¸õÊä
+		// æ¬¡å€™è£œ
 		TEntry entry=parselist.back();
 		parselist.pop_back();
 		if(donelist.count(entry)) continue;
@@ -93,7 +93,7 @@ unsigned int TNS_KawariDictionary::GetWordCollection(TEntry start_entry,set<TWor
 		for(vector<TWordID>::iterator it=tmpcol.begin(); it!=tmpcol.end(); it++) {
 			TWordID id=(*it);
 			if(PVWSet.count(id)){
-				// ½ã¿è²¾ÁÛÃ±¸ì
+				// ç´”ç²‹ä»®æƒ³å˜èª
 				TKVMCode_base *code=GetWordFromID(id);
 				if(!code) continue;
 				TKVMCodePVW *pvw=dynamic_cast<TKVMCodePVW *>(code);
@@ -110,29 +110,29 @@ unsigned int TNS_KawariDictionary::GetWordCollection(TEntry start_entry,set<TWor
 	return(wordcol.size());
 }
 //---------------------------------------------------------------------------
-// ¸½ºß¤Î¥³¥ó¥Æ¥­¥¹¥È¤Î¥¹¥¿¥Ã¥¯¥Õ¥ì¡¼¥à¤Î¥İ¥¤¥ó¥¿¤ò¼èÆÀ
-// (¤¨¡¼¤¤¤Ã¡¢¤è¤¦¤ÏMC68000¤ÎLINK¤À)
+// ç¾åœ¨ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ã‚¹ã‚¿ãƒƒã‚¯ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
+// (ãˆãƒ¼ã„ã£ã€ã‚ˆã†ã¯MC68000ã®LINKã )
 unsigned int TNS_KawariDictionary::LinkFrame(void){
 	TContext *ctx=GetCurrentContext();
 	if (!ctx) return 0;
 	return ctx->history.size();
 }
 //---------------------------------------------------------------------------
-// ¸½ºß¤Î¥³¥ó¥Æ¥­¥¹¥È¤Î¥¹¥¿¥Ã¥¯¥Õ¥ì¡¼¥à¤Î¥İ¥¤¥ó¥¿¤òÉüµ¢
-// (¤¨¡¼¤¤¤Ã¡¢¤è¤¦¤ÏMC68000¤ÎUNLINK¤À)
+// ç¾åœ¨ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ã‚¹ã‚¿ãƒƒã‚¯ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å¾©å¸°
+// (ãˆãƒ¼ã„ã£ã€ã‚ˆã†ã¯MC68000ã®UNLINKã )
 void TNS_KawariDictionary::UnlinkFrame(unsigned int pos){
 	TContext *ctx=GetCurrentContext();
 	if (!ctx) return ;
 	if (pos<ctx->history.size()) ctx->history.resize(pos);
 }
 //---------------------------------------------------------------------------
-// ¿·¤·¤¤¥³¥ó¥Æ¥­¥¹¥È¤òºîÀ®¤·¡¢¥¹¥¿¥Ã¥¯¤Ëpush
+// æ–°ã—ã„ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ä½œæˆã—ã€ã‚¹ã‚¿ãƒƒã‚¯ã«push
 void TNS_KawariDictionary::CreateContext(void){
 	ContextStack.push_back(new TContext(this));
 }
 //---------------------------------------------------------------------------
-// ¥³¥ó¥Æ¥­¥¹¥È¤òpop
-// ºï½üÍ½ÄêÃ±¸ì¤òÄÉ²Ã¡£É¬Í×¤Ê¤é¤Ğ¥¬¥Ù¥Ã¥¸¥³¥ì¥¯¥·¥ç¥ó¡£
+// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’pop
+// å‰Šé™¤äºˆå®šå˜èªã‚’è¿½åŠ ã€‚å¿…è¦ãªã‚‰ã°ã‚¬ãƒ™ãƒƒã‚¸ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã€‚
 void TNS_KawariDictionary::DeleteContext(void){
 	if (ContextStack.size()){
 		if(ContextStack.back()) delete ContextStack.back();
@@ -145,7 +145,7 @@ void TNS_KawariDictionary::DeleteContext(void){
 			for (set<TWordID>::iterator it=Garbage.begin(); it!=Garbage.end(); it++){
 				TWordID id=(*it);
 				if (!GlobalNameSpace->ContainsWord(id)){
-					// µÕ°ú¤­¤¬Â¸ºß¤·¤Ê¤¤¡£
+					// é€†å¼•ããŒå­˜åœ¨ã—ãªã„ã€‚
 					TKVMCode_base *pword=*WordCollection.Find(id);
 					WordCollection.Delete(id);
 					if (pword){
@@ -160,7 +160,7 @@ void TNS_KawariDictionary::DeleteContext(void){
 			for (set<TWordID>::iterator it=Garbage.begin(); it!=Garbage.end(); it++){
 				TWordID id=(*it);
 				if (!GlobalNameSpace->ContainsWord(id)){
-					// µÕ°ú¤­¤¬Â¸ºß¤·¤Ê¤¤¡£
+					// é€†å¼•ããŒå­˜åœ¨ã—ãªã„ã€‚
 					TKVMCode_base *pword=*WordCollection.Find(id);
 					WordCollection.Delete(id);
 					if (pword){
@@ -175,14 +175,14 @@ void TNS_KawariDictionary::DeleteContext(void){
 	}
 }
 //--------------------------------------------------------------------------
-// ÍúÎò»²¾È¥¹¥¿¥Ã¥¯¤ËÃÖ´¹·ë²ÌÊ¸»úÎó¤òpush¤¹¤ë¡£
+// å±¥æ­´å‚ç…§ã‚¹ã‚¿ãƒƒã‚¯ã«ç½®æ›çµæœæ–‡å­—åˆ—ã‚’pushã™ã‚‹ã€‚
 void TNS_KawariDictionary::PushToHistory (const string &str){
 	TContext *ctx=GetCurrentContext();
 	if (!ctx) return;
 	ctx->history.push_back(str);
 }
 //---------------------------------------------------------------------------
-// ÍúÎò»²¾È
+// å±¥æ­´å‚ç…§
 string TNS_KawariDictionary::GetHistory (int index){
 	TContext *ctx=GetCurrentContext();
 	if (!ctx) return "";

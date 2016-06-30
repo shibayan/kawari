@@ -1,17 +1,17 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
 // KOSUI -- Kawari cOnSole Use Interpritor --
-// ¹¬¿å -- ¥³¥ó¥½¡¼¥ëÈÇ²ÚÏÂÍü¥¤¥ó¥¿¡¼¥×¥ê¥¿ --
+// å¹¸æ°´ -- ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ç‰ˆè¯å’Œæ¢¨ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ --
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.05.30  Phase 5.1     ¥³¥ó¥½¡¼¥ë¥¤¥ó¥¿¡¼¥×¥ê¥¿
-//  2001.08.06  Phase 6.2     KawariDebugger¤Ë¹ç¤ï¤»¤Æ¥Ç¥Õ¥©¥ë¥È¤òecho-mode¤Ë
-//  2001.08.12  Phase 6.2.1   KawariDebugger¤ÈÅı¹ç
-//  2002.01.08  ÈÖ³°          NothingIsDone¸ş¤±
-//  2002.03.12  Phase 7.9.0   AttachÆşÎÏ¤Î½ê¤Î¤Á¤ó¤Ş¤¤¥Ğ¥°½¤Àµ
-//  2002.04.12  Phase 8.0.0   ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹ÀÚ¤êÄ¾¤·
-//  2008.01.23  Phase 8.2.5   quiet¥â¡¼¥ÉÄÉ²Ã
+//  2001.05.30  Phase 5.1     ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿
+//  2001.08.06  Phase 6.2     KawariDebuggerã«åˆã‚ã›ã¦ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚’echo-modeã«
+//  2001.08.12  Phase 6.2.1   KawariDebuggerã¨çµ±åˆ
+//  2002.01.08  ç•ªå¤–          NothingIsDoneå‘ã‘
+//  2002.03.12  Phase 7.9.0   Attachå…¥åŠ›ã®æ‰€ã®ã¡ã‚“ã¾ã„ãƒã‚°ä¿®æ­£
+//  2002.04.12  Phase 8.0.0   ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹åˆ‡ã‚Šç›´ã—
+//  2008.01.23  Phase 8.2.5   quietãƒ¢ãƒ¼ãƒ‰è¿½åŠ 
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -43,13 +43,13 @@ using namespace std;
 #define PATH_MAX _MAX_PATH
 #endif
 //---------------------------------------------------------------------------
-// ÀÜÂ³¤¹¤ë¥´¡¼¥¹¥È¤òÁª¤Ö
+// æ¥ç¶šã™ã‚‹ã‚´ãƒ¼ã‚¹ãƒˆã‚’é¸ã¶
 TKawariInterface_base* AttachTarget(const string& datapath,const string& inifile,const string& event)
 {
 	cout << "[" << 0 << "] : " << " Interpreter mode." << endl;
 
 	#ifdef USEKDB
-		// ²ÚÏÂÍü¥Ç¥Ğ¥Ã¥¬¤òÁÈ¤ß¹ş¤à¾ì¹ç
+		// è¯å’Œæ¢¨ãƒ‡ãƒãƒƒã‚¬ã‚’çµ„ã¿è¾¼ã‚€å ´åˆ
 		map<HWND,string> ghostname;
 		GetGhostList(ghostname);
 
@@ -115,7 +115,7 @@ int main(int argc,char *argv[])
 			}
 		}
 		if(quietmode){
-			// quiet¥â¡¼¥É(inifile¤ò¼Â¹Ô¤·¤¿¤é¤¹¤°¤Ë½ªÎ»)
+			// quietãƒ¢ãƒ¼ãƒ‰(inifileã‚’å®Ÿè¡Œã—ãŸã‚‰ã™ãã«çµ‚äº†)
 			TKawariInterface_base *Kawari=new TKawariKosuiAdapter(datapath,inifile);
 			delete Kawari;
 			return(0);

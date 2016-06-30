@@ -1,6 +1,6 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// »¨ÍÑ
+// é›‘ç”¨
 //
 //      Programed by NAKAUE.T (Meister)
 //
@@ -24,7 +24,7 @@ static inline bool _isdigit(char ch){
 	return (('0'<=ch) && (ch<='9'));
 }
 //---------------------------------------------------------------------------
-// À°¿ôÃÍÈ½Äê
+// æ•´æ•°å€¤åˆ¤å®š
 bool IsInteger (const std::string &str){
 	unsigned int max=str.length();
 	if (!max) return false;
@@ -35,10 +35,10 @@ bool IsInteger (const std::string &str){
 	return true;
 }
 //---------------------------------------------------------------------------
-// À°¿ôÃÍ¤«¤éÊ¸»úÎó¤òÆÀ¤ë
+// æ•´æ•°å€¤ã‹ã‚‰æ–‡å­—åˆ—ã‚’å¾—ã‚‹
 string IntToString(int n)
 {
-	char buff[64];	// Â¿¤á¤Ë
+	char buff[64];	// å¤šã‚ã«
 	char *bp=buff;
 	string ret;
 
@@ -60,7 +60,7 @@ string IntToString(int n)
 	return(ret);
 }
 //---------------------------------------------------------------------------
-// ¥Ñ¥¹É½¸½¤ÎÀµµ¬²½
+// ãƒ‘ã‚¹è¡¨ç¾ã®æ­£è¦åŒ–
 #define cctowc(A) ((wchar_t)(((wchar_t)A)&((wchar_t)0x00ff)))
 
 #if defined(KAWARI_MS)
@@ -115,7 +115,7 @@ string CanonicalPath(const string &basepath, const string &path){
 		}else if (StringCompare<wchar_t>(p, ctow(".")+SEPARATOR, 0, 2)==0){
 			p.erase(0, 2);
 		}else{
-			// '.'¤Ç»Ï¤Ş¤ë¥Õ¥¡¥¤¥ëÌ¾¡©
+			// '.'ã§å§‹ã¾ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åï¼Ÿ
 			break;
 		}
 	}

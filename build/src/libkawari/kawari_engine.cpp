@@ -1,32 +1,32 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// ²ÚÏÂÍü¥¨¥ó¥¸¥ó
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// è¯å’Œæ¢¨ã‚¨ãƒ³ã‚¸ãƒ³
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.05.27  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é²½
-//                            ¥¯¥é¥¹³¬ÁØÀ°Íı
-//  2001.05.31  Phase 5.2     Êİ¼éÅªpiro
-//  2001.06.09  Phase 5.3     ¥Ş¥Ã¥Á¥¨¥ó¥È¥ê
-//  2001.06.10  Phase 5.3.1   ¥¤¥Ù¥ó¥ÈÌ¾¤Ç»È¤¨¤ëµ­¹æ¤ò¡Ö_¡×¤«¤é¡Ö.¡×¤ËÊÑ¹¹
-//  2001.06.17  Phase 5.4     Ê£¿ô¥¨¥ó¥È¥ê¤Ø¤ÎÆ±»şÄÉ²Ã¤Î¥Ğ¥°½¤Àµ
+//  2001.05.27  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©åŒ–
+//                            ã‚¯ãƒ©ã‚¹éšå±¤æ•´ç†
+//  2001.05.31  Phase 5.2     ä¿å®ˆçš„piro
+//  2001.06.09  Phase 5.3     ãƒãƒƒãƒã‚¨ãƒ³ãƒˆãƒª
+//  2001.06.10  Phase 5.3.1   ã‚¤ãƒ™ãƒ³ãƒˆåã§ä½¿ãˆã‚‹è¨˜å·ã‚’ã€Œ_ã€ã‹ã‚‰ã€Œ.ã€ã«å¤‰æ›´
+//  2001.06.17  Phase 5.4     è¤‡æ•°ã‚¨ãƒ³ãƒˆãƒªã¸ã®åŒæ™‚è¿½åŠ ã®ãƒã‚°ä¿®æ­£
 //                            save
-//  2001.08.06  Phase 6.2     ·ÑÂ³¹Ô¤ËÂĞ±ş
-//  2001.08.07  Phase 6.2     ostrstream¥Ğ¥°½¤Àµ
-//                            ·ÑÂ³¹Ô¤ä¤á(Í×Ê¸Ë¡ºÆ¸¡Æ¤)
-//  2001.08.25  Phase 7.0     ¥»¥­¥å¥ê¥Æ¥£ÂĞºö(WriteProtect)
-//  2001.12.08  Phase 7.1.2   ¥Æ¥­¥¹¥È¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ßÂĞ±ş
-//  2002.03.10  Phase 7.9.0   Parse¤ÎÀë¸À¤òbase¤Ë°ÜÆ°
-//                            ¥Æ¥­¥¹¥È¥Õ¥¡¥¤¥ë¤ÎÆÉ¤ß¹ş¤ß¤ò³°¤¹(KIS¤¸¤ã¤Ê¤¤¤Î¡©)
-//                            ¤½¤â¤½¤âFIS¤Î³«È¯Ãæ»ß¤Ç°ÕÌ£¤Î¤Ê¤¯¤Ê¤Ã¤Æ¤¿
-//                            TNS_Engine_base¤òÇÑ»ß
-//                            ¤Ä¤¤¤Ç¤Ë¥Ş¥Ã¥Á¼­½ñÇÑ»ß
-//                            ¼­½ñ¥¢¥¯¥»¥¹¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹¶¯²½
-//  2002.04.18  Phase 8.0.0   VM¤ÎÊÑ¹¹¤ËÄÉ½¾
-//                            SAORIÂĞ±ş
-//  2004.08.28  Phase 8.2.1   DecodeEntryName¤¬Ãæ³ç¸Ì¸¡º÷¤Ë¼ºÇÔ¤¹¤ëÌäÂêÂĞ½è
-//  2005.06.28  Phase 8.2.3   DecodeEntryName¤ËÂå¤¨¤ÆGetEntryRangeÆ³Æş
+//  2001.08.06  Phase 6.2     ç¶™ç¶šè¡Œã«å¯¾å¿œ
+//  2001.08.07  Phase 6.2     ostrstreamãƒã‚°ä¿®æ­£
+//                            ç¶™ç¶šè¡Œã‚„ã‚(è¦æ–‡æ³•å†æ¤œè¨)
+//  2001.08.25  Phase 7.0     ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£å¯¾ç­–(WriteProtect)
+//  2001.12.08  Phase 7.1.2   ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿å¯¾å¿œ
+//  2002.03.10  Phase 7.9.0   Parseã®å®£è¨€ã‚’baseã«ç§»å‹•
+//                            ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã‚’å¤–ã™(KISã˜ã‚ƒãªã„ã®ï¼Ÿ)
+//                            ãã‚‚ãã‚‚FISã®é–‹ç™ºä¸­æ­¢ã§æ„å‘³ã®ãªããªã£ã¦ãŸ
+//                            TNS_Engine_baseã‚’å»ƒæ­¢
+//                            ã¤ã„ã§ã«ãƒãƒƒãƒè¾æ›¸å»ƒæ­¢
+//                            è¾æ›¸ã‚¢ã‚¯ã‚»ã‚¹ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹å¼·åŒ–
+//  2002.04.18  Phase 8.0.0   VMã®å¤‰æ›´ã«è¿½å¾“
+//                            SAORIå¯¾å¿œ
+//  2004.08.28  Phase 8.2.1   DecodeEntryNameãŒä¸­æ‹¬å¼§æ¤œç´¢ã«å¤±æ•—ã™ã‚‹å•é¡Œå¯¾å‡¦
+//  2005.06.28  Phase 8.2.3   DecodeEntryNameã«ä»£ãˆã¦GetEntryRangeå°å…¥
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -47,7 +47,7 @@ using namespace kawari::resource;
 #include <cstdlib>
 using namespace std;
 //---------------------------------------------------------------------------
-// ÈÏ°Ï³°¤Î¥¤¥ó¥Ç¥Ã¥¯¥¹
+// ç¯„å›²å¤–ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 const unsigned int TKawariEngine::NPos=TNS_KawariDictionary::NPos;
 //---------------------------------------------------------------------------
 TKawariEngine::TKawariEngine(void)
@@ -70,7 +70,7 @@ string TKawariEngine::EncodeEntryName(const string &orgsen){
 	return TKawariCompiler::EncodeEntryName(orgsen);
 }
 //---------------------------------------------------------------------------
-// Ê¸»úÎó¤ò¥¨¥ó¥È¥êÌ¾¤È¥¤¥ó¥Ç¥Ã¥¯¥¹¤Ë¥Ç¥³¡¼¥É¤¹¤ë
+// æ–‡å­—åˆ—ã‚’ã‚¨ãƒ³ãƒˆãƒªåã¨ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã«ãƒ‡ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 #if 0
 int TKawariEngine::DecodeEntryName(const string &orgsen,string &entryname,int &st,int &end)
 {
@@ -80,12 +80,12 @@ int TKawariEngine::DecodeEntryName(const string &orgsen,string &entryname,int &s
 	string::size_type pos3=orgsen.size()-1;
 	string::size_type pos1=orgsen.rfind('[');
 	if((orgsen.size()==0)||(orgsen[pos3]!=']')||(pos1==string::npos))
-		// ¥¤¥ó¥Ç¥Ã¥¯¥¹¤¬Ìµ¤«¤Ã¤¿
+		// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãŒç„¡ã‹ã£ãŸ
 		return 0;
 
 	string::size_type pos2=orgsen.find("..",pos1);
 	if(pos2!=string::npos) {
-		// ÈÏ°Ï»ØÄê
+		// ç¯„å›²æŒ‡å®š
 		string s_st=orgsen.substr(pos1+1,pos2-(pos1+1));
 		string s_end=orgsen.substr(pos2+2,pos3-(pos2+2));
 
@@ -98,16 +98,16 @@ int TKawariEngine::DecodeEntryName(const string &orgsen,string &entryname,int &s
 			return 2;
 		}
 
-		// ²¿¤«¤Î´Ö°ã¤¤¤À¤Ã¤¿
+		// ä½•ã‹ã®é–“é•ã„ã ã£ãŸ
 		return 0;
 	}
 
 	string s_idx=orgsen.substr(pos1+1,pos3-(pos1+1));
 	if (s_idx.find_first_not_of("0123456789- ")!=string::npos)
-		// ¤ª¤«¤·¤¤¤Ç¤¹¤è¥«¥Æ¥¸¥Ê¤µ¤ó
+		// ãŠã‹ã—ã„ã§ã™ã‚ˆã‚«ãƒ†ã‚¸ãƒŠã•ã‚“
 		return 0;
 
-	// Ã±ÆÈÍ×ÁÇ»ØÄê
+	// å˜ç‹¬è¦ç´ æŒ‡å®š
 	entryname=orgsen.substr(0, pos1);
 	st=end=atoi(s_idx.c_str());
 	return 1;
@@ -119,20 +119,20 @@ TEntryRange TKawariEngine::GetEntryRange(const string &orgsen)
 	string::size_type idx_last=orgsen.size()-1;
 	string::size_type idx_obrk=orgsen.rfind('[');
 	if((orgsen.size()==0)||(orgsen[idx_last]!=']')||(idx_obrk==string::npos)){
-		// ¥¤¥ó¥Ç¥Ã¥¯¥¹Ìµ¤·
+		// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ç„¡ã—
 		TEntry entry=CreateEntry(orgsen);
 		return TEntryRange(orgsen, entry);
 	}
 
 	string::size_type idx_range=orgsen.find("..",idx_obrk);
 	if(idx_range!=string::npos) {
-		// ÎÎ°è»ØÄê
+		// é ˜åŸŸæŒ‡å®š
 		string s_st=StringTrim(orgsen.substr(idx_obrk+1,idx_range-(idx_obrk+1)));
 		string s_end=StringTrim(orgsen.substr(idx_range+2,idx_last-(idx_range+2)));
 		string entryname=orgsen.substr(0,idx_obrk);
 		TEntry entry=CreateEntry(entryname);
 
-		// ¿ô»ú¤Î¤ß¤ò¼õ¤±ÉÕ¤±¤ë
+		// æ•°å­—ã®ã¿ã‚’å—ã‘ä»˜ã‘ã‚‹
 		if(IsInteger(s_st)&&IsInteger(s_end)){
 			int st=atoi(s_st.c_str());
 			int end=atoi(s_end.c_str());
@@ -147,7 +147,7 @@ TEntryRange TKawariEngine::GetEntryRange(const string &orgsen)
 		return TEntryRange(entryname, entry, NPos, NPos);
 
 	}else{
-		// Ã±ÆÈÍ×ÁÇ»ØÄê
+		// å˜ç‹¬è¦ç´ æŒ‡å®š
 		string s_idx=StringTrim(orgsen.substr(idx_obrk+1,idx_last-(idx_obrk+1)));
 		string entryname=orgsen.substr(0, idx_obrk);
 		TEntry entry=CreateEntry(entryname);
@@ -165,7 +165,7 @@ TEntryRange TKawariEngine::GetEntryRange(const string &orgsen)
 	}
 }
 //---------------------------------------------------------------------------
-// ID¤«¤éÃ±¸ì¤ËÊÑ´¹
+// IDã‹ã‚‰å˜èªã«å¤‰æ›
 string TKawariEngine::GetWordFromID(TWordID id) const
 {
 	if(!id) return("");
@@ -175,8 +175,8 @@ string TKawariEngine::GetWordFromID(TWordID id) const
 	return(code->DisCompile());
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿¥¨¥ó¥È¥êÌ¾¤«¤é»Ï¤Ş¤ë¥¨¥ó¥È¥ê¤òÁ´¤Æ¶õ¤Ë¤¹¤ë
-// ¥á¥â¥ê¤Ë¶õ¥¨¥ó¥È¥ê¤ÈÃ±¸ì¤¬»Ä¤Ã¤Æ¤âÎÉ¤¤
+// æŒ‡å®šã•ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªåã‹ã‚‰å§‹ã¾ã‚‹ã‚¨ãƒ³ãƒˆãƒªã‚’å…¨ã¦ç©ºã«ã™ã‚‹
+// ãƒ¡ãƒ¢ãƒªã«ç©ºã‚¨ãƒ³ãƒˆãƒªã¨å˜èªãŒæ®‹ã£ã¦ã‚‚è‰¯ã„
 void TKawariEngine::ClearTree(const string& spacename)
 {
 	if(spacename!=".") {
@@ -190,8 +190,8 @@ void TKawariEngine::ClearTree(const string& spacename)
 	}
 }
 //---------------------------------------------------------------------------
-// ¥¨¥ó¥È¥ê½¸¹ç±é»»¤ò¹Ô¤¤¡¢·ë²Ì¤òÎóµó¤¹¤ë
-// Ìá¤êÃÍ : Ã±¸ì¤Î¸Ä¿ô
+// ã‚¨ãƒ³ãƒˆãƒªé›†åˆæ¼”ç®—ã‚’è¡Œã„ã€çµæœã‚’åˆ—æŒ™ã™ã‚‹
+// æˆ»ã‚Šå€¤ : å˜èªã®å€‹æ•°
 unsigned int TKawariEngine::CalcEntryExpression(const string &entryexpr, set<TWordID> &wordcol) const{
 	TKVMSetCode_base *code=TKawariCompiler::CompileAsEntryExpression(entryexpr, (*logger));
 	if (!code) return 0;
@@ -200,7 +200,7 @@ unsigned int TKawariEngine::CalcEntryExpression(const string &entryexpr, set<TWo
 	return wordcol.size();
 }
 //---------------------------------------------------------------------------
-// »ØÄê¤µ¤ì¤¿ID¤ÎÃ±¸ì(¥¹¥¯¥ê¥×¥È)¤ò¼Â¹Ô¤¹¤ë
+// æŒ‡å®šã•ã‚ŒãŸIDã®å˜èª(ã‚¹ã‚¯ãƒªãƒ—ãƒˆ)ã‚’å®Ÿè¡Œã™ã‚‹
 string TKawariEngine::Parse(TWordID id)
 {
 	if(id==0) return("");
@@ -211,13 +211,13 @@ string TKawariEngine::Parse(TWordID id)
 	return(KawariVM->RunWithNewContext(code));
 }
 //---------------------------------------------------------------------------
-// Í¿¤¨¤é¤ì¤¿¥¹¥¯¥ê¥×¥È¤ò²ò¼á¡¦¼Â¹Ô¤¹¤ë
+// ä¸ãˆã‚‰ã‚ŒãŸã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’è§£é‡ˆãƒ»å®Ÿè¡Œã™ã‚‹
 string TKawariEngine::Parse(const string& script)
 {
 	TKVMCode_base *code=TKawariCompiler::Compile(script, GetLogger());
 	if(!code) return("");
 
-	// ¥Ç¥Ğ¥Ã¥°
+	// ãƒ‡ãƒãƒƒã‚°
 	if(logger->Check(kawari_log::LOG_DUMP))
 		code->Debug(logger->GetStream());
 
@@ -228,10 +228,10 @@ string TKawariEngine::Parse(const string& script)
 }
 
 //---------------------------------------------------------------------------
-// ²ÚÏÂÍü¥Õ¥©¡¼¥Ş¥Ã¥È¼­½ñ¥Õ¥¡¥¤¥ë¤òÆÉ¤ß¹ş¤à
+// è¯å’Œæ¢¨ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆè¾æ›¸ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚€
 bool TKawariEngine::LoadKawariDict(const string &filename)
 {
-	// Debug AssertionÈò¤±
+	// Debug Assertioné¿ã‘
 	if(!filename.size()) return(false);
 
 	ifstream ifs;
@@ -239,7 +239,7 @@ bool TKawariEngine::LoadKawariDict(const string &filename)
 
 	if(!ifs.is_open()) return(false);
 
-	// ¼­½ñÃæ¤Îµ­½Ò¥â¡¼¥É¤Î´ÉÍı
+	// è¾æ›¸ä¸­ã®è¨˜è¿°ãƒ¢ãƒ¼ãƒ‰ã®ç®¡ç†
 	vector<TKawariCompiler::Mode> mode;
 	mode.push_back(TKawariCompiler::M_DICT);
 
@@ -247,7 +247,7 @@ bool TKawariEngine::LoadKawariDict(const string &filename)
 
 	while(true) {
 		if(mode.back()==TKawariCompiler::M_DICT){
-			// °ìÄêµÁ¤º¤Ä¼­½ñÆÉ¤ß¹ş¤ß
+			// ä¸€å®šç¾©ãšã¤è¾æ›¸èª­ã¿è¾¼ã¿
 			while(true){
 				vector<string> entrynames;
 				vector<TKVMCode_base *> sentence_list;
@@ -270,7 +270,7 @@ bool TKawariEngine::LoadKawariDict(const string &filename)
 			}
 
 		}else if(mode.back()==TKawariCompiler::M_KIS){
-			// KISÆÉ¤ß¹ş¤ß
+			// KISèª­ã¿è¾¼ã¿
 			TKVMCode_base *code=compiler.LoadInlineScript();
 
 			string outstr=KawariVM->RunWithNewContext(code);
@@ -282,16 +282,16 @@ bool TKawariEngine::LoadKawariDict(const string &filename)
 		}
 		TKawariCompiler::Mode m=compiler.GetNextMode();
 		if (m==TKawariCompiler::M_DICT){
-			// ¼­½ñ¥â¡¼¥É
+			// è¾æ›¸ãƒ¢ãƒ¼ãƒ‰
 			mode.push_back(TKawariCompiler::M_DICT);
 		}else if (m==TKawariCompiler::M_KIS){
-			// ¥¹¥¯¥ê¥×¥È¥â¡¼¥É
+			// ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ¢ãƒ¼ãƒ‰
 			mode.push_back(TKawariCompiler::M_KIS);
 		}else if (m==TKawariCompiler::M_END){
-			// ¥â¡¼¥É½ªÎ»
+			// ãƒ¢ãƒ¼ãƒ‰çµ‚äº†
 			if(mode.size()>1) mode.pop_back();
 		}else if (m==TKawariCompiler::M_UNKNOWN){
-			// ÃÎ¤é¤Ê¤¤¥â¡¼¥É
+			// çŸ¥ã‚‰ãªã„ãƒ¢ãƒ¼ãƒ‰
 			logger->GetStream(kawari_log::LOG_ERROR) << RC.S(ERR_ENGINE_UNKNOWN_MODE) << endl;
 		}else if (m==TKawariCompiler::M_EOF){
 			break;
@@ -302,7 +302,7 @@ bool TKawariEngine::LoadKawariDict(const string &filename)
 }
 
 //---------------------------------------------------------------------------
-// ²ÚÏÂÍü¥Õ¥©¡¼¥Ş¥Ã¥È¼­½ñ¥Õ¥¡¥¤¥ë¤ò½ñ¤­¹ş¤à
+// è¯å’Œæ¢¨ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆè¾æ›¸ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ›¸ãè¾¼ã‚€
 bool TKawariEngine::SaveKawariDict(const string &filename,const vector<string>& entry,bool crypt) const
 {
 	ofstream ofs;
@@ -342,17 +342,17 @@ bool TKawariEngine::SaveKawariDict(const string &filename,const vector<string>& 
 	return(true);
 }
 //---------------------------------------------------------------------------
-// SAORI¥â¥¸¥å¡¼¥ë¤ÎÅĞÏ¿
+// SAORIãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ç™»éŒ²
 void TKawariEngine::RegisterSAORIModule(const string &aliasname, const string &path, const SAORILOADTYPE type){
 	SaoriPark->RegisterModule(aliasname, path, (saori::LOADTYPE)type);
 }
 //---------------------------------------------------------------------------
-// SAORI¥â¥¸¥å¡¼¥ëÅĞÏ¿¤Îºï½ü
+// SAORIãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ç™»éŒ²ã®å‰Šé™¤
 void TKawariEngine::EraseSAORIModule(const string &aliasname){
 	SaoriPark->EraseModule(aliasname);
 }
 //---------------------------------------------------------------------------
-// SAORI¥ê¥¯¥¨¥¹¥È¤ò¹Ô¤¦
+// SAORIãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’è¡Œã†
 bool TKawariEngine::RequestToSAORIModule(
 	const string &aliasname,
 	const TPHMessage &request, TPHMessage &response)
@@ -364,7 +364,7 @@ bool TKawariEngine::RequestToSAORIModule(
 		return bind->Request(request, response);
 }
 //---------------------------------------------------------------------------
-// ÅĞÏ¿¤µ¤ì¤¿SAORI¥â¥¸¥å¡¼¥ë¤Î¥ê¥¹¥È¤òÆÀ¤ë
+// ç™»éŒ²ã•ã‚ŒãŸSAORIãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒªã‚¹ãƒˆã‚’å¾—ã‚‹
 int TKawariEngine::ListSAORIModule(vector<string> &list)
 {
 	return SaoriPark->ListModule(list);

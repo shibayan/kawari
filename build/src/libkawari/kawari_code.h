@@ -1,19 +1,20 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// Ãæ´Ö¥³¡¼¥É
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰
 //
 //      Programed by NAKAUE.T (Meister) / Suikyo.
 //
-//  2001.05.27  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é²½
-//  2001.06.12  Phase 5.3.2   ½ã¿è²¾ÁÛ¥¨¥ó¥È¥ê¤Ë¤ª¤±¤ë¥³¥ó¥Æ¥­¥¹¥È¤Î¥Ğ¥°½¤Àµ
-//  2001.06.17  Phase 5.4     ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥ÈÆâ¤ÎÃ±¸ìÀÚ¤ê½Ğ¤·¤Î¥Ğ¥°½¤Àµ
-//                            ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥ÈÆâ¤ÎÍúÎò»²¾È¤Î¥Ğ¥°½¤Àµ
-//                            µÕ¥³¥ó¥Ñ¥¤¥é
-//  2002.03.10  Phase 7.9.0   ¼­½ñ¤ÎÄ¾ÀÜ¥¢¥¯¥»¥¹¶Ø»ß
-//  2002.03.17                KIU¤Ë¹ç¤ï¤»¤ÆTKisEngine¤«¤éTKawariVM¤ËÌ¾¾ÎÊÑ¹¹
-//                            Æ±¤¸¤¯TKawariCode¾¤·¤«¤éÔKVMCode¾¤·¤ËÌ¾¾ÎÊÑ¹//  2002.03.18                KIU¤Ë¹ç¤ï¤»¤ÆTKawariCompilerÊ¬Î¥
-//  2002.04.18  Phase 8.0.0   Ãæ´Ö¥³¡¼¥É¥¯¥é¥¹Á´¼è¤ÃÂØ¤¨¡£
+//  2001.05.27  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©åŒ–
+//  2001.06.12  Phase 5.3.2   ç´”ç²‹ä»®æƒ³ã‚¨ãƒ³ãƒˆãƒªã«ãŠã‘ã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ãƒã‚°ä¿®æ­£
+//  2001.06.17  Phase 5.4     ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®å˜èªåˆ‡ã‚Šå‡ºã—ã®ãƒã‚°ä¿®æ­£
+//                            ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®å±¥æ­´å‚ç…§ã®ãƒã‚°ä¿®æ­£
+//                            é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©
+//  2002.03.10  Phase 7.9.0   è¾æ›¸ã®ç›´æ¥ã‚¢ã‚¯ã‚»ã‚¹ç¦æ­¢
+//  2002.03.17                KIUã«åˆã‚ã›ã¦TKisEngineã‹ã‚‰TKawariVMã«åç§°å¤‰æ›´
+//                            åŒã˜ãTKawariCodeã‹ã‚‰TKVMCodeã«åç§°å¤‰æ›´
+//  2002.03.18                KIUã«åˆã‚ã›ã¦TKawariCompileråˆ†é›¢
+//  2002.04.18  Phase 8.0.0   ä¸­é–“ã‚³ãƒ¼ãƒ‰ã‚¯ãƒ©ã‚¹å…¨å–ã£æ›¿ãˆã€‚
 //
 //---------------------------------------------------------------------------
 #ifndef CODE_H__
@@ -26,33 +27,33 @@
 //---------------------------------------------------------------------------
 class TKawariVM;			// VM
 
-class TKVMCode_base;		// Ãæ´Ö¥³¡¼¥É¤Î¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹
-class TKVMCodeList_base;	// Ãæ´Ö¥³¡¼¥É¤Î¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹(´ğÄì¥¯¥é¥¹)
-class TKVMCodeList;			// Ãæ´Ö¥³¡¼¥ÉÊÒ
+class TKVMCode_base;		// ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+class TKVMCodeList_base;	// ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(åŸºåº•ã‚¯ãƒ©ã‚¹)
+class TKVMCodeList;			// ä¸­é–“ã‚³ãƒ¼ãƒ‰ç‰‡
 
-class TKVMCodeString;		// Ê¸»úÎó
-class TKVMCodeIDString;		// IDÊ¸»úÎó(µÕ¥³¥ó¥Ñ¥¤¥ë·ë²Ì¤¬°Û¤Ê¤ë)
-class TKVMCodeInlineScript;	// ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È
-class TKVMCodeScriptStatment;	// ¥¹¥¯¥ê¥×¥ÈÊ¸
-class TKVMCodeEntryIndex;	// ¥¨¥ó¥È¥êÇÛÎó¥¢¥¯¥»¥¹
+class TKVMCodeString;		// æ–‡å­—åˆ—
+class TKVMCodeIDString;		// IDæ–‡å­—åˆ—(é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«çµæœãŒç•°ãªã‚‹)
+class TKVMCodeInlineScript;	// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+class TKVMCodeScriptStatment;	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡
+class TKVMCodeEntryIndex;	// ã‚¨ãƒ³ãƒˆãƒªé…åˆ—ã‚¢ã‚¯ã‚»ã‚¹
 //--------------------------------------------------------------------------
 // class TKVMCode_base;
 //
 // Interface class.
-// Ãæ´Ö¥³¡¼¥É¤Î¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 class TKVMCode_base {
 public:
-	// ¼Â¹Ô
+	// å®Ÿè¡Œ
 	virtual std::string Run(TKawariVM &vm)=0;
-	// µÕ¥³¥ó¥Ñ¥¤¥ë
+	// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	virtual std::string DisCompile(void) const { return ""; }
-	// Debug¤Ç½ĞÎÏ¤ò¤½¤í¤¨¤ë
+	// Debugã§å‡ºåŠ›ã‚’ãã‚ãˆã‚‹
 	virtual std::ostream &DebugIndent(std::ostream& os, unsigned int level=0) const;
-	// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+	// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const=0;
-	// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+	// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 	virtual bool Less(const TKVMCode_base& R_) const =0;
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TKVMCode_base () {};
 };
 //---------------------------------------------------------------------------
@@ -67,8 +68,8 @@ typedef std::vector<TKVMCode_base *> TCodePVector;
 // class TKVMCodeList_base : public TKVMCode_base;
 //
 // Interface class.
-// ¥ê¥¹¥È¤ò»ı¤ÄÃæ´Ö¥³¡¼¥É¤Î¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹
-// (ÎÉ¤¯¤Ê¤¤Ãê¾İ²½¤ÎÎã)
+// ãƒªã‚¹ãƒˆã‚’æŒã¤ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+// (è‰¯ããªã„æŠ½è±¡åŒ–ã®ä¾‹)
 class TKVMCodeList_base : public TKVMCode_base{
 public:
 	std::vector<TKVMCode_base *> list;
@@ -82,8 +83,8 @@ protected:
 };
 
 //--------------------------------------------------------------------------
-// Ãæ´Ö¥³¡¼¥É¥ê¥¹¥È
-// »ı¤Ã¤Æ¤¤¤ëCode¤òÏ¢Â³Åª¤Ë¼Â¹Ô¤·¡¢Á´¤Æ¤Î·ë²Ì¤ò·ë¹ç¤·¤Æ½ĞÎÏ
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆ
+// æŒã£ã¦ã„ã‚‹Codeã‚’é€£ç¶šçš„ã«å®Ÿè¡Œã—ã€å…¨ã¦ã®çµæœã‚’çµåˆã—ã¦å‡ºåŠ›
 class TKVMCodeList : public TKVMCodeList_base {
 public:
 	virtual std::string Run(class TKawariVM &vm);
@@ -95,7 +96,7 @@ protected:
 };
 
 //--------------------------------------------------------------------------
-// Ê¸»úÎó (Literal)
+// æ–‡å­—åˆ— (Literal)
 // done.
 class TKVMCodeString : public TKVMCode_base {
 public:
@@ -115,7 +116,7 @@ public:
 };
 
 //--------------------------------------------------------------------------
-// IDÊ¸»úÎó (IdLiteral)
+// IDæ–‡å­—åˆ— (IdLiteral)
 class TKVMCodeIDString : public TKVMCodeString {
 public:
 	virtual std::string DisCompile(void) const {
@@ -128,8 +129,8 @@ public:
 };
 
 //--------------------------------------------------------------------------
-// ¥¹¥¯¥ê¥×¥ÈÊ¸ ( WS ( Word WS ) * )
-// ´ğËÜÅª¤ËStatement¤ÈÆ±¤¸¡£
+// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ ( WS ( Word WS ) * )
+// åŸºæœ¬çš„ã«Statementã¨åŒã˜ã€‚
 class TKVMCodeScriptStatement : public TKVMCodeList_base {
 public:
 	virtual std::string GetArg0(void);
@@ -142,7 +143,7 @@ protected:
 };
 
 //--------------------------------------------------------------------------
-// ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È ( '$(' ScriptStatementSeq ') )
+// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆ ( '$(' ScriptStatementSeq ') )
 class TKVMCodeInlineScript : public TKVMCodeList_base {
 public:
 	virtual std::string Run(class TKawariVM &vm);
@@ -154,12 +155,12 @@ protected:
 };
 
 //--------------------------------------------------------------------------
-// Åº¤¨»úÉÕ¤­¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤·
+// æ·»ãˆå­—ä»˜ãã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã—
 // ( '$' EntryWord '[' WS Expr WS ']' )
 class TKVMCodeEntryIndex : public TKVMCode_base {
 public:
 	TKVMCode_base *entry_id;
-	TKVMCode_base *expr;	// ËÜÍèTKawariExpr¤¬Æş¤ë
+	TKVMCode_base *expr;	// æœ¬æ¥TKawariExprãŒå…¥ã‚‹
 
 	virtual std::string Run(class TKawariVM &vm);
 	virtual std::string DisCompile(void) const;

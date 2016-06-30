@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// Ãæ´Ö¥³¡¼¥É(KIS¹½Ê¸)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰(KISæ§‹æ–‡)
 //
 //      Programed by Suikyo.
 //
-//  2002.04.18  Phase 8.0.0   KIS¹½Ê¸Ãæ´Ö¥³¡¼¥ÉºîÀ®
+//  2002.04.18  Phase 8.0.0   KISæ§‹æ–‡ä¸­é–“ã‚³ãƒ¼ãƒ‰ä½œæˆ
 //
 //---------------------------------------------------------------------------
 #ifndef KAWARI_CODEKIS_H__
@@ -13,29 +13,29 @@
 //---------------------------------------------------------------------------
 #include "libkawari/kawari_code.h"
 //---------------------------------------------------------------------------
-// KIS IFÊ¸
+// KIS IFæ–‡
 class TKVMKISCodeIF : public TKVMCode_base {
 	std::vector<TKVMCode_base *> condlist;
 	std::vector<TKVMCode_base *> list;
 public:
-	// ¼Â¹Ô
+	// å®Ÿè¡Œ
 	virtual std::string Run(class TKawariVM &vm);
-	// µÕ¥³¥ó¥Ñ¥¤¥ë
+	// é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	virtual std::string DisCompile(void) const;
-	// ¥Ç¥Ğ¥Ã¥°ÍÑ¥Ä¥ê¡¼É½¼¨
+	// ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ„ãƒªãƒ¼è¡¨ç¤º
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const;
-	// ½øÎó Æ±¤¸¥¯¥é¥¹¤Î¾ì¹ç¤Î¤ß¸Æ¤Ğ¤ì¤ë¡£
+	// åºåˆ— åŒã˜ã‚¯ãƒ©ã‚¹ã®å ´åˆã®ã¿å‘¼ã°ã‚Œã‚‹ã€‚
 	virtual bool Less(const TKVMCode_base& R_) const;
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKVMKISCodeIF(
 		const std::vector<TKVMCode_base *> &clist,
 		const std::vector<TKVMCode_base *> &l);
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	virtual ~TKVMKISCodeIF();
 };
 #if 0
 //---------------------------------------------------------------------------
-// KIS WHILEÊ¸
+// KIS WHILEæ–‡
 class TKVMKIS_WHILE : public TKVMCodeScriptStatement {
 public:
 	virtual std::string Run(class TKawariVM &vm);

@@ -1,4 +1,4 @@
-//=========================================================================
+ï»¿//=========================================================================
 /**
   * @file shiori_object.h
   * @brief SHIORI/SAORI Object Interface
@@ -7,7 +7,7 @@
   *
   * 01/31/2003 Suikyo
   *
-  * <H2>LIFE CYCLE / ¥é¥¤¥Õ¥µ¥¤¥¯¥ë</H2>
+  * <H2>LIFE CYCLE / ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«</H2>
   * LOAD LIBRARY
   *
   *   so_library_init();
@@ -33,7 +33,7 @@
 //-------------------------------------------------------------------------
 /**
   * @brief			handle of object. 0 is invalid.
-  * 				¥ª¥Ö¥¸¥§¥¯¥È¥Ï¥ó¥É¥ë¡£0¤ÏÌµ¸ú¡£
+  * 				ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«ã€‚0ã¯ç„¡åŠ¹ã€‚
   */
 typedef unsigned int SO_HANDLE;
 //-------------------------------------------------------------------------
@@ -43,30 +43,30 @@ typedef unsigned int SO_HANDLE;
 #define SO_INVALID ((SO_HANDLE)0)
 //-------------------------------------------------------------------------
 /**
-  * @brief			initialize library / ¥é¥¤¥Ö¥é¥ê¤Î½é´ü²½
+  * @brief			initialize library / ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®åˆæœŸåŒ–
   * @return			returns 0 if failed, non 0 if success.
-  * 				0¤Ï¼ºÇÔ¡¢¤½¤ì°Ê³°¤ÏÀ®¸ù¡£
+  * 				0ã¯å¤±æ•—ã€ãã‚Œä»¥å¤–ã¯æˆåŠŸã€‚
   */
 SHIORI_EXPORT int SHIORI_CALL so_library_init(void);
 //-------------------------------------------------------------------------
 /**
-  * @brief			clean up library / ¥é¥¤¥Ö¥é¥ê¤Î½ªÎ»½èÍı
+  * @brief			clean up library / ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®çµ‚äº†å‡¦ç†
   * @return			returns 0 if failed, non 0 if success.
-  *					0¤Ï¼ºÇÔ¡¢¤½¤ì°Ê³°¤ÏÀ®¸ù¡£
+  *					0ã¯å¤±æ•—ã€ãã‚Œä»¥å¤–ã¯æˆåŠŸã€‚
   */
 SHIORI_EXPORT int SHIORI_CALL so_library_cleanup(void);
 //-------------------------------------------------------------------------
 /**
  * @brief			get version string of module.
  * @param length	(O) a pointer to store length of return value in bytes.
- * 					Ìá¤êÃÍ¤ÎbyteÄ¹¤ò³ÊÇ¼¤¹¤ëint¤Ø¤Î¥İ¥¤¥ó¥¿¡£
+ * 					æˆ»ã‚Šå€¤ã®byteé•·ã‚’æ ¼ç´ã™ã‚‹intã¸ã®ãƒã‚¤ãƒ³ã‚¿ã€‚
  * @return			version string in following format.
  *					"NAME[.SUBNAME[.SUBNAME]]/VERSION"
  *					or NULL if failed.
  *					this must be free using so_free().
- *					¼¡¤Î·Á¼°¤ò»ı¤Ã¤¿0½ªÃ¼Ê¸»úÎó¡£
- *					"´ğËÜÌ¾¾Î[.Êä½õÌ¾¾Î[.Êä½õÌ¾¾Î]]/¥Ğ¡¼¥¸¥ç¥óÈÖ¹æ"¡£
- *					¼ºÇÔ»ş¤ÏNULL. so_free()¤ò»È¤Ã¤Æ¥á¥â¥ê¤ò²òÊü¤¹¤ë¤³¤È¡£
+ *					æ¬¡ã®å½¢å¼ã‚’æŒã£ãŸ0çµ‚ç«¯æ–‡å­—åˆ—ã€‚
+ *					"åŸºæœ¬åç§°[.è£œåŠ©åç§°[.è£œåŠ©åç§°]]/ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·"ã€‚
+ *					å¤±æ•—æ™‚ã¯NULL. so_free()ã‚’ä½¿ã£ã¦ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾ã™ã‚‹ã“ã¨ã€‚
  *					ex) "KAWARI.kdt/8.1.0"
  */
 SHIORI_EXPORT const char * SHIORI_CALL so_getmoduleversion(long *length);

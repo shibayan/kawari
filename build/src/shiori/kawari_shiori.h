@@ -1,57 +1,57 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// µ¶AIÂåÍÑÉÊ
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// å½AIä»£ç”¨å“
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.02.03  Phase 0.3     ¥Î¡¼¥³¥á¥ó¥È
-//  2001.02.11  Phase 0.31    ºÆµ¢ÄêµÁ¼ÂÁõ
-//  2001.02.23  Phase 0.4     Â´ÏÀÀïÁè½ªÀïµ§Ç°
-//                            ¾¤·°Â¤é¤«¤Ë¤ªÌ²¤ê²¼¤µ¤¤¡¢²á¤Á¤Ï·«¤êÊÖ¤·¤Ş¤»¤¢·
-//                                                                ¥Ğ¡¼¥¸¥ç¥ó
-//                            kawari.iniÆ³Æş
-//                            Ê£¿ô¼­½ñ¥Õ¥¡¥¤¥ë
-//                            sentence.txtÇÑ»ß
-//  2001.03.15  Phase 0.42    unloadÍ½Ìó
-//  2001.04.25  Phase 0.50a1  ¥ì¥¹¥İ¥ó¥¹ÂĞ±ş
-//  2001.04.27  Phase 0.50a2  SHIORI/2.1ÂĞ±ş
-//  2001.04.28  Phase 0.50a3  COMMUNICATEÀïÁè
+//  2001.02.03  Phase 0.3     ãƒãƒ¼ã‚³ãƒ¡ãƒ³ãƒˆ
+//  2001.02.11  Phase 0.31    å†å¸°å®šç¾©å®Ÿè£…
+//  2001.02.23  Phase 0.4     å’è«–æˆ¦äº‰çµ‚æˆ¦ç¥ˆå¿µ
+//                            ï½å®‰ã‚‰ã‹ã«ãŠçœ ã‚Šä¸‹ã•ã„ã€éã¡ã¯ç¹°ã‚Šè¿”ã—ã¾ã›ã‚“ï½
+//                                                                ãƒãƒ¼ã‚¸ãƒ§ãƒ³
+//                            kawari.iniå°å…¥
+//                            è¤‡æ•°è¾æ›¸ãƒ•ã‚¡ã‚¤ãƒ«
+//                            sentence.txtå»ƒæ­¢
+//  2001.03.15  Phase 0.42    unloadäºˆç´„
+//  2001.04.25  Phase 0.50a1  ãƒ¬ã‚¹ãƒãƒ³ã‚¹å¯¾å¿œ
+//  2001.04.27  Phase 0.50a2  SHIORI/2.1å¯¾å¿œ
+//  2001.04.28  Phase 0.50a3  COMMUNICATEæˆ¦äº‰
 //       |
 //  2001.05.02
-//  2001.05.03  Phase 0.50a4  ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È
-//  2001.05.12  Phase 0.50    Piroject-X ´°·ëÊÔ
-//                            SHIORI/2.2ÂĞ±ş
-//                            SHIORI/1.1ÀÚ¤ê¼Î¤Æ
-//  2001.05.27  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é²½
-//  2001.05.31  Phase 5.2     Êİ¼éÅªpiro
-//  2001.06.10  Phase 5.3.1   GET VersionÂĞºö
-//                            µ¶SHIORI/2.4¼ÂÁõ (^_^;
-//  2001.06.18  Phase 5.4     ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥ÈÂçÉı¶¯²½
-//  2001.07.10  Phase 6.0     getmoduleversionÄÉ²Ã
-//  2001.07.14  Phase 6.1     BCC¥á¥â¥êÏ²ÈñÌäÂêÂĞºö
-//  2001.07.19  Phase 6.2     SHIORI/2.5¼ÂÁõ
-//  2001.08.08  Phase 6.2     ¹¬¿åÍÑ¤ËLoadSub¤ò¿·Àß
-//  2001.08.25  Phase 6.3     ¥»¥­¥å¥ê¥Æ¥£¡¼¥Û¡¼¥ëÂĞºö
-//  2001.08.25  Phase 7.0     ¥»¥­¥å¥ê¥Æ¥£ÂĞºö(WriteProtect)
-//  2001.09.23  Phase 7.0.1   ¥»¥­¥å¥ê¥Æ¥£ÂĞºö¤òredo34°Ê¹ß¤ÎÊı¼°¤ËÂĞ±ş
-//                            Sender·ĞÏ©¾ğÊóÄÉ²Ã(System.Sender.Path)
-//                            3¥¨¥ó¥È¥ê°Ê¾å¤Ç¤ÎAND¸¡º÷¥Ğ¥°¤ò½¤Àµ
-//                            SHIORI/2.3bÂĞ±ş
-//                            ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È¶¯²½
-//                            µ¯Æ°Â®ÅÙ¤Î¹âÂ®²½
-//                            ¥Ï¥¤¥Õ¥ó¤ò»ÈÍÑ¤¹¤ëµì¥¨¥ó¥È¥ê¤ÎÂĞ±şÄä»ß
-//  2002.01.12  Phase 8.0     ¤Ê¤«¤Ê¤«½ĞÍè¤Ê¤¤Phase8
-//                            NID¤«¤é¥Õ¥£¡¼¥É¥Ğ¥Ã¥¯
-//                            kpcg Phase7.3.1¤«¤é¥Õ¥£¡¼¥É¥Ğ¥Ã¥¯
-//  2002.03                   Phase 8.0 (Rhapsody in the Blue)¤ÏÇË´ş
-//  2002.03.10  Phase 7.9.0   Philedelphia¼Â¸³
-//                            kawari_engine_base.hÇÑ»ß
-//  2002.03.20                SAORIÅı¹ç
-//  2002.04.12  Phase 8.0.0   ¥¤¥ó¥¿¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é½ñ¤­Ä¾¤·
-//                            ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹ÀÚ¤êÄ¾¤·
+//  2001.05.03  Phase 0.50a4  ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+//  2001.05.12  Phase 0.50    Piroject-X å®Œçµç·¨
+//                            SHIORI/2.2å¯¾å¿œ
+//                            SHIORI/1.1åˆ‡ã‚Šæ¨ã¦
+//  2001.05.27  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©åŒ–
+//  2001.05.31  Phase 5.2     ä¿å®ˆçš„piro
+//  2001.06.10  Phase 5.3.1   GET Versionå¯¾ç­–
+//                            å½SHIORI/2.4å®Ÿè£… (^_^;
+//  2001.06.18  Phase 5.4     ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå¤§å¹…å¼·åŒ–
+//  2001.07.10  Phase 6.0     getmoduleversionè¿½åŠ 
+//  2001.07.14  Phase 6.1     BCCãƒ¡ãƒ¢ãƒªæµªè²»å•é¡Œå¯¾ç­–
+//  2001.07.19  Phase 6.2     SHIORI/2.5å®Ÿè£…
+//  2001.08.08  Phase 6.2     å¹¸æ°´ç”¨ã«LoadSubã‚’æ–°è¨­
+//  2001.08.25  Phase 6.3     ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ãƒ¼ãƒ›ãƒ¼ãƒ«å¯¾ç­–
+//  2001.08.25  Phase 7.0     ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£å¯¾ç­–(WriteProtect)
+//  2001.09.23  Phase 7.0.1   ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£å¯¾ç­–ã‚’redo34ä»¥é™ã®æ–¹å¼ã«å¯¾å¿œ
+//                            SenderçµŒè·¯æƒ…å ±è¿½åŠ (System.Sender.Path)
+//                            3ã‚¨ãƒ³ãƒˆãƒªä»¥ä¸Šã§ã®ANDæ¤œç´¢ãƒã‚°ã‚’ä¿®æ­£
+//                            SHIORI/2.3bå¯¾å¿œ
+//                            ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå¼·åŒ–
+//                            èµ·å‹•é€Ÿåº¦ã®é«˜é€ŸåŒ–
+//                            ãƒã‚¤ãƒ•ãƒ³ã‚’ä½¿ç”¨ã™ã‚‹æ—§ã‚¨ãƒ³ãƒˆãƒªã®å¯¾å¿œåœæ­¢
+//  2002.01.12  Phase 8.0     ãªã‹ãªã‹å‡ºæ¥ãªã„Phase8
+//                            NIDã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯
+//                            kpcg Phase7.3.1ã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ‰ãƒãƒƒã‚¯
+//  2002.03                   Phase 8.0 (Rhapsody in the Blue)ã¯ç ´æ£„
+//  2002.03.10  Phase 7.9.0   Philedelphiaå®Ÿé¨“
+//                            kawari_engine_base.hå»ƒæ­¢
+//  2002.03.20                SAORIçµ±åˆ
+//  2002.04.12  Phase 8.0.0   ã‚¤ãƒ³ã‚¿ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©æ›¸ãç›´ã—
+//                            ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹åˆ‡ã‚Šç›´ã—
 //  2002.12.30  Phase 8.1.0   Winter Comicket Version
-//                            Ê£¿ô¥¤¥ó¥¹¥¿¥ó¥¹¤òµö²Ä(ÆâÉôÅª¤Ë)
+//                            è¤‡æ•°ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨±å¯(å†…éƒ¨çš„ã«)
 //
 //
 //---------------------------------------------------------------------------
@@ -69,24 +69,24 @@
 #define SHIORIVER	"3.0"
 #define SAORIVER	"1.0"
 //---------------------------------------------------------------------------
-// ¤¢¤ì°Ê³°¤Î²¿¤«¡¦µ¶AI»ÅÍÍ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹
-// µì TNS_KawariANI
+// ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ãƒ»å½AIä»•æ§˜ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
+// æ—§ TNS_KawariANI
 class TKawariShioriAdapter{
 private:
 
-	// ²ÚÏÂÍü¥¨¥ó¥¸¥ó
+	// è¯å’Œæ¢¨ã‚¨ãƒ³ã‚¸ãƒ³
 	TKawariEngine Engine;
 
-	// ¼±ÊÌÍÑ¤Î¥´¡¼¥¹¥ÈÌ¾
-	// NOTIFY¤ÇÁ÷¤é¤ì¤Æ¤¯¤ëÌ¾Á°
+	// è­˜åˆ¥ç”¨ã®ã‚´ãƒ¼ã‚¹ãƒˆå
+	// NOTIFYã§é€ã‚‰ã‚Œã¦ãã‚‹åå‰
 	std::string GhostName;
 
-	// ¥»¥­¥å¥ê¥Æ¥£¥ì¥Ù¥ë
+	// ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ãƒ¬ãƒ™ãƒ«
 	class TSecurityLevel {
 	private:
 		unsigned int Level;
 	public:
-		// ÅÁÃ£·ĞÏ©¾ğÊó
+		// ä¼é”çµŒè·¯æƒ…å ±
 		enum TSenderPath {
 			tsidSystem=0,
 			tsidLocal=1,
@@ -94,11 +94,11 @@ private:
 			tsidExternal=3
 		};
 
-		// ¥»¥­¥å¥ê¥Æ¥£¥ì¥Ù¥ë¤òÀßÄê¤¹¤ë
-		// 3 : LOCAL¤òµö²Ä¤¹¤ë
-		// 2 : LOCAL, UNKNOWN¤òµö²Ä¤¹¤ë
-		// 1 : LOCAL, UNKNOWN¤òµö²Ä¤¹¤ë(2¤ÈÆ±¤¸)
-		// 0 : LOCAL, UNKNOWN, EXTERNAL¤òµö²Ä¤¹¤ë
+		// ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ãƒ¬ãƒ™ãƒ«ã‚’è¨­å®šã™ã‚‹
+		// 3 : LOCALã‚’è¨±å¯ã™ã‚‹
+		// 2 : LOCAL, UNKNOWNã‚’è¨±å¯ã™ã‚‹
+		// 1 : LOCAL, UNKNOWNã‚’è¨±å¯ã™ã‚‹(2ã¨åŒã˜)
+		// 0 : LOCAL, UNKNOWN, EXTERNALã‚’è¨±å¯ã™ã‚‹
 		bool Set(unsigned int lv)
 		{
 			Level=(lv<=3)?lv:Level;
@@ -110,7 +110,7 @@ private:
 			return(Level);
 		}
 
-		// Sender¤¬µö²Ä¤µ¤ì¤Æ¤¤¤ë¤«¤É¤¦¤«¥Á¥§¥Ã¥¯¤¹¤ë
+		// SenderãŒè¨±å¯ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹
 		bool Check(TSenderPath path)
 		{
 			switch(Level) {
@@ -129,46 +129,46 @@ private:
 	} SecurityLevel;
 
 
-	// Sender¤òÅÁÃ£·ĞÏ©¾ğÊó¤ÈÊ¬Î¥
+	// Senderã‚’ä¼é”çµŒè·¯æƒ…å ±ã¨åˆ†é›¢
 	void GetSenderPath(const std::string &senderstr,
 	 TSecurityLevel::TSenderPath &sender_path,std::string &sender_path_name);
 
-	// »ØÄê¤·¤¿¥¨¥ó¥È¥ê¤ÎÃ±¸ì¤òÁ´¤Æ¸Æ¤Ó½Ğ¤¹
+	// æŒ‡å®šã—ãŸã‚¨ãƒ³ãƒˆãƒªã®å˜èªã‚’å…¨ã¦å‘¼ã³å‡ºã™
 	std::string EnumExec(const std::string& key);
 
-	// ¼­½ñÆâ¤Î¥ì¥¹¥İ¥ó¥¹¤òÁ´¤ÆÆÉ¤ß½Ğ¤¹
+	// è¾æ›¸å†…ã®ãƒ¬ã‚¹ãƒãƒ³ã‚¹ã‚’å…¨ã¦èª­ã¿å‡ºã™
 	int GetResponse(TPHMessage &response);
 
-	// Load¤¬¸Æ¤Ğ¤ì¤¿¤«
+	// LoadãŒå‘¼ã°ã‚ŒãŸã‹
 	bool initialized;
 
 public:
-	// Ê£¿ô¥¤¥ó¥¹¥¿¥ó¥¹¤òµö²Ä
+	// è¤‡æ•°ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¨±å¯
 	TKawariShioriAdapter(void) : SecurityLevel(2), initialized(false) { }
 
 	virtual ~TKawariShioriAdapter() {}
 
 	// SHIORI/2.x API
 
-	// DLL¥í¡¼¥É»ş¤Ë¸Æ¤Ğ¤ì¤ë
-	// const std::string& datapath : DLL¤Î¥Ç¥£¥ì¥¯¥È¥ê¥Ñ¥¹
-	// Ìá¤êÃÍ bool : À®¸ù¤Çtrue
+	// DLLãƒ­ãƒ¼ãƒ‰æ™‚ã«å‘¼ã°ã‚Œã‚‹
+	// const std::string& datapath : DLLã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹
+	// æˆ»ã‚Šå€¤ bool : æˆåŠŸã§true
 	bool Load(const std::string& datapath);
 
-	// DLL¥¢¥ó¥í¡¼¥É»ş¤Ë¸Æ¤Ğ¤ì¤ë
-	// Ìá¤êÃÍ bool : À®¸ù¤Çtrue
+	// DLLã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰æ™‚ã«å‘¼ã°ã‚Œã‚‹
+	// æˆ»ã‚Šå€¤ bool : æˆåŠŸã§true
 	bool Unload(void);
 
-	// µ¶AI¥ê¥¯¥¨¥¹¥È
-	// TPHMessage &request : ¥ê¥¯¥¨¥¹¥È¥á¥Ã¥»¡¼¥¸
-	// TPHMessage &response : ¥ì¥¹¥İ¥ó¥¹¥á¥Ã¥»¡¼¥¸
+	// å½AIãƒªã‚¯ã‚¨ã‚¹ãƒˆ
+	// TPHMessage &request : ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+	// TPHMessage &response : ãƒ¬ã‚¹ãƒãƒ³ã‚¹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 	void Request(TPHMessage &request, TPHMessage &response);
 
 	// SHIORI for POSIX 2.4
 
-	// µ¶AI¥â¥¸¥å¡¼¥ë¤Î¥Ğ¡¼¥¸¥ç¥óÈÖ¹æ¤òÊÖ¤¹
-	// Ìá¤êÃÍ std::string : "´ğËÜÌ¾¾Î[.Êä½õÌ¾¾Î[.Êä½õÌ¾¾Î]]/¥Ğ¡¼¥¸¥ç¥óÈÖ¹æ"
-	// ex. "KAWARI.meister/7.9.0" MeisterÈÇ ²ÚÏÂÍü Phase7.9.0
+	// å½AIãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·ã‚’è¿”ã™
+	// æˆ»ã‚Šå€¤ std::string : "åŸºæœ¬åç§°[.è£œåŠ©åç§°[.è£œåŠ©åç§°]]/ãƒãƒ¼ã‚¸ãƒ§ãƒ³ç•ªå·"
+	// ex. "KAWARI.meister/7.9.0" Meisterç‰ˆ è¯å’Œæ¢¨ Phase7.9.0
 	static inline std::string GetModuleVersion(void)
 	{
 		return(KAWARI_NAME "/" KAWARI_MAJOR "." KAWARI_MINOR "." KAWARI_SUBMINOR);
@@ -181,37 +181,37 @@ private:
 	static TKawariShioriFactory *instance;
 	TKawariShioriFactory (void) {}
 
-	// ÛÙ¤Î¥ê¥¹¥È
+	// æ ã®ãƒªã‚¹ãƒˆ
 	std::vector<TKawariShioriAdapter *> list;
 
 public:
-	// ¥Õ¥¡¥¯¥È¥ê¤Î³ÍÆÀ
+	// ãƒ•ã‚¡ã‚¯ãƒˆãƒªã®ç²å¾—
 	static TKawariShioriFactory &GetFactory(void){
 		if (!instance)
 			instance=new TKawariShioriFactory();
 		return (*instance);
 	}
-	// ¥Õ¥¡¥¯¥È¥ê¤ÎÇË´ş
-	// ÇË´ş¸å¤ËºÆÀ¸À®¤â²ÄÇ½
+	// ãƒ•ã‚¡ã‚¯ãƒˆãƒªã®ç ´æ£„
+	// ç ´æ£„å¾Œã«å†ç”Ÿæˆã‚‚å¯èƒ½
 	static void DisposeFactory(void){
 		// delete NULL is safe.
 		delete instance;
 		instance=NULL;
 	}
 
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~TKawariShioriFactory();
 
-	// ¥â¥¸¥å¡¼¥ë¥Ğ¡¼¥¸¥ç¥ó
+	// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãƒãƒ¼ã‚¸ãƒ§ãƒ³
 	static inline std::string GetModuleVersion(void){
 		return TKawariShioriAdapter::GetModuleVersion();
 	}
-	// ¿·µ¬¥¤¥ó¥¹¥¿¥ó¥¹¤ÎºîÀ®
-	// Ìá¤êÃÍ : ¥Ï¥ó¥É¥ë
+	// æ–°è¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ä½œæˆ
+	// æˆ»ã‚Šå€¤ : ãƒãƒ³ãƒ‰ãƒ«
 	unsigned int CreateInstance(const std::string &datapath);
-	// ¥¤¥ó¥¹¥¿¥ó¥¹¤Îºï½ü
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å‰Šé™¤
 	bool DisposeInstance(unsigned int handle);
-	// ¥¤¥ó¥¹¥¿¥ó¥¹¤Ø¤Î¥ê¥¯¥¨¥¹¥È
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	std::string RequestInstance(unsigned int handle, const std::string &reqstr);
 };
 //---------------------------------------------------------------------------

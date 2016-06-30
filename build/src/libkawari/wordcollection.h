@@ -1,15 +1,15 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// ¥Ç¡¼¥¿Êİ»ı¥¯¥é¥¹
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ãƒ‡ãƒ¼ã‚¿ä¿æŒã‚¯ãƒ©ã‚¹
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.04.24  Phase 0.5     Æ³Æş
-//  2001.05.26  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥éÆ³Æş¤ËÈ¼¤¤template²½
-//  2002.05.05  Phase 8.0.0   ¥¬¥Ù¥Ã¥¸¥³¥ì¥¯¥¿¡¢µÕ½çÂĞ±ş
-//  2003.01.22  Phase 8.1.1   gcc3°Ê¹ß¤Ç¤Ïtypename»ÈÍÑ
-//  2005.06.21  Phase 8.2.3   gcc3.x¤ÎwarningÂĞ±ş (suikyo)
+//  2001.04.24  Phase 0.5     å°å…¥
+//  2001.05.26  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©å°å…¥ã«ä¼´ã„templateåŒ–
+//  2002.05.05  Phase 8.0.0   ã‚¬ãƒ™ãƒƒã‚¸ã‚³ãƒ¬ã‚¯ã‚¿ã€é€†é †å¯¾å¿œ
+//  2003.01.22  Phase 8.1.1   gcc3ä»¥é™ã§ã¯typenameä½¿ç”¨
+//  2005.06.21  Phase 8.2.3   gcc3.xã®warningå¯¾å¿œ (suikyo)
 //
 //---------------------------------------------------------------------------
 #ifndef WORDCOLLECTION_H
@@ -25,7 +25,7 @@
 #	undef typename
 #endif
 //---------------------------------------------------------------------------
-// Ãê¾İ²½¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹
+// æŠ½è±¡åŒ–ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹
 template<class T,class Compare>
 class IWordCollection {
 public:
@@ -37,22 +37,22 @@ public:
 	virtual bool Contains(unsigned int id) const=0;
 };
 //---------------------------------------------------------------------------
-// ¥Ç¡¼¥¿¤òÊİ»ı¤·ID¤ò³ä¤ê¿¶¤ë¥¯¥é¥¹
-// ID¤Ï[1, UINT_MAX]
+// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã—IDã‚’å‰²ã‚ŠæŒ¯ã‚‹ã‚¯ãƒ©ã‚¹
+// IDã¯[1, UINT_MAX]
 template<class T,class Compare>
 class TWordCollection : public IWordCollection<T, Compare> {
 protected:
-	// Á´¤Æ¤Î¥Ç¡¼¥¿
+	// å…¨ã¦ã®ãƒ‡ãƒ¼ã‚¿
 	std::vector<T> WordList;
 
-	// ¥Ó¥Ã¥È¥Ş¥Ã¥×
-	// 0¤ÏËõ¾Ã¤µ¤ì¤¿¥Ç¡¼¥¿
+	// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
+	// 0ã¯æŠ¹æ¶ˆã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿
 	std::vector<unsigned int> IDMap;
 
-	// ¥Ç¡¼¥¿¤ÈID¤ÎÂĞ±şÉ½
+	// ãƒ‡ãƒ¼ã‚¿ã¨IDã®å¯¾å¿œè¡¨
 	std::map<T,unsigned int,Compare> WordIDMap;
 
-	// ¥ê¥µ¥¤¥¯¥ëÂÔ¤ÁID
+	// ãƒªã‚µã‚¤ã‚¯ãƒ«å¾…ã¡ID
 	std::vector<unsigned int> Recycle;
 
 public:
@@ -60,40 +60,40 @@ public:
 
 	inline TWordCollection(void) { IDMap.push_back(0); }
 
-	// ÁíÃ±¸ì¿ô¤ò¼èÆÀ
+	// ç·å˜èªæ•°ã‚’å–å¾—
 	unsigned int Size(void) const
 	{
 		return(WordIDMap.size());
 	}
 
-	// ¥Ç¡¼¥¿¤ÎÄÉ²Ã
-	// ¿·µ¬ÄÉ²Ã¤Çtrue,ID¤Ï1¥ª¥ê¥¸¥ó
+	// ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
+	// æ–°è¦è¿½åŠ ã§true,IDã¯1ã‚ªãƒªã‚¸ãƒ³
 	bool Insert(const T& word,unsigned int *id_=NULL);
 
-	// ¥Ç¡¼¥¿¤ÎËõ¾Ã
-	// ¤¿¤À¤·¡¢Delete¤µ¤ì¤¿¥Ç¡¼¥¿¤Ï¡¢¤½¤Î¸å¤Ë¿·¤·¤¤¥Ç¡¼¥¿¤¬Insert
-	// ¤µ¤ì¤ë¤Ş¤Ç¥á¥â¥êÃæ¤ËÊİ»ı¤µ¤ìÂ³¤±¤ë(ÂÅ¶¨)
+	// ãƒ‡ãƒ¼ã‚¿ã®æŠ¹æ¶ˆ
+	// ãŸã ã—ã€Deleteã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã¯ã€ãã®å¾Œã«æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ãŒInsert
+	// ã•ã‚Œã‚‹ã¾ã§ãƒ¡ãƒ¢ãƒªä¸­ã«ä¿æŒã•ã‚Œç¶šã‘ã‚‹(å¦¥å”)
 	virtual bool Delete(unsigned int id);
 
-	// ID->¥Ç¡¼¥¿
+	// ID->ãƒ‡ãƒ¼ã‚¿
 	const T* Find(unsigned int id) const;
 
-	// ¥Ç¡¼¥¿->ID
+	// ãƒ‡ãƒ¼ã‚¿->ID
 	unsigned int Find(const T& word) const;
 
-	// ¤³¤ÎID¤ò´Ş¤à¤«
+	// ã“ã®IDã‚’å«ã‚€ã‹
 	bool Contains(unsigned int id) const;
 
-	// ¥Ò¡¼¥×¤Î³ÎÊİ
+	// ãƒ’ãƒ¼ãƒ—ã®ç¢ºä¿
 	void Reserve(unsigned int n);
 };
 //---------------------------------------------------------------------------
-// ¥İ¥¤¥ó¥¿¤òÊİ»ı¤·ID¤ò³ä¤ê¿¶¤ë¥¯¥é¥¹
+// ãƒã‚¤ãƒ³ã‚¿ã‚’ä¿æŒã—IDã‚’å‰²ã‚ŠæŒ¯ã‚‹ã‚¯ãƒ©ã‚¹
 template<class T,class Compare>
 class TWordPointerCollection : public TWordCollection<T*, Compare>{
 public:
-	// ¥Ç¡¼¥¿¤ÎËõ¾Ã
-	// Delete»ş¤ËNULL¤òÂåÆş
+	// ãƒ‡ãƒ¼ã‚¿ã®æŠ¹æ¶ˆ
+	// Deleteæ™‚ã«NULLã‚’ä»£å…¥
 	virtual bool Delete(unsigned int id){
 		if(TWordCollection<T*,Compare>::Delete(id)){
             TWordCollection<T*, Compare>::WordList[id-1]=NULL;
@@ -110,8 +110,8 @@ public:
 	}
 };
 //---------------------------------------------------------------------------
-// ¥Ç¡¼¥¿¤ÎÄÉ²Ã
-// ¿·µ¬ÄÉ²Ã¤Çtrue,ID¤Ï1¥ª¥ê¥¸¥ó
+// ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
+// æ–°è¦è¿½åŠ ã§true,IDã¯1ã‚ªãƒªã‚¸ãƒ³
 template<class T,class Compare>
 bool TWordCollection<T,Compare>::Insert(const T& word,unsigned int *id_)
 {
@@ -123,7 +123,7 @@ bool TWordCollection<T,Compare>::Insert(const T& word,unsigned int *id_)
 	if(Recycle.size()){
 		id=Recycle.back();
 		Recycle.pop_back();
-		// ¤ä¤Ğ¤¤¤«¤Ê¡¼
+		// ã‚„ã°ã„ã‹ãªãƒ¼
 		WordList[id-1]=word;
 		WordIDMap[word]=id;
 		IDMap[id]=id;
@@ -139,9 +139,9 @@ bool TWordCollection<T,Compare>::Insert(const T& word,unsigned int *id_)
 	return(true);
 }
 //---------------------------------------------------------------------------
-// ¥Ç¡¼¥¿¤ÎËõ¾Ã
-// ¤¿¤À¤·¡¢Delete¤µ¤ì¤¿¥Ç¡¼¥¿¤Ï¡¢¤½¤Î¸å¤Ë¿·¤·¤¤¥Ç¡¼¥¿¤¬Insert
-// ¤µ¤ì¤ë¤Ş¤Ç¥á¥â¥êÃæ¤ËÊİ»ı¤µ¤ìÂ³¤±¤ë(ÂÅ¶¨)
+// ãƒ‡ãƒ¼ã‚¿ã®æŠ¹æ¶ˆ
+// ãŸã ã—ã€Deleteã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã¯ã€ãã®å¾Œã«æ–°ã—ã„ãƒ‡ãƒ¼ã‚¿ãŒInsert
+// ã•ã‚Œã‚‹ã¾ã§ãƒ¡ãƒ¢ãƒªä¸­ã«ä¿æŒã•ã‚Œç¶šã‘ã‚‹(å¦¥å”)
 template<class T,class Compare>
 bool TWordCollection<T,Compare>::Delete(unsigned int id){
 	if((id==0)||(IDMap[id]==0)||(WordList.size()<=(id-1))) return false;
@@ -153,7 +153,7 @@ bool TWordCollection<T,Compare>::Delete(unsigned int id){
 	return true;
 }
 //---------------------------------------------------------------------------
-// ID->¥Ç¡¼¥¿
+// ID->ãƒ‡ãƒ¼ã‚¿
 template<class T,class Compare>
  const T* TWordCollection<T,Compare>::Find(unsigned int id) const
 {
@@ -162,7 +162,7 @@ template<class T,class Compare>
 	return(&(WordList[id-1]));
 }
 //---------------------------------------------------------------------------
-// ¥Ç¡¼¥¿->ID
+// ãƒ‡ãƒ¼ã‚¿->ID
 template<class T,class Compare>
  unsigned int TWordCollection<T,Compare>::Find(const T& word) const
 {
@@ -171,7 +171,7 @@ template<class T,class Compare>
 	return((it!=WordIDMap.end())?it->second:0);
 }
 //---------------------------------------------------------------------------
-// ¤³¤ÎID¤ò´Ş¤à¤«
+// ã“ã®IDã‚’å«ã‚€ã‹
 template<class T,class Compare>
 bool TWordCollection<T,Compare>::Contains(unsigned int id) const
 {
@@ -181,7 +181,7 @@ bool TWordCollection<T,Compare>::Contains(unsigned int id) const
 		return(true);
 }
 //---------------------------------------------------------------------------
-// ¥Ò¡¼¥×¤Î³ÎÊİ
+// ãƒ’ãƒ¼ãƒ—ã®ç¢ºä¿
 template<class T,class Compare>
 void TWordCollection<T,Compare>::Reserve(unsigned int n)
 {

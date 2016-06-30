@@ -1,14 +1,14 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// KawariInlineScript -- ¥·¥¹¥Æ¥àÁàºî --
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// KawariInlineScript -- ã‚·ã‚¹ãƒ†ãƒ æ“ä½œ --
 //
 //      Programed by Suikyo.
 //
-//  2002.04.20  Phase 8.0.0   ½¾Íèkawari.ini¤Ë¤¢¤Ã¤¿¥³¥Ş¥ó¥É¤Î°ìÉô
-//  2002.06.23  Phase 8.0.0   KIS_rccharset ÄÉ²Ã
-//  2002.11.20  Phase 8.1.0   ¥í¥°¥¹¥È¥ê¡¼¥à¤ò¥¨¥ó¥¸¥óÃ±°Ì¤Ç´ÉÍı
-//  2003.11.18  Phase 8.2.0   getenvÄÉ²Ã
+//  2002.04.20  Phase 8.0.0   å¾“æ¥kawari.iniã«ã‚ã£ãŸã‚³ãƒãƒ³ãƒ‰ã®ä¸€éƒ¨
+//  2002.06.23  Phase 8.0.0   KIS_rccharset è¿½åŠ 
+//  2002.11.20  Phase 8.1.0   ãƒ­ã‚°ã‚¹ãƒˆãƒªãƒ¼ãƒ ã‚’ã‚¨ãƒ³ã‚¸ãƒ³å˜ä½ã§ç®¡ç†
+//  2003.11.18  Phase 8.2.0   getenvè¿½åŠ 
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -63,7 +63,7 @@ string KIS_securitylevel::Function(const vector<string>& args){
 string KIS_logfile::Function(const vector<string>& args)
 {
 	if (args.size()==1){
-		// ¥í¥®¥ó¥°Ãæ»ß
+		// ãƒ­ã‚®ãƒ³ã‚°ä¸­æ­¢
 		GetLogger().SetStream(NULL);
 		if (filestream){
 			delete filestream;
@@ -85,7 +85,7 @@ string KIS_logfile::Function(const vector<string>& args)
 }
 //---------------------------------------------------------------------------
 KIS_logfile::~KIS_logfile(){
-	// ¥í¥®¥ó¥°Ãæ»ß
+	// ãƒ­ã‚®ãƒ³ã‚°ä¸­æ­¢
 	GetLogger().SetStream(NULL);
 	if (filestream)
 		delete filestream;

@@ -1,18 +1,18 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// KawariInlineScript -- Æü»ş --
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// KawariInlineScript -- æ—¥æ™‚ --
 //
 //      Programed by NAKAUE.T (Meister)
 //
 //  2001.05.14  Phase 0.50    First version
-//  2001.05.19  Phase 5.1     ¾¯¤·¶¯²½
-//  2001.06.17  Phase 6.0     ¤â¤¦¾¯¤·¶¯²½
-//  2001.08.08  Phase 6.2     ostrstream¥Ğ¥°½¤Àµ
-//  2002.07.10  Phase 8.1.0   %sÄÉ²Ã
-//  2003.11.17  Phase 8.2.0   epoc¤«¤é¤Î·Ğ²áÉÃ¿ô¤ò¥Õ¥©¡¼¥Ş¥Ã¥È½ĞÎÏ²ÄÇ½¤Ë
-//  2005.06.21  Phase 8.2.3   gcc3.x¤ÎwarningÂĞ±ş (suikyo)
-//                            mktimeÄÉ²Ã (¤µ¤È¡¼)
+//  2001.05.19  Phase 5.1     å°‘ã—å¼·åŒ–
+//  2001.06.17  Phase 6.0     ã‚‚ã†å°‘ã—å¼·åŒ–
+//  2001.08.08  Phase 6.2     ostrstreamãƒã‚°ä¿®æ­£
+//  2002.07.10  Phase 8.1.0   %sè¿½åŠ 
+//  2003.11.17  Phase 8.2.0   epocã‹ã‚‰ã®çµŒéç§’æ•°ã‚’ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆå‡ºåŠ›å¯èƒ½ã«
+//  2005.06.21  Phase 8.2.3   gcc3.xã®warningå¯¾å¿œ (suikyo)
+//                            mktimeè¿½åŠ  (ã•ã¨ãƒ¼)
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -50,55 +50,55 @@ string KIS_date::Function(const vector<string>& args)
 #else
 	ostrstream ret;
 #endif
-	format+=' ';	// ¥À¥ß¡¼
+	format+=' ';	// ãƒ€ãƒŸãƒ¼
 	for(unsigned int i=0;i<(format.size()-1);i++) {
 		if(format[i]=='%') {
 			i++;
 			switch(format[i]) {
-			case 'd':	// Æü (01..31)
+			case 'd':	// æ—¥ (01..31)
 				ret << setw(2) << setfill('0') << now->tm_mday;
 				break;
-			case 'e':	// Æü (1..31)
+			case 'e':	// æ—¥ (1..31)
 				ret << now->tm_mday;
 				break;
-			case 'H':	// »ş (00..23)
+			case 'H':	// æ™‚ (00..23)
 				ret << setw(2) << setfill('0') << now->tm_hour;
 				break;
-			case 'j':	// ¸µÆü¤«¤é¤ÎÄÌ»»Æü (001..366)
+			case 'j':	// å…ƒæ—¥ã‹ã‚‰ã®é€šç®—æ—¥ (001..366)
 				ret << setw(3) << setfill('0') << (now->tm_yday+1);
 				break;
-			case 'J':	// ¸µÆü¤«¤é¤ÎÄÌ»»Æü (1..366)
+			case 'J':	// å…ƒæ—¥ã‹ã‚‰ã®é€šç®—æ—¥ (1..366)
 				ret << (now->tm_yday+1);
 				break;
-			case 'k':	// »ş (0..23)
+			case 'k':	// æ™‚ (0..23)
 				ret << now->tm_hour;
 				break;
-			case 'm':	// ·î (01..12)
+			case 'm':	// æœˆ (01..12)
 				ret << setw(2) << setfill('0') << (now->tm_mon+1);
 				break;
-			case 'M':	// Ê¬ (00..59)
+			case 'M':	// åˆ† (00..59)
 				ret << setw(2) << setfill('0') << now->tm_min;
 				break;
-			case 'n':	// ·î (1..12)
+			case 'n':	// æœˆ (1..12)
 				ret << (now->tm_mon+1);
 				break;
-			case 'N':	// Ê¬ (0..59)
+			case 'N':	// åˆ† (0..59)
 				ret << now->tm_min;
 				break;
-			case 'r':	// ÉÃ (0..59)
+			case 'r':	// ç§’ (0..59)
 				ret << now->tm_sec;
 				break;
-			case 'S':	// ÉÃ (00..59)
+			case 'S':	// ç§’ (00..59)
 				ret << setw(2) << setfill('0') << now->tm_sec;
 				break;
-			case 's':	// 1970/1/1 00:00:00 UTC¤«¤é¤ÎÉÃ¿ô
+			case 's':	// 1970/1/1 00:00:00 UTCã‹ã‚‰ã®ç§’æ•°
 				ret << nowtt;
 				break;
-			case 'w':	// ÍËÆü (0..6) ÆüÍËÆü¤¬0
+			case 'w':	// æ›œæ—¥ (0..6) æ—¥æ›œæ—¥ãŒ0
 				ret << now->tm_wday;
 				break;
-			case 'y':	// Ç¯ (2000...) 4·å
-			case 'Y':	// Ç¯ (2000...) 4·å
+			case 'y':	// å¹´ (2000...) 4æ¡
+			case 'Y':	// å¹´ (2000...) 4æ¡
 				ret << (now->tm_year+1900);
 				break;
 			case '%':
@@ -136,7 +136,7 @@ string KIS_mktime::Function(const vector<string>& args)
 	tt.tm_sec  =atoi(args[6].c_str());
 	tt.tm_isdst=0;
 
-	// ºÇÄã¸Â¤Î¿ôÃÍ¤ÎÀµÅöÀ­¤òÊİ¾Ú¤¹¤ë
+	// æœ€ä½é™ã®æ•°å€¤ã®æ­£å½“æ€§ã‚’ä¿è¨¼ã™ã‚‹
 	if(tt.tm_year<0)                    tt.tm_year=0;
 	if((tt.tm_mon>11)||(tt.tm_mon<0))   tt.tm_mon=0;
 	if((tt.tm_mday>31)||(tt.tm_mday<1)) tt.tm_mday=1;

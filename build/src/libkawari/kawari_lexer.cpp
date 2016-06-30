@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// »ú¶ç²òÀÏ
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// å­—å¥è§£æ
 //
 //      Programed by Suikyo
 //
-//  2002.04.18  Phase 8.0.0   ½ñ¤­Ä¾¤·
+//  2002.04.18  Phase 8.0.0   æ›¸ãç›´ã—
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -116,27 +116,27 @@ static char literal_map3[256] = {
 static char *lex_map[4] = { id_map, literal_map1, literal_map2, literal_map3 };
 
 //---------------------------------------------------------------------------
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKawariLexer::TKawariLexer (
 	istream &input, TKawariLogger &lgr, string filename, bool preprocess, int lineno)
 	 : pp(new TKawariPreProcessor(input, lineno, preprocess)), fn(filename), logger(lgr) { }
 
 //---------------------------------------------------------------------------
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKawariLexer::~TKawariLexer(void){
 	if (pp) delete pp;
 }
 
 //---------------------------------------------------------------------------
-// ¼¡¤Î¥Ù¥¢¥ê¥Æ¥é¥ë¥È¡¼¥¯¥ó¤òÆÀ¤ë
-// ¼¡¤¬¥Ù¥¢¥ê¥Æ¥é¥ë¤Ç¤Ê¤«¤Ã¤¿¤é¡¢""¤¬ÊÖ¤ë¡£Í½¤áÊ¬¤«¤Ã¤Æ¤¤¤ë¾ì¹ç¤Ë¤À¤±»È¤¦¤³¤È¡£
+// æ¬¡ã®ãƒ™ã‚¢ãƒªãƒ†ãƒ©ãƒ«ãƒˆãƒ¼ã‚¯ãƒ³ã‚’å¾—ã‚‹
+// æ¬¡ãŒãƒ™ã‚¢ãƒªãƒ†ãƒ©ãƒ«ã§ãªã‹ã£ãŸã‚‰ã€""ãŒè¿”ã‚‹ã€‚äºˆã‚åˆ†ã‹ã£ã¦ã„ã‚‹å ´åˆã«ã ã‘ä½¿ã†ã“ã¨ã€‚
 string TKawariLexer::getLiteral(Mode m){
 	if (!hasNext()) return ("");
 
 	char ch;
 	char *map = lex_map[(int)m];
 	string ret;
-	ret.reserve(20);	// ¤³¤ó¤¯¤é¤¤¤Ç¤¹¤«
+	ret.reserve(20);	// ã“ã‚“ãã‚‰ã„ã§ã™ã‹
 	while(pp->getch(ch)){
 		if (iskanji1st(ch)) {
 			ret+=ch;
@@ -153,7 +153,7 @@ string TKawariLexer::getLiteral(Mode m){
 	}
 	if(((m==LITERAL_MODE)&&(ch==','))||
 	   ((m==LITERAL_MODE3)&&(ch==')'))){
-		// ¥Ç¥ê¥ß¥¿Á°¤Î¶õÇò¤Ïºï½ü
+		// ãƒ‡ãƒªãƒŸã‚¿å‰ã®ç©ºç™½ã¯å‰Šé™¤
 		string::size_type litend=ret.find_last_not_of(" \t\x0d\x0a");
 		ret=ret.substr(0, litend+1);
 	}else{
@@ -164,10 +164,10 @@ string TKawariLexer::getLiteral(Mode m){
 }
 
 //---------------------------------------------------------------------------
-// ¼¡¤Î¥¯¥©¡¼¥È¥ê¥Æ¥é¥ë¥È¡¼¥¯¥ó(Èó¥Ç¥³¡¼¥É)¤òÊÖ¤¹
-// ¼¡¤¬¥¯¥©¡¼¥È¥ê¥Æ¥é¥ë¤Ç¤Ê¤«¤Ã¤¿¤é""¤¬ÊÖ¤ë¡£
+// æ¬¡ã®ã‚¯ã‚©ãƒ¼ãƒˆãƒªãƒ†ãƒ©ãƒ«ãƒˆãƒ¼ã‚¯ãƒ³(éãƒ‡ã‚³ãƒ¼ãƒ‰)ã‚’è¿”ã™
+// æ¬¡ãŒã‚¯ã‚©ãƒ¼ãƒˆãƒªãƒ†ãƒ©ãƒ«ã§ãªã‹ã£ãŸã‚‰""ãŒè¿”ã‚‹ã€‚
 string TKawariLexer::getQuotedLiteral(void){
-	static const string QUOTE("\"'");			// ¥¯¥©¡¼¥ÈÊ¸»úÎó
+	static const string QUOTE("\"'");			// ã‚¯ã‚©ãƒ¼ãƒˆæ–‡å­—åˆ—
 	if (!hasNext()) return ("");
 
 	char ch, quote;
@@ -179,23 +179,23 @@ string TKawariLexer::getQuotedLiteral(void){
 		pp->getch(ch);
 	}
 	string result;
-	result.reserve(20);	// ¤³¤ó¤Ê¤â¤ó¡©
+	result.reserve(20);	// ã“ã‚“ãªã‚‚ã‚“ï¼Ÿ
 	result+=quote;
 
 	bool closed = false;
 	while(pp->getch(ch)) {
 		if(iskanji1st(ch)) {
-			// ´Á»ú
+			// æ¼¢å­—
 			result+=ch;
 			if(pp->getch(ch))
 				result+=ch;
 		}else if(ch==quote){
-			// ½ªÎ»
+			// çµ‚äº†
 			result+=ch;
 			closed=true;
 			break;
 		}else if(ch=='\\'){
-			// ¥¨¥¹¥±¡¼¥×
+			// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—
 			result+=ch;
 			pp->getch(ch);
 			if ((ch==quote)||(ch=='\\'))
@@ -203,7 +203,7 @@ string TKawariLexer::getQuotedLiteral(void){
 			else
 				pp->unget();
 		}else if(0x0a==ch){
-			// ²ş¹Ô
+			// æ”¹è¡Œ
 			error(RC.S(ERR_LEXER_EOL_IN_QUOTED_STRING));
 			closed=true;
 			break;
@@ -212,12 +212,12 @@ string TKawariLexer::getQuotedLiteral(void){
 		}
 	}
 	if (!closed)
-		// ²òÀÏÃæ¤ËEOF¤ËÃ£¤·¤Æ¤·¤Ş¤Ã¤¿
+		// è§£æä¸­ã«EOFã«é”ã—ã¦ã—ã¾ã£ãŸ
 		error(RC.S(ERR_LEXER_EOL_IN_QUOTED_STRING));
 	return result;
 }
 //---------------------------------------------------------------------------
-// '¤Ş¤¿¤Ï"¤Ç°Ï¤Ş¤ì¤¿Ê¸»úÎó¤«¤é¥¯¥©¡¼¥ÈÊ¸»ú¤ò¤Ï¤º¤¹
+// 'ã¾ãŸã¯"ã§å›²ã¾ã‚ŒãŸæ–‡å­—åˆ—ã‹ã‚‰ã‚¯ã‚©ãƒ¼ãƒˆæ–‡å­—ã‚’ã¯ãšã™
 string TKawariLexer::DecodeQuotedString(const string& orgsen)
 {
 	if(orgsen.size()==0) return("");
@@ -238,7 +238,7 @@ string TKawariLexer::DecodeQuotedString(const string& orgsen)
 		}
 
 		if(iskanji1st(orgsen[pos])) {
-			// ´Á»ú
+			// æ¼¢å­—
 			if((pos+1)<orgsen.size()) retstr+=orgsen[pos++];
 		}
 		retstr+=orgsen[pos++];
@@ -250,7 +250,7 @@ string TKawariLexer::DecodeQuotedString(const string& orgsen)
 //---------------------------------------------------------------------------
 // !!! check type, before use this !!!
 // [0-9]+
-// À°¿ôÊ¸»úÎó
+// æ•´æ•°æ–‡å­—åˆ—
 string TKawariLexer::getDecimalLiteral(void){
 	char ch;
 	string result;
@@ -266,7 +266,7 @@ string TKawariLexer::getDecimalLiteral(void){
 }
 
 //---------------------------------------------------------------------------
-// 1Ê¸»ú¥¹¥­¥Ã¥×
+// 1æ–‡å­—ã‚¹ã‚­ãƒƒãƒ—
 int TKawariLexer::skip(void){
 	char ch;
 	if (pp->getch(ch))
@@ -276,28 +276,28 @@ int TKawariLexer::skip(void){
 }
 
 //---------------------------------------------------------------------------
-// Ê¸»ú¤«¤é¥È¡¼¥¯¥ó¥¿¥¤¥×¤òÆÀ¤ë
+// æ–‡å­—ã‹ã‚‰ãƒˆãƒ¼ã‚¯ãƒ³ã‚¿ã‚¤ãƒ—ã‚’å¾—ã‚‹
 inline Token::Type TKawariLexer::checkType(Mode m, char ch) const{
 	static const string CRLF("\x0d\x0a");		// CRLF
-	static const string WHITESPACE(" \t");		// ¶õÇòÊ¸»ú
-	static const string QUOTE("\"'");			// ¥¯¥©¡¼¥ÈÊ¸»úÎó
+	static const string WHITESPACE(" \t");		// ç©ºç™½æ–‡å­—
+	static const string QUOTE("\"'");			// ã‚¯ã‚©ãƒ¼ãƒˆæ–‡å­—åˆ—
 
 	if (pp->IsWaitingModeSwitch()){
 		return Token::T_MODESWITCH;
 	}else if ((lex_map[(int)m][ch]|(char)iskanji1st(ch))){
-		// ¥Ù¥¢Ê¸»úÎó
+		// ãƒ™ã‚¢æ–‡å­—åˆ—
 		return Token::T_LITERAL;
 	}else if (QUOTE.find(ch)!=string::npos){
-		// ¥¯¥©¡¼¥ÈÊ¸»úÎó
+		// ã‚¯ã‚©ãƒ¼ãƒˆæ–‡å­—åˆ—
 		return Token::T_QLITERAL;
 	}else if (WHITESPACE.find(ch)!=string::npos){
-		// ¶õÇòÊ¸»ú
+		// ç©ºç™½æ–‡å­—
 		return Token::T_SPACE;
 	}else if (CRLF.find(ch)!=string::npos){
-		// ²ş¹ÔÊ¸»ú
+		// æ”¹è¡Œæ–‡å­—
 		return Token::T_EOL;
 	}else{
-		// ÆÃ¼ìÊ¸»ú
+		// ç‰¹æ®Šæ–‡å­—
 		return Token::Type(int (ch) & 0xFF);
 	}
 }
@@ -316,28 +316,28 @@ Token::Type TKawariLexer::peek(Mode m){
 Token TKawariLexer::next(Mode m){
 	static const char CR = 0x0d;				// CR
 	static const char LF = 0x0a;				// LF
-	static const string WHITESPACE(" \t");		// ¶õÇòÊ¸»ú
-	static const string QUOTE("\"'");			// ¥¯¥©¡¼¥ÈÊ¸»úÎó
+	static const string WHITESPACE(" \t");		// ç©ºç™½æ–‡å­—
+	static const string QUOTE("\"'");			// ã‚¯ã‚©ãƒ¼ãƒˆæ–‡å­—åˆ—
 	static const string NON_LITERAL("\"$'(),; \t\x0d\x0a");
-						// ¥Ù¥¢Ê¸»úÎó¤Ë»È¤¨¤Ê¤¤Ê¸»ú(¤¿¤À¤·7E°Ê²¼)
+						// ãƒ™ã‚¢æ–‡å­—åˆ—ã«ä½¿ãˆãªã„æ–‡å­—(ãŸã ã—7Eä»¥ä¸‹)
 	Token result;
 	if (!hasNext()) return (result.set(Token::T_EOF));
 
 	char ch;
 	pp->getch(ch);
 	if ((lex_map[(int)m][ch]|(char)iskanji1st(ch))){
-		// ¥Ù¥¢Ê¸»úÎó
+		// ãƒ™ã‚¢æ–‡å­—åˆ—
 		pp->unget();
 		string str=getLiteral(m);
 		result.set(Token::T_LITERAL, str);
 	}else if (QUOTE.find(ch)!=string::npos){
-		// ¥¯¥©¡¼¥ÈÊ¸»úÎó
+		// ã‚¯ã‚©ãƒ¼ãƒˆæ–‡å­—åˆ—
 		pp->unget();
 		result.set(Token::T_QLITERAL, getQuotedLiteral());
 	}else if (WHITESPACE.find(ch)!=string::npos){
-		// ¶õÇòÊ¸»ú
+		// ç©ºç™½æ–‡å­—
 		string ws;
-		ws.reserve(5); // ¤³¤Î¤°¤é¤¤¡©
+		ws.reserve(5); // ã“ã®ãã‚‰ã„ï¼Ÿ
 		ws+=ch;
 		while (pp->getch(ch)){
 			if (WHITESPACE.find(ch)==string::npos){
@@ -348,7 +348,7 @@ Token TKawariLexer::next(Mode m){
 		}
 		result.set(Token::T_SPACE, ws);
 	}else if (CR==ch){
-		// ²ş¹ÔÊ¸»ú
+		// æ”¹è¡Œæ–‡å­—
 		if (!pp->eof()){
 			pp->getch(ch);
 			if (LF==ch){
@@ -361,11 +361,11 @@ Token TKawariLexer::next(Mode m){
 			result.set(Token::T_EOL, ch);
 		}
 	}else if (LF==ch){
-		// ²ş¹ÔÊ¸»ú
+		// æ”¹è¡Œæ–‡å­—
 		result.set(Token::T_EOL, ch);
 	}else{
-		// ÆÃ¼ìÊ¸»ú
-		// 2Ê¸»ú¤Î±é»»»Ò¥Á¥§¥Ã¥¯ '==' '!=' '<=' '>=' '=~' '!~' '**' '||' '&&'
+		// ç‰¹æ®Šæ–‡å­—
+		// 2æ–‡å­—ã®æ¼”ç®—å­ãƒã‚§ãƒƒã‚¯ '==' '!=' '<=' '>=' '=~' '!~' '**' '||' '&&'
 		if (m==ID_MODE){
 			result.set(Token::Type(int(ch) & 0xFF), ch);
 			if (ch=='='){
@@ -403,29 +403,29 @@ Token TKawariLexer::next(Mode m){
 			result.set(Token::Type(int(ch) & 0xFF), ch);
 		}
 	}
-	// Àµ¾ï½ªÎ»
+	// æ­£å¸¸çµ‚äº†
 	//	lt = result;
 	return(result);
 }
 //---------------------------------------------------------------------------
-// ¥Õ¥¡¥¤¥ëÌ¾¤òÊÖ¤¹
+// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’è¿”ã™
 const string &TKawariLexer::getFileName(void) const {
 	return fn;
 }
 //---------------------------------------------------------------------------
-// ¸½ºß¤Î¹ÔÈÖ¹æ¤òÊÖ¤¹
+// ç¾åœ¨ã®è¡Œç•ªå·ã‚’è¿”ã™
 int TKawariLexer::getLineNo(void) const{
-	// Â¿Ê¬unget¥Ğ¥Ã¥Õ¥¡¤Ë²ş¹Ô¤¬¤¢¤ë¤È¤­¤Ï-1¤¹¤Ù¤­¡£
+	// å¤šåˆ†ungetãƒãƒƒãƒ•ã‚¡ã«æ”¹è¡ŒãŒã‚ã‚‹ã¨ãã¯-1ã™ã¹ãã€‚
 	return pp->getLineNo();
 }
 //---------------------------------------------------------------------------
-// ¸½ºß¹Ô¤Î»Ä¤ê¤òÁ´¤ÆÊÖ¤¹
+// ç¾åœ¨è¡Œã®æ®‹ã‚Šã‚’å…¨ã¦è¿”ã™
 string TKawariLexer::getRestOfLine(void){
 	return pp->getline();
 }
 //---------------------------------------------------------------------------
-// ¥µ¡¼¥Ó¥¹¥á¥½¥Ã¥É
-// ¶õÇòÊ¸»ú¤È²ş¹ÔÊ¸»ú¤Î¥È¡¼¥¯¥ó¤òÆÉ¤ßÈô¤Ğ¤¹¡£
+// ã‚µãƒ¼ãƒ“ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰
+// ç©ºç™½æ–‡å­—ã¨æ”¹è¡Œæ–‡å­—ã®ãƒˆãƒ¼ã‚¯ãƒ³ã‚’èª­ã¿é£›ã°ã™ã€‚
 void TKawariLexer::skipWS(){
 	static const string WS(" \t\x0d\x0a");
 	char ch;
@@ -437,9 +437,9 @@ void TKawariLexer::skipWS(){
 	}
 }
 //---------------------------------------------------------------------------
-// ¥µ¡¼¥Ó¥¹¥á¥½¥Ã¥É
-// ¶õÇòÊ¸»ú¤È²ş¹ÔÊ¸»ú¤Î¥È¡¼¥¯¥ó¤òÆÉ¤ßÈô¤Ğ¤·¡¢
-// ¤½¤Î¼¡¤Î¥È¡¼¥¯¥ó¤Î¥¿¥¤¥×¤òÊÖ¤¹
+// ã‚µãƒ¼ãƒ“ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰
+// ç©ºç™½æ–‡å­—ã¨æ”¹è¡Œæ–‡å­—ã®ãƒˆãƒ¼ã‚¯ãƒ³ã‚’èª­ã¿é£›ã°ã—ã€
+// ãã®æ¬¡ã®ãƒˆãƒ¼ã‚¯ãƒ³ã®ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
 Token::Type TKawariLexer::skipWS(Mode m){
 	static const string WS(" \t\x0d\x0a");
 	char ch;
@@ -452,9 +452,9 @@ Token::Type TKawariLexer::skipWS(Mode m){
 	return Token::T_EOF;
 }
 //---------------------------------------------------------------------------
-// ¥µ¡¼¥Ó¥¹¥á¥½¥Ã¥É
-// ¶õÇòÊ¸»ú¤Î¥È¡¼¥¯¥ó¤òÆÉ¤ßÈô¤Ğ¤·¡¢¤½¤Î¼¡¤Î¥È¡¼¥¯¥ó¤Î¥¿¥¤¥×¤òÊÖ¤¹
-// ²ş¹ÔÊ¸»ú¤ÏÈô¤Ğ¤µ¤Ê¤¤¡£
+// ã‚µãƒ¼ãƒ“ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰
+// ç©ºç™½æ–‡å­—ã®ãƒˆãƒ¼ã‚¯ãƒ³ã‚’èª­ã¿é£›ã°ã—ã€ãã®æ¬¡ã®ãƒˆãƒ¼ã‚¯ãƒ³ã®ã‚¿ã‚¤ãƒ—ã‚’è¿”ã™
+// æ”¹è¡Œæ–‡å­—ã¯é£›ã°ã•ãªã„ã€‚
 Token::Type TKawariLexer::skipS(Mode m){
 #if 0
 	while (hasNext()){
@@ -478,8 +478,8 @@ Token::Type TKawariLexer::skipS(Mode m){
 #endif
 }
 //---------------------------------------------------------------------------
-// ¥µ¡¼¥Ó¥¹¥á¥½¥Ã¥É
-// Ê¸»úÎó¤ò¥¨¥ó¥È¥êÌ¾¤Ç»ÈÍÑ²ÄÇ½¤ÊÊ¸»úÎó¤Ë¥¨¥ó¥³¡¼¥É¤¹¤ë
+// ã‚µãƒ¼ãƒ“ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰
+// æ–‡å­—åˆ—ã‚’ã‚¨ãƒ³ãƒˆãƒªåã§ä½¿ç”¨å¯èƒ½ãªæ–‡å­—åˆ—ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 string TKawariLexer::EncodeEntryName(const string &orgsen){
 	char *map = lex_map[(int)ID_MODE];
 	string entsen(orgsen);
@@ -488,11 +488,11 @@ string TKawariLexer::EncodeEntryName(const string &orgsen){
 	for(unsigned int pos=0;pos<cntsen;pos++) {
 		char c = entsen[pos];
 		if(iskanji1st(c)) {
-			// ´Á»ú¤Ï¼õÍÆ
+			// æ¼¢å­—ã¯å—å®¹
 			if((pos+1)<cntsen) pos++;
 			else break;
 		} else if(!map[c]) {
-			// »È¤¨¤Ê¤¤Ê¸»ú¤ÏÁ´¤Æ'_'¤ËÊÑ´¹
+			// ä½¿ãˆãªã„æ–‡å­—ã¯å…¨ã¦'_'ã«å¤‰æ›
 			entsen[pos] = '_';
 		}
 	}
@@ -500,7 +500,7 @@ string TKawariLexer::EncodeEntryName(const string &orgsen){
 	return(entsen);
 }
 //---------------------------------------------------------------------------
-// »ØÄêÄ¹¤µ¤À¤±¥ê¡¼¥É¥İ¥¤¥ó¥¿¤òÌá¤¹
+// æŒ‡å®šé•·ã•ã ã‘ãƒªãƒ¼ãƒ‰ãƒã‚¤ãƒ³ã‚¿ã‚’æˆ»ã™
 bool TKawariLexer::UngetChars(unsigned int length){
 	for (unsigned int i=0; i<length; i++)
 		if (!pp->unget())
@@ -508,8 +508,8 @@ bool TKawariLexer::UngetChars(unsigned int length){
 	return true;
 }
 //---------------------------------------------------------------------------
-// ¤¢¤ëÊ¸»ú¤Î¼êÁ°¤Ş¤Ç¥¹¥­¥Ã¥× (Ê¸Ë¡¥¨¥é¡¼¤«¤é¤ÎÉüµìÍÑ)
-// noret : ²ş¹Ô¤òµö¤µ¤Ê¤¤¾ì¹çtrue
+// ã‚ã‚‹æ–‡å­—ã®æ‰‹å‰ã¾ã§ã‚¹ã‚­ãƒƒãƒ— (æ–‡æ³•ã‚¨ãƒ©ãƒ¼ã‹ã‚‰ã®å¾©æ—§ç”¨)
+// noret : æ”¹è¡Œã‚’è¨±ã•ãªã„å ´åˆtrue
 bool TKawariLexer::simpleSkipTo(char ch, bool noret){
 	static const string CRLF("\x0d\x0a");
 	while (hasNext()){
@@ -530,15 +530,15 @@ bool TKawariLexer::simpleSkipTo(char ch, bool noret){
 bool TKawariPreProcessor::processNextLine(void){
 	if (is.eof()) return false;
 
-	// ¹ÔËö½èÍı
+	// è¡Œæœ«å‡¦ç†
 	std::getline(is, linebuf, '\x0a');
 	if((linebuf.size()>0)&&(linebuf[linebuf.size()-1]=='\x0d')) linebuf.erase(linebuf.size()-1);
 	ln++;
 	pos=0;
 	if (pp){
-		// ¥×¥ê¥×¥í¥»¥¹
+		// ãƒ—ãƒªãƒ—ãƒ­ã‚»ã‚¹
 
-		// Éü¹æ½èÍı
+		// å¾©å·å‡¦ç†
 		if (CheckCrypt(linebuf))
 			linebuf=DecryptString(linebuf);
 
@@ -546,7 +546,7 @@ bool TKawariPreProcessor::processNextLine(void){
 			linebuf="";
 			mc=false;
 		}else if (mc){
-			// ¥³¥á¥ó¥ÈÎÎ°èÃæ
+			// ã‚³ãƒ¡ãƒ³ãƒˆé ˜åŸŸä¸­
 			linebuf="";
 		}else if (linebuf[0]==':'){
 			// pragma
@@ -557,10 +557,10 @@ bool TKawariPreProcessor::processNextLine(void){
 			}
 			linebuf="";
 		}else if (linebuf[0]=='='){
-			// ¥â¡¼¥ÉÀÚÂØ
+			// ãƒ¢ãƒ¼ãƒ‰åˆ‡æ›¿
 			isMS=true;
 		}else{
-			// 1¹Ô¥³¥á¥ó¥È¤Î½èÍı
+			// 1è¡Œã‚³ãƒ¡ãƒ³ãƒˆã®å‡¦ç†
 			unsigned int max=linebuf.size();
 			for(unsigned int i=0; i<max; i++){
 				if ((linebuf[i]==' ')||(linebuf[i]=='\t')){
@@ -582,7 +582,7 @@ string TKawariPreProcessor::getline(void){
 	pos=linebuf.size();
 	return retstr;
 }
-// ¥Ğ¥Ã¥Õ¥¡¤Î°ìÉô¤òÀÚ¤ê½Ğ¤¹
+// ãƒãƒƒãƒ•ã‚¡ã®ä¸€éƒ¨ã‚’åˆ‡ã‚Šå‡ºã™
 string TKawariPreProcessor::substring(int index, int length){
 	if ((index>=0)&&(length>0)&&((index+length)<(int)linebuf.size()))
 		return linebuf.substr(index, length);

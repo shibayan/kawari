@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+Ôªø//---------------------------------------------------------------------------
 //
-// "≤⁄œ¬Õ¸" for §¢§Ï∞ ≥∞§Œ≤ø§´∞ ≥∞§Œ≤ø§´
-// √Ê¥÷•≥°º•…(±Èªªº∞)
+// "ËèØÂíåÊ¢®" for „ÅÇ„Çå‰ª•Â§ñ„ÅÆ‰Ωï„Åã‰ª•Â§ñ„ÅÆ‰Ωï„Åã
+// ‰∏≠Èñì„Ç≥„Éº„Éâ(ÊºîÁÆóÂºè)
 //
 //      Programed by Suikyo.
 //
-//  2002.04.18  Phase 8.0.0   ±Èªªº∞√Ê¥÷•≥°º•…∫Ó¿Æ
+//  2002.04.18  Phase 8.0.0   ÊºîÁÆóÂºè‰∏≠Èñì„Ç≥„Éº„Éâ‰ΩúÊàê
 //
 //---------------------------------------------------------------------------
 #ifndef CODE_EXPR_H__
@@ -15,7 +15,7 @@
 //---------------------------------------------------------------------------
 #include <string>
 //---------------------------------------------------------------------------
-// √Õ(∆‚Õ∆ —ππ…‘≤ƒ)
+// ÂÄ§(ÂÜÖÂÆπÂ§âÊõ¥‰∏çÂèØ)
 class TValue {
 private:
 	std::string str;
@@ -40,36 +40,36 @@ public:
 };
 //--------------------------------------------------------------------------
 // class TKVMExprCode_base;
-// ±Èªªº∞√Ê¥÷•≥°º•…§Œ¥ƒÏ•Ø•È•π
+// ÊºîÁÆóÂºè‰∏≠Èñì„Ç≥„Éº„Éâ„ÅÆÂü∫Â∫ï„ÇØ„É©„Çπ
 class TKVMExprCode_base : public TKVMCode_base {
 public:
-	// º¬π‘
+	// ÂÆüË°å
 	virtual std::string Run(class TKawariVM &vm);
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual class TValue Evaluate(class TKawariVM &vm)=0;
-	// •«•π•»•È•Ø•ø
+	// „Éá„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~TKVMExprCode_base () {}
 };
 
 //--------------------------------------------------------------------------
 // class TKVMExprBinaryCode_base;
-// ∆Ûπ‡±Èªªª“§Œ¥ƒÏ•Ø•È•π
+// ‰∫åÈ†ÖÊºîÁÆóÂ≠ê„ÅÆÂü∫Â∫ï„ÇØ„É©„Çπ
 class TKVMExprBinaryCode_base : public TKVMExprCode_base {
 protected:
 	TKVMExprCode_base *lhs;
 	TKVMExprCode_base *rhs;
-	// ±Èªªª“ ∏ª˙ŒÛ§Ú ÷§π
+	// ÊºîÁÆóÂ≠êÊñáÂ≠óÂàó„ÇíËøî„Åô
 	virtual std::string GetOperator(void)const=0;
 public:
-	// Ω¯ŒÛ ∆±§∏•Ø•È•π§ŒæÏπÁ§Œ§ﬂ∏∆§–§Ï§Î°£
+	// Â∫èÂàó Âêå„Åò„ÇØ„É©„Çπ„ÅÆÂ†¥Âêà„ÅÆ„ÅøÂëº„Å∞„Çå„Çã„ÄÇ
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µ’•≥•Û•—•§•Î
+	// ÈÄÜ„Ç≥„É≥„Éë„Ç§„É´
 	virtual std::string DisCompile(void) const;
-	// •«•–•√•∞Õ—•ƒ•Í°º…Ωº®
+	// „Éá„Éê„ÉÉ„Ç∞Áî®„ÉÑ„É™„ÉºË°®Á§∫
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const;
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprBinaryCode_base(TKVMExprCode_base *l, TKVMExprCode_base *r) : lhs(l), rhs(r) {}
-	// •«•π•»•È•Ø•ø
+	// „Éá„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~TKVMExprBinaryCode_base(void){
 		if (lhs) delete lhs;
 		if (rhs) delete rhs;
@@ -78,77 +78,77 @@ public:
 
 //--------------------------------------------------------------------------
 // class TKVMExprBinaryCode_base;
-// √±π‡±Èªªª“§Œ¥ƒÏ•Ø•È•π
+// ÂçòÈ†ÖÊºîÁÆóÂ≠ê„ÅÆÂü∫Â∫ï„ÇØ„É©„Çπ
 class TKVMExprUnaryCode_base : public TKVMExprCode_base {
 protected:
 	TKVMExprCode_base *code;
-	// ±Èªªª“ ∏ª˙ŒÛ§Ú ÷§π
+	// ÊºîÁÆóÂ≠êÊñáÂ≠óÂàó„ÇíËøî„Åô
 	virtual std::string GetOperator(void)const=0;
 public:
-	// Ω¯ŒÛ ∆±§∏•Ø•È•π§ŒæÏπÁ§Œ§ﬂ∏∆§–§Ï§Î°£
+	// Â∫èÂàó Âêå„Åò„ÇØ„É©„Çπ„ÅÆÂ†¥Âêà„ÅÆ„ÅøÂëº„Å∞„Çå„Çã„ÄÇ
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µ’•≥•Û•—•§•Î
+	// ÈÄÜ„Ç≥„É≥„Éë„Ç§„É´
 	virtual std::string DisCompile(void) const;
-	// •«•–•√•∞Õ—•ƒ•Í°º…Ωº®
+	// „Éá„Éê„ÉÉ„Ç∞Áî®„ÉÑ„É™„ÉºË°®Á§∫
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const;
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprUnaryCode_base(TKVMExprCode_base *c) : code(c) {}
-	// •«•π•»•È•Ø•ø
+	// „Éá„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~TKVMExprUnaryCode_base(void){
 		if (code) delete code;
 	}
 };
 
 //--------------------------------------------------------------------------
-// º∞
+// Âºè
 class TKVMCodeExpression : public TKVMCode_base {
 	TKVMExprCode_base *code;
 public:
-	// º¬π‘
+	// ÂÆüË°å
 	virtual std::string Run(TKawariVM &vm);
-	// Ω¯ŒÛ ∆±§∏•Ø•È•π§ŒæÏπÁ§Œ§ﬂ∏∆§–§Ï§Î°£
+	// Â∫èÂàó Âêå„Åò„ÇØ„É©„Çπ„ÅÆÂ†¥Âêà„ÅÆ„ÅøÂëº„Å∞„Çå„Çã„ÄÇ
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µ’•≥•Û•—•§•Î
+	// ÈÄÜ„Ç≥„É≥„Éë„Ç§„É´
 	virtual std::string DisCompile(void) const{
 		return "$["+code->DisCompile()+"]";
 	}
-	// ±Èªªº∞§Œ§ﬂµ’•≥•Û•—•§•Î
+	// ÊºîÁÆóÂºè„ÅÆ„ÅøÈÄÜ„Ç≥„É≥„Éë„Ç§„É´
 	virtual std::string DisCompileExpression(void) const{
 		return code->DisCompile();
 	}
-	// •«•–•√•∞Õ—•ƒ•Í°º…Ωº®
+	// „Éá„Éê„ÉÉ„Ç∞Áî®„ÉÑ„É™„ÉºË°®Á§∫
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const;
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMCodeExpression(TKVMExprCode_base *c) : code(c) {}
-	// •«•π•»•È•Ø•ø
+	// „Éá„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~TKVMCodeExpression(void){
 		if (code) delete code;
 	}
 };
 
-// ±Èªªª“§ŒÕ•¿Ë≈Ÿ
-// [π‚§§]
-//    **(ŒﬂæË)
-//    -(√±π‡) +(√±π‡) !(not) ~( ‰øÙ)
+// ÊºîÁÆóÂ≠ê„ÅÆÂÑ™ÂÖàÂ∫¶
+// [È´ò„ÅÑ]
+//    **(Á¥Ø‰πó)
+//    -(ÂçòÈ†Ö) +(ÂçòÈ†Ö) !(not) ~(Ë£úÊï∞)
 //    * / %
 //    + -
-//    &(•”•√•»AND)
-//    |(•”•√•»OR) ^(•”•√•»XOR)
+//    &(„Éì„ÉÉ„ÉàAND)
+//    |(„Éì„ÉÉ„ÉàOR) ^(„Éì„ÉÉ„ÉàXOR)
 //    > >= < <=
 //    = == != =~ !~
 //    &&
 //    ||
-//    := : (¬Â∆˛: πÕŒ∏√Ê)
-// [ƒ„§§]
+//    := : (‰ª£ÂÖ•: ËÄÉÊÖÆ‰∏≠)
+// [‰Ωé„ÅÑ]
 //--------------------------------------------------------------------------
 // Logical OR
 class TKVMExprCodeLOR : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "||"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeLOR(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -158,9 +158,9 @@ class TKVMExprCodeLAND : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "&&"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeLAND(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -170,9 +170,9 @@ class TKVMExprCodeEQ : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "=="; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeEQ(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -182,9 +182,9 @@ class TKVMExprCodeNEQ : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "!="; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeNEQ(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -194,9 +194,9 @@ class TKVMExprCodeMATCH : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "=~"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeMATCH(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -206,9 +206,9 @@ class TKVMExprCodeNMATCH : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "!~"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeNMATCH(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -218,9 +218,9 @@ class TKVMExprCodeGT : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return ">"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeGT(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -230,9 +230,9 @@ class TKVMExprCodeGTE : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return ">="; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeGTE(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -242,9 +242,9 @@ class TKVMExprCodeLT : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "<"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeLT(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -254,9 +254,9 @@ class TKVMExprCodeLTE : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "<="; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeLTE(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -266,9 +266,9 @@ class TKVMExprCodeBOR : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "|"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeBOR(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -278,9 +278,9 @@ class TKVMExprCodeBXOR : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "^"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeBXOR(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -290,9 +290,9 @@ class TKVMExprCodeBAND : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "&"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeBAND(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -302,9 +302,9 @@ class TKVMExprCodePLUS : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "+"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodePLUS(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -314,9 +314,9 @@ class TKVMExprCodeMINUS : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "-"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeMINUS(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -326,9 +326,9 @@ class TKVMExprCodeMUL : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "*"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeMUL(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -338,9 +338,9 @@ class TKVMExprCodeDIV : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "/"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeDIV(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -350,9 +350,9 @@ class TKVMExprCodeMOD : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "%"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeMOD(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 
@@ -362,9 +362,9 @@ class TKVMExprCodeUPLUS : public TKVMExprUnaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "+"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeUPLUS(TKVMExprCode_base *c):TKVMExprUnaryCode_base(c) {}
 };
 
@@ -374,9 +374,9 @@ class TKVMExprCodeUMINUS : public TKVMExprUnaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "-"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeUMINUS(TKVMExprCode_base *c):TKVMExprUnaryCode_base(c) {}
 };
 
@@ -386,9 +386,9 @@ class TKVMExprCodeNOT : public TKVMExprUnaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "!"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeNOT(TKVMExprCode_base *c):TKVMExprUnaryCode_base(c) {}
 };
 
@@ -398,9 +398,9 @@ class TKVMExprCodeCOMP : public TKVMExprUnaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "~"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeCOMP(TKVMExprCode_base *c):TKVMExprUnaryCode_base(c) {}
 };
 
@@ -410,9 +410,9 @@ class TKVMExprCodePOW : public TKVMExprBinaryCode_base {
 protected:
 	virtual std::string GetOperator(void)const{ return "**"; }
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodePOW(TKVMExprCode_base *l, TKVMExprCode_base *r):TKVMExprBinaryCode_base(l, r) {}
 };
 //--------------------------------------------------------------------------
@@ -421,36 +421,36 @@ class TKVMExprCodeWord : public TKVMExprCode_base {
 protected:
 	TKVMCode_base *code;
 public:
-	// º∞…æ≤¡
+	// ÂºèË©ï‰æ°
 	virtual TValue Evaluate(class TKawariVM &vm);
-	// Ω¯ŒÛ ∆±§∏•Ø•È•π§ŒæÏπÁ§Œ§ﬂ∏∆§–§Ï§Î°£
+	// Â∫èÂàó Âêå„Åò„ÇØ„É©„Çπ„ÅÆÂ†¥Âêà„ÅÆ„ÅøÂëº„Å∞„Çå„Çã„ÄÇ
 	virtual bool Less(const TKVMCode_base& r_) const;
-	// µ’•≥•Û•—•§•Î
+	// ÈÄÜ„Ç≥„É≥„Éë„Ç§„É´
 	virtual std::string DisCompile(void) const{
 		return code->DisCompile();
 	}
-	// •«•–•√•∞Õ—•ƒ•Í°º…Ωº®
+	// „Éá„Éê„ÉÉ„Ç∞Áî®„ÉÑ„É™„ÉºË°®Á§∫
 	virtual std::ostream &Debug(std::ostream& os, unsigned int level=0) const{
 		return code->Debug(os, level);
 	}
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeWord(TKVMCode_base *c) : code(c) {}
-	// •«•π•»•È•Ø•ø
+	// „Éá„Çπ„Éà„É©„ÇØ„Çø
 	virtual ~TKVMExprCodeWord(void){
 		if (code) delete code;
 	}
 };
 //--------------------------------------------------------------------------
-// '( °¡ )'
+// '( ÔΩû )'
 class TKVMExprCodeGroup : public TKVMExprCodeWord {
 public:
-	// µ’•≥•Û•—•§•Î
+	// ÈÄÜ„Ç≥„É≥„Éë„Ç§„É´
 	virtual std::string DisCompile(void) const{
 		return "("+code->DisCompile()+")";
 	}
-	// •≥•Û•π•»•È•Ø•ø
+	// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 	TKVMExprCodeGroup(TKVMCode_base *c) : TKVMExprCodeWord(c) {}
-	// •«•π•»•È•Ø•ø
+	// „Éá„Çπ„Éà„É©„ÇØ„Çø
 	~TKVMExprCodeGroup(void){ }
 };
 //---------------------------------------------------------------------------

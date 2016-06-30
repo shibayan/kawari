@@ -1,6 +1,6 @@
-/*
+ï»¿/*
 	minimal replacememt on Win32 : open/read/rewind/closedir
-	note: errno ¤Ë¤Ï²¿¤âÀßÄê¤·¤Æ¤Ê¤¤¡£
+	note: errno ã«ã¯ä½•ã‚‚è¨­å®šã—ã¦ãªã„ã€‚
 */
 
 #ifndef	__STRICT_ANSI__

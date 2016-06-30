@@ -1,12 +1,12 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 //
-// "������" for ����ʳ��β����ʳ��β���
-// SAORI ���󥿡��ե����� Python��
+// "華和梨" for あれ以外の何か以外の何か
+// SAORI インターフェース Python版
 //
 //              ABE, Suikyo.
 //
-//  2003.03.07  Phase 8.1.0   ���٤���Υѥå��������
-//  2004.09.04  Phase 8.2.1   ���٤���Υѥå��������
+//  2003.03.07  Phase 8.1.0   あべさんのパッチを取り込み
+//  2004.09.04  Phase 8.2.1   あべさんのパッチを取り込み
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -47,7 +47,7 @@ TModule *TModuleFactoryPython::CreateModule(const string &path){
 	}
 }
 //---------------------------------------------------------------------------
-// �⥸�塼��δ����˴�
+// モジュールの完全破棄
 void TModuleFactoryPython::DeleteModule(TModule *module){
 	if (module){
 		GetLogger().GetStream(LOG_INFO) << "[SAORI Python] Free Module" << endl;
@@ -55,16 +55,16 @@ void TModuleFactoryPython::DeleteModule(TModule *module){
 	}
 }
 //---------------------------------------------------------------------------
-// ���󥹥ȥ饯��
+// コンストラクタ
 TModuleFactoryPython::TModuleFactoryPython(TKawariLogger &lgr)
 	: IModuleFactory(lgr) {
 }
 //---------------------------------------------------------------------------
-// �ǥ��ȥ饯��
+// デストラクタ
 TModuleFactoryPython::~TModuleFactoryPython(){
 }
 //---------------------------------------------------------------------------
-// �����
+// 初期化
 bool TModulePython::Initialize(void){
 	return true;
 }

@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 //
-// "������" for ����ʳ��β����ʳ��β���
-// SAORI ���󥿡��ե�����
+// "華和梨" for あれ以外の何か以外の何か
+// SAORI インターフェース
 //
 //      Programed by Suikyo.
 //
-//  2002.09.05  Phase 8.1.0   Ƴ��
+//  2002.09.05  Phase 8.1.0   導入
 //
 //---------------------------------------------------------------------------
 #ifndef SAORI_MODULE_H
@@ -21,24 +21,24 @@
 namespace saori{
 typedef unsigned long SAORI_HANDLE;
 //---------------------------------------------------------------------------
-// SAORI�⥸�塼����������ե����ȥ�
+// SAORIモジュールを管理するファクトリ
 class IModuleFactory{
 public:
-	// �⥸�塼��θ���������
-	// �����: ����������������硢�⥸�塼�롣���Ԥ�����硢NULL��
+	// モジュールの検索と生成
+	// 戻り値: 生成に成功した場合、モジュール。失敗した場合、NULL。
 	virtual class TModule *CreateModule(const std::string &path)=0;
 
-	// �⥸�塼��δ����˴�
-	// �饤�֥��ξ���FreeLibrary���뤳�ȡ�
+	// モジュールの完全破棄
+	// ライブラリの場合はFreeLibraryすること。
 	virtual void DeleteModule(class TModule *module)=0;
 
-	// ���󥹥ȥ饯��
+	// コンストラクタ
 	IModuleFactory(TKawariLogger &lgr) : logger(lgr) {}
 
-	// ���⤷�ʤ��ǥ��ȥ饯��
+	// 何もしないデストラクタ
 	virtual ~IModuleFactory() {}
 
-	// ���������֤�
+	// ロガーを返す
 	TKawariLogger &GetLogger(void) { return logger; }
 private:
 	TKawariLogger &logger;
@@ -48,12 +48,12 @@ class TModuleFactoryMaster : public IModuleFactory{
 public:
 	TModuleFactoryMaster(class TKawariLogger &lgr);
 
-	// �⥸�塼��θ���������
-	// �����: ����������������硢�⥸�塼�롣���Ԥ�����硢NULL��
+	// モジュールの検索と生成
+	// 戻り値: 生成に成功した場合、モジュール。失敗した場合、NULL。
 	class saori::TModule *CreateModule(const std::string &path);
 
-	// �⥸�塼��δ����˴�
-	// �饤�֥��ξ���FreeLibrary���뤳�ȡ�
+	// モジュールの完全破棄
+	// ライブラリの場合はFreeLibraryすること。
 	void DeleteModule(saori::TModule *module);
 
 	virtual ~TModuleFactoryMaster();
@@ -62,12 +62,12 @@ protected:
 	std::vector<saori::IModuleFactory *> factory_list;
 };
 //---------------------------------------------------------------------------
-// SAORI�⥸�塼�륤�󥿡��ե�����
-// TModule�ϡ�Ʊ��ѥ��ˤĤ���ʣ����������뤳�Ȥ����롣
-// ͣ�����γ��ݤϡ�SAORI_HANDLE�˴�Ť��ƾ�̥쥤�䡼�ǹԤ��롣
+// SAORIモジュールインターフェース
+// TModuleは、同一パスについて複数生成されることがある。
+// 唯一性の確保は、SAORI_HANDLEに基づいて上位レイヤーで行われる。
 class TModule{
 public:
-	// �����
+	// 初期化
 	virtual bool Initialize(void)=0;
 	// SAORI/1.0 Load
 	virtual bool Load(void)=0;
@@ -80,8 +80,8 @@ public:
 		return handle;
 	}
 
-	// ���⤷�ʤ��ǥ��ȥ饯��
-	// delete TModule���줿��硢Library�ϲ������ʤ����ȡ�
+	// 何もしないデストラクタ
+	// delete TModuleされた場合、Libraryは解放しないこと。
 	virtual ~TModule (void){}
 
 	virtual saori::IModuleFactory &GetFactory(void) {

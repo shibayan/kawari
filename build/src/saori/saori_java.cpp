@@ -1,11 +1,11 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// SAORI ¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹(Java)
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// SAORI ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹(Java)
 //
 //      Programed by Suikyo.
 //
-//  2003.02.25  Phase 8.1.0   ºîÀ®
+//  2003.02.25  Phase 8.1.0   ä½œæˆ
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -62,7 +62,7 @@ namespace{
 //---------------------------------------------------------------------------
 namespace saori{
 //---------------------------------------------------------------------------
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TModuleFactoryJava::TModuleFactoryJava(TKawariLogger &lgr) : IModuleFactory(lgr) {
 	JavaVM *vm; JNIEnv *env;
 	if (JNI_OK!=setup(GetLogger(), &vm, &env)) return;
@@ -114,7 +114,7 @@ TModuleFactoryJava::TModuleFactoryJava(TKawariLogger &lgr) : IModuleFactory(lgr)
 	obj_SaoriFactory=env->NewGlobalRef(lref_obj);
 }
 //---------------------------------------------------------------------------
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TModuleFactoryJava::~TModuleFactoryJava(){
 	JavaVM *vm; JNIEnv *env;
 	if (JNI_OK!=setup(GetLogger(), &vm, &env)) return;
@@ -153,16 +153,16 @@ TModule *TModuleFactoryJava::CreateModule(const string &path){
 	}
 }
 //---------------------------------------------------------------------------
-// ¥â¥¸¥å¡¼¥ë¤Î´°Á´ÇË´ş
+// ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®å®Œå…¨ç ´æ£„
 void TModuleFactoryJava::DeleteModule(TModule *module){
-	// finalize¤Ï¤·¤Ê¤¤
+	// finalizeã¯ã—ãªã„
 	if (module){
 		GetLogger().GetStream(LOG_INFO) << "[SAORI Java] Dispose module." << endl;
 		delete module;
 	}
 }
 //---------------------------------------------------------------------------
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TModuleJava::~TModuleJava(){
 	JavaVM *vm; JNIEnv *env;
 	if (JNI_OK!=setup(GetFactory().GetLogger(), &vm, &env)) return;
@@ -171,7 +171,7 @@ TModuleJava::~TModuleJava(){
 	if (cls_saori) env->DeleteGlobalRef(cls_saori);
 }
 //---------------------------------------------------------------------------
-// ½é´ü²½
+// åˆæœŸåŒ–
 bool TModuleJava::Initialize(void){
 	JavaVM *vm; JNIEnv *env;
 	if (JNI_OK!=setup(GetFactory().GetLogger(), &vm, &env)) return false;

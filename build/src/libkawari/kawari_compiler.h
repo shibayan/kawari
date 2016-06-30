@@ -1,13 +1,13 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// ¥³¥ó¥Ñ¥¤¥é(ÅÅ¼¡¸µ
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©(é›»æ¬¡å…ƒ
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2002.03.18                KIU¤Ë¹ç¤ï¤»¤ÆTKawariCompilerÊ¬Î¥
-//                            ¡¦¡¦¡¦¤Ç¤â¡¢¥¤¥ó¥¿¡¼¥Õ¥§¡¼¥¹¤¬¤Á¤ç¤Ã¤È°ã¤¦(ÎŞ)
-//  2002.04.18  Phase 8.0.0   Áö¤ë¥«¥¦¥ó¥¿¥Ã¥¯¡£¥³¥ó¥Ñ¥¤¥éÆÃ½¸¡£
+//  2002.03.18                KIUã«åˆã‚ã›ã¦TKawariCompileråˆ†é›¢
+//                            ãƒ»ãƒ»ãƒ»ã§ã‚‚ã€ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ãŒã¡ã‚‡ã£ã¨é•ã†(æ¶™)
+//  2002.04.18  Phase 8.0.0   èµ°ã‚‹ã‚«ã‚¦ãƒ³ã‚¿ãƒƒã‚¯ã€‚ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ç‰¹é›†ã€‚
 //
 //---------------------------------------------------------------------------
 #ifndef COMPILER_H__
@@ -16,183 +16,183 @@
 #include <string>
 #include <vector>
 //---------------------------------------------------------------------------
-class TKVMCode_base;		// Ãæ´Ö¥³¡¼¥É
-class TKVMExprCode_base;	// ¼°Ãæ´Ö¥³¡¼¥É
-class TKVMSetCode_base;		// ½¸¹ç±é»»¼°Ãæ´Ö¥³¡¼¥É
+class TKVMCode_base;		// ä¸­é–“ã‚³ãƒ¼ãƒ‰
+class TKVMExprCode_base;	// å¼ä¸­é–“ã‚³ãƒ¼ãƒ‰
+class TKVMSetCode_base;		// é›†åˆæ¼”ç®—å¼ä¸­é–“ã‚³ãƒ¼ãƒ‰
 //-------------------------------------------------------------------------
 //
-// ¥³¥ó¥Ñ¥¤¥éÆÃ½¸
+// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ç‰¹é›†
 //
 //-------------------------------------------------------------------------
 class TKawariCompiler {
 public:
 	//=====================================================================
-	// ¸ø³«¥á¥½¥Ã¥É
+	// å…¬é–‹ãƒ¡ã‚½ãƒƒãƒ‰
 	//=====================================================================
 
 	enum Mode {
-		M_DICT,		// ¥¨¥ó¥È¥êÄêµÁ¥â¡¼¥É
-		M_KIS,		// KIS¥â¡¼¥É
-		M_END,		// ¥â¡¼¥É¤ò1¤Ä½ªÎ»
+		M_DICT,		// ã‚¨ãƒ³ãƒˆãƒªå®šç¾©ãƒ¢ãƒ¼ãƒ‰
+		M_KIS,		// KISãƒ¢ãƒ¼ãƒ‰
+		M_END,		// ãƒ¢ãƒ¼ãƒ‰ã‚’1ã¤çµ‚äº†
 		M_UNKNOWN,	// ???
 		M_EOF		// EOF
 	};
 
-	// ¥³¥ó¥¹¥È¥é¥¯¥¿
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	TKawariCompiler(std::istream &is, class TKawariLogger &lgr, const std::string &filename, bool pp=true);
 
-	// ¥Ç¥¹¥È¥é¥¯¥¿
+	// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~TKawariCompiler();
 
-	// ¼¡¥â¡¼¥É¤òÆÀ¤ë
+	// æ¬¡ãƒ¢ãƒ¼ãƒ‰ã‚’å¾—ã‚‹
 	Mode GetNextMode(void);
 
-	// ¥¨¥ó¥È¥êÄêµÁ¤òÆÉ¤à
-	// Ìá¤êÃÍ : ¥Õ¥¡¥¤¥ë¤Î½ªÎ»¤«¥â¡¼¥ÉÀÚ¤êÂØ¤¨¤Çfalse. ¤½¤ì°Ê³°¤Ïtrue.
+	// ã‚¨ãƒ³ãƒˆãƒªå®šç¾©ã‚’èª­ã‚€
+	// æˆ»ã‚Šå€¤ : ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚äº†ã‹ãƒ¢ãƒ¼ãƒ‰åˆ‡ã‚Šæ›¿ãˆã§false. ãã‚Œä»¥å¤–ã¯true.
 	bool LoadEntryDefinition(std::vector<std::string> &entries, std::vector<TKVMCode_base *> &sentences);
 
-	// £±¤Ä¤ÎKISÄêµÁÊ£Ê¸¤òÁ´¤ÆÆÉ¤à
+	// ï¼‘ã¤ã®KISå®šç¾©è¤‡æ–‡ã‚’å…¨ã¦èª­ã‚€
 	TKVMCode_base *LoadInlineScript(void);
 
 
-	// Ê¸»úÎó¤òStatement¤È¤·¤ÆÃæ´Ö¥³¡¼¥É¤Ø¥³¥ó¥Ñ¥¤¥ë
+	// æ–‡å­—åˆ—ã‚’Statementã¨ã—ã¦ä¸­é–“ã‚³ãƒ¼ãƒ‰ã¸ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	static TKVMCode_base *Compile(const std::string &src, class TKawariLogger &logger);
 
-	// Ê¸»úÎó¤ò¡¢¤½¤Î¤Ş¤ŞString¤È¤·¤ÆÃæ´Ö¥³¡¼¥É²½¤¹¤ë
+	// æ–‡å­—åˆ—ã‚’ã€ãã®ã¾ã¾Stringã¨ã—ã¦ä¸­é–“ã‚³ãƒ¼ãƒ‰åŒ–ã™ã‚‹
 	static TKVMCode_base *CompileAsString(const std::string &src);
 
-	// Ê¸»úÎó¤ò½¸¹ç±é»»¼°('$['¾¤]'¤ÎÃæ¿È)¤È¤·¤Æ¥³¥ó¥Ñ¥¤¥ë
+	// æ–‡å­—åˆ—ã‚’é›†åˆæ¼”ç®—å¼('$['å¬]'ã®ä¸­èº«)ã¨ã—ã¦ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 	static TKVMSetCode_base *CompileAsEntryExpression(const std::string &src, class TKawariLogger &logger);
 
-	// Ê¸»úÎó¤ò¥¨¥ó¥È¥êÌ¾¤Ç»ÈÍÑ²ÄÇ½¤ÊÊ¸»úÎó¤Ë¥¨¥ó¥³¡¼¥É¤¹¤ë
+	// æ–‡å­—åˆ—ã‚’ã‚¨ãƒ³ãƒˆãƒªåã§ä½¿ç”¨å¯èƒ½ãªæ–‡å­—åˆ—ã«ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰ã™ã‚‹
 	static std::string EncodeEntryName(const std::string &orgsen);
 
 private:
-	// »ú¶ç²òÀÏ´ï
+	// å­—å¥è§£æå™¨
 	class TKawariLexer *lexer;
 
-	// ¥í¥¬¡¼
+	// ãƒ­ã‚¬ãƒ¼
 	class TKawariLogger &logger;
 
 	//=====================================================================
-	// Èó¸ø³«¥á¥½¥Ã¥É
+	// éå…¬é–‹ãƒ¡ã‚½ãƒƒãƒ‰
 	//=====================================================================
 
-	// ¥¨¥ó¥È¥êÌ¾ÊÂ¤Ó ( IdLiteral S | IdLiteral S ',' S EntryIdList )
-	// return : ÆÀ¤é¤ì¤¿¥¨¥ó¥È¥êÌ¾¤Î¿ô
+	// ã‚¨ãƒ³ãƒˆãƒªåä¸¦ã³ ( IdLiteral S | IdLiteral S ',' S EntryIdList )
+	// return : å¾—ã‚‰ã‚ŒãŸã‚¨ãƒ³ãƒˆãƒªåã®æ•°
 	int compileEntryIdList(std::vector<std::string> &list);
 
-	// ²ş¹ÔÉÔ²ÄÊ¸ÊÂ¤Ó¡£(Ãí°Õ)²ş¹Ô¥³¡¼¥É¤òÆÉ¤ß¹ş¤ó¤Ç½ªÎ»¡£
-	// return : ÆÀ¤é¤ì¤¿Ê¸¤Î¿ô
+	// æ”¹è¡Œä¸å¯æ–‡ä¸¦ã³ã€‚(æ³¨æ„)æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚’èª­ã¿è¾¼ã‚“ã§çµ‚äº†ã€‚
+	// return : å¾—ã‚‰ã‚ŒãŸæ–‡ã®æ•°
 	int compileNRStatementList(std::vector<TKVMCode_base *> &list);
 
-	// ²ÄÊ¸ÊÂ¤Ó¡£')'¤Ç½ªÎ»¡£
-	// return : ÆÀ¤é¤ì¤¿Ê¸¤Î¿ô
+	// å¯æ–‡ä¸¦ã³ã€‚')'ã§çµ‚äº†ã€‚
+	// return : å¾—ã‚‰ã‚ŒãŸæ–‡ã®æ•°
 	int compileStatementList(std::vector<TKVMCode_base *> &list);
 
 	//=====================================================================
-	// Ã±¸ì
+	// å˜èª
 
-	// Ê¸ ( (Word WS)* )
-	// Í×ÁÇ¿ô¤¬£°¤Î»ş¤â¥¤¥ó¥¹¥¿¥ó¥¹¤òÊÖ¤¹¡£¤³¤ì¤Ï$(NULL)¤ËÁêÅö¤¹¤ë¡£
+	// æ–‡ ( (Word WS)* )
+	// è¦ç´ æ•°ãŒï¼ã®æ™‚ã‚‚ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¿”ã™ã€‚ã“ã‚Œã¯$(NULL)ã«ç›¸å½“ã™ã‚‹ã€‚
 	// 
-	// noret : ²ş¹Ô¤òµö¤µ¤Ê¤¤¾ì¹çtrue.
-	// mode : TKawariLexer::Mode¤ÈÆ±ÃÍ¡£¥Ç¥Õ¥©¥ë¥È¤Ï¥¨¥ó¥È¥êÄêµÁ¥â¡¼¥É¡£
+	// noret : æ”¹è¡Œã‚’è¨±ã•ãªã„å ´åˆtrue.
+	// mode : TKawariLexer::Modeã¨åŒå€¤ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯ã‚¨ãƒ³ãƒˆãƒªå®šç¾©ãƒ¢ãƒ¼ãƒ‰ã€‚
 	TKVMCode_base *compileStatement(bool noret, int mode=1);
 
-	// Ê¸»úÎó ( Literal )¤Ë¤Ï¥³¥ó¥Ñ¥¤¥é¤ÏÂ¸ºß¤·¤Ê¤¤¡£
+	// æ–‡å­—åˆ— ( Literal )ã«ã¯ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã¯å­˜åœ¨ã—ãªã„ã€‚
 
-	// Ã±¸ì ( (Literal | Block | Subst )* )
-	// Í×ÁÇ¿ô¤¬£°¤À¤Ã¤¿¾ì¹ç¡¢NULL¤òÊÖ¤¹¡£
-	// mode : TKawariLexer::Mode¤ÈÆ±ÃÍ
+	// å˜èª ( (Literal | Block | Subst )* )
+	// è¦ç´ æ•°ãŒï¼ã ã£ãŸå ´åˆã€NULLã‚’è¿”ã™ã€‚
+	// mode : TKawariLexer::Modeã¨åŒå€¤
 	TKVMCode_base *compileWord(int mode);
 
-	// ÃÖ´¹ ( '$' ( EntryCallSubst | EntryIndexSubst | InlineScriptSubst | ExprSubst ) )
-	// É¬¤ºÀèÆ¬¤Ë'$'¤¬Íè¤ë¤³¤È¡£
+	// ç½®æ› ( '$' ( EntryCallSubst | EntryIndexSubst | InlineScriptSubst | ExprSubst ) )
+	// å¿…ãšå…ˆé ­ã«'$'ãŒæ¥ã‚‹ã“ã¨ã€‚
 	TKVMCode_base *compileSubst(void);
 
-	// ¥¹¥¯¥ê¥×¥ÈÊ¸ ( WS ( Word WS ) * )
+	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ ( WS ( Word WS ) * )
 	TKVMCode_base *compileScriptStatement(void);
 
-	// ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È ( '(' ScriptStatementSeq ') )
+	// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆ ( '(' ScriptStatementSeq ') )
 	TKVMCode_base *compileInlineScriptSubst(void);
 
-	// ¥Ö¥í¥Ã¥¯ ( '(' WS Statement ')' )
-	// Í×ÁÇ¿ô¤¬£°¤Î»ş¤â¥¤¥ó¥¹¥¿¥ó¥¹¤òÊÖ¤¹¡£¤³¤ì¤Ï$(NULL)¤ËÁêÅö¤¹¤ë¡£
+	// ãƒ–ãƒ­ãƒƒã‚¯ ( '(' WS Statement ')' )
+	// è¦ç´ æ•°ãŒï¼ã®æ™‚ã‚‚ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’è¿”ã™ã€‚ã“ã‚Œã¯$(NULL)ã«ç›¸å½“ã™ã‚‹ã€‚
 	TKVMCode_base *compileBlock(void);
 
-	// Åº¤¨»úÉÕ¤­¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤·´Ê°×ÈÇ
+	// æ·»ãˆå­—ä»˜ãã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã—ç°¡æ˜“ç‰ˆ
 	// ( ( EntryName | Subst ) '[' WS Expr WS ']' )
 	TKVMCode_base *compileEntryIndexSubst(void);
 
-	// ¥¨¥ó¥È¥êÌ¾ ( (IdLiteral | Subst)+ WS )
+	// ã‚¨ãƒ³ãƒˆãƒªå ( (IdLiteral | Subst)+ WS )
 	TKVMCode_base *compileEntryWord(void);
 
 	//=====================================================================
-	// ¥¹¥¯¥ê¥×¥È¹½Ê¸
+	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ§‹æ–‡
 
 	// if
 	TKVMCode_base *compileScriptIF(void);
 
 
 	//=====================================================================
-	// ¼°
+	// å¼
 
-	// ¼° ( '[' Expression  ']' )
+	// å¼ ( '[' Expression  ']' )
 	TKVMCode_base *compileExprSubst(void);
 
-	// ÏÀÍıÏÂ ( '||' )
+	// è«–ç†å’Œ ( '||' )
 	TKVMExprCode_base *compileExpr0(void);
 
-	// ÏÀÍıÀÑ ( '&&' )
+	// è«–ç†ç© ( '&&' )
 	TKVMExprCode_base *compileExpr1(void);
 
-	// Åù¼° ( '=' | '==' | '!=' )
+	// ç­‰å¼ ( '=' | '==' | '!=' )
 	TKVMExprCode_base *compileExpr2(void);
 
-	// Èæ³Ó ( '<' | '<=' | '>' | '>=' )
+	// æ¯”è¼ƒ ( '<' | '<=' | '>' | '>=' )
 	TKVMExprCode_base *compileExpr3(void);
 
-	// ¥Ó¥Ã¥ÈOR ('|' | '^')
+	// ãƒ“ãƒƒãƒˆOR ('|' | '^')
 	TKVMExprCode_base *compileExpr4(void);
 
-	// ¥Ó¥Ã¥ÈAND ('&')
+	// ãƒ“ãƒƒãƒˆAND ('&')
 	TKVMExprCode_base *compileExpr5(void);
 
-	// ²Ã¸º»» ('+' | '-')
+	// åŠ æ¸›ç®— ('+' | '-')
 	TKVMExprCode_base *compileExpr6(void);
 
-	// ¾è½ü»» ('*' | '/' | '%')
+	// ä¹—é™¤ç®— ('*' | '/' | '%')
 	TKVMExprCode_base *compileExpr7(void);
 
-	// Ã±¹à±é»»»Ò ('+' | '-' | '!' | '~')
+	// å˜é …æ¼”ç®—å­ ('+' | '-' | '!' | '~')
 	TKVMExprCode_base *compileExpr8(void);
 
-	// Îß¾è ( '**' )
+	// ç´¯ä¹— ( '**' )
 	TKVMExprCode_base *compileExpr9(void);
 
-	// ExprÍ×ÁÇ ( '(' Expression ')' | ExprWord )
+	// Exprè¦ç´  ( '(' Expression ')' | ExprWord )
 	TKVMExprCode_base *compileExprFactor(void);
 
-	// ExprÃ±¸ì ( DecimalLiteral WS | (QuotedLiteral | Subst)+ WS )
+	// Exprå˜èª ( DecimalLiteral WS | (QuotedLiteral | Subst)+ WS )
 	TKVMExprCode_base *compileExprWord(void);
 
 	//=====================================================================
-	// ¥¨¥ó¥È¥ê½¸¹ç±é»»¼°
+	// ã‚¨ãƒ³ãƒˆãƒªé›†åˆæ¼”ç®—å¼
 
-	// ¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤· ( '{' EntryExpr '}' )
+	// ã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã— ( '{' EntryExpr '}' )
 	TKVMCode_base *compileEntryCallSubst(void);
 
-	// ÏÂº¹ ('+' | '-')
+	// å’Œå·® ('+' | '-')
 	TKVMSetCode_base *compileSetExpr0(void);
 
-	// ÀÑ ('&')
+	// ç© ('&')
 	TKVMSetCode_base *compileSetExpr1(void);
 
-	// ½¸¹ç±é»»¼°Í×ÁÇ ( '(' EntryExpr ')' | EntryWord )
+	// é›†åˆæ¼”ç®—å¼è¦ç´  ( '(' EntryExpr ')' | EntryWord )
 	TKVMSetCode_base *compileSetExprFactor(void);
 
-	// ½¸¹ç±é»»¼°Ã±¸ì ( (IdLiteral | Subst)+ WS )
+	// é›†åˆæ¼”ç®—å¼å˜èª ( (IdLiteral | Subst)+ WS )
 	TKVMSetCode_base *compileSetExprWord(void);
 };
 //---------------------------------------------------------------------------

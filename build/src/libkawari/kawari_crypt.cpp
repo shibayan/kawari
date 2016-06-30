@@ -1,12 +1,12 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// °Å¹æ²½/Éü¹æ²½
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// æš—å·åŒ–/å¾©å·åŒ–
 //
 //      Programed by NAKAUE.T (Meister)
 //
-//  2001.03.15  Phase 0.42    °Å¹æ²½¼ÂÁõ
-//  2001.03.19  Phase 7.9.0   ¿·°Å¹æ!KAWA0001·Á¼°
+//  2001.03.15  Phase 0.42    æš—å·åŒ–å®Ÿè£…
+//  2001.03.19  Phase 7.9.0   æ–°æš—å·!KAWA0001å½¢å¼
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -14,14 +14,14 @@
 #include "libkawari/kawari_crypt.h"
 #include "misc/base64.h"
 //---------------------------------------------------------------------------
-// °Å¹æ²½·Á¼°¤ò³ÎÇ§¤¹¤ë
+// æš—å·åŒ–å½¢å¼ã‚’ç¢ºèªã™ã‚‹
 bool CheckCrypt(const string& encodedstr)
 {
 	string id=encodedstr.substr(0,9);
 	return((id=="!KAWA0000")||(id=="!KAWA0001"));
 }
 //---------------------------------------------------------------------------
-// É¸½à°Å¹æ²½
+// æ¨™æº–æš—å·åŒ–
 string EncryptString(const string& str)
 {
 	string encodedstr;
@@ -34,7 +34,7 @@ string EncryptString(const string& str)
 	return(string("!KAWA0000")+EncodeBase64(encodedstr));
 }
 //---------------------------------------------------------------------------
-// É¸½àÉü¹æ²½
+// æ¨™æº–å¾©å·åŒ–
 string DecryptString(const string& encodedstr)
 {
 	string str=DecodeBase64(encodedstr.substr(9));
@@ -57,12 +57,12 @@ string DecryptString(const string& encodedstr)
 	return(decodedstr);
 }
 #if 0
-// »²¹Í
-// ¤³¤Ã¤Á¤ò¸µ¤Ë¤¹¤ì¤Ğ¡¢¤â¤¦¤Á¤ç¤Ã¤ÈÎÉ¤¤¥³¡¼¥É¤Ë¤Ê¤ë¤È»×¤¦¤¬¡¢¤¦¡¼¤ó¡¦¡¦¡¦¡£
-// (¹Í¤¨Ãæ)
+// å‚è€ƒ
+// ã“ã£ã¡ã‚’å…ƒã«ã™ã‚Œã°ã€ã‚‚ã†ã¡ã‚‡ã£ã¨è‰¯ã„ã‚³ãƒ¼ãƒ‰ã«ãªã‚‹ã¨æ€ã†ãŒã€ã†ãƒ¼ã‚“ãƒ»ãƒ»ãƒ»ã€‚
+// (è€ƒãˆä¸­)
 string DecryptString(const string& encodedstr)
 {
-	// long int = 32bit ¤Ç¤¢¤ë¤³¤È¤Ë°ÍÂ¸¤·¤¿¥³¡¼¥Ç¥£¥ó¥°¤Ë¤Ê¤Ã¤Æ¤Ş¤¹ 
+	// long int = 32bit ã§ã‚ã‚‹ã“ã¨ã«ä¾å­˜ã—ãŸã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã«ãªã£ã¦ã¾ã™ 
 	string str=DecodeBase64(encodedstr.substr(9));
 
 	unsigned cnt = str.size();
@@ -82,8 +82,8 @@ string DecryptString(const string& encodedstr)
 }
 #endif
 //---------------------------------------------------------------------------
-// !KAWA0001·Á¼°¸°·×»»
-// ÅìÍÎ¤Ç¤Ï¥Á¥§¥Ã¥¯¥µ¥à¤È¤¤¤Õ¡£:-)
+// !KAWA0001å½¢å¼éµè¨ˆç®—
+// æ±æ´‹ã§ã¯ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã¨ã„ãµã€‚:-)
 static unsigned char Kawa0001CalcKey(const string &key)
 {
 	unsigned char k=0;
@@ -94,7 +94,7 @@ static unsigned char Kawa0001CalcKey(const string &key)
 	return(k);
 }
 //---------------------------------------------------------------------------
-// ¿·°Å¹æ²½(°Å¹æ¥­¡¼ÉÕ)
+// æ–°æš—å·åŒ–(æš—å·ã‚­ãƒ¼ä»˜)
 string EncryptString2(const string& str,const string &key)
 {
 	unsigned char k=Kawa0001CalcKey(key);
@@ -109,7 +109,7 @@ string EncryptString2(const string& str,const string &key)
 	return(string("!KAWA0001")+EncodeBase64(encodedstr));
 }
 //---------------------------------------------------------------------------
-// É¸½àÉü¹æ²½
+// æ¨™æº–å¾©å·åŒ–
 string DecryptString2(const string& encodedstr,const string &key)
 {
 	string id=encodedstr.substr(0,9);

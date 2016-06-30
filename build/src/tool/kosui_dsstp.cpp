@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
 // KOSUI - Direct SSTP Adapter
 //
@@ -41,13 +41,13 @@ void _endthread (void)
 namespace{
 	const unsigned int DIRECT_SSTP_PORT=9801;
 
-	// Ìá¤êÃÍ¤¬Í­¸ú¤«¤É¤¦¤«
+	// æˆ»ã‚Šå€¤ãŒæœ‰åŠ¹ã‹ã©ã†ã‹
 	bool isResponseValid=false;
 
-	// Ìá¤êÃÍ¼õ¤±ÅÏ¤·¾ì½ê
+	// æˆ»ã‚Šå€¤å—ã‘æ¸¡ã—å ´æ‰€
 	string response;
 
-	// ¥ß¥å¡¼¥Æ¥Ã¥¯¥¹¥ª¥Ö¥¸¥§¥¯¥È
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	HANDLE mutex;
 }
 //---------------------------------------------------------------------------
@@ -71,7 +71,7 @@ static LRESULT CALLBACK MainWndProc(
 				isResponseValid=true;
 				::ReleaseMutex(mutex);
 			}else{
-				// ¶¯°ú
+				// å¼·å¼•
 				isResponseValid=true;
 			}
 			return TRUE;
@@ -87,7 +87,7 @@ static LRESULT CALLBACK MainWndProc(
 static void MsgLoopThread(void *){
 	MSG msg;
 
-	/* ¥á¥Ã¥»¡¼¥¸¤ò¼õ¤±¼è¤Ã¤ÆÈ¯¹Ô¤¹¤ë¥ë¡¼¥× */
+	/* ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ã‘å–ã£ã¦ç™ºè¡Œã™ã‚‹ãƒ«ãƒ¼ãƒ— */
 	while( GetMessage(&msg, NULL, 0, 0) ){
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
@@ -96,8 +96,8 @@ static void MsgLoopThread(void *){
 	_endthread();
 }
 //---------------------------------------------------------------------------
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
-// hwnd : DA¤Î¥¦¥£¥ó¥É¥¦¥Ï¥ó¥É¥ë
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+// hwnd : DAã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«
 TKosuiDSSTPInterface::TKosuiDSSTPInterface (HWND hwnd, const string& evt)
 	: event(evt), dahwnd(hwnd), dumhwnd(0) {
 	WNDCLASS wndclass;
@@ -106,10 +106,10 @@ TKosuiDSSTPInterface::TKosuiDSSTPInterface (HWND hwnd, const string& evt)
 	char *szClassName="KOSUI dummy window";
 	char *szAppName="KOSUI";
 
-	// ¸½ºß¤Î¥¤¥ó¥¹¥¿¥ó¥¹¤òÆÀ¤ë
+	// ç¾åœ¨ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å¾—ã‚‹
 	HINSTANCE hInstance=(HINSTANCE)::GetModuleHandle(NULL);
 
-	// ¥À¥ß¡¼¤Î¥¦¥£¥ó¥É¥¦¤òºî¤ë
+	// ãƒ€ãƒŸãƒ¼ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œã‚‹
 	wndclass.lpfnWndProc = MainWndProc;
 	wndclass.hInstance = hInstance;
 	wndclass.lpszClassName = szClassName;
@@ -120,29 +120,29 @@ TKosuiDSSTPInterface::TKosuiDSSTPInterface (HWND hwnd, const string& evt)
 			CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,CW_USEDEFAULT,
 			NULL,NULL, hInstance, NULL);
 
-	// Mutex Object¤òºîÀ®
+	// Mutex Objectã‚’ä½œæˆ
 	mutex=::CreateMutex(NULL, FALSE, NULL);
 
-	// ¥á¥Ã¥»¡¼¥¸¥ë¡¼¥×¥¹¥ì¥Ã¥É¤Î³«»Ï
+	// ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–‹å§‹
 	_beginthread(&MsgLoopThread, 0, NULL);
 }
 //---------------------------------------------------------------------------
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 TKosuiDSSTPInterface::~TKosuiDSSTPInterface(){
-	// ¥¦¥£¥ó¥É¥¦¤Îºï½ü
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å‰Šé™¤
 	DestroyWindow(dumhwnd);
-	// ¥ß¥å¡¼¥Æ¥Ã¥¯¥¹¥ª¥Ö¥¸¥§¥¯¥È¤Îºï½ü
+	// ãƒŸãƒ¥ãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å‰Šé™¤
 	::CloseHandle(mutex);
 }
 //---------------------------------------------------------------------------
-// ¾ğÊó¤òÆÀ¤ë
+// æƒ…å ±ã‚’å¾—ã‚‹
 string TKosuiDSSTPInterface::GetInformation(void){
 	return "Can not get Information.(Direct SSTP mode)";
 }
 //---------------------------------------------------------------------------
-// Í¿¤¨¤é¤ì¤¿¥½¡¼¥¹¤ò²ò¼á¡¦¼Â¹Ô¤¹¤ë
+// ä¸ãˆã‚‰ã‚ŒãŸã‚½ãƒ¼ã‚¹ã‚’è§£é‡ˆãƒ»å®Ÿè¡Œã™ã‚‹
 string TKosuiDSSTPInterface::Parse(const string& script){
-	// ¶¶ËÜ¹¦ÌÀ¤µ¤ó¤Î ´Ê°×SSTP¥¯¥é¥¤¥¢¥ó¥È ¤ò»²¹Í
+	// æ©‹æœ¬å­”æ˜ã•ã‚“ã® ç°¡æ˜“SSTPã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ ã‚’å‚è€ƒ
 	TPHMessage request;
 
 	char szHWnd[100];

@@ -1,22 +1,22 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 //
-// "²ÚÏÂÍü" for ¤¢¤ì°Ê³°¤Î²¿¤«°Ê³°¤Î²¿¤«
-// Ãæ´Ö¥³¡¼¥É
+// "è¯å’Œæ¢¨" for ã‚ã‚Œä»¥å¤–ã®ä½•ã‹ä»¥å¤–ã®ä½•ã‹
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰
 //
 //      Programed by NAKAUE.T (Meister) / Suikyo.
 //
-//  2001.05.27  Phase 5.1     ¥¤¥ó¥¿¡¼¥×¥ê¥¿¡¦¥³¥ó¥Ñ¥¤¥é²½
-//  2001.06.12  Phase 5.3.2   ½ã¿è²¾ÁÛ¥¨¥ó¥È¥ê¤Ë¤ª¤±¤ë¥³¥ó¥Æ¥­¥¹¥È¤Î¥Ğ¥°½¤Àµ
-//  2001.06.17  Phase 5.4     ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥ÈÆâ¤ÎÃ±¸ìÀÚ¤ê½Ğ¤·¤Î¥Ğ¥°½¤Àµ
-//                            ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥ÈÆâ¤ÎÍúÎò»²¾È¤Î¥Ğ¥°½¤Àµ
-//                            µÕ¥³¥ó¥Ñ¥¤¥é
-//  2002.03.10  Phase 7.9.0   ¼­½ñ¤ÎÄ¾ÀÜ¥¢¥¯¥»¥¹¶Ø»ß
-//  2002.03.17                KIU¤Ë¹ç¤ï¤»¤ÆTKisEngine¤«¤éTKawariVM¤ËÌ¾¾ÎÊÑ¹¹
-//                            Æ±¤¸¤¯TKawariCode¤«¤éTKVMCode¤ËÌ¾¾ÎÊÑ¹¹
-//  2002.03.18                KIU¤Ë¹ç¤ï¤»¤ÆTKawariCompilerÊ¬Î¥
-//  2002.04.18  Phase 8.0.0   Ãæ´Ö¥³¡¼¥É¥¯¥é¥¹Á´¼è¤ÃÂØ¤¨¡£
-//  2003.01.07  Phase 8.1.0   functionÄêµÁ¤Î³ÍÆÀ¡¢ºï½ü¤òÄÉ²Ã
-//  2004.01.04  Phase 8.2.0   continueÄÉ²Ã
+//  2001.05.27  Phase 5.1     ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ—ãƒªã‚¿ãƒ»ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©åŒ–
+//  2001.06.12  Phase 5.3.2   ç´”ç²‹ä»®æƒ³ã‚¨ãƒ³ãƒˆãƒªã«ãŠã‘ã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ãƒã‚°ä¿®æ­£
+//  2001.06.17  Phase 5.4     ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®å˜èªåˆ‡ã‚Šå‡ºã—ã®ãƒã‚°ä¿®æ­£
+//                            ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆå†…ã®å±¥æ­´å‚ç…§ã®ãƒã‚°ä¿®æ­£
+//                            é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©
+//  2002.03.10  Phase 7.9.0   è¾æ›¸ã®ç›´æ¥ã‚¢ã‚¯ã‚»ã‚¹ç¦æ­¢
+//  2002.03.17                KIUã«åˆã‚ã›ã¦TKisEngineã‹ã‚‰TKawariVMã«åç§°å¤‰æ›´
+//                            åŒã˜ãTKawariCodeã‹ã‚‰TKVMCodeã«åç§°å¤‰æ›´
+//  2002.03.18                KIUã«åˆã‚ã›ã¦TKawariCompileråˆ†é›¢
+//  2002.04.18  Phase 8.0.0   ä¸­é–“ã‚³ãƒ¼ãƒ‰ã‚¯ãƒ©ã‚¹å…¨å–ã£æ›¿ãˆã€‚
+//  2003.01.07  Phase 8.1.0   functionå®šç¾©ã®ç²å¾—ã€å‰Šé™¤ã‚’è¿½åŠ 
+//  2004.01.04  Phase 8.2.0   continueè¿½åŠ 
 //
 //---------------------------------------------------------------------------
 #include "config.h"
@@ -39,7 +39,7 @@ bool TKVMCode_baseP_Less::operator()(const TKVMCode_base *L,const TKVMCode_base 
 }
 
 //---------------------------------------------------------------------------
-// Ãæ´Ö¥³¡¼¥É¤Î´ğÄì¥¯¥é¥¹
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®åŸºåº•ã‚¯ãƒ©ã‚¹
 ostream& TKVMCode_base::DebugIndent(ostream& os,unsigned int level) const
 {
 	for(unsigned int i=0;i<level;i++) os << "  ";
@@ -47,7 +47,7 @@ ostream& TKVMCode_base::DebugIndent(ostream& os,unsigned int level) const
 }
 
 //---------------------------------------------------------------------------
-// Ãæ´Ö¥³¡¼¥É¤Î´ğÄì¥¯¥é¥¹(¥ê¥¹¥È¤ò»ı¤Ä¤â¤Î)
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰ã®åŸºåº•ã‚¯ãƒ©ã‚¹(ãƒªã‚¹ãƒˆã‚’æŒã¤ã‚‚ã®)
 bool TKVMCodeList_base::Less(const TKVMCode_base &r_) const{
 	const TKVMCodeList_base& r=dynamic_cast<const TKVMCodeList_base&>(r_);
 	unsigned int lsize=list.size();
@@ -64,7 +64,7 @@ ostream &TKVMCodeList_base::Debug(ostream& os, unsigned int level) const{
 	for (TCodePVector::const_iterator it=list.begin(); it!=list.end(); it++){
 		if (*it)
 			(*it)->Debug(os, level+1);
-		// ASSERT¤¹¤Ù¤­¤À¤Ê¤¡
+		// ASSERTã™ã¹ãã ãªã
 	}
 	return DebugIndent(os, level) << ")" << endl;
 }
@@ -82,11 +82,11 @@ TKVMCodeList_base::~TKVMCodeList_base(){
 }
 
 //---------------------------------------------------------------------------
-// Ãæ´Ö¥³¡¼¥É¥ê¥¹¥È
-// »ı¤Ã¤Æ¤¤¤ëCode¤òÏ¢Â³Åª¤Ë¼Â¹Ô¤·¡¢Á´¤Æ¤Î·ë²Ì¤ò·ë¹ç¤·¤Æ½ĞÎÏ
+// ä¸­é–“ã‚³ãƒ¼ãƒ‰ãƒªã‚¹ãƒˆ
+// æŒã£ã¦ã„ã‚‹Codeã‚’é€£ç¶šçš„ã«å®Ÿè¡Œã—ã€å…¨ã¦ã®çµæœã‚’çµåˆã—ã¦å‡ºåŠ›
 string TKVMCodeList::Run(TKawariVM &vm){
 	string retstr;
-	// ¤³¤³¤ÇVM¤ÎÎã³°¥Á¥§¥Ã¥¯
+	// ã“ã“ã§VMã®ä¾‹å¤–ãƒã‚§ãƒƒã‚¯
 	for (TCodePVector::iterator it=list.begin(); (it!=list.end())&&(!vm.IsOnException()); it++){
 		retstr+=(*it)->Run(vm);
 	}
@@ -102,7 +102,7 @@ string TKVMCodeList::DisCompile(void) const{
 }
 
 //--------------------------------------------------------------------------
-// Ê¸»úÎó (Literal)
+// æ–‡å­—åˆ— (Literal)
 TKVMCodeString::TKVMCodeString(const string &str) : s(str)
 { }
 
@@ -131,8 +131,8 @@ string TKVMCodeString::DisCompile(void) const{
 }
 
 //--------------------------------------------------------------------------
-// ¥¹¥¯¥ê¥×¥ÈÊ¸ ( WS ( Word WS ) * )
-// ºÇ½é¤ÎÃ±¸ì¤¬TKVMCodeString¤Î»ş¡¢ÆâÍÆ¤òÊÖ¤¹
+// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ ( WS ( Word WS ) * )
+// æœ€åˆã®å˜èªãŒTKVMCodeStringã®æ™‚ã€å†…å®¹ã‚’è¿”ã™
 string TKVMCodeScriptStatement::GetArg0(void){
 	if (!list.size()) return "";
 	TKVMCodeString *str=dynamic_cast<TKVMCodeString *>(list[0]);
@@ -144,7 +144,7 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 	if (!list.size()) return "";
 	string arg0=GetArg0();
 	string retstr;
-	// 2ÃÊ¥Ñ¡¼¥¹¤Ïµ¤»ı¤Á°­¤¤¤è¤¥¡£
+	// 2æ®µãƒ‘ãƒ¼ã‚¹ã¯æ°—æŒã¡æ‚ªã„ã‚ˆã…ã€‚
 	if(arg0=="NULL") {
 		retstr="";
 	}else if(arg0=="break"){
@@ -178,7 +178,7 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 	}else if(arg0=="function"){
 		if(list.size()==3){
 			string funcname=vm.RunWithCurrentContext(list[1]);
-			// ³Î¼Â¤Ê¥³¥Ô¡¼¤ÏµÕ¥³¥ó¥Ñ¥¤¥ë¤·¤«¤Ê¤¤¡£
+			// ç¢ºå®Ÿãªã‚³ãƒ”ãƒ¼ã¯é€†ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã‹ãªã„ã€‚
 			string funcdecl=list[2]->DisCompile();
 			if (funcname.size()&&funcdecl.size()){
 				TEntry entry=vm.Dictionary().CreateEntry(
@@ -200,7 +200,7 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 				}
 			}
 		}else{
-			// ¥¨¥é¡¼
+			// ã‚¨ãƒ©ãƒ¼
 		}
 	}else if(arg0=="rmfunc"){
 		if (list.size()==2){
@@ -214,12 +214,12 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 			unsigned int frame=vm.Dictionary().LinkFrame();
 			vm.Dictionary().StartLoop();
 			while(!vm.IsOnWeakException()) {
-				// ¼°Ê¸¤ÎÉ¾²Á(Âè1¥Ñ¥é¥á¡¼¥¿)
+				// å¼æ–‡ã®è©•ä¾¡(ç¬¬1ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
 				string cond=list[1]->Run(vm);
 				if (!IsTrue(cond)) break;
 				vm.Dictionary().UnlinkFrame(frame);
 				vm.Dictionary().PushToHistory(cond);
-				// true¤Î»ş(Âè2¥Ñ¥é¥á¡¼¥¿)
+				// trueã®æ™‚(ç¬¬2ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
 				retstr+=vm.RunWithCurrentContext(list[2]);
 				vm.ResetState(TKawariVM::InterpState::CONTINUE);
 			}
@@ -228,13 +228,13 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 			vm.Dictionary().UnlinkFrame(frame);
 			vm.Dictionary().PushToHistory(retstr);
 		} else {
-			// ¥¨¥é¡¼
+			// ã‚¨ãƒ©ãƒ¼
 		}
 	}else if(arg0=="until"){
 		if(list.size()==3) {
 			unsigned int frame=vm.Dictionary().LinkFrame();
 			vm.Dictionary().StartLoop();
-			// ¼°Ê¸¤ÎÉ¾²Á(Âè1¥Ñ¥é¥á¡¼¥¿)
+			// å¼æ–‡ã®è©•ä¾¡(ç¬¬1ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
 			while(!vm.IsOnWeakException()) {
 				string cond=list[1]->Run(vm);
 				if (IsTrue(cond)) break;
@@ -249,17 +249,17 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 			vm.Dictionary().UnlinkFrame(frame);
 			vm.Dictionary().PushToHistory(retstr);
 		} else {
-			// ¥¨¥é¡¼
+			// ã‚¨ãƒ©ãƒ¼
 		}
 	}else if(arg0=="loop"){
 		if(list.size()==3) {
 			unsigned int frame=vm.Dictionary().LinkFrame();
 			vm.Dictionary().StartLoop();
-			// ²ó¿ô¤ÎÉ¾²Á(Âè1¥Ñ¥é¥á¡¼¥¿)
+			// å›æ•°ã®è©•ä¾¡(ç¬¬1ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
 			int limit=atoi(list[1]->Run(vm).c_str());
 			for(int i=0;(i<limit)&&(limit>0)&&(!vm.IsOnWeakException());i++) {
 				vm.Dictionary().PushToHistory(IntToString(i));
-				// ¼Â¹Ô(Âè2¥Ñ¥é¥á¡¼¥¿)
+				// å®Ÿè¡Œ(ç¬¬2ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
 				retstr+=list[2]->Run(vm);
 				vm.Dictionary().UnlinkFrame(frame);
 				vm.ResetState(TKawariVM::InterpState::CONTINUE);
@@ -269,18 +269,18 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 			vm.Dictionary().UnlinkFrame(frame);
 			vm.Dictionary().PushToHistory(retstr);
 		} else {
-			// ¥¨¥é¡¼
+			// ã‚¨ãƒ©ãƒ¼
 		}
 	}else if(arg0=="foreach"){
 		if(list.size()==4) {
 			TNS_KawariDictionary &dict=vm.Dictionary();
 			unsigned int frame=dict.LinkFrame();
 			vm.Dictionary().StartLoop();
-			// ¥Æ¥ó¥İ¥é¥ê¥¨¥ó¥È¥ê(Âè1¥Ñ¥é¥á¡¼¥¿)
+			// ãƒ†ãƒ³ãƒãƒ©ãƒªã‚¨ãƒ³ãƒˆãƒª(ç¬¬1ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
 			TEntry tmpentry=dict.CreateEntry(
 				vm.RunWithCurrentContext(list[1]));
 
-			// ÎóµóÂĞ¾İ(Âè2¥Ñ¥é¥á¡¼¥¿)
+			// åˆ—æŒ™å¯¾è±¡(ç¬¬2ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
 			const string listentryname=vm.RunWithCurrentContext(list[2]);
 			TEntry listentry=dict.GetEntry(listentryname);
 
@@ -290,7 +290,7 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 				listentry.FindAll(wordcol);
 				vector<TWordID>::iterator it=wordcol.begin();
 				for(;(it!=wordcol.end())&&(!vm.IsOnWeakException());it++) {
-					// Å¨¤ÏÊÌ¥¨¥ó¥È¥êÃæ¤ÎÃ±¸ì¤Ê¤Î¤Ç¡¢¥³¥ó¥Æ¥­¥¹¥È¤òºîÀ®
+					// æ•µã¯åˆ¥ã‚¨ãƒ³ãƒˆãƒªä¸­ã®å˜èªãªã®ã§ã€ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’ä½œæˆ
 					TKVMCode_base *code=dict.GetWordFromID(*it);
 					if (!code) continue;
 					TWordID wid=dict.CreateWord(
@@ -298,7 +298,7 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 					tmpentry.Clear();
 					tmpentry.Push(wid);
 
-					// ¼Â¹Ô(Âè3¥Ñ¥é¥á¡¼¥¿)
+					// å®Ÿè¡Œ(ç¬¬3ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿)
 					retstr+=vm.RunWithCurrentContext(list[3]);
 					vm.ResetState(TKawariVM::InterpState::CONTINUE);
 				}
@@ -308,17 +308,17 @@ string TKVMCodeScriptStatement::Run(TKawariVM &vm){
 			dict.UnlinkFrame(frame);
 			dict.PushToHistory(retstr);
 		}else{
-			// ¥¨¥é¡¼
+			// ã‚¨ãƒ©ãƒ¼
 		}
 	}else if(arg0=="?"){
 		if(list.size()>1) {
-			// Âè1¥Ñ¥é¥á¡¼¥¿°Ê¹ß¤«¤é°ì¤ÄÁªÂò
+			// ç¬¬1ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä»¥é™ã‹ã‚‰ä¸€ã¤é¸æŠ
 			unsigned int index=Random(list.size()-1)+1;
 			retstr=vm.RunWithCurrentContext(list[index]);
 			vm.Dictionary().PushToHistory(retstr);
 		}
 	}else{
-		// ¡Ö´Ø¿ô¡×¤Î½èÍı
+		// ã€Œé–¢æ•°ã€ã®å‡¦ç†
 		vector<string> args;
 		for(TCodePVector::iterator it=list.begin();it!=list.end();it++)
 			args.push_back((*it)->Run(vm));
@@ -340,13 +340,13 @@ string TKVMCodeScriptStatement::DisCompile(void) const{
 }
 
 //-------------------------------------------------------------------------
-// ¥¤¥ó¥é¥¤¥ó¥¹¥¯¥ê¥×¥È ( '$(' ScriptStatementSeq ') )
+// ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã‚¹ã‚¯ãƒªãƒ—ãƒˆ ( '$(' ScriptStatementSeq ') )
 string TKVMCodeInlineScript::Run(TKawariVM &vm){
 	string retstr;
-	// $( ... ; ... ; ... )¤ÎÃæ¤Ç¤Ï¡¢´ğËÜÅª¤Ë¤Ï¥¹¥¿¥Ã¥¯¤Ï´¬¤­Ìá¤é¤Ê¤¤
+	// $( ... ; ... ; ... )ã®ä¸­ã§ã¯ã€åŸºæœ¬çš„ã«ã¯ã‚¹ã‚¿ãƒƒã‚¯ã¯å·»ãæˆ»ã‚‰ãªã„
 	unsigned int frame=vm.Dictionary().LinkFrame();
 	for (TCodePVector::iterator it=list.begin(); (it!=list.end())&&(!vm.IsOnException()); it++){
-		// ¤ª¤Î¤ª¤Î¤Î¹Ô¤Ë¤Ä¤¤¤Æ
+		// ãŠã®ãŠã®ã®è¡Œã«ã¤ã„ã¦
 		TKVMCodeScriptStatement *code=dynamic_cast<TKVMCodeScriptStatement *>(*it);
 		if (code){
 			if(code->GetArg0()=="silent"){
@@ -374,7 +374,7 @@ string TKVMCodeInlineScript::DisCompile(void) const{
 }
 
 //--------------------------------------------------------------------------
-// Åº¤¨»úÉÕ¤­¥¨¥ó¥È¥ê¸Æ¤Ó½Ğ¤· ( '$' EntryWord '[' WS Expression WS ']' )
+// æ·»ãˆå­—ä»˜ãã‚¨ãƒ³ãƒˆãƒªå‘¼ã³å‡ºã— ( '$' EntryWord '[' WS Expression WS ']' )
 string TKVMCodeEntryIndex::Run(TKawariVM &vm){
 	string entry_name=entry_id->Run(vm);
 	if (!entry_name.size()) return("");
